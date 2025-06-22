@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkai_comm_patterns=self.webpackChunkai_comm_patterns||[]).push([[2355],{6507:t=>{t.exports=JSON.parse('{"metadata":{"permalink":"/ai-comm-patterns/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);

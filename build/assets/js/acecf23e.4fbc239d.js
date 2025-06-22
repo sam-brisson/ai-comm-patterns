@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkai_comm_patterns=self.webpackChunkai_comm_patterns||[]).push([[1903],{1912:t=>{t.exports=JSON.parse('{"blogBasePath":"/ai-comm-patterns/blog","blogTitle":"Blog","authorsListPath":"/ai-comm-patterns/blog/authors"}')}}]);
