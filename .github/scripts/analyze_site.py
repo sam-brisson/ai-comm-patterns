@@ -216,33 +216,33 @@ def main():
     print("🔍 Starting site content analysis...")
     
     # Crawl and analyze site content
-    articles = crawl_site_content(args.site_url)
+    articles = crawl_site_content(args.site_url)  # <-- always defined here
     
-if not articles:
-    print("⚠️ No articles found or analysis failed")
-    gaps_analysis = {
-        'total_articles': 0,
-        'dominant_themes': {},
-        'underexplored_concepts': {},
-        'concept_coverage': {},
-        'analysis_timestamp': datetime.now().isoformat(),
-        'error': 'No articles could be analyzed'
-    }
-    analysis_result = {
-        'articles': [],
-        'gaps_analysis': gaps_analysis,
-        'site_url': args.site_url,
-        'analysis_date': datetime.now().isoformat()
-    }
-else:
-    print(f"📊 Analyzed {len(articles)} articles")
-    gaps_analysis = analyze_content_gaps(articles)
-    analysis_result = {
-        'articles': articles,
-        'gaps_analysis': gaps_analysis,
-        'site_url': args.site_url,
-        'analysis_date': datetime.now().isoformat()
-    }
+    if not articles:
+        print("⚠️ No articles found or analysis failed")
+        gaps_analysis = {
+            'total_articles': 0,
+            'dominant_themes': {},
+            'underexplored_concepts': {},
+            'concept_coverage': {},
+            'analysis_timestamp': datetime.now().isoformat(),
+            'error': 'No articles could be analyzed'
+        }
+        analysis_result = {
+            'articles': [],
+            'gaps_analysis': gaps_analysis,
+            'site_url': args.site_url,
+            'analysis_date': datetime.now().isoformat()
+        }
+    else:
+        print(f"📊 Analyzed {len(articles)} articles")
+        gaps_analysis = analyze_content_gaps(articles)
+        analysis_result = {
+            'articles': articles,
+            'gaps_analysis': gaps_analysis,
+            'site_url': args.site_url,
+            'analysis_date': datetime.now().isoformat()
+        }
     
     # Save results
     with open(args.output_file, 'w') as f:
@@ -250,7 +250,7 @@ else:
     
     print(f"✅ Site analysis complete. Results saved to {args.output_file}")
     
-    # Print summary
+    # Print summary (only if we actually have articles)
     if articles:
         print(f"\n📈 Summary:")
         print(f"  • Total articles: {len(articles)}")
