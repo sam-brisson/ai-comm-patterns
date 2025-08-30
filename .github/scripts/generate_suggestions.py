@@ -163,7 +163,7 @@ def generate_article_suggestions(client, research_data, max_suggestions=3):
         
         # Call Claude API
         response = client.messages.create(
-            model="claude-3-5-sonnet-20241022",
+            model="claude-3-haiku-20240307",
             max_tokens=4000,
             temperature=0.7,
             messages=[
