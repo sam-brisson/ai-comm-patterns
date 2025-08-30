@@ -44,7 +44,6 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-          # <<< SUGGESTION 2: Add dependency caching
           cache: 'pip'
           cache-dependency-path: '.github/scripts/requirements.txt'
           
@@ -82,7 +81,6 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           
-      # <<< SUGGESTION 1: Set date and branch name in one place
       - name: Set Branch Name and Date
         id: branch_info
         run: |
@@ -94,29 +92,23 @@ jobs:
       - name: Commit suggested articles
         id: commit
         run: |
-          # Use the consistent date from the previous step
           DATE_SLUG="${{ steps.branch_info.outputs.date_slug }}"
           
           git checkout -b "${{ steps.branch_info.outputs.branch_name }}"
           
-          # Create directory structure
           mkdir -p "docs/suggested/${DATE_SLUG}"
           mkdir -p "docs/research/${DATE_SLUG}"
           
-          # Move generated files
           if [ -d "suggested_articles/" ]; then
             mv suggested_articles/* "docs/suggested/${DATE_SLUG}/"
           fi
           
-          # Move research data
           mv site_analysis.json "docs/research/${DATE_SLUG}/"
           mv external_research.json "docs/research/${DATE_SLUG}/"
           
-          # Configure git
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # Commit changes
           git add docs/suggested/ docs/research/
           
           if git diff --staged --quiet; then
@@ -127,14 +119,20 @@ jobs:
             echo "has_changes=true" >> $GITHUB_OUTPUT
           fi
           
-      # <<< SUGGESTION 3: Replaced push and github-script with a single gh cli step
+      - name: Push branch
+        if: steps.commit.outputs.has_changes == 'true'
+        run: |
+          git push origin "${{ steps.branch_info.outputs.branch_name }}"
+
+      - name: Authenticate gh CLI
+        if: steps.commit.outputs.has_changes == 'true'
+        run: echo "${{ secrets.GH_PAT }}" | gh auth login --with-token
+
       - name: Create Pull Request
         if: steps.commit.outputs.has_changes == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          git push origin "${{ steps.branch_info.outputs.branch_name }}"
-          
           DATE_SLUG="${{ steps.branch_info.outputs.date_slug }}"
           PR_BODY=$(cat <<EOF
           ## AI Research Agent Report
