@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'AI Communication Patterns',
-  tagline: 'Thoughts and Ideas on the way way we communicate with AI',
+  tagline: 'Ideas and Exploration on the Topic of Human / AI Collaboration',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -41,7 +41,7 @@ const config: Config = {
       'classic',
       {
         docs: {
-          sidebarPath: './sidebars.ts',
+          sidebarPath: './sidebars.ts',         
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -76,46 +76,48 @@ const config: Config = {
       title: 'AI Communication Patterns',
       logo: {
         alt: 'AI Communication Patterns Logo',
-        src: 'img/logo.svg',
+        src: 'img/ai-logo.svg',
       },
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'CollabSidebar',
           position: 'left',
-          label: 'Docs',
+          label: 'Collaboration',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/sam-brisson/ai-comm-patterns',
-          label: 'GitHub',
-          position: 'right',
+          type: 'docSidebar',
+          sidebarId: 'TrustSidebar',
+          position: 'left',
+          label: 'Trust',
         },
+        {
+          type: 'docSidebar',
+          sidebarId: 'ExperimenationSidebar',
+          position: 'left',
+          label: 'Experimentation',
+        }
       ],
     },
     footer: {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Start Here',
           items: [
             {
-              label: 'Getting Started',
-              to: '/docs/intro',
+              label: 'What is this about?',
+              to: '/docs/experimentation/start',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'Connect',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/sam-brisson/ai-comm-patterns',
-            },
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/in/sbrisson/',
+            },            
           ],
         },
       ],
