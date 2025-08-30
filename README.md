@@ -1,5 +1,6 @@
 # Website
 
+This is the repo for [AI Communication Patterns](https://sam-brisson.github.io/ai-comm-patterns/)
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
 ## Installation
