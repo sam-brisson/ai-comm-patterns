@@ -1,0 +1,347 @@
+{
+  "timestamp": "2025-08-30T15:56:56.397761",
+  "depth": "light",
+  "sources": {
+    "arxiv": [
+      {
+        "title": "OneReward: Unified Mask-Guided Image Generation via Multi-Task Human\n  Preference Learning",
+        "authors": [
+          "Yuan Gong",
+          "Xionghui Wang",
+          "Jie Wu",
+          "Shiyin Wang",
+          "Yitong Wang",
+          "Xinglong Wu"
+        ],
+        "summary": "In this paper, we introduce OneReward, a unified reinforcement learning framework that enhances the model's generative capabilities across multiple tasks under different evaluation criteria using only \\textit{One Reward} model. By employing a single vision-language model (VLM) as the generative reward model, which can distinguish the winner and loser for a given task and a given evaluation criterion, it can be effectively applied to multi-task generation models, particularly in contexts with varied data and diverse task objectives. We utilize OneReward for mask-guided image generation, which can be further divided into several sub-tasks such as image fill, image extend, object removal, and text rendering, involving a binary mask as the edit area. Although these domain-specific tasks share same conditioning paradigm, they differ significantly in underlying data distributions and evaluation metrics. Existing methods often rely on task-specific supervised fine-tuning (SFT), which limits generalization and training efficiency. Building on OneReward, we develop Seedream 3.0 Fill, a mask-guided generation model trained via multi-task reinforcement learning directly on a pre-trained base model, eliminating the need for task-specific SFT. Experimental results demonstrate that our unified edit model consistently outperforms both commercial and open-source competitors, such as Ideogram, Adobe Photoshop, and FLUX Fill [Pro], across multiple evaluation dimensions. Code and model are available at: https://one-reward.github.io",
+        "url": "http://arxiv.org/abs/2508.21066v1",
+        "published": "2025-08-28T17:59:46Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "FakeParts: a New Family of AI-Generated DeepFakes",
+        "authors": [
+          "Gaetan Brison",
+          "Soobash Daiboo",
+          "Samy Aimeur",
+          "Awais Hussain Sani",
+          "Xi Wang",
+          "Gianni Franchi",
+          "Vicky Kalogeiton"
+        ],
+        "summary": "We introduce FakeParts, a new class of deepfakes characterized by subtle, localized manipulations to specific spatial regions or temporal segments of otherwise authentic videos. Unlike fully synthetic content, these partial manipulations, ranging from altered facial expressions to object substitutions and background modifications, blend seamlessly with real elements, making them particularly deceptive and difficult to detect. To address the critical gap in detection capabilities, we present FakePartsBench, the first large-scale benchmark dataset specifically designed to capture the full spectrum of partial deepfakes. Comprising over 25K videos with pixel-level and frame-level manipulation annotations, our dataset enables comprehensive evaluation of detection methods. Our user studies demonstrate that FakeParts reduces human detection accuracy by over 30% compared to traditional deepfakes, with similar performance degradation observed in state-of-the-art detection models. This work identifies an urgent vulnerability in current deepfake detection approaches and provides the necessary resources to develop more robust methods for partial video manipulations.",
+        "url": "http://arxiv.org/abs/2508.21052v1",
+        "published": "2025-08-28T17:55:14Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI",
+          "cs.MM"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Re-Representation in Sentential Relation Extraction with Sequence\n  Routing Algorithm",
+        "authors": [
+          "Ramazan Ali Bahrami",
+          "Ramin Yahyapour"
+        ],
+        "summary": "Sentential relation extraction (RE) is an important task in natural language processing (NLP). In this paper we propose to do sentential RE with dynamic routing in capsules. We first show that the proposed approach outperform state of the art on common sentential relation extraction datasets Tacred, Tacredrev, Retacred, and Conll04. We then investigate potential reasons for its good performance on the mentioned datasets, and yet low performance on another similar, yet larger sentential RE dataset, Wikidata. As such, we identify noise in Wikidata labels as one of the reasons that can hinder performance. Additionally, we show associativity of better performance with better re-representation, a term from neuroscience referred to change of representation in human brain to improve the match at comparison time. As example, in the given analogous terms King:Queen::Man:Woman, at comparison time, and as a result of re-representation, the similarity between related head terms (King,Man), and tail terms (Queen,Woman) increases. As such, our observation show that our proposed model can do re-representation better than the vanilla model compared with. To that end, beside noise in the labels of the distantly supervised RE datasets, we propose re-representation as a challenge in sentential RE.",
+        "url": "http://arxiv.org/abs/2508.21049v1",
+        "published": "2025-08-28T17:54:35Z",
+        "categories": [
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Veritas: Generalizable Deepfake Detection via Pattern-Aware Reasoning",
+        "authors": [
+          "Hao Tan",
+          "Jun Lan",
+          "Zichang Tan",
+          "Ajian Liu",
+          "Chuanbiao Song",
+          "Senyuan Shi",
+          "Huijia Zhu",
+          "Weiqiang Wang",
+          "Jun Wan",
+          "Zhen Lei"
+        ],
+        "summary": "Deepfake detection remains a formidable challenge due to the complex and evolving nature of fake content in real-world scenarios. However, existing academic benchmarks suffer from severe discrepancies from industrial practice, typically featuring homogeneous training sources and low-quality testing images, which hinder the practical deployments of current detectors. To mitigate this gap, we introduce HydraFake, a dataset that simulates real-world challenges with hierarchical generalization testing. Specifically, HydraFake involves diversified deepfake techniques and in-the-wild forgeries, along with rigorous training and evaluation protocol, covering unseen model architectures, emerging forgery techniques and novel data domains. Building on this resource, we propose Veritas, a multi-modal large language model (MLLM) based deepfake detector. Different from vanilla chain-of-thought (CoT), we introduce pattern-aware reasoning that involves critical reasoning patterns such as \"planning\" and \"self-reflection\" to emulate human forensic process. We further propose a two-stage training pipeline to seamlessly internalize such deepfake reasoning capacities into current MLLMs. Experiments on HydraFake dataset reveal that although previous detectors show great generalization on cross-model scenarios, they fall short on unseen forgeries and data domains. Our Veritas achieves significant gains across different OOD scenarios, and is capable of delivering transparent and faithful detection outputs.",
+        "url": "http://arxiv.org/abs/2508.21048v1",
+        "published": "2025-08-28T17:53:05Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "CogVLA: Cognition-Aligned Vision-Language-Action Model via\n  Instruction-Driven Routing & Sparsification",
+        "authors": [
+          "Wei Li",
+          "Renshan Zhang",
+          "Rui Shao",
+          "Jie He",
+          "Liqiang Nie"
+        ],
+        "summary": "Recent Vision-Language-Action (VLA) models built on pre-trained Vision-Language Models (VLMs) require extensive post-training, resulting in high computational overhead that limits scalability and deployment.We propose CogVLA, a Cognition-Aligned Vision-Language-Action framework that leverages instruction-driven routing and sparsification to improve both efficiency and performance. CogVLA draws inspiration from human multimodal coordination and introduces a 3-stage progressive architecture. 1) Encoder-FiLM based Aggregation Routing (EFA-Routing) injects instruction information into the vision encoder to selectively aggregate and compress dual-stream visual tokens, forming a instruction-aware latent representation. 2) Building upon this compact visual encoding, LLM-FiLM based Pruning Routing (LFP-Routing) introduces action intent into the language model by pruning instruction-irrelevant visually grounded tokens, thereby achieving token-level sparsity. 3) To ensure that compressed perception inputs can still support accurate and coherent action generation, we introduce V-L-A Coupled Attention (CAtten), which combines causal vision-language attention with bidirectional action parallel decoding. Extensive experiments on the LIBERO benchmark and real-world robotic tasks demonstrate that CogVLA achieves state-of-the-art performance with success rates of 97.4% and 70.0%, respectively, while reducing training costs by 2.5-fold and decreasing inference latency by 2.8-fold compared to OpenVLA. CogVLA is open-sourced and publicly available at https://github.com/JiuTian-VL/CogVLA.",
+        "url": "http://arxiv.org/abs/2508.21046v1",
+        "published": "2025-08-28T17:50:58Z",
+        "categories": [
+          "cs.CV",
+          "cs.RO"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "First-Place Solution to NeurIPS 2024 Invisible Watermark Removal\n  Challenge",
+        "authors": [
+          "Fahad Shamshad",
+          "Tameem Bakr",
+          "Yahia Shaaban",
+          "Noor Hussein",
+          "Karthik Nandakumar",
+          "Nils Lukas"
+        ],
+        "summary": "Content watermarking is an important tool for the authentication and copyright protection of digital media. However, it is unclear whether existing watermarks are robust against adversarial attacks. We present the winning solution to the NeurIPS 2024 Erasing the Invisible challenge, which stress-tests watermark robustness under varying degrees of adversary knowledge. The challenge consisted of two tracks: a black-box and beige-box track, depending on whether the adversary knows which watermarking method was used by the provider. For the beige-box track, we leverage an adaptive VAE-based evasion attack, with a test-time optimization and color-contrast restoration in CIELAB space to preserve the image's quality. For the black-box track, we first cluster images based on their artifacts in the spatial or frequency-domain. Then, we apply image-to-image diffusion models with controlled noise injection and semantic priors from ChatGPT-generated captions to each cluster with optimized parameter settings. Empirical evaluations demonstrate that our method successfully achieves near-perfect watermark removal (95.7%) with negligible impact on the residual image's quality. We hope that our attacks inspire the development of more robust image watermarking methods.",
+        "url": "http://arxiv.org/abs/2508.21072v1",
+        "published": "2025-08-28T17:59:59Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Dress&Dance: Dress up and Dance as You Like It - Technical Preview",
+        "authors": [
+          "Jun-Kun Chen",
+          "Aayush Bansal",
+          "Minh Phuoc Vo",
+          "Yu-Xiong Wang"
+        ],
+        "summary": "We present Dress&Dance, a video diffusion framework that generates high quality 5-second-long 24 FPS virtual try-on videos at 1152x720 resolution of a user wearing desired garments while moving in accordance with a given reference video. Our approach requires a single user image and supports a range of tops, bottoms, and one-piece garments, as well as simultaneous tops and bottoms try-on in a single pass. Key to our framework is CondNet, a novel conditioning network that leverages attention to unify multi-modal inputs (text, images, and videos), thereby enhancing garment registration and motion fidelity. CondNet is trained on heterogeneous training data, combining limited video data and a larger, more readily available image dataset, in a multistage progressive manner. Dress&Dance outperforms existing open source and commercial solutions and enables a high quality and flexible try-on experience.",
+        "url": "http://arxiv.org/abs/2508.21070v1",
+        "published": "2025-08-28T17:59:55Z",
+        "categories": [
+          "cs.CV",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "OneReward: Unified Mask-Guided Image Generation via Multi-Task Human\n  Preference Learning",
+        "authors": [
+          "Yuan Gong",
+          "Xionghui Wang",
+          "Jie Wu",
+          "Shiyin Wang",
+          "Yitong Wang",
+          "Xinglong Wu"
+        ],
+        "summary": "In this paper, we introduce OneReward, a unified reinforcement learning framework that enhances the model's generative capabilities across multiple tasks under different evaluation criteria using only \\textit{One Reward} model. By employing a single vision-language model (VLM) as the generative reward model, which can distinguish the winner and loser for a given task and a given evaluation criterion, it can be effectively applied to multi-task generation models, particularly in contexts with varied data and diverse task objectives. We utilize OneReward for mask-guided image generation, which can be further divided into several sub-tasks such as image fill, image extend, object removal, and text rendering, involving a binary mask as the edit area. Although these domain-specific tasks share same conditioning paradigm, they differ significantly in underlying data distributions and evaluation metrics. Existing methods often rely on task-specific supervised fine-tuning (SFT), which limits generalization and training efficiency. Building on OneReward, we develop Seedream 3.0 Fill, a mask-guided generation model trained via multi-task reinforcement learning directly on a pre-trained base model, eliminating the need for task-specific SFT. Experimental results demonstrate that our unified edit model consistently outperforms both commercial and open-source competitors, such as Ideogram, Adobe Photoshop, and FLUX Fill [Pro], across multiple evaluation dimensions. Code and model are available at: https://one-reward.github.io",
+        "url": "http://arxiv.org/abs/2508.21066v1",
+        "published": "2025-08-28T17:59:46Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "A Baryon and Lepton Number Violation Model Testable at the LHC",
+        "authors": [
+          "Amit Bhoonah",
+          "Francis Burk",
+          "Da Liu",
+          "Tong Ou",
+          "Deepak Sathyan"
+        ],
+        "summary": "Proton decay experiments typically constrain baryon number violation to the scale of grand unified theories. From a phenomenological point of view, this makes direct probing of the associated new resonances, such as the X and Y bosons, out of reach for even the most optimistic future experiments. It has, however, been known that certain specific patterns of baryon and lepton number violation can suppress proton decay by multiple powers of the masses of the heavy resonances involved, opening the possibility that the observed limits on the proton lifetime are consistent with baryon number violating physics at energy scales much lower than that of grand unification. We construct an explicit example of such a model which violates baryon number by one unit, $\\Delta \\text{B} = -1$, and lepton number by three units, $\\Delta \\text{L} = -3$, and show that despite stringent limits on the predicted $p \\rightarrow e^{+}/\\mu^{+} \\overline{\\nu}\\overline{\\nu}$ mode from the Super-Kamiokande experiment, the masses of the newly introduced elementary particles can be $\\mathcal{O}$(TeV). We identify interesting unique signatures of baryon number violation of this model that can be probed both with currently available LHC data and with the upcoming High-Luminosity LHC. We also present a scenario for low-scale baryogenesis within the framework of this model.",
+        "url": "http://arxiv.org/abs/2508.21064v1",
+        "published": "2025-08-28T17:59:13Z",
+        "categories": [
+          "hep-ph",
+          "hep-ex"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "OnGoal: Tracking and Visualizing Conversational Goals in Multi-Turn\n  Dialogue with Large Language Models",
+        "authors": [
+          "Adam Coscia",
+          "Shunan Guo",
+          "Eunyee Koh",
+          "Alex Endert"
+        ],
+        "summary": "As multi-turn dialogues with large language models (LLMs) grow longer and more complex, how can users better evaluate and review progress on their conversational goals? We present OnGoal, an LLM chat interface that helps users better manage goal progress. OnGoal provides real-time feedback on goal alignment through LLM-assisted evaluation, explanations for evaluation results with examples, and overviews of goal progression over time, enabling users to navigate complex dialogues more effectively. Through a study with 20 participants on a writing task, we evaluate OnGoal against a baseline chat interface without goal tracking. Using OnGoal, participants spent less time and effort to achieve their goals while exploring new prompting strategies to overcome miscommunication, suggesting tracking and visualizing goals can enhance engagement and resilience in LLM dialogues. Our findings inspired design implications for future LLM chat interfaces that improve goal communication, reduce cognitive load, enhance interactivity, and enable feedback to improve LLM performance.",
+        "url": "http://arxiv.org/abs/2508.21061v1",
+        "published": "2025-08-28T17:58:29Z",
+        "categories": [
+          "cs.HC",
+          "cs.AI",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "First-Place Solution to NeurIPS 2024 Invisible Watermark Removal\n  Challenge",
+        "authors": [
+          "Fahad Shamshad",
+          "Tameem Bakr",
+          "Yahia Shaaban",
+          "Noor Hussein",
+          "Karthik Nandakumar",
+          "Nils Lukas"
+        ],
+        "summary": "Content watermarking is an important tool for the authentication and copyright protection of digital media. However, it is unclear whether existing watermarks are robust against adversarial attacks. We present the winning solution to the NeurIPS 2024 Erasing the Invisible challenge, which stress-tests watermark robustness under varying degrees of adversary knowledge. The challenge consisted of two tracks: a black-box and beige-box track, depending on whether the adversary knows which watermarking method was used by the provider. For the beige-box track, we leverage an adaptive VAE-based evasion attack, with a test-time optimization and color-contrast restoration in CIELAB space to preserve the image's quality. For the black-box track, we first cluster images based on their artifacts in the spatial or frequency-domain. Then, we apply image-to-image diffusion models with controlled noise injection and semantic priors from ChatGPT-generated captions to each cluster with optimized parameter settings. Empirical evaluations demonstrate that our method successfully achieves near-perfect watermark removal (95.7%) with negligible impact on the residual image's quality. We hope that our attacks inspire the development of more robust image watermarking methods.",
+        "url": "http://arxiv.org/abs/2508.21072v1",
+        "published": "2025-08-28T17:59:59Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Dress&Dance: Dress up and Dance as You Like It - Technical Preview",
+        "authors": [
+          "Jun-Kun Chen",
+          "Aayush Bansal",
+          "Minh Phuoc Vo",
+          "Yu-Xiong Wang"
+        ],
+        "summary": "We present Dress&Dance, a video diffusion framework that generates high quality 5-second-long 24 FPS virtual try-on videos at 1152x720 resolution of a user wearing desired garments while moving in accordance with a given reference video. Our approach requires a single user image and supports a range of tops, bottoms, and one-piece garments, as well as simultaneous tops and bottoms try-on in a single pass. Key to our framework is CondNet, a novel conditioning network that leverages attention to unify multi-modal inputs (text, images, and videos), thereby enhancing garment registration and motion fidelity. CondNet is trained on heterogeneous training data, combining limited video data and a larger, more readily available image dataset, in a multistage progressive manner. Dress&Dance outperforms existing open source and commercial solutions and enables a high quality and flexible try-on experience.",
+        "url": "http://arxiv.org/abs/2508.21070v1",
+        "published": "2025-08-28T17:59:55Z",
+        "categories": [
+          "cs.CV",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "OneReward: Unified Mask-Guided Image Generation via Multi-Task Human\n  Preference Learning",
+        "authors": [
+          "Yuan Gong",
+          "Xionghui Wang",
+          "Jie Wu",
+          "Shiyin Wang",
+          "Yitong Wang",
+          "Xinglong Wu"
+        ],
+        "summary": "In this paper, we introduce OneReward, a unified reinforcement learning framework that enhances the model's generative capabilities across multiple tasks under different evaluation criteria using only \\textit{One Reward} model. By employing a single vision-language model (VLM) as the generative reward model, which can distinguish the winner and loser for a given task and a given evaluation criterion, it can be effectively applied to multi-task generation models, particularly in contexts with varied data and diverse task objectives. We utilize OneReward for mask-guided image generation, which can be further divided into several sub-tasks such as image fill, image extend, object removal, and text rendering, involving a binary mask as the edit area. Although these domain-specific tasks share same conditioning paradigm, they differ significantly in underlying data distributions and evaluation metrics. Existing methods often rely on task-specific supervised fine-tuning (SFT), which limits generalization and training efficiency. Building on OneReward, we develop Seedream 3.0 Fill, a mask-guided generation model trained via multi-task reinforcement learning directly on a pre-trained base model, eliminating the need for task-specific SFT. Experimental results demonstrate that our unified edit model consistently outperforms both commercial and open-source competitors, such as Ideogram, Adobe Photoshop, and FLUX Fill [Pro], across multiple evaluation dimensions. Code and model are available at: https://one-reward.github.io",
+        "url": "http://arxiv.org/abs/2508.21066v1",
+        "published": "2025-08-28T17:59:46Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Physical constraints on effective non-Hermitian systems",
+        "authors": [
+          "Aaron Kleger",
+          "Rufus Boyack"
+        ],
+        "summary": "Interacting and open quantum systems can be formulated in terms of an effective non-Hermitian Hamiltonian (NHH), however, there are important constraints that must be satisfied by the effective action and the associated Green's functions. One common approach to many-body non-Hermitian (NH) systems is to incorporate the anti-Hermitian part of the Hamiltonian directly in the Matsubara Green's function. Here, we show that such an approach is incompatible with the standard framework for systems with interactions. Furthermore, we furnish a consistent physical description for such systems by determining their distinction from conventional interacting physics, and find that they are described by pseudo-Hermitian quantum mechanics. Furthermore, we characterize the zero-temperature distribution functions within several frameworks for NH systems. As an application of our results, we consider the electromagnetic response of a NH quasiparticle Hamiltonian based on the (1+1)-dimensional NH Dirac model subject to various physical descriptions.",
+        "url": "http://arxiv.org/abs/2508.21067v1",
+        "published": "2025-08-28T17:59:46Z",
+        "categories": [
+          "quant-ph",
+          "cond-mat.str-el"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "OnGoal: Tracking and Visualizing Conversational Goals in Multi-Turn\n  Dialogue with Large Language Models",
+        "authors": [
+          "Adam Coscia",
+          "Shunan Guo",
+          "Eunyee Koh",
+          "Alex Endert"
+        ],
+        "summary": "As multi-turn dialogues with large language models (LLMs) grow longer and more complex, how can users better evaluate and review progress on their conversational goals? We present OnGoal, an LLM chat interface that helps users better manage goal progress. OnGoal provides real-time feedback on goal alignment through LLM-assisted evaluation, explanations for evaluation results with examples, and overviews of goal progression over time, enabling users to navigate complex dialogues more effectively. Through a study with 20 participants on a writing task, we evaluate OnGoal against a baseline chat interface without goal tracking. Using OnGoal, participants spent less time and effort to achieve their goals while exploring new prompting strategies to overcome miscommunication, suggesting tracking and visualizing goals can enhance engagement and resilience in LLM dialogues. Our findings inspired design implications for future LLM chat interfaces that improve goal communication, reduce cognitive load, enhance interactivity, and enable feedback to improve LLM performance.",
+        "url": "http://arxiv.org/abs/2508.21061v1",
+        "published": "2025-08-28T17:58:29Z",
+        "categories": [
+          "cs.HC",
+          "cs.AI",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      }
+    ],
+    "discussions": [
+      {
+        "title": "Human-AI Collaborative Coding Patterns",
+        "summary": "Discussion about effective patterns for human-AI pair programming",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-08-30T15:56:59.763379",
+        "url": "placeholder",
+        "engagement": "active"
+      },
+      {
+        "title": "Visual Design Collaboration with AI Tools",
+        "summary": "Emerging patterns in visual design workflows with AI assistance",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-08-30T15:56:59.763395",
+        "url": "placeholder",
+        "engagement": "emerging"
+      }
+    ]
+  },
+  "trends": {
+    "trending_terms": {
+      "interface": 6,
+      "communication": 4,
+      "pattern": 4,
+      "design": 3,
+      "cognition": 2,
+      "experience": 2,
+      "interaction": 1
+    },
+    "total_papers": 15,
+    "recent_focus_areas": [
+      "interface",
+      "communication",
+      "pattern",
+      "design",
+      "cognition"
+    ],
+    "analysis_note": "Based on keyword frequency in recent research papers"
+  },
+  "opportunities": [
+    {
+      "topic": "interface",
+      "research_frequency": 6,
+      "gap_level": "high",
+      "research_basis": "Appears 6 times in recent research",
+      "suggested_focus": "Design experiments with new interface paradigms for AI collaboration"
+    },
+    {
+      "topic": "communication",
+      "research_frequency": 4,
+      "gap_level": "high",
+      "research_basis": "Appears 4 times in recent research",
+      "suggested_focus": "Study communication patterns that enhance human-AI collaboration"
+    },
+    {
+      "topic": "pattern",
+      "research_frequency": 4,
+      "gap_level": "high",
+      "research_basis": "Appears 4 times in recent research",
+      "suggested_focus": "Investigate pattern in the context of human-AI collaboration"
+    },
+    {
+      "topic": "design",
+      "research_frequency": 3,
+      "gap_level": "high",
+      "research_basis": "Appears 3 times in recent research",
+      "suggested_focus": "Investigate design in the context of human-AI collaboration"
+    }
+  ]
+}

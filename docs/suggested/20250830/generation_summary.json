@@ -1,0 +1,27 @@
+{
+  "generated_files": [
+    "suggested_articles/20250830_designing-effective-human-ai-interfaces-for-collaborative-problem-solving.md",
+    "suggested_articles/20250830_enhancing-human-ai-communication-through-shared-mental-models.md",
+    "suggested_articles/20250830_exploring-adaptive-communication-patterns-for-effective-human-ai-collaboration.md",
+    "suggested_articles/research_methodology.md"
+  ],
+  "suggestions_count": 3,
+  "generation_timestamp": "2025-08-30T15:57:12.507507",
+  "suggestions": [
+    {
+      "title": "Designing Effective Human-AI Interfaces for Collaborative Problem-Solving",
+      "description": "This article explores the design of intuitive, human-centric interfaces that enable seamless collaboration between humans and AI systems. It investigates how interface patterns can enhance communication, shared understanding, and joint problem-solving.",
+      "experiment": "Designing a Human-AI Collaborative Interface"
+    },
+    {
+      "title": "Enhancing Human-AI Communication Through Shared Mental Models",
+      "description": "This article explores how the development of shared mental models between humans and AI can improve the quality and efficiency of their communication and collaboration. It investigates strategies for building mutual understanding and aligning goals and expectations.",
+      "experiment": "Building a Shared Mental Model with an AI Collaborator"
+    },
+    {
+      "title": "Exploring Adaptive Communication Patterns for Effective Human-AI Collaboration",
+      "description": "This article investigates how adaptive communication patterns can enhance the effectiveness of human-AI collaboration, particularly in dynamic or ambiguous problem-solving scenarios. It explores techniques for adjusting communication styles and information exchange based on contextual factors and evolving task requirements.",
+      "experiment": "Adapting Communication Patterns in a Dynamic Human-AI Collaboration"
+    }
+  ]
+}
