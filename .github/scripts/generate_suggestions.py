@@ -50,18 +50,21 @@ def create_claude_analysis_prompt(research_data):
     
     site_analysis = research_data.get('site_analysis', {})
     external_research = research_data.get('external_research', {})
-    
-    prompt = """You are an AI research agent helping to build a knowledge base about AI Communication Patterns. Your job is to analyze existing content and recent research to suggest new articles that would be valuable additions.
 
-EXISTING SITE ANALYSIS:
+    total_articles = site_analysis.get("gaps_analysis", {}).get("total_articles", 0)
+
+    prompt = """You are an AI research agent helping to build a knowledge base about AI Communication Patterns.
+Your job is to analyze existing content and recent research to suggest new articles that would be valuable additions.
 """
     
-    # Add site analysis context
-    if site_analysis:
+    # Add site analysis context only if there are actually articles
+    if total_articles > 0:
         gaps_analysis = site_analysis.get('gaps_analysis', {})
         articles = site_analysis.get('articles', [])
         
         prompt += f"""
+
+EXISTING SITE ANALYSIS:
 Current site has {len(articles)} articles.
 
 DOMINANT THEMES ALREADY COVERED:
@@ -72,15 +75,22 @@ UNDEREXPLORED CONCEPTS (opportunities):
 
 SAMPLE EXISTING ARTICLES:
 """
-        # Include sample articles for context
         for i, article in enumerate(articles[:3]):
             prompt += f"""
 Article {i+1}: {article.get('title', 'Untitled')}
 Preview: {article.get('content_preview', '')[:200]}...
 Key concepts: {article.get('key_concepts', {})}
 """
-    
-    # Add external research context
+
+    else:
+        prompt += """
+
+NOTE:
+The site currently has no existing articles. 
+Focus suggestions entirely on recent research and opportunities.
+"""
+
+    # Add external research context (this always runs if research exists)
     if external_research:
         arxiv_papers = external_research.get('sources', {}).get('arxiv', [])
         trends = external_research.get('trends', {})
@@ -96,7 +106,6 @@ RESEARCH OPPORTUNITIES IDENTIFIED:
 
 SAMPLE RECENT PAPERS:
 """
-        # Include sample papers for inspiration
         for i, paper in enumerate(arxiv_papers[:3]):
             prompt += f"""
 Paper {i+1}: {paper.get('title', '')}
@@ -104,50 +113,11 @@ Summary: {paper.get('summary', '')[:300]}...
 Authors: {', '.join(paper.get('authors', [])[:3])}
 """
 
+    # Always append task instructions
     prompt += """
-
 YOUR TASK:
-Generate 2-3 high-quality article suggestions that:
-
-1. BUILD ON existing site themes while filling identified gaps
-2. CONNECT recent research insights to practical collaboration patterns  
-3. SUGGEST specific collaboration experiments readers can try
-4. ADVANCE the field of human-AI communication understanding
-
-For each article suggestion, provide:
-
-ARTICLE_SUGGESTION_FORMAT:
-{
-  "title": "Compelling, specific title",
-  "description": "Brief description of the article's focus",
-  "rationale": "Why this article is needed based on gaps/research",
-  "key_insights": ["3-5 main insights the article will explore"],
-  "collaboration_experiment": {
-    "name": "Name of suggested experiment",
-    "description": "What readers would actually do",
-    "expected_outcome": "What they might discover",
-    "time_commitment": "Estimated time needed"
-  },
-  "source_connections": ["Which research papers or site gaps this connects to"],
-  "outline": {
-    "introduction": "Brief intro approach",
-    "main_sections": ["Key section 1", "Key section 2", "Key section 3"],
-    "experiment_section": "How to present the collaboration experiment",
-    "conclusion": "How to wrap up and connect to broader themes"
-  },
-  "estimated_length": "Short/Medium/Long",
-  "difficulty_level": "Beginner/Intermediate/Advanced",
-  "tags": ["relevant", "tags", "for", "categorization"]
-}
-
-PRIORITIZATION CRITERIA:
-- Emphasize PRACTICAL, TESTABLE collaboration patterns
-- Focus on patterns that DEMONSTRATE rather than just explain
-- Build on the site's strength in experiential learning
-- Connect academic research to hands-on exploration
-- Create opportunities for readers to contribute their own discoveries
-
-Return your response as a JSON array of article suggestions.
+Generate 2-3 high-quality article suggestions...
+(Return as a JSON array of article suggestions.)
 """
     
     return prompt
