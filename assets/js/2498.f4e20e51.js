@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkai_comm_patterns=self.webpackChunkai_comm_patterns||[]).push([[2498],{2498:(e,c,t)=>{t.d(c,{createArchitectureServices:()=>a.S});var a=t(3009);t(8198)}}]);
