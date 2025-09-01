@@ -1,0 +1,325 @@
+{
+  "timestamp": "2025-09-01T09:26:25.284459",
+  "depth": "light",
+  "sources": {
+    "arxiv": [
+      {
+        "title": "DriveQA: Passing the Driving Knowledge Test",
+        "authors": [
+          "Maolin Wei",
+          "Wanzhou Liu",
+          "Eshed Ohn-Bar"
+        ],
+        "summary": "If a Large Language Model (LLM) were to take a driving knowledge test today, would it pass? Beyond standard spatial and visual question-answering (QA) tasks on current autonomous driving benchmarks, driving knowledge tests require a complete understanding of all traffic rules, signage, and right-of-way principles. To pass this test, human drivers must discern various edge cases that rarely appear in real-world datasets. In this work, we present DriveQA, an extensive open-source text and vision-based benchmark that exhaustively covers traffic regulations and scenarios. Through our experiments using DriveQA, we show that (1) state-of-the-art LLMs and Multimodal LLMs (MLLMs) perform well on basic traffic rules but exhibit significant weaknesses in numerical reasoning and complex right-of-way scenarios, traffic sign variations, and spatial layouts, (2) fine-tuning on DriveQA improves accuracy across multiple categories, particularly in regulatory sign recognition and intersection decision-making, (3) controlled variations in DriveQA-V provide insights into model sensitivity to environmental factors such as lighting, perspective, distance, and weather conditions, and (4) pretraining on DriveQA enhances downstream driving task performance, leading to improved results on real-world datasets such as nuScenes and BDD, while also demonstrating that models can internalize text and synthetic traffic knowledge to generalize effectively across downstream QA tasks.",
+        "url": "http://arxiv.org/abs/2508.21824v1",
+        "published": "2025-08-29T17:59:53Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Achieving Hilbert-Schmidt Independence Under R\u00e9nyi Differential\n  Privacy for Fair and Private Data Generation",
+        "authors": [
+          "Tobias Hyrup",
+          "Emmanouil Panagiotou",
+          "Arjun Roy",
+          "Arthur Zimek",
+          "Eirini Ntoutsi",
+          "Peter Schneider-Kamp"
+        ],
+        "summary": "As privacy regulations such as the GDPR and HIPAA and responsibility frameworks for artificial intelligence such as the AI Act gain traction, the ethical and responsible use of real-world data faces increasing constraints. Synthetic data generation has emerged as a promising solution to risk-aware data sharing and model development, particularly for tabular datasets that are foundational to sensitive domains such as healthcare. To address both privacy and fairness concerns in this setting, we propose FLIP (Fair Latent Intervention under Privacy guarantees), a transformer-based variational autoencoder augmented with latent diffusion to generate heterogeneous tabular data. Unlike the typical setup in fairness-aware data generation, we assume a task-agnostic setup, not reliant on a fixed, defined downstream task, thus offering broader applicability. To ensure privacy, FLIP employs R\\'enyi differential privacy (RDP) constraints during training and addresses fairness in the input space with RDP-compatible balanced sampling that accounts for group-specific noise levels across multiple sampling rates. In the latent space, we promote fairness by aligning neuron activation patterns across protected groups using Centered Kernel Alignment (CKA), a similarity measure extending the Hilbert-Schmidt Independence Criterion (HSIC). This alignment encourages statistical independence between latent representations and the protected feature. Empirical results demonstrate that FLIP effectively provides significant fairness improvements for task-agnostic fairness and across diverse downstream tasks under differential privacy constraints.",
+        "url": "http://arxiv.org/abs/2508.21815v1",
+        "published": "2025-08-29T17:51:42Z",
+        "categories": [
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "The Integration of Agile Methodologies in DevOps Practices within the\n  Information Technology Industry",
+        "authors": [
+          "Ashley Hourigan",
+          "Ridewaan Hanslo"
+        ],
+        "summary": "The demand for rapid software delivery in the Information Technology (IT) industry has significantly intensified, emphasising the need for faster software products and service releases with enhanced features to meet customer expectations. Agile methodologies are replacing traditional approaches such as Waterfall, where flexibility, iterative development and adaptation to change are favoured over rigid planning and execution. DevOps, a subsequent evolution from Agile, emphasises collaborative efforts in development and operations teams, focusing on continuous integration and deployment to deliver resilient and high-quality software products and services. This study aims to critically assess both Agile and DevOps practices in the IT industry to identify the feasibility and applicability of Agile methods in DevOps practices. Eleven semi-structured interviews were conducted with Agile and DevOps practitioners in varying capacities across several sectors within the IT industry. Through thematic analysis, 51 unique codes were extracted and synthesised into 19 themes that reported on each phase of the DevOps lifecycle, specifically regarding the integration and implementation of Agile methods into DevOps practices. Based on the findings, a new understanding detailing the interrelationship of Agile methods in DevOps practices was discussed that met the research objectives.",
+        "url": "http://arxiv.org/abs/2508.21811v1",
+        "published": "2025-08-29T17:49:54Z",
+        "categories": [
+          "cs.SE",
+          "68",
+          "D.2.9"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Automated Clinical Problem Detection from SOAP Notes using a\n  Collaborative Multi-Agent LLM Architecture",
+        "authors": [
+          "Yeawon Lee",
+          "Xiaoyang Wang",
+          "Christopher C. Yang"
+        ],
+        "summary": "Accurate interpretation of clinical narratives is critical for patient care, but the complexity of these notes makes automation challenging. While Large Language Models (LLMs) show promise, single-model approaches can lack the robustness required for high-stakes clinical tasks. We introduce a collaborative multi-agent system (MAS) that models a clinical consultation team to address this gap. The system is tasked with identifying clinical problems by analyzing only the Subjective (S) and Objective (O) sections of SOAP notes, simulating the diagnostic reasoning process of synthesizing raw data into an assessment. A Manager agent orchestrates a dynamically assigned team of specialist agents who engage in a hierarchical, iterative debate to reach a consensus. We evaluated our MAS against a single-agent baseline on a curated dataset of 420 MIMIC-III notes. The dynamic multi-agent configuration demonstrated consistently improved performance in identifying congestive heart failure, acute kidney injury, and sepsis. Qualitative analysis of the agent debates reveals that this structure effectively surfaces and weighs conflicting evidence, though it can occasionally be susceptible to groupthink. By modeling a clinical team's reasoning process, our system offers a promising path toward more accurate, robust, and interpretable clinical decision support tools.",
+        "url": "http://arxiv.org/abs/2508.21803v1",
+        "published": "2025-08-29T17:31:24Z",
+        "categories": [
+          "cs.AI",
+          "cs.MA"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "TMUAD: Enhancing Logical Capabilities in Unified Anomaly Detection\n  Models with a Text Memory Bank",
+        "authors": [
+          "Jiawei Liu",
+          "Jiahe Hou",
+          "Wei Wang",
+          "Jinsong Du",
+          "Yang Cong",
+          "Huijie Fan"
+        ],
+        "summary": "Anomaly detection, which aims to identify anomalies deviating from normal patterns, is challenging due to the limited amount of normal data available. Unlike most existing unified methods that rely on carefully designed image feature extractors and memory banks to capture logical relationships between objects, we introduce a text memory bank to enhance the detection of logical anomalies. Specifically, we propose a Three-Memory framework for Unified structural and logical Anomaly Detection (TMUAD). First, we build a class-level text memory bank for logical anomaly detection by the proposed logic-aware text extractor, which can capture rich logical descriptions of objects from input images. Second, we construct an object-level image memory bank that preserves complete object contours by extracting features from segmented objects. Third, we employ visual encoders to extract patch-level image features for constructing a patch-level memory bank for structural anomaly detection. These three complementary memory banks are used to retrieve and compare normal images that are most similar to the query image, compute anomaly scores at multiple levels, and fuse them into a final anomaly score. By unifying structural and logical anomaly detection through collaborative memory banks, TMUAD achieves state-of-the-art performance across seven publicly available datasets involving industrial and medical domains. The model and code are available at https://github.com/SIA-IDE/TMUAD.",
+        "url": "http://arxiv.org/abs/2508.21795v1",
+        "published": "2025-08-29T17:22:13Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "DriveQA: Passing the Driving Knowledge Test",
+        "authors": [
+          "Maolin Wei",
+          "Wanzhou Liu",
+          "Eshed Ohn-Bar"
+        ],
+        "summary": "If a Large Language Model (LLM) were to take a driving knowledge test today, would it pass? Beyond standard spatial and visual question-answering (QA) tasks on current autonomous driving benchmarks, driving knowledge tests require a complete understanding of all traffic rules, signage, and right-of-way principles. To pass this test, human drivers must discern various edge cases that rarely appear in real-world datasets. In this work, we present DriveQA, an extensive open-source text and vision-based benchmark that exhaustively covers traffic regulations and scenarios. Through our experiments using DriveQA, we show that (1) state-of-the-art LLMs and Multimodal LLMs (MLLMs) perform well on basic traffic rules but exhibit significant weaknesses in numerical reasoning and complex right-of-way scenarios, traffic sign variations, and spatial layouts, (2) fine-tuning on DriveQA improves accuracy across multiple categories, particularly in regulatory sign recognition and intersection decision-making, (3) controlled variations in DriveQA-V provide insights into model sensitivity to environmental factors such as lighting, perspective, distance, and weather conditions, and (4) pretraining on DriveQA enhances downstream driving task performance, leading to improved results on real-world datasets such as nuScenes and BDD, while also demonstrating that models can internalize text and synthetic traffic knowledge to generalize effectively across downstream QA tasks.",
+        "url": "http://arxiv.org/abs/2508.21824v1",
+        "published": "2025-08-29T17:59:53Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "The Demon is in Ambiguity: Revisiting Situation Recognition with Single\n  Positive Multi-Label Learning",
+        "authors": [
+          "Yiming Lin",
+          "Yuchen Niu",
+          "Shang Wang",
+          "Kaizhu Huang",
+          "Qiufeng Wang",
+          "Xiao-Bo Jin"
+        ],
+        "summary": "Context recognition (SR) is a fundamental task in computer vision that aims to extract structured semantic summaries from images by identifying key events and their associated entities. Specifically, given an input image, the model must first classify the main visual events (verb classification), then identify the participating entities and their semantic roles (semantic role labeling), and finally localize these entities in the image (semantic role localization). Existing methods treat verb classification as a single-label problem, but we show through a comprehensive analysis that this formulation fails to address the inherent ambiguity in visual event recognition, as multiple verb categories may reasonably describe the same image. This paper makes three key contributions: First, we reveal through empirical analysis that verb classification is inherently a multi-label problem due to the ubiquitous semantic overlap between verb categories. Second, given the impracticality of fully annotating large-scale datasets with multiple labels, we propose to reformulate verb classification as a single positive multi-label learning (SPMLL) problem - a novel perspective in SR research. Third, we design a comprehensive multi-label evaluation benchmark for SR that is carefully designed to fairly evaluate model performance in a multi-label setting. To address the challenges of SPMLL, we futher develop the Graph Enhanced Verb Multilayer Perceptron (GE-VerbMLP), which combines graph neural networks to capture label correlations and adversarial training to optimize decision boundaries. Extensive experiments on real-world datasets show that our approach achieves more than 3\\% MAP improvement while remaining competitive on traditional top-1 and top-5 accuracy metrics.",
+        "url": "http://arxiv.org/abs/2508.21816v1",
+        "published": "2025-08-29T17:51:55Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Achieving Hilbert-Schmidt Independence Under R\u00e9nyi Differential\n  Privacy for Fair and Private Data Generation",
+        "authors": [
+          "Tobias Hyrup",
+          "Emmanouil Panagiotou",
+          "Arjun Roy",
+          "Arthur Zimek",
+          "Eirini Ntoutsi",
+          "Peter Schneider-Kamp"
+        ],
+        "summary": "As privacy regulations such as the GDPR and HIPAA and responsibility frameworks for artificial intelligence such as the AI Act gain traction, the ethical and responsible use of real-world data faces increasing constraints. Synthetic data generation has emerged as a promising solution to risk-aware data sharing and model development, particularly for tabular datasets that are foundational to sensitive domains such as healthcare. To address both privacy and fairness concerns in this setting, we propose FLIP (Fair Latent Intervention under Privacy guarantees), a transformer-based variational autoencoder augmented with latent diffusion to generate heterogeneous tabular data. Unlike the typical setup in fairness-aware data generation, we assume a task-agnostic setup, not reliant on a fixed, defined downstream task, thus offering broader applicability. To ensure privacy, FLIP employs R\\'enyi differential privacy (RDP) constraints during training and addresses fairness in the input space with RDP-compatible balanced sampling that accounts for group-specific noise levels across multiple sampling rates. In the latent space, we promote fairness by aligning neuron activation patterns across protected groups using Centered Kernel Alignment (CKA), a similarity measure extending the Hilbert-Schmidt Independence Criterion (HSIC). This alignment encourages statistical independence between latent representations and the protected feature. Empirical results demonstrate that FLIP effectively provides significant fairness improvements for task-agnostic fairness and across diverse downstream tasks under differential privacy constraints.",
+        "url": "http://arxiv.org/abs/2508.21815v1",
+        "published": "2025-08-29T17:51:42Z",
+        "categories": [
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "VoCap: Video Object Captioning and Segmentation from Any Prompt",
+        "authors": [
+          "Jasper Uijlings",
+          "Xingyi Zhou",
+          "Xiuye Gu",
+          "Arsha Nagrani",
+          "Anurag Arnab",
+          "Alireza Fathi",
+          "David Ross",
+          "Cordelia Schmid"
+        ],
+        "summary": "Understanding objects in videos in terms of fine-grained localization masks and detailed semantic properties is a fundamental task in video understanding. In this paper, we propose VoCap, a flexible video model that consumes a video and a prompt of various modalities (text, box or mask), and produces a spatio-temporal masklet with a corresponding object-centric caption. As such our model addresses simultaneously the tasks of promptable video object segmentation, referring expression segmentation, and object captioning. Since obtaining data for this task is tedious and expensive, we propose to annotate an existing large-scale segmentation dataset (SAV) with pseudo object captions. We do so by preprocessing videos with their ground-truth masks to highlight the object of interest and feed this to a large Vision Language Model (VLM). For an unbiased evaluation, we collect manual annotations on the validation set. We call the resulting dataset SAV-Caption. We train our VoCap model at scale on a SAV-Caption together with a mix of other image and video datasets. Our model yields state-of-the-art results on referring expression video object segmentation, is competitive on semi-supervised video object segmentation, and establishes a benchmark for video object captioning. Our dataset will be made available at https://github.com/google-deepmind/vocap.",
+        "url": "http://arxiv.org/abs/2508.21809v1",
+        "published": "2025-08-29T17:43:58Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "TMUAD: Enhancing Logical Capabilities in Unified Anomaly Detection\n  Models with a Text Memory Bank",
+        "authors": [
+          "Jiawei Liu",
+          "Jiahe Hou",
+          "Wei Wang",
+          "Jinsong Du",
+          "Yang Cong",
+          "Huijie Fan"
+        ],
+        "summary": "Anomaly detection, which aims to identify anomalies deviating from normal patterns, is challenging due to the limited amount of normal data available. Unlike most existing unified methods that rely on carefully designed image feature extractors and memory banks to capture logical relationships between objects, we introduce a text memory bank to enhance the detection of logical anomalies. Specifically, we propose a Three-Memory framework for Unified structural and logical Anomaly Detection (TMUAD). First, we build a class-level text memory bank for logical anomaly detection by the proposed logic-aware text extractor, which can capture rich logical descriptions of objects from input images. Second, we construct an object-level image memory bank that preserves complete object contours by extracting features from segmented objects. Third, we employ visual encoders to extract patch-level image features for constructing a patch-level memory bank for structural anomaly detection. These three complementary memory banks are used to retrieve and compare normal images that are most similar to the query image, compute anomaly scores at multiple levels, and fuse them into a final anomaly score. By unifying structural and logical anomaly detection through collaborative memory banks, TMUAD achieves state-of-the-art performance across seven publicly available datasets involving industrial and medical domains. The model and code are available at https://github.com/SIA-IDE/TMUAD.",
+        "url": "http://arxiv.org/abs/2508.21795v1",
+        "published": "2025-08-29T17:22:13Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Standard Model Baryon Number Violation at Zero Temperature from Higgs\n  Bubble Collisions",
+        "authors": [
+          "Nabeen Bhusal",
+          "Simone Blasi",
+          "Martina Cataldi",
+          "Aleksandr Chatrchyan",
+          "Marco Gorghetto",
+          "Geraldine Servant"
+        ],
+        "summary": "We compute for the first time baryon number violation at zero temperature from Higgs bubble collisions and find that it can be of the same order as that from thermal sphalerons in the symmetric phase at electroweak temperatures. We study the dependence of the rate of Chern--Simons number transitions on the shape of the scalar potential and on the Lorentz factor of the bubble walls at collision via large-scale (3+1)D lattice simulations of the Higgs doublet and SU(2) gauge fields. We estimate the resulting baryon asymmetry assuming some CP-violating source activated by the Higgs-field variation during the phase transition.",
+        "url": "http://arxiv.org/abs/2508.21825v1",
+        "published": "2025-08-29T17:59:59Z",
+        "categories": [
+          "hep-ph"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "DriveQA: Passing the Driving Knowledge Test",
+        "authors": [
+          "Maolin Wei",
+          "Wanzhou Liu",
+          "Eshed Ohn-Bar"
+        ],
+        "summary": "If a Large Language Model (LLM) were to take a driving knowledge test today, would it pass? Beyond standard spatial and visual question-answering (QA) tasks on current autonomous driving benchmarks, driving knowledge tests require a complete understanding of all traffic rules, signage, and right-of-way principles. To pass this test, human drivers must discern various edge cases that rarely appear in real-world datasets. In this work, we present DriveQA, an extensive open-source text and vision-based benchmark that exhaustively covers traffic regulations and scenarios. Through our experiments using DriveQA, we show that (1) state-of-the-art LLMs and Multimodal LLMs (MLLMs) perform well on basic traffic rules but exhibit significant weaknesses in numerical reasoning and complex right-of-way scenarios, traffic sign variations, and spatial layouts, (2) fine-tuning on DriveQA improves accuracy across multiple categories, particularly in regulatory sign recognition and intersection decision-making, (3) controlled variations in DriveQA-V provide insights into model sensitivity to environmental factors such as lighting, perspective, distance, and weather conditions, and (4) pretraining on DriveQA enhances downstream driving task performance, leading to improved results on real-world datasets such as nuScenes and BDD, while also demonstrating that models can internalize text and synthetic traffic knowledge to generalize effectively across downstream QA tasks.",
+        "url": "http://arxiv.org/abs/2508.21824v1",
+        "published": "2025-08-29T17:59:53Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "A new characterization of the holographic entropy cone",
+        "authors": [
+          "Guglielmo Grimaldi",
+          "Matthew Headrick",
+          "Veronika E. Hubeny"
+        ],
+        "summary": "Entanglement entropies computed using the holographic Ryu-Takayanagi formula are known to obey an infinite set of linear inequalities, which define the so-called RT entropy cone. The general structure of this cone, or equivalently the set of all valid inequalities, is unknown. It is also unknown whether those same inequalities are also obeyed by entropies computed using the covariant Hubeny-Rangamani-Takayanagi formula, although significant evidence has accumulated that they are. Using Markov states, we develop a test of this conjecture in a heretofore unexplored regime. The test reduces to checking that a given inequality obeys a certain majorization property, which is easy to evaluate. We find that the RT inequalities pass this test and, surprisingly, \\emph{only} RT inequalities do so. Our results not only provide strong new evidence that the HRT and RT cones coincide, but also offer a completely new characterization of that cone.",
+        "url": "http://arxiv.org/abs/2508.21823v1",
+        "published": "2025-08-29T17:58:45Z",
+        "categories": [
+          "hep-th"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "The Demon is in Ambiguity: Revisiting Situation Recognition with Single\n  Positive Multi-Label Learning",
+        "authors": [
+          "Yiming Lin",
+          "Yuchen Niu",
+          "Shang Wang",
+          "Kaizhu Huang",
+          "Qiufeng Wang",
+          "Xiao-Bo Jin"
+        ],
+        "summary": "Context recognition (SR) is a fundamental task in computer vision that aims to extract structured semantic summaries from images by identifying key events and their associated entities. Specifically, given an input image, the model must first classify the main visual events (verb classification), then identify the participating entities and their semantic roles (semantic role labeling), and finally localize these entities in the image (semantic role localization). Existing methods treat verb classification as a single-label problem, but we show through a comprehensive analysis that this formulation fails to address the inherent ambiguity in visual event recognition, as multiple verb categories may reasonably describe the same image. This paper makes three key contributions: First, we reveal through empirical analysis that verb classification is inherently a multi-label problem due to the ubiquitous semantic overlap between verb categories. Second, given the impracticality of fully annotating large-scale datasets with multiple labels, we propose to reformulate verb classification as a single positive multi-label learning (SPMLL) problem - a novel perspective in SR research. Third, we design a comprehensive multi-label evaluation benchmark for SR that is carefully designed to fairly evaluate model performance in a multi-label setting. To address the challenges of SPMLL, we futher develop the Graph Enhanced Verb Multilayer Perceptron (GE-VerbMLP), which combines graph neural networks to capture label correlations and adversarial training to optimize decision boundaries. Extensive experiments on real-world datasets show that our approach achieves more than 3\\% MAP improvement while remaining competitive on traditional top-1 and top-5 accuracy metrics.",
+        "url": "http://arxiv.org/abs/2508.21816v1",
+        "published": "2025-08-29T17:51:55Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Achieving Hilbert-Schmidt Independence Under R\u00e9nyi Differential\n  Privacy for Fair and Private Data Generation",
+        "authors": [
+          "Tobias Hyrup",
+          "Emmanouil Panagiotou",
+          "Arjun Roy",
+          "Arthur Zimek",
+          "Eirini Ntoutsi",
+          "Peter Schneider-Kamp"
+        ],
+        "summary": "As privacy regulations such as the GDPR and HIPAA and responsibility frameworks for artificial intelligence such as the AI Act gain traction, the ethical and responsible use of real-world data faces increasing constraints. Synthetic data generation has emerged as a promising solution to risk-aware data sharing and model development, particularly for tabular datasets that are foundational to sensitive domains such as healthcare. To address both privacy and fairness concerns in this setting, we propose FLIP (Fair Latent Intervention under Privacy guarantees), a transformer-based variational autoencoder augmented with latent diffusion to generate heterogeneous tabular data. Unlike the typical setup in fairness-aware data generation, we assume a task-agnostic setup, not reliant on a fixed, defined downstream task, thus offering broader applicability. To ensure privacy, FLIP employs R\\'enyi differential privacy (RDP) constraints during training and addresses fairness in the input space with RDP-compatible balanced sampling that accounts for group-specific noise levels across multiple sampling rates. In the latent space, we promote fairness by aligning neuron activation patterns across protected groups using Centered Kernel Alignment (CKA), a similarity measure extending the Hilbert-Schmidt Independence Criterion (HSIC). This alignment encourages statistical independence between latent representations and the protected feature. Empirical results demonstrate that FLIP effectively provides significant fairness improvements for task-agnostic fairness and across diverse downstream tasks under differential privacy constraints.",
+        "url": "http://arxiv.org/abs/2508.21815v1",
+        "published": "2025-08-29T17:51:42Z",
+        "categories": [
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      }
+    ],
+    "discussions": [
+      {
+        "title": "Human-AI Collaborative Coding Patterns",
+        "summary": "Discussion about effective patterns for human-AI pair programming",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-09-01T09:26:29.366864",
+        "url": "placeholder",
+        "engagement": "active"
+      },
+      {
+        "title": "Visual Design Collaboration with AI Tools",
+        "summary": "Emerging patterns in visual design workflows with AI assistance",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-09-01T09:26:29.366881",
+        "url": "placeholder",
+        "engagement": "emerging"
+      }
+    ]
+  },
+  "trends": {
+    "trending_terms": {
+      "cognition": 9,
+      "design": 6,
+      "pattern": 5
+    },
+    "total_papers": 15,
+    "recent_focus_areas": [
+      "cognition",
+      "design",
+      "pattern"
+    ],
+    "analysis_note": "Based on keyword frequency in recent research papers"
+  },
+  "opportunities": [
+    {
+      "topic": "cognition",
+      "research_frequency": 9,
+      "gap_level": "high",
+      "research_basis": "Appears 9 times in recent research",
+      "suggested_focus": "Investigate cognition in the context of human-AI collaboration"
+    },
+    {
+      "topic": "design",
+      "research_frequency": 6,
+      "gap_level": "high",
+      "research_basis": "Appears 6 times in recent research",
+      "suggested_focus": "Investigate design in the context of human-AI collaboration"
+    },
+    {
+      "topic": "pattern",
+      "research_frequency": 5,
+      "gap_level": "high",
+      "research_basis": "Appears 5 times in recent research",
+      "suggested_focus": "Investigate pattern in the context of human-AI collaboration"
+    }
+  ]
+}
