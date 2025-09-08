@@ -1,0 +1,357 @@
+{
+  "timestamp": "2025-09-08T09:25:56.775988",
+  "depth": "light",
+  "sources": {
+    "arxiv": [
+      {
+        "title": "The LHCb Stripping Project: Sustainable Legacy Data Processing for\n  High-Energy Physics",
+        "authors": [
+          "Nathan Grieser",
+          "Eduardo Rodrigues",
+          "Niladri Sahoo",
+          "Shuqi Sheng",
+          "Nicole Skidmore",
+          "Mark Smith"
+        ],
+        "summary": "The LHCb Stripping project is a pivotal component of the experiment's data processing framework, designed to refine vast volumes of collision data into manageable samples for offline analysis. It ensures the re-analysis of Runs 1 and 2 legacy data, maintains the software stack, and executes (re-)Stripping campaigns. As the focus shifts toward newer data sets, the project continues to optimize infrastructure for both legacy and live data processing. This paper provides a comprehensive overview of the Stripping framework, detailing its Python-configurable architecture, integration with LHCb computing systems, and large-scale campaign management. We highlight organizational advancements such as GitLab-based workflows, continuous integration, automation, and parallelized processing, alongside computational challenges. Finally, we discuss lessons learned and outline a future road-map to sustain efficient access to valuable physics legacy data sets for the LHCb collaboration.",
+        "url": "http://arxiv.org/abs/2509.05294v1",
+        "published": "2025-09-05T17:59:28Z",
+        "categories": [
+          "hep-ex"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Deep Reinforcement Learning for Ranking Utility Tuning in the Ad\n  Recommender System at Pinterest",
+        "authors": [
+          "Xiao Yang",
+          "Mehdi Ben Ayed",
+          "Longyu Zhao",
+          "Fan Zhou",
+          "Yuchen Shen",
+          "Abe Engle",
+          "Jinfeng Zhuang",
+          "Ling Leng",
+          "Jiajing Xu",
+          "Charles Rosenberg",
+          "Prathibha Deshikachar"
+        ],
+        "summary": "The ranking utility function in an ad recommender system, which linearly combines predictions of various business goals, plays a central role in balancing values across the platform, advertisers, and users. Traditional manual tuning, while offering simplicity and interpretability, often yields suboptimal results due to its unprincipled tuning objectives, the vast amount of parameter combinations, and its lack of personalization and adaptability to seasonality. In this work, we propose a general Deep Reinforcement Learning framework for Personalized Utility Tuning (DRL-PUT) to address the challenges of multi-objective optimization within ad recommender systems. Our key contributions include: 1) Formulating the problem as a reinforcement learning task: given the state of an ad request, we predict the optimal hyperparameters to maximize a pre-defined reward. 2) Developing an approach to directly learn an optimal policy model using online serving logs, avoiding the need to estimate a value function, which is inherently challenging due to the high variance and unbalanced distribution of immediate rewards. We evaluated DRL-PUT through an online A/B experiment in Pinterest's ad recommender system. Compared to the baseline manual utility tuning approach, DRL-PUT improved the click-through rate by 9.7% and the long click-through rate by 7.7% on the treated segment. We conducted a detailed ablation study on the impact of different reward definitions and analyzed the personalization aspect of the learned policy model.",
+        "url": "http://arxiv.org/abs/2509.05292v1",
+        "published": "2025-09-05T17:57:45Z",
+        "categories": [
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Beyond Linearity and Time-homogeneity: Relational Hyper Event Models\n  with Time-Varying Non-Linear Effects",
+        "authors": [
+          "Martina Boschi",
+          "J\u00fcrgen Lerner",
+          "Ernst C. Wit"
+        ],
+        "summary": "Recent technological advances have made it easier to collect large and complex networks of time-stamped relational events connecting two or more entities. Relational hyper-event models (RHEMs) aim to explain the dynamics of these events by modeling the event rate as a function of statistics based on past history and external information.   However, despite the complexity of the data, most current RHEM approaches still rely on a linearity assumption to model this relationship. In this work, we address this limitation by introducing a more flexible model that allows the effects of statistics to vary non-linearly and over time. While time-varying and non-linear effects have been used in relational event modeling, we take this further by modeling joint time-varying and non-linear effects using tensor product smooths.   We validate our methodology on both synthetic and empirical data. In particular, we use RHEMs to study how patterns of scientific collaboration and impact evolve over time. Our approach provides deeper insights into the dynamic factors driving relational hyper-events, allowing us to evaluate potential non-monotonic patterns that cannot be identified using linear models.",
+        "url": "http://arxiv.org/abs/2509.05289v1",
+        "published": "2025-09-05T17:55:29Z",
+        "categories": [
+          "stat.ME",
+          "cs.LG",
+          "stat.AP"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "LatticeWorld: A Multimodal Large Language Model-Empowered Framework for\n  Interactive Complex World Generation",
+        "authors": [
+          "Yinglin Duan",
+          "Zhengxia Zou",
+          "Tongwei Gu",
+          "Wei Jia",
+          "Zhan Zhao",
+          "Luyi Xu",
+          "Xinzhu Liu",
+          "Hao Jiang",
+          "Kang Chen",
+          "Shuang Qiu"
+        ],
+        "summary": "Recent research has been increasingly focusing on developing 3D world models that simulate complex real-world scenarios. World models have found broad applications across various domains, including embodied AI, autonomous driving, entertainment, etc. A more realistic simulation with accurate physics will effectively narrow the sim-to-real gap and allow us to gather rich information about the real world conveniently. While traditional manual modeling has enabled the creation of virtual 3D scenes, modern approaches have leveraged advanced machine learning algorithms for 3D world generation, with most recent advances focusing on generative methods that can create virtual worlds based on user instructions. This work explores such a research direction by proposing LatticeWorld, a simple yet effective 3D world generation framework that streamlines the industrial production pipeline of 3D environments. LatticeWorld leverages lightweight LLMs (LLaMA-2-7B) alongside the industry-grade rendering engine (e.g., Unreal Engine 5) to generate a dynamic environment. Our proposed framework accepts textual descriptions and visual instructions as multimodal inputs and creates large-scale 3D interactive worlds with dynamic agents, featuring competitive multi-agent interaction, high-fidelity physics simulation, and real-time rendering. We conduct comprehensive experiments to evaluate LatticeWorld, showing that it achieves superior accuracy in scene layout generation and visual fidelity. Moreover, LatticeWorld achieves over a $90\\times$ increase in industrial production efficiency while maintaining high creative quality compared with traditional manual production methods. Our demo video is available at https://youtu.be/8VWZXpERR18",
+        "url": "http://arxiv.org/abs/2509.05263v1",
+        "published": "2025-09-05T17:22:33Z",
+        "categories": [
+          "cs.AI",
+          "cs.CV",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Scaling Performance of Large Language Model Pretraining",
+        "authors": [
+          "Alexander Interrante-Grant",
+          "Carla Varela-Rosa",
+          "Suhaas Narayan",
+          "Chris Connelly",
+          "Albert Reuther"
+        ],
+        "summary": "Large language models (LLMs) show best-in-class performance across a wide range of natural language processing applications. Training these models is an extremely computationally expensive task; frontier Artificial Intelligence (AI) research companies are investing billions of dollars into supercomputing infrastructure to train progressively larger models on increasingly massive datasets. Unfortunately, information about the scaling performance and training considerations of these large training pipelines is scarce in public literature. Working with large-scale datasets and models can be complex and practical recommendations are scarce in the public literature for tuning training performance when scaling up large language models. In this paper, we aim to demystify the large language model pretraining pipeline somewhat - in particular with respect to distributed training, managing large datasets across hundreds of nodes, and scaling up data parallelism with an emphasis on fully leveraging available GPU compute capacity.",
+        "url": "http://arxiv.org/abs/2509.05258v1",
+        "published": "2025-09-05T17:14:58Z",
+        "categories": [
+          "cs.DC",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "FlowSeek: Optical Flow Made Easier with Depth Foundation Models and\n  Motion Bases",
+        "authors": [
+          "Matteo Poggi",
+          "Fabio Tosi"
+        ],
+        "summary": "We present FlowSeek, a novel framework for optical flow requiring minimal hardware resources for training. FlowSeek marries the latest advances on the design space of optical flow networks with cutting-edge single-image depth foundation models and classical low-dimensional motion parametrization, implementing a compact, yet accurate architecture. FlowSeek is trained on a single consumer-grade GPU, a hardware budget about 8x lower compared to most recent methods, and still achieves superior cross-dataset generalization on Sintel Final and KITTI, with a relative improvement of 10 and 15% over the previous state-of-the-art SEA-RAFT, as well as on Spring and LayeredFlow datasets.",
+        "url": "http://arxiv.org/abs/2509.05297v1",
+        "published": "2025-09-05T17:59:59Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "WinT3R: Window-Based Streaming Reconstruction with Camera Token Pool",
+        "authors": [
+          "Zizun Li",
+          "Jianjun Zhou",
+          "Yifan Wang",
+          "Haoyu Guo",
+          "Wenzheng Chang",
+          "Yang Zhou",
+          "Haoyi Zhu",
+          "Junyi Chen",
+          "Chunhua Shen",
+          "Tong He"
+        ],
+        "summary": "We present WinT3R, a feed-forward reconstruction model capable of online prediction of precise camera poses and high-quality point maps. Previous methods suffer from a trade-off between reconstruction quality and real-time performance. To address this, we first introduce a sliding window mechanism that ensures sufficient information exchange among frames within the window, thereby improving the quality of geometric predictions without large computation. In addition, we leverage a compact representation of cameras and maintain a global camera token pool, which enhances the reliability of camera pose estimation without sacrificing efficiency. These designs enable WinT3R to achieve state-of-the-art performance in terms of online reconstruction quality, camera pose estimation, and reconstruction speed, as validated by extensive experiments on diverse datasets. Code and model are publicly available at https://github.com/LiZizun/WinT3R.",
+        "url": "http://arxiv.org/abs/2509.05296v1",
+        "published": "2025-09-05T17:59:47Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Deep Reinforcement Learning for Ranking Utility Tuning in the Ad\n  Recommender System at Pinterest",
+        "authors": [
+          "Xiao Yang",
+          "Mehdi Ben Ayed",
+          "Longyu Zhao",
+          "Fan Zhou",
+          "Yuchen Shen",
+          "Abe Engle",
+          "Jinfeng Zhuang",
+          "Ling Leng",
+          "Jiajing Xu",
+          "Charles Rosenberg",
+          "Prathibha Deshikachar"
+        ],
+        "summary": "The ranking utility function in an ad recommender system, which linearly combines predictions of various business goals, plays a central role in balancing values across the platform, advertisers, and users. Traditional manual tuning, while offering simplicity and interpretability, often yields suboptimal results due to its unprincipled tuning objectives, the vast amount of parameter combinations, and its lack of personalization and adaptability to seasonality. In this work, we propose a general Deep Reinforcement Learning framework for Personalized Utility Tuning (DRL-PUT) to address the challenges of multi-objective optimization within ad recommender systems. Our key contributions include: 1) Formulating the problem as a reinforcement learning task: given the state of an ad request, we predict the optimal hyperparameters to maximize a pre-defined reward. 2) Developing an approach to directly learn an optimal policy model using online serving logs, avoiding the need to estimate a value function, which is inherently challenging due to the high variance and unbalanced distribution of immediate rewards. We evaluated DRL-PUT through an online A/B experiment in Pinterest's ad recommender system. Compared to the baseline manual utility tuning approach, DRL-PUT improved the click-through rate by 9.7% and the long click-through rate by 7.7% on the treated segment. We conducted a detailed ablation study on the impact of different reward definitions and analyzed the personalization aspect of the learned policy model.",
+        "url": "http://arxiv.org/abs/2509.05292v1",
+        "published": "2025-09-05T17:57:45Z",
+        "categories": [
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Beyond Linearity and Time-homogeneity: Relational Hyper Event Models\n  with Time-Varying Non-Linear Effects",
+        "authors": [
+          "Martina Boschi",
+          "J\u00fcrgen Lerner",
+          "Ernst C. Wit"
+        ],
+        "summary": "Recent technological advances have made it easier to collect large and complex networks of time-stamped relational events connecting two or more entities. Relational hyper-event models (RHEMs) aim to explain the dynamics of these events by modeling the event rate as a function of statistics based on past history and external information.   However, despite the complexity of the data, most current RHEM approaches still rely on a linearity assumption to model this relationship. In this work, we address this limitation by introducing a more flexible model that allows the effects of statistics to vary non-linearly and over time. While time-varying and non-linear effects have been used in relational event modeling, we take this further by modeling joint time-varying and non-linear effects using tensor product smooths.   We validate our methodology on both synthetic and empirical data. In particular, we use RHEMs to study how patterns of scientific collaboration and impact evolve over time. Our approach provides deeper insights into the dynamic factors driving relational hyper-events, allowing us to evaluate potential non-monotonic patterns that cannot be identified using linear models.",
+        "url": "http://arxiv.org/abs/2509.05289v1",
+        "published": "2025-09-05T17:55:29Z",
+        "categories": [
+          "stat.ME",
+          "cs.LG",
+          "stat.AP"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Learning to accelerate distributed ADMM using graph neural networks",
+        "authors": [
+          "Henri Doerks",
+          "Paul H\u00e4usner",
+          "Daniel Hern\u00e1ndez Escobar",
+          "Jens Sj\u00f6lund"
+        ],
+        "summary": "Distributed optimization is fundamental in large-scale machine learning and control applications. Among existing methods, the Alternating Direction Method of Multipliers (ADMM) has gained popularity due to its strong convergence guarantees and suitability for decentralized computation. However, ADMM often suffers from slow convergence and sensitivity to hyperparameter choices. In this work, we show that distributed ADMM iterations can be naturally represented within the message-passing framework of graph neural networks (GNNs). Building on this connection, we propose to learn adaptive step sizes and communication weights by a graph neural network that predicts the hyperparameters based on the iterates. By unrolling ADMM for a fixed number of iterations, we train the network parameters end-to-end to minimize the final iterates error for a given problem class, while preserving the algorithm's convergence properties. Numerical experiments demonstrate that our learned variant consistently improves convergence speed and solution quality compared to standard ADMM. The code is available at https://github.com/paulhausner/learning-distributed-admm.",
+        "url": "http://arxiv.org/abs/2509.05288v1",
+        "published": "2025-09-05T17:55:22Z",
+        "categories": [
+          "cs.LG",
+          "math.OC"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "FlowSeek: Optical Flow Made Easier with Depth Foundation Models and\n  Motion Bases",
+        "authors": [
+          "Matteo Poggi",
+          "Fabio Tosi"
+        ],
+        "summary": "We present FlowSeek, a novel framework for optical flow requiring minimal hardware resources for training. FlowSeek marries the latest advances on the design space of optical flow networks with cutting-edge single-image depth foundation models and classical low-dimensional motion parametrization, implementing a compact, yet accurate architecture. FlowSeek is trained on a single consumer-grade GPU, a hardware budget about 8x lower compared to most recent methods, and still achieves superior cross-dataset generalization on Sintel Final and KITTI, with a relative improvement of 10 and 15% over the previous state-of-the-art SEA-RAFT, as well as on Spring and LayeredFlow datasets.",
+        "url": "http://arxiv.org/abs/2509.05297v1",
+        "published": "2025-09-05T17:59:59Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "WinT3R: Window-Based Streaming Reconstruction with Camera Token Pool",
+        "authors": [
+          "Zizun Li",
+          "Jianjun Zhou",
+          "Yifan Wang",
+          "Haoyu Guo",
+          "Wenzheng Chang",
+          "Yang Zhou",
+          "Haoyi Zhu",
+          "Junyi Chen",
+          "Chunhua Shen",
+          "Tong He"
+        ],
+        "summary": "We present WinT3R, a feed-forward reconstruction model capable of online prediction of precise camera poses and high-quality point maps. Previous methods suffer from a trade-off between reconstruction quality and real-time performance. To address this, we first introduce a sliding window mechanism that ensures sufficient information exchange among frames within the window, thereby improving the quality of geometric predictions without large computation. In addition, we leverage a compact representation of cameras and maintain a global camera token pool, which enhances the reliability of camera pose estimation without sacrificing efficiency. These designs enable WinT3R to achieve state-of-the-art performance in terms of online reconstruction quality, camera pose estimation, and reconstruction speed, as validated by extensive experiments on diverse datasets. Code and model are publicly available at https://github.com/LiZizun/WinT3R.",
+        "url": "http://arxiv.org/abs/2509.05296v1",
+        "published": "2025-09-05T17:59:47Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "On the convergence of the variational quantum eigensolver and quantum\n  optimal control",
+        "authors": [
+          "Marco Wiedmann",
+          "Daniel Burgarth",
+          "Gunther Dirr",
+          "Thomas Schulte-Herbr\u00fcggen",
+          "Emanuel Malvetti",
+          "Christian Arenz"
+        ],
+        "summary": "When does a variational quantum algorithm converge to a globally optimal problem solution? Despite the large literature around variational approaches to quantum computing, the answer is largely unknown. We address this open question by developing a convergence theory for the variational quantum eigensolver (VQE). By leveraging the terminology of quantum control landscapes, we prove a sufficient criterion that characterizes when convergence to a ground state of a Hamiltonian can be guaranteed for almost all initial parameter settings. More specifically, we show that if (i) a parameterized unitary transformation allows for moving in all tangent-space directions (local surjectivity) in a bounded manner and (ii) the gradient descent used for the parameter update terminates, then the VQE converges to a ground state almost surely. We develop constructions that satisfy both aspects of condition (i) and analyze two commonly employed families of quantum circuit ans\\\"atze. Finally, we discuss regularization techniques for guaranteeing gradient descent to terminate, as for condition (ii), and draw connections to the halting problem.",
+        "url": "http://arxiv.org/abs/2509.05295v1",
+        "published": "2025-09-05T17:59:44Z",
+        "categories": [
+          "quant-ph",
+          "math.OC"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "The LHCb Stripping Project: Sustainable Legacy Data Processing for\n  High-Energy Physics",
+        "authors": [
+          "Nathan Grieser",
+          "Eduardo Rodrigues",
+          "Niladri Sahoo",
+          "Shuqi Sheng",
+          "Nicole Skidmore",
+          "Mark Smith"
+        ],
+        "summary": "The LHCb Stripping project is a pivotal component of the experiment's data processing framework, designed to refine vast volumes of collision data into manageable samples for offline analysis. It ensures the re-analysis of Runs 1 and 2 legacy data, maintains the software stack, and executes (re-)Stripping campaigns. As the focus shifts toward newer data sets, the project continues to optimize infrastructure for both legacy and live data processing. This paper provides a comprehensive overview of the Stripping framework, detailing its Python-configurable architecture, integration with LHCb computing systems, and large-scale campaign management. We highlight organizational advancements such as GitLab-based workflows, continuous integration, automation, and parallelized processing, alongside computational challenges. Finally, we discuss lessons learned and outline a future road-map to sustain efficient access to valuable physics legacy data sets for the LHCb collaboration.",
+        "url": "http://arxiv.org/abs/2509.05294v1",
+        "published": "2025-09-05T17:59:28Z",
+        "categories": [
+          "hep-ex"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Non-Termination Proving: 100 Million LoC and Beyond",
+        "authors": [
+          "Julien Vanegue",
+          "Jules Villard",
+          "Peter O'Hearn",
+          "Azalea Raad"
+        ],
+        "summary": "We report on our tool, Pulse Infinite, that uses proof techniques to show non-termination (divergence) in large programs. Pulse Infinite works compositionally and under-approximately: the former supports scale, and the latter ensures soundness for proving divergence. Prior work focused on small benchmarks in the tens or hundreds of lines of code (LoC), and scale limits their practicality: a single company may have tens of millions, or even hundreds of millions of LoC or more. We report on applying Pulse Infinite to over a hundred million lines of open-source and proprietary software written in C, C++, and Hack, identifying over 30 previously unknown issues, establishing a new state of the art for detecting divergence in real-world codebases.",
+        "url": "http://arxiv.org/abs/2509.05293v1",
+        "published": "2025-09-05T17:58:45Z",
+        "categories": [
+          "cs.PL",
+          "cs.CL",
+          "cs.SE",
+          "D.3; F.3"
+        ],
+        "source": "arxiv"
+      }
+    ],
+    "discussions": [
+      {
+        "title": "Human-AI Collaborative Coding Patterns",
+        "summary": "Discussion about effective patterns for human-AI pair programming",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-09-08T09:26:00.744195",
+        "url": "placeholder",
+        "engagement": "active"
+      },
+      {
+        "title": "Visual Design Collaboration with AI Tools",
+        "summary": "Emerging patterns in visual design workflows with AI assistance",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-09-08T09:26:00.744211",
+        "url": "placeholder",
+        "engagement": "emerging"
+      }
+    ]
+  },
+  "trends": {
+    "trending_terms": {
+      "design": 6,
+      "collaboration": 4,
+      "pattern": 4,
+      "workflow": 2,
+      "interaction": 1,
+      "communication": 1
+    },
+    "total_papers": 15,
+    "recent_focus_areas": [
+      "design",
+      "collaboration",
+      "pattern",
+      "workflow",
+      "interaction"
+    ],
+    "analysis_note": "Based on keyword frequency in recent research papers"
+  },
+  "opportunities": [
+    {
+      "topic": "design",
+      "research_frequency": 6,
+      "gap_level": "high",
+      "research_basis": "Appears 6 times in recent research",
+      "suggested_focus": "Investigate design in the context of human-AI collaboration"
+    },
+    {
+      "topic": "collaboration",
+      "research_frequency": 4,
+      "gap_level": "high",
+      "research_basis": "Appears 4 times in recent research",
+      "suggested_focus": "Explore new patterns of human-AI collaborative workflows"
+    },
+    {
+      "topic": "pattern",
+      "research_frequency": 4,
+      "gap_level": "high",
+      "research_basis": "Appears 4 times in recent research",
+      "suggested_focus": "Investigate pattern in the context of human-AI collaboration"
+    }
+  ]
+}
