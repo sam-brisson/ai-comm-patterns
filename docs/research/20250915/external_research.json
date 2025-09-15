@@ -1,0 +1,333 @@
+{
+  "timestamp": "2025-09-15T09:25:07.405123",
+  "depth": "light",
+  "sources": {
+    "arxiv": [
+      {
+        "title": "GC-VLN: Instruction as Graph Constraints for Training-free\n  Vision-and-Language Navigation",
+        "authors": [
+          "Hang Yin",
+          "Haoyu Wei",
+          "Xiuwei Xu",
+          "Wenxuan Guo",
+          "Jie Zhou",
+          "Jiwen Lu"
+        ],
+        "summary": "In this paper, we propose a training-free framework for vision-and-language navigation (VLN). Existing zero-shot VLN methods are mainly designed for discrete environments or involve unsupervised training in continuous simulator environments, which makes it challenging to generalize and deploy them in real-world scenarios. To achieve a training-free framework in continuous environments, our framework formulates navigation guidance as graph constraint optimization by decomposing instructions into explicit spatial constraints. The constraint-driven paradigm decodes spatial semantics through constraint solving, enabling zero-shot adaptation to unseen environments. Specifically, we construct a spatial constraint library covering all types of spatial relationship mentioned in VLN instructions. The human instruction is decomposed into a directed acyclic graph, with waypoint nodes, object nodes and edges, which are used as queries to retrieve the library to build the graph constraints. The graph constraint optimization is solved by the constraint solver to determine the positions of waypoints, obtaining the robot's navigation path and final goal. To handle cases of no solution or multiple solutions, we construct a navigation tree and the backtracking mechanism. Extensive experiments on standard benchmarks demonstrate significant improvements in success rate and navigation efficiency compared to state-of-the-art zero-shot VLN methods. We further conduct real-world experiments to show that our framework can effectively generalize to new environments and instruction sets, paving the way for a more robust and autonomous navigation framework.",
+        "url": "http://arxiv.org/abs/2509.10454v1",
+        "published": "2025-09-12T17:59:58Z",
+        "categories": [
+          "cs.RO",
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Coordinated Motion Planning of a Wearable Multi-Limb System for Enhanced\n  Human-Robot Interaction",
+        "authors": [
+          "Chaerim Moon",
+          "Joohyung Kim"
+        ],
+        "summary": "Supernumerary Robotic Limbs (SRLs) can enhance human capability within close proximity. However, as a wearable device, the generated moment from its operation acts on the human body as an external torque. When the moments increase, more muscle units are activated for balancing, and it can result in reduced muscular null space. Therefore, this paper suggests a concept of a motion planning layer that reduces the generated moment for enhanced Human-Robot Interaction. It modifies given trajectories with desirable angular acceleration and position deviation limits. Its performance to reduce the moment is demonstrated through the simulation, which uses simplified human and robotic system models.",
+        "url": "http://arxiv.org/abs/2509.10444v1",
+        "published": "2025-09-12T17:51:27Z",
+        "categories": [
+          "cs.RO"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "RefactorCoderQA: Benchmarking LLMs for Multi-Domain Coding Question\n  Solutions in Cloud and Edge Deployment",
+        "authors": [
+          "Shadikur Rahman",
+          "Aroosa Hameed",
+          "Gautam Srivastava",
+          "Syed Muhammad Danish"
+        ],
+        "summary": "To optimize the reasoning and problem-solving capabilities of Large Language Models (LLMs), we propose a novel cloud-edge collaborative architecture that enables a structured, multi-agent prompting framework. This framework comprises three specialized components: GuideLLM, a lightweight model deployed at the edge to provide methodological guidance; SolverLLM, a more powerful model hosted in the cloud responsible for generating code solutions; and JudgeLLM, an automated evaluator for assessing solution correctness and quality. To evaluate and demonstrate the effectiveness of this architecture in realistic settings, we introduce RefactorCoderQA, a comprehensive benchmark designed to evaluate and enhance the performance of Large Language Models (LLMs) across multi-domain coding tasks. Motivated by the limitations of existing benchmarks, RefactorCoderQA systematically covers various technical domains, including Software Engineering, Data Science, Machine Learning, and Natural Language Processing, using authentic coding challenges from Stack Overflow. Extensive experiments reveal that our fine-tuned model, RefactorCoder-MoE, achieves state-of-the-art performance, significantly outperforming leading open-source and commercial baselines with an overall accuracy of 76.84%. Human evaluations further validate the interpretability, accuracy, and practical relevance of the generated solutions. In addition, we evaluate system-level metrics, such as throughput and latency, to gain deeper insights into the performance characteristics and trade-offs of the proposed architecture.",
+        "url": "http://arxiv.org/abs/2509.10436v1",
+        "published": "2025-09-12T17:44:22Z",
+        "categories": [
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Standards in the Preparation of Biomedical Research Metadata: A\n  Bridge2AI Perspective",
+        "authors": [
+          "Harry Caufield",
+          "Satrajit Ghosh",
+          "Sek Wong Kong",
+          "Jillian Parker",
+          "Nathan Sheffield",
+          "Bhavesh Patel",
+          "Andrew Williams",
+          "Timothy Clark",
+          "Monica C. Munoz-Torres"
+        ],
+        "summary": "AI-readiness describes the degree to which data may be optimally and ethically used for subsequent AI and Machine Learning (AI/ML) methods, where those methods may involve some combination of model training, data classification, and ethical, explainable prediction. The Bridge2AI consortium has defined the particular criteria a biomedical dataset may possess to render it AI-ready: in brief, a dataset's readiness is related to its FAIRness, provenance, degree of characterization, explainability, sustainability, and computability, in addition to its accompaniment with documentation about ethical data practices.   To ensure AI-readiness and to clarify data structure and relationships within Bridge2AI's Grand Challenges (GCs), particular types of metadata are necessary. The GCs within the Bridge2AI initiative include four data-generating projects focusing on generating AI/ML-ready datasets to tackle complex biomedical and behavioral research problems. These projects develop standardized, multimodal data, tools, and training resources to support AI integration, while addressing ethical data practices. Examples include using voice as a biomarker, building interpretable genomic tools, modeling disease trajectories with diverse multimodal data, and mapping cellular and molecular health indicators across the human body.   This report assesses the state of metadata creation and standardization in the Bridge2AI GCs, provides guidelines where required, and identifies gaps and areas for improvement across the program. New projects, including those outside the Bridge2AI consortium, would benefit from what we have learned about creating metadata as part of efforts to promote AI readiness.",
+        "url": "http://arxiv.org/abs/2509.10432v1",
+        "published": "2025-09-12T17:38:46Z",
+        "categories": [
+          "q-bio.OT",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Human Body Segment Volume Estimation with Two RGB-D Cameras",
+        "authors": [
+          "Giulia Bassani",
+          "Emilio Maoddi",
+          "Usman Asghar",
+          "Carlo Alberto Avizzano",
+          "Alessandro Filippeschi"
+        ],
+        "summary": "In the field of human biometry, accurately estimating the volume of the whole body and its individual segments is of fundamental importance. Such measurements support a wide range of applications that include assessing health, optimizing ergonomic design, and customizing biomechanical models. In this work, we presented a Body Segment Volume Estimation (BSV) system to automatically compute whole-body and segment volumes using only two RGB-D cameras, thus limiting the system complexity. However, to maintain the accuracy comparable to 3D laser scanners, we enhanced the As-Rigid-As-Possible (ARAP) non-rigid registration techniques, disconnecting its energy from the single triangle mesh. Thus, we improved the geometrical coherence of the reconstructed mesh, especially in the lateral gap areas. We evaluated BSV starting from the RGB-D camera performances, through the results obtained with FAUST dataset human body models, and comparing with a state-of-the-art work, up to real acquisitions. It showed superior ability in accurately estimating human body volumes, and it allows evaluating volume ratios between proximal and distal body segments, which are useful indices in many clinical applications.",
+        "url": "http://arxiv.org/abs/2509.10429v1",
+        "published": "2025-09-12T17:34:02Z",
+        "categories": [
+          "eess.IV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "GC-VLN: Instruction as Graph Constraints for Training-free\n  Vision-and-Language Navigation",
+        "authors": [
+          "Hang Yin",
+          "Haoyu Wei",
+          "Xiuwei Xu",
+          "Wenxuan Guo",
+          "Jie Zhou",
+          "Jiwen Lu"
+        ],
+        "summary": "In this paper, we propose a training-free framework for vision-and-language navigation (VLN). Existing zero-shot VLN methods are mainly designed for discrete environments or involve unsupervised training in continuous simulator environments, which makes it challenging to generalize and deploy them in real-world scenarios. To achieve a training-free framework in continuous environments, our framework formulates navigation guidance as graph constraint optimization by decomposing instructions into explicit spatial constraints. The constraint-driven paradigm decodes spatial semantics through constraint solving, enabling zero-shot adaptation to unseen environments. Specifically, we construct a spatial constraint library covering all types of spatial relationship mentioned in VLN instructions. The human instruction is decomposed into a directed acyclic graph, with waypoint nodes, object nodes and edges, which are used as queries to retrieve the library to build the graph constraints. The graph constraint optimization is solved by the constraint solver to determine the positions of waypoints, obtaining the robot's navigation path and final goal. To handle cases of no solution or multiple solutions, we construct a navigation tree and the backtracking mechanism. Extensive experiments on standard benchmarks demonstrate significant improvements in success rate and navigation efficiency compared to state-of-the-art zero-shot VLN methods. We further conduct real-world experiments to show that our framework can effectively generalize to new environments and instruction sets, paving the way for a more robust and autonomous navigation framework.",
+        "url": "http://arxiv.org/abs/2509.10454v1",
+        "published": "2025-09-12T17:59:58Z",
+        "categories": [
+          "cs.RO",
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "SSL-AD: Spatiotemporal Self-Supervised Learning for Generalizability and\n  Adaptability Across Alzheimer's Prediction Tasks and Datasets",
+        "authors": [
+          "Emily Kaczmarek",
+          "Justin Szeto",
+          "Brennan Nichyporuk",
+          "Tal Arbel"
+        ],
+        "summary": "Alzheimer's disease is a progressive, neurodegenerative disorder that causes memory loss and cognitive decline. While there has been extensive research in applying deep learning models to Alzheimer's prediction tasks, these models remain limited by lack of available labeled data, poor generalization across datasets, and inflexibility to varying numbers of input scans and time intervals between scans. In this study, we adapt three state-of-the-art temporal self-supervised learning (SSL) approaches for 3D brain MRI analysis, and add novel extensions designed to handle variable-length inputs and learn robust spatial features. We aggregate four publicly available datasets comprising 3,161 patients for pre-training, and show the performance of our model across multiple Alzheimer's prediction tasks including diagnosis classification, conversion detection, and future conversion prediction. Importantly, our SSL model implemented with temporal order prediction and contrastive learning outperforms supervised learning on six out of seven downstream tasks. It demonstrates adaptability and generalizability across tasks and number of input images with varying time intervals, highlighting its capacity for robust performance across clinical applications. We release our code and model publicly at https://github.com/emilykaczmarek/SSL-AD.",
+        "url": "http://arxiv.org/abs/2509.10453v1",
+        "published": "2025-09-12T17:59:32Z",
+        "categories": [
+          "cs.CV",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "InfGen: A Resolution-Agnostic Paradigm for Scalable Image Synthesis",
+        "authors": [
+          "Tao Han",
+          "Wanghan Xu",
+          "Junchao Gong",
+          "Xiaoyu Yue",
+          "Song Guo",
+          "Luping Zhou",
+          "Lei Bai"
+        ],
+        "summary": "Arbitrary resolution image generation provides a consistent visual experience across devices, having extensive applications for producers and consumers. Current diffusion models increase computational demand quadratically with resolution, causing 4K image generation delays over 100 seconds. To solve this, we explore the second generation upon the latent diffusion models, where the fixed latent generated by diffusion models is regarded as the content representation and we propose to decode arbitrary resolution images with a compact generated latent using a one-step generator. Thus, we present the \\textbf{InfGen}, replacing the VAE decoder with the new generator, for generating images at any resolution from a fixed-size latent without retraining the diffusion models, which simplifies the process, reducing computational complexity and can be applied to any model using the same latent space. Experiments show InfGen is capable of improving many models into the arbitrary high-resolution era while cutting 4K image generation time to under 10 seconds.",
+        "url": "http://arxiv.org/abs/2509.10441v1",
+        "published": "2025-09-12T17:48:57Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Understanding Outer Optimizers in Local SGD: Learning Rates, Momentum,\n  and Acceleration",
+        "authors": [
+          "Ahmed Khaled",
+          "Satyen Kale",
+          "Arthur Douillard",
+          "Chi Jin",
+          "Rob Fergus",
+          "Manzil Zaheer"
+        ],
+        "summary": "Modern machine learning often requires training with large batch size, distributed data, and massively parallel compute hardware (like mobile and other edge devices or distributed data centers). Communication becomes a major bottleneck in such settings but methods like Local Stochastic Gradient Descent (Local SGD) show great promise in reducing this additional communication overhead. Local SGD consists of three parts: a local optimization process, an aggregation mechanism, and an outer optimizer that uses the aggregated updates from the nodes to produce a new model. While there exists an extensive literature on understanding the impact of hyperparameters in the local optimization process, the choice of outer optimizer and its hyperparameters is less clear. We study the role of the outer optimizer in Local SGD, and prove new convergence guarantees for the algorithm. In particular, we show that tuning the outer learning rate allows us to (a) trade off between optimization error and stochastic gradient noise variance, and (b) make up for ill-tuning of the inner learning rate. Our theory suggests that the outer learning rate should sometimes be set to values greater than $1$. We extend our results to settings where we use momentum in the outer optimizer, and we show a similar role for the momentum-adjusted outer learning rate. We also study acceleration in the outer optimizer and show that it improves the convergence rate as a function of the number of communication rounds, improving upon the convergence rate of prior algorithms that apply acceleration locally. Finally, we also introduce a novel data-dependent analysis of Local SGD that yields further insights on outer learning rate tuning. We conduct comprehensive experiments with standard language models and various outer optimizers to validate our theory.",
+        "url": "http://arxiv.org/abs/2509.10439v1",
+        "published": "2025-09-12T17:47:58Z",
+        "categories": [
+          "cs.LG",
+          "math.OC",
+          "stat.ML"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Standards in the Preparation of Biomedical Research Metadata: A\n  Bridge2AI Perspective",
+        "authors": [
+          "Harry Caufield",
+          "Satrajit Ghosh",
+          "Sek Wong Kong",
+          "Jillian Parker",
+          "Nathan Sheffield",
+          "Bhavesh Patel",
+          "Andrew Williams",
+          "Timothy Clark",
+          "Monica C. Munoz-Torres"
+        ],
+        "summary": "AI-readiness describes the degree to which data may be optimally and ethically used for subsequent AI and Machine Learning (AI/ML) methods, where those methods may involve some combination of model training, data classification, and ethical, explainable prediction. The Bridge2AI consortium has defined the particular criteria a biomedical dataset may possess to render it AI-ready: in brief, a dataset's readiness is related to its FAIRness, provenance, degree of characterization, explainability, sustainability, and computability, in addition to its accompaniment with documentation about ethical data practices.   To ensure AI-readiness and to clarify data structure and relationships within Bridge2AI's Grand Challenges (GCs), particular types of metadata are necessary. The GCs within the Bridge2AI initiative include four data-generating projects focusing on generating AI/ML-ready datasets to tackle complex biomedical and behavioral research problems. These projects develop standardized, multimodal data, tools, and training resources to support AI integration, while addressing ethical data practices. Examples include using voice as a biomarker, building interpretable genomic tools, modeling disease trajectories with diverse multimodal data, and mapping cellular and molecular health indicators across the human body.   This report assesses the state of metadata creation and standardization in the Bridge2AI GCs, provides guidelines where required, and identifies gaps and areas for improvement across the program. New projects, including those outside the Bridge2AI consortium, would benefit from what we have learned about creating metadata as part of efforts to promote AI readiness.",
+        "url": "http://arxiv.org/abs/2509.10432v1",
+        "published": "2025-09-12T17:38:46Z",
+        "categories": [
+          "q-bio.OT",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "GC-VLN: Instruction as Graph Constraints for Training-free\n  Vision-and-Language Navigation",
+        "authors": [
+          "Hang Yin",
+          "Haoyu Wei",
+          "Xiuwei Xu",
+          "Wenxuan Guo",
+          "Jie Zhou",
+          "Jiwen Lu"
+        ],
+        "summary": "In this paper, we propose a training-free framework for vision-and-language navigation (VLN). Existing zero-shot VLN methods are mainly designed for discrete environments or involve unsupervised training in continuous simulator environments, which makes it challenging to generalize and deploy them in real-world scenarios. To achieve a training-free framework in continuous environments, our framework formulates navigation guidance as graph constraint optimization by decomposing instructions into explicit spatial constraints. The constraint-driven paradigm decodes spatial semantics through constraint solving, enabling zero-shot adaptation to unseen environments. Specifically, we construct a spatial constraint library covering all types of spatial relationship mentioned in VLN instructions. The human instruction is decomposed into a directed acyclic graph, with waypoint nodes, object nodes and edges, which are used as queries to retrieve the library to build the graph constraints. The graph constraint optimization is solved by the constraint solver to determine the positions of waypoints, obtaining the robot's navigation path and final goal. To handle cases of no solution or multiple solutions, we construct a navigation tree and the backtracking mechanism. Extensive experiments on standard benchmarks demonstrate significant improvements in success rate and navigation efficiency compared to state-of-the-art zero-shot VLN methods. We further conduct real-world experiments to show that our framework can effectively generalize to new environments and instruction sets, paving the way for a more robust and autonomous navigation framework.",
+        "url": "http://arxiv.org/abs/2509.10454v1",
+        "published": "2025-09-12T17:59:58Z",
+        "categories": [
+          "cs.RO",
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "SSL-AD: Spatiotemporal Self-Supervised Learning for Generalizability and\n  Adaptability Across Alzheimer's Prediction Tasks and Datasets",
+        "authors": [
+          "Emily Kaczmarek",
+          "Justin Szeto",
+          "Brennan Nichyporuk",
+          "Tal Arbel"
+        ],
+        "summary": "Alzheimer's disease is a progressive, neurodegenerative disorder that causes memory loss and cognitive decline. While there has been extensive research in applying deep learning models to Alzheimer's prediction tasks, these models remain limited by lack of available labeled data, poor generalization across datasets, and inflexibility to varying numbers of input scans and time intervals between scans. In this study, we adapt three state-of-the-art temporal self-supervised learning (SSL) approaches for 3D brain MRI analysis, and add novel extensions designed to handle variable-length inputs and learn robust spatial features. We aggregate four publicly available datasets comprising 3,161 patients for pre-training, and show the performance of our model across multiple Alzheimer's prediction tasks including diagnosis classification, conversion detection, and future conversion prediction. Importantly, our SSL model implemented with temporal order prediction and contrastive learning outperforms supervised learning on six out of seven downstream tasks. It demonstrates adaptability and generalizability across tasks and number of input images with varying time intervals, highlighting its capacity for robust performance across clinical applications. We release our code and model publicly at https://github.com/emilykaczmarek/SSL-AD.",
+        "url": "http://arxiv.org/abs/2509.10453v1",
+        "published": "2025-09-12T17:59:32Z",
+        "categories": [
+          "cs.CV",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "WhisTLE: Deeply Supervised, Text-Only Domain Adaptation for Pretrained\n  Speech Recognition Transformers",
+        "authors": [
+          "Akshat Pandey",
+          "Karun Kumar",
+          "Raphael Tang"
+        ],
+        "summary": "Pretrained automatic speech recognition (ASR) models such as Whisper perform well but still need domain adaptation to handle unseen vocabulary and parlance. In many real-world settings, collecting speech data is impractical, necessitating text-only adaptation. We propose WhisTLE, a deeply supervised, text-only adaptation method for pretrained encoder-decoder ASR models. WhisTLE trains a variational autoencoder (VAE) to model encoder outputs from text and fine-tunes the decoder using the learned text-to-latent encoder, optionally combined with text-to-speech (TTS) adaptation. At inference, the original encoder is restored, incurring no extra runtime cost. Across four out-of-domain datasets and four ASR models, WhisTLE with TTS reduces word error rate (WER) by 12.3% relative to TTS-only adaptation and outperforms all non-WhisTLE baselines in 27 of 32 scenarios.",
+        "url": "http://arxiv.org/abs/2509.10452v1",
+        "published": "2025-09-12T17:59:09Z",
+        "categories": [
+          "cs.CL",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "A linear-time algorithm for Chow decompositions",
+        "authors": [
+          "Alexander Taveira Blomenhofer",
+          "Benjamin Lovitz"
+        ],
+        "summary": "We propose a linear-time algorithm to compute low-rank Chow decompositions. Our algorithm can decompose concise symmetric 3-tensors in n variables of Chow rank n/3. The algorithm is pencil based, hence it relies on generalized eigenvalue computations. We also develop sub-quadratic time algorithms for higher order Chow decompositions, and Chow decompositions of 3-tensors into products of linear forms which do not lie on the generic orbit. In particular, we obtain a sub-quadratic-time algorithm for decomposing a symmetric 3-tensor into a linear combination of W-tensors.",
+        "url": "http://arxiv.org/abs/2509.10450v1",
+        "published": "2025-09-12T17:56:44Z",
+        "categories": [
+          "cs.DS",
+          "math.AG",
+          "quant-ph",
+          "14Q15, 15A69"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "MatSKRAFT: A framework for large-scale materials knowledge extraction\n  from scientific tables",
+        "authors": [
+          "Kausik Hira",
+          "Mohd Zaki",
+          "Mausam",
+          "N. M. Anoop Krishnan"
+        ],
+        "summary": "Scientific progress increasingly depends on synthesizing knowledge across vast literature, yet most experimental data remains trapped in semi-structured formats that resist systematic extraction and analysis. Here, we present MatSKRAFT, a computational framework that automatically extracts and integrates materials science knowledge from tabular data at unprecedented scale. Our approach transforms tables into graph-based representations processed by constraint-driven GNNs that encode scientific principles directly into model architecture. MatSKRAFT significantly outperforms state-of-the-art large language models, achieving F1 scores of 88.68 for property extraction and 71.35 for composition extraction, while processing data $19$-$496\\times$ faster than them (compared to the slowest and the fastest models, respectively) with modest hardware requirements. Applied to nearly 69,000 tables from more than 47,000 research publications, we construct a comprehensive database containing over 535,000 entries, including 104,000 compositions that expand coverage beyond major existing databases, pending manual validation. This systematic approach reveals previously overlooked materials with distinct property combinations and enables data-driven discovery of composition-property relationships forming the cornerstone of materials and scientific discovery.",
+        "url": "http://arxiv.org/abs/2509.10448v1",
+        "published": "2025-09-12T17:55:11Z",
+        "categories": [
+          "cs.IR",
+          "cond-mat.mtrl-sci"
+        ],
+        "source": "arxiv"
+      }
+    ],
+    "discussions": [
+      {
+        "title": "Human-AI Collaborative Coding Patterns",
+        "summary": "Discussion about effective patterns for human-AI pair programming",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-09-15T09:25:11.155935",
+        "url": "placeholder",
+        "engagement": "active"
+      },
+      {
+        "title": "Visual Design Collaboration with AI Tools",
+        "summary": "Emerging patterns in visual design workflows with AI assistance",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-09-15T09:25:11.155951",
+        "url": "placeholder",
+        "engagement": "emerging"
+      }
+    ]
+  },
+  "trends": {
+    "trending_terms": {
+      "design": 7,
+      "communication": 3,
+      "interaction": 2,
+      "cognition": 2,
+      "experience": 1
+    },
+    "total_papers": 15,
+    "recent_focus_areas": [
+      "design",
+      "communication",
+      "interaction",
+      "cognition",
+      "experience"
+    ],
+    "analysis_note": "Based on keyword frequency in recent research papers"
+  },
+  "opportunities": [
+    {
+      "topic": "design",
+      "research_frequency": 7,
+      "gap_level": "high",
+      "research_basis": "Appears 7 times in recent research",
+      "suggested_focus": "Investigate design in the context of human-AI collaboration"
+    },
+    {
+      "topic": "communication",
+      "research_frequency": 3,
+      "gap_level": "high",
+      "research_basis": "Appears 3 times in recent research",
+      "suggested_focus": "Study communication patterns that enhance human-AI collaboration"
+    }
+  ]
+}
