@@ -1,0 +1,391 @@
+{
+  "timestamp": "2025-09-22T09:26:39.713958",
+  "depth": "light",
+  "sources": {
+    "arxiv": [
+      {
+        "title": "Inverting Trojans in LLMs",
+        "authors": [
+          "Zhengxing Li",
+          "Guangmingmei Yang",
+          "Jayaram Raghuram",
+          "David J. Miller",
+          "George Kesidis"
+        ],
+        "summary": "While effective backdoor detection and inversion schemes have been developed for AIs used e.g. for images, there are challenges in \"porting\" these methods to LLMs. First, the LLM input space is discrete, which precludes gradient-based search over this space, central to many backdoor inversion methods. Second, there are ~30,000^k k-tuples to consider, k the token-length of a putative trigger. Third, for LLMs there is the need to blacklist tokens that have strong marginal associations with the putative target response (class) of an attack, as such tokens give false detection signals. However, good blacklists may not exist for some domains. We propose a LLM trigger inversion approach with three key components: i) discrete search, with putative triggers greedily accreted, starting from a select list of singletons; ii) implicit blacklisting, achieved by evaluating the average cosine similarity, in activation space, between a candidate trigger and a small clean set of samples from the putative target class; iii) detection when a candidate trigger elicits high misclassifications, and with unusually high decision confidence. Unlike many recent works, we demonstrate that our approach reliably detects and successfully inverts ground-truth backdoor trigger phrases.",
+        "url": "http://arxiv.org/abs/2509.16203v1",
+        "published": "2025-09-19T17:59:57Z",
+        "categories": [
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Accelerating Atomic Fine Structure Determination with Graph\n  Reinforcement Learning",
+        "authors": [
+          "M. Ding",
+          "V. -A. Darvariu",
+          "A. N. Ryabtsev",
+          "N. Hawes",
+          "J. C. Pickering"
+        ],
+        "summary": "Atomic data determined by analysis of observed atomic spectra are essential for plasma diagnostics. For each low-ionisation open d- and f-subshell atomic species, around $10^3$ fine structure level energies can be determined through years of analysis of $10^4$ observable spectral lines. We propose the automation of this task by casting the analysis procedure as a Markov decision process and solving it by graph reinforcement learning using reward functions learned on historical human decisions. In our evaluations on existing spectral line lists and theoretical calculations for Co II and Nd II-III, hundreds of level energies were computed within hours, agreeing with published values in 95% of cases for Co II and 54-87% for Nd II-III. As the current efficiency in atomic fine structure determination struggles to meet growing atomic data demands from astronomy and fusion science, our new artificial intelligence approach sets the stage for closing this gap.",
+        "url": "http://arxiv.org/abs/2509.16184v1",
+        "published": "2025-09-19T17:44:03Z",
+        "categories": [
+          "physics.atom-ph",
+          "cs.AI",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Agentic Aerial Cinematography: From Dialogue Cues to Cinematic\n  Trajectories",
+        "authors": [
+          "Yifan Lin",
+          "Sophie Ziyu Liu",
+          "Ran Qi",
+          "George Z. Xue",
+          "Xinping Song",
+          "Chao Qin",
+          "Hugh H. -T. Liu"
+        ],
+        "summary": "We present Agentic Aerial Cinematography: From Dialogue Cues to Cinematic Trajectories (ACDC), an autonomous drone cinematography system driven by natural language communication between human directors and drones. The main limitation of previous drone cinematography workflows is that they require manual selection of waypoints and view angles based on predefined human intent, which is labor-intensive and yields inconsistent performance. In this paper, we propose employing large language models (LLMs) and vision foundation models (VFMs) to convert free-form natural language prompts directly into executable indoor UAV video tours. Specifically, our method comprises a vision-language retrieval pipeline for initial waypoint selection, a preference-based Bayesian optimization framework that refines poses using aesthetic feedback, and a motion planner that generates safe quadrotor trajectories. We validate ACDC through both simulation and hardware-in-the-loop experiments, demonstrating that it robustly produces professional-quality footage across diverse indoor scenes without requiring expertise in robotics or cinematography. These results highlight the potential of embodied AI agents to close the loop from open-vocabulary dialogue to real-world autonomous aerial cinematography.",
+        "url": "http://arxiv.org/abs/2509.16176v1",
+        "published": "2025-09-19T17:35:51Z",
+        "categories": [
+          "cs.RO"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Robust Vision-Language Models via Tensor Decomposition: A Defense\n  Against Adversarial Attacks",
+        "authors": [
+          "Het Patel",
+          "Muzammil Allie",
+          "Qian Zhang",
+          "Jia Chen",
+          "Evangelos E. Papalexakis"
+        ],
+        "summary": "Vision language models (VLMs) excel in multimodal understanding but are prone to adversarial attacks. Existing defenses often demand costly retraining or significant architecture changes. We introduce a lightweight defense using tensor decomposition suitable for any pre-trained VLM, requiring no retraining. By decomposing and reconstructing vision encoder representations, it filters adversarial noise while preserving meaning. Experiments with CLIP on COCO and Flickr30K show improved robustness. On Flickr30K, it restores 12.3\\% performance lost to attacks, raising Recall@1 accuracy from 7.5\\% to 19.8\\%. On COCO, it recovers 8.1\\% performance, improving accuracy from 3.8\\% to 11.9\\%. Analysis shows Tensor Train decomposition with low rank (8-32) and low residual strength ($\\alpha=0.1-0.2$) is optimal. This method is a practical, plug-and-play solution with minimal overhead for existing VLMs.",
+        "url": "http://arxiv.org/abs/2509.16163v1",
+        "published": "2025-09-19T17:16:32Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI",
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Designing Culturally Aligned AI Systems For Social Good in Non-Western\n  Contexts",
+        "authors": [
+          "Deepak Varuvel Dennison",
+          "Mohit Jain",
+          "Tanuja Ganu",
+          "Aditya Vashistha"
+        ],
+        "summary": "AI technologies are increasingly deployed in high-stakes domains such as education, healthcare, law, and agriculture to address complex challenges in non-Western contexts. This paper examines eight real-world deployments spanning seven countries and 18 languages, combining 17 interviews with AI developers and domain experts with secondary research. Our findings identify six cross-cutting factors - Language, Domain, Demography, Institution, Task, and Safety - that structured how systems were designed and deployed. These factors were shaped by sociocultural (diversity, practices), institutional (resources, policies), and technological (capabilities, limits) influences. We find that building AI systems required extensive collaboration between AI developers and domain experts. Notably, human resources proved more critical to achieving safe and effective systems in high-stakes domains than technological expertise alone. We present an analytical framework that synthesizes these dynamics and conclude with recommendations for designing AI for social good systems that are culturally grounded, equitable, and responsive to the needs of non-Western contexts.",
+        "url": "http://arxiv.org/abs/2509.16158v1",
+        "published": "2025-09-19T17:07:13Z",
+        "categories": [
+          "cs.HC"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Inverting Trojans in LLMs",
+        "authors": [
+          "Zhengxing Li",
+          "Guangmingmei Yang",
+          "Jayaram Raghuram",
+          "David J. Miller",
+          "George Kesidis"
+        ],
+        "summary": "While effective backdoor detection and inversion schemes have been developed for AIs used e.g. for images, there are challenges in \"porting\" these methods to LLMs. First, the LLM input space is discrete, which precludes gradient-based search over this space, central to many backdoor inversion methods. Second, there are ~30,000^k k-tuples to consider, k the token-length of a putative trigger. Third, for LLMs there is the need to blacklist tokens that have strong marginal associations with the putative target response (class) of an attack, as such tokens give false detection signals. However, good blacklists may not exist for some domains. We propose a LLM trigger inversion approach with three key components: i) discrete search, with putative triggers greedily accreted, starting from a select list of singletons; ii) implicit blacklisting, achieved by evaluating the average cosine similarity, in activation space, between a candidate trigger and a small clean set of samples from the putative target class; iii) detection when a candidate trigger elicits high misclassifications, and with unusually high decision confidence. Unlike many recent works, we demonstrate that our approach reliably detects and successfully inverts ground-truth backdoor trigger phrases.",
+        "url": "http://arxiv.org/abs/2509.16203v1",
+        "published": "2025-09-19T17:59:57Z",
+        "categories": [
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "MANZANO: A Simple and Scalable Unified Multimodal Model with a Hybrid\n  Vision Tokenizer",
+        "authors": [
+          "Yanghao Li",
+          "Rui Qian",
+          "Bowen Pan",
+          "Haotian Zhang",
+          "Haoshuo Huang",
+          "Bowen Zhang",
+          "Jialing Tong",
+          "Haoxuan You",
+          "Xianzhi Du",
+          "Zhe Gan",
+          "Hyunjik Kim",
+          "Chao Jia",
+          "Zhenbang Wang",
+          "Yinfei Yang",
+          "Mingfei Gao",
+          "Zi-Yi Dou",
+          "Wenze Hu",
+          "Chang Gao",
+          "Dongxu Li",
+          "Philipp Dufter",
+          "Zirui Wang",
+          "Guoli Yin",
+          "Zhengdong Zhang",
+          "Chen Chen",
+          "Yang Zhao",
+          "Ruoming Pang",
+          "Zhifeng Chen"
+        ],
+        "summary": "Unified multimodal Large Language Models (LLMs) that can both understand and generate visual content hold immense potential. However, existing open-source models often suffer from a performance trade-off between these capabilities. We present Manzano, a simple and scalable unified framework that substantially reduces this tension by coupling a hybrid image tokenizer with a well-curated training recipe. A single shared vision encoder feeds two lightweight adapters that produce continuous embeddings for image-to-text understanding and discrete tokens for text-to-image generation within a common semantic space. A unified autoregressive LLM predicts high-level semantics in the form of text and image tokens, with an auxiliary diffusion decoder subsequently translating the image tokens into pixels. The architecture, together with a unified training recipe over understanding and generation data, enables scalable joint learning of both capabilities. Manzano achieves state-of-the-art results among unified models, and is competitive with specialist models, particularly on text-rich evaluation. Our studies show minimal task conflicts and consistent gains from scaling model size, validating our design choice of a hybrid tokenizer.",
+        "url": "http://arxiv.org/abs/2509.16197v1",
+        "published": "2025-09-19T17:58:00Z",
+        "categories": [
+          "cs.CV",
+          "cs.CL",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Are Multimodal Foundation Models All That Is Needed for Emofake\n  Detection?",
+        "authors": [
+          "Mohd Mujtaba Akhtar",
+          "Girish",
+          "Orchid Chetia Phukan",
+          "Swarup Ranjan Behera",
+          "Pailla Balakrishna Reddy",
+          "Ananda Chandra Nayak",
+          "Sanjib Kumar Nayak",
+          "Arun Balaji Buduru"
+        ],
+        "summary": "In this work, we investigate multimodal foundation models (MFMs) for EmoFake detection (EFD) and hypothesize that they will outperform audio foundation models (AFMs). MFMs due to their cross-modal pre-training, learns emotional patterns from multiple modalities, while AFMs rely only on audio. As such, MFMs can better recognize unnatural emotional shifts and inconsistencies in manipulated audio, making them more effective at distinguishing real from fake emotional expressions. To validate our hypothesis, we conduct a comprehensive comparative analysis of state-of-the-art (SOTA) MFMs (e.g. LanguageBind) alongside AFMs (e.g. WavLM). Our experiments confirm that MFMs surpass AFMs for EFD. Beyond individual foundation models (FMs) performance, we explore FMs fusion, motivated by findings in related research areas such synthetic speech detection and speech emotion recognition. To this end, we propose SCAR, a novel framework for effective fusion. SCAR introduces a nested cross-attention mechanism, where representations from FMs interact at two stages sequentially to refine information exchange. Additionally, a self-attention refinement module further enhances feature representations by reinforcing important cross-FM cues while suppressing noise. Through SCAR with synergistic fusion of MFMs, we achieve SOTA performance, surpassing both standalone FMs and conventional fusion approaches and previous works on EFD.",
+        "url": "http://arxiv.org/abs/2509.16193v1",
+        "published": "2025-09-19T17:55:20Z",
+        "categories": [
+          "eess.AS"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Uniform 2D Target Generation via Inverse-designed Metasurfaces",
+        "authors": [
+          "Yushi Zhou",
+          "Yun-Sheng Chen",
+          "Yang Zhao"
+        ],
+        "summary": "We propose an inverse design framework for metasurfaces that achieves highly uniform two-dimensional intensity profiles across an on-demand shape. The optimization objective is formulated to enhance overall projection efficiency via the adjoint method, while a regularization term penalizes local deviations in field amplitude to suppress intensity non-uniformity. The regularization weight is adaptively tuned based on the current non-uniformity, enabling stable and efficient optimization. Compared with the widely used mean squared error (MSE) objective, our method yields superior performance in both intensity fidelity and uniformity. We also extend our framework to handle realistic Gaussian beam illumination by biasing the library. Simulation results confirm the effectiveness of our approach for generating high-quality, uniform field patterns.",
+        "url": "http://arxiv.org/abs/2509.16192v1",
+        "published": "2025-09-19T17:53:39Z",
+        "categories": [
+          "physics.optics"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Fast OTSU Thresholding Using Bisection Method",
+        "authors": [
+          "Sai Varun Kodathala"
+        ],
+        "summary": "The Otsu thresholding algorithm represents a fundamental technique in image segmentation, yet its computational efficiency is severely limited by exhaustive search requirements across all possible threshold values. This work presents an optimized implementation that leverages the bisection method to exploit the unimodal characteristics of the between-class variance function. Our approach reduces the computational complexity from O(L) to O(log L) evaluations while preserving segmentation accuracy. Experimental validation on 48 standard test images demonstrates a 91.63% reduction in variance computations and 97.21% reduction in algorithmic iterations compared to conventional exhaustive search. The bisection method achieves exact threshold matches in 66.67% of test cases, with 95.83% exhibiting deviations within 5 gray levels. The algorithm maintains universal convergence within theoretical logarithmic bounds while providing deterministic performance guarantees suitable for real-time applications. This optimization addresses critical computational bottlenecks in large-scale image processing systems without compromising the theoretical foundations or segmentation quality of the original Otsu method.",
+        "url": "http://arxiv.org/abs/2509.16179v1",
+        "published": "2025-09-19T17:40:42Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI",
+          "cs.NA",
+          "math.NA"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Inverting Trojans in LLMs",
+        "authors": [
+          "Zhengxing Li",
+          "Guangmingmei Yang",
+          "Jayaram Raghuram",
+          "David J. Miller",
+          "George Kesidis"
+        ],
+        "summary": "While effective backdoor detection and inversion schemes have been developed for AIs used e.g. for images, there are challenges in \"porting\" these methods to LLMs. First, the LLM input space is discrete, which precludes gradient-based search over this space, central to many backdoor inversion methods. Second, there are ~30,000^k k-tuples to consider, k the token-length of a putative trigger. Third, for LLMs there is the need to blacklist tokens that have strong marginal associations with the putative target response (class) of an attack, as such tokens give false detection signals. However, good blacklists may not exist for some domains. We propose a LLM trigger inversion approach with three key components: i) discrete search, with putative triggers greedily accreted, starting from a select list of singletons; ii) implicit blacklisting, achieved by evaluating the average cosine similarity, in activation space, between a candidate trigger and a small clean set of samples from the putative target class; iii) detection when a candidate trigger elicits high misclassifications, and with unusually high decision confidence. Unlike many recent works, we demonstrate that our approach reliably detects and successfully inverts ground-truth backdoor trigger phrases.",
+        "url": "http://arxiv.org/abs/2509.16203v1",
+        "published": "2025-09-19T17:59:57Z",
+        "categories": [
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Exploring confinement transitions in $\\mathbb{Z}_2$ lattice gauge\n  theories with dipolar atoms beyond one dimension",
+        "authors": [
+          "Matja\u017e Kebri\u010d",
+          "Lin Su",
+          "Alexander Douglas",
+          "Michal Szurek",
+          "Ognjen Markovi\u0107",
+          "Ulrich Schollw\u00f6ck",
+          "Annabelle Bohrdt",
+          "Markus Greiner",
+          "Fabian Grusdt"
+        ],
+        "summary": "Confinement of particles into bound states is a phenomenon spanning from high-energy to condensed matter physics, which can be studied in the framework of lattice gauge theories (LGTs). Achieving a comprehensive understanding of confinement continues to pose a major challenge, in particular at finite matter density and in the presence of strong quantum fluctuations. State-of-the-art quantum simulators constitute a promising platform to address this problem. Here we study confinement in coupled chains of $\\mathbb{Z}_2$ LGTs coupled to matter fields, that can be mapped to a mixed-dimensional (mixD) XXZ model. We perform large-scale numerical matrix-product state calculations to obtain the phase diagram of this model, in which we uncover striped phases formed by the $\\mathbb{Z}_2$ charges that can be melted at finite temperature or by increasing the tunneling rate. To explore this setting experimentally, we use our quantum simulator constituted by erbium atoms with dipolar interactions in a quantum gas microscope, and observe the predicted melting of a stripe phase by increasing the particle tunneling rate. Our explorative experimental studies of thermal deconfinement of $\\mathbb{Z}_2$ charges motivate our further theoretical study of the mixD $\\mathbb{Z}_2$ LGT, in which we predict a confined meson gas at finite temperature and low magnetization where thermal fluctuations destroy stripes but enable spontaneous commensurate spin order. Overall, we demonstrate that our platform can be used to study confinement in $\\mathbb{Z}_2$ LGTs coupled to matter fields, including long-range interactions and beyond one dimension, paving the way for future research of confinement in the quantum many-body regime.",
+        "url": "http://arxiv.org/abs/2509.16200v1",
+        "published": "2025-09-19T17:58:55Z",
+        "categories": [
+          "cond-mat.quant-gas",
+          "cond-mat.str-el",
+          "hep-lat",
+          "physics.atom-ph",
+          "quant-ph"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Classical and Quantum theory of magnonic and magnetoelastic nonlinear\n  dynamics in continuum geometries",
+        "authors": [
+          "Marco Br\u00fchlmann",
+          "Yunyoung Hwang",
+          "Jorge Puebla",
+          "Carlos Gonzalez-Ballestero"
+        ],
+        "summary": "We provide a theory of spin and acoustic wave coupled nonlinear dynamics in continuum systems. Combining the Landau-Lifshitz-Gilbert equations with the magnetoelastic Hamiltonian, we derive classical equations of motion for the magnetization and acoustic wave amplitudes, that include magnonic nonlinearity -- both three- and four-magnon processes -- as well as linear and nonlinear magnetoelastic interactions. We focus on two-dimensional magnetic films sustaining surface acoustic waves, a geometry where our model successfully reproduces our recent experimental observation of phonon-to-magnon down-conversion under acoustic drive. We provide analytical expressions for all the rates in our equations, which make them particularly suitable for quantization. We then quantize our model, deriving Heisenberg-Langevin equations of motion for magnon and phonon operators, and show how to compute quantum expectation values in the mean field approximation. Our work paves the way toward acoustic control of magnons in the quantum regime.",
+        "url": "http://arxiv.org/abs/2509.16199v1",
+        "published": "2025-09-19T17:58:47Z",
+        "categories": [
+          "cond-mat.mes-hall",
+          "quant-ph"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "RPG: A Repository Planning Graph for Unified and Scalable Codebase\n  Generation",
+        "authors": [
+          "Jane Luo",
+          "Xin Zhang",
+          "Steven Liu",
+          "Jie Wu",
+          "Yiming Huang",
+          "Yangyu Huang",
+          "Chengyu Yin",
+          "Ying Xin",
+          "Jianfeng Liu",
+          "Yuefeng Zhan",
+          "Hao Sun",
+          "Qi Chen",
+          "Scarlett Li",
+          "Mao Yang"
+        ],
+        "summary": "Large language models excel at function- and file-level code generation, yet generating complete repositories from scratch remains a fundamental challenge. This process demands coherent and reliable planning across proposal- and implementation-level stages, while natural language, due to its ambiguity and verbosity, is ill-suited for faithfully representing complex software structures. To address this, we introduce the Repository Planning Graph (RPG), a persistent representation that unifies proposal- and implementation-level planning by encoding capabilities, file structures, data flows, and functions in one graph. RPG replaces ambiguous natural language with an explicit blueprint, enabling long-horizon planning and scalable repository generation. Building on RPG, we develop ZeroRepo, a graph-driven framework for repository generation from scratch. It operates in three stages: proposal-level planning and implementation-level refinement to construct the graph, followed by graph-guided code generation with test validation. To evaluate this setting, we construct RepoCraft, a benchmark of six real-world projects with 1,052 tasks. On RepoCraft, ZeroRepo produces repositories averaging nearly 36K LOC, roughly 3.9$\\times$ the strongest baseline (Claude Code) and about 64$\\times$ other baselines. It attains 81.5% functional coverage and a 69.7% pass rate, exceeding Claude Code by 27.3 and 35.8 percentage points, respectively. Further analysis shows that RPG models complex dependencies, enables progressively more sophisticated planning through near-linear scaling, and enhances LLM understanding of repositories, thereby accelerating agent localization.",
+        "url": "http://arxiv.org/abs/2509.16198v1",
+        "published": "2025-09-19T17:58:14Z",
+        "categories": [
+          "cs.CL",
+          "cs.AI",
+          "cs.SE"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "MANZANO: A Simple and Scalable Unified Multimodal Model with a Hybrid\n  Vision Tokenizer",
+        "authors": [
+          "Yanghao Li",
+          "Rui Qian",
+          "Bowen Pan",
+          "Haotian Zhang",
+          "Haoshuo Huang",
+          "Bowen Zhang",
+          "Jialing Tong",
+          "Haoxuan You",
+          "Xianzhi Du",
+          "Zhe Gan",
+          "Hyunjik Kim",
+          "Chao Jia",
+          "Zhenbang Wang",
+          "Yinfei Yang",
+          "Mingfei Gao",
+          "Zi-Yi Dou",
+          "Wenze Hu",
+          "Chang Gao",
+          "Dongxu Li",
+          "Philipp Dufter",
+          "Zirui Wang",
+          "Guoli Yin",
+          "Zhengdong Zhang",
+          "Chen Chen",
+          "Yang Zhao",
+          "Ruoming Pang",
+          "Zhifeng Chen"
+        ],
+        "summary": "Unified multimodal Large Language Models (LLMs) that can both understand and generate visual content hold immense potential. However, existing open-source models often suffer from a performance trade-off between these capabilities. We present Manzano, a simple and scalable unified framework that substantially reduces this tension by coupling a hybrid image tokenizer with a well-curated training recipe. A single shared vision encoder feeds two lightweight adapters that produce continuous embeddings for image-to-text understanding and discrete tokens for text-to-image generation within a common semantic space. A unified autoregressive LLM predicts high-level semantics in the form of text and image tokens, with an auxiliary diffusion decoder subsequently translating the image tokens into pixels. The architecture, together with a unified training recipe over understanding and generation data, enables scalable joint learning of both capabilities. Manzano achieves state-of-the-art results among unified models, and is competitive with specialist models, particularly on text-rich evaluation. Our studies show minimal task conflicts and consistent gains from scaling model size, validating our design choice of a hybrid tokenizer.",
+        "url": "http://arxiv.org/abs/2509.16197v1",
+        "published": "2025-09-19T17:58:00Z",
+        "categories": [
+          "cs.CV",
+          "cs.CL",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      }
+    ],
+    "discussions": [
+      {
+        "title": "Human-AI Collaborative Coding Patterns",
+        "summary": "Discussion about effective patterns for human-AI pair programming",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-09-22T09:26:44.078353",
+        "url": "placeholder",
+        "engagement": "active"
+      },
+      {
+        "title": "Visual Design Collaboration with AI Tools",
+        "summary": "Emerging patterns in visual design workflows with AI assistance",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-09-22T09:26:44.078371",
+        "url": "placeholder",
+        "engagement": "emerging"
+      }
+    ]
+  },
+  "trends": {
+    "trending_terms": {
+      "design": 7,
+      "interaction": 3,
+      "pattern": 2,
+      "collaboration": 1,
+      "communication": 1,
+      "workflow": 1,
+      "cognition": 1
+    },
+    "total_papers": 15,
+    "recent_focus_areas": [
+      "design",
+      "interaction",
+      "pattern",
+      "collaboration",
+      "communication"
+    ],
+    "analysis_note": "Based on keyword frequency in recent research papers"
+  },
+  "opportunities": [
+    {
+      "topic": "design",
+      "research_frequency": 7,
+      "gap_level": "high",
+      "research_basis": "Appears 7 times in recent research",
+      "suggested_focus": "Investigate design in the context of human-AI collaboration"
+    },
+    {
+      "topic": "interaction",
+      "research_frequency": 3,
+      "gap_level": "high",
+      "research_basis": "Appears 3 times in recent research",
+      "suggested_focus": "Investigate interaction in the context of human-AI collaboration"
+    }
+  ]
+}
