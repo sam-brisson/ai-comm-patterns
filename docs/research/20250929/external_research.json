@@ -1,0 +1,423 @@
+{
+  "timestamp": "2025-09-29T09:25:53.821297",
+  "depth": "light",
+  "sources": {
+    "arxiv": [
+      {
+        "title": "VoiceAssistant-Eval: Benchmarking AI Assistants across Listening,\n  Speaking, and Viewing",
+        "authors": [
+          "Ke Wang",
+          "Houxing Ren",
+          "Zimu Lu",
+          "Mingjie Zhan",
+          "Hongsheng Li"
+        ],
+        "summary": "The growing capabilities of large language models and multimodal systems have spurred interest in voice-first AI assistants, yet existing benchmarks are inadequate for evaluating the full range of these systems' capabilities. We introduce VoiceAssistant-Eval, a comprehensive benchmark designed to assess AI assistants across listening, speaking, and viewing. VoiceAssistant-Eval comprises 10,497 curated examples spanning 13 task categories. These tasks include natural sounds, music, and spoken dialogue for listening; multi-turn dialogue, role-play imitation, and various scenarios for speaking; and highly heterogeneous images for viewing. To demonstrate its utility, we evaluate 21 open-source models and GPT-4o-Audio, measuring the quality of the response content and speech, as well as their consistency. The results reveal three key findings: (1) proprietary models do not universally outperform open-source models; (2) most models excel at speaking tasks but lag in audio understanding; and (3) well-designed smaller models can rival much larger ones. Notably, the mid-sized Step-Audio-2-mini (7B) achieves more than double the listening accuracy of LLaMA-Omni2-32B-Bilingual. However, challenges remain: multimodal (audio plus visual) input and role-play voice imitation tasks are difficult for current models, and significant gaps persist in robustness and safety alignment. VoiceAssistant-Eval identifies these gaps and establishes a rigorous framework for evaluating and guiding the development of next-generation AI assistants. Code and data will be released at https://mathllm.github.io/VoiceAssistantEval/ .",
+        "url": "http://arxiv.org/abs/2509.22651v1",
+        "published": "2025-09-26T17:59:59Z",
+        "categories": [
+          "cs.CL",
+          "cs.AI",
+          "cs.CV",
+          "cs.HC",
+          "cs.SD"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "CapRL: Stimulating Dense Image Caption Capabilities via Reinforcement\n  Learning",
+        "authors": [
+          "Long Xing",
+          "Xiaoyi Dong",
+          "Yuhang Zang",
+          "Yuhang Cao",
+          "Jianze Liang",
+          "Qidong Huang",
+          "Jiaqi Wang",
+          "Feng Wu",
+          "Dahua Lin"
+        ],
+        "summary": "Image captioning is a fundamental task that bridges the visual and linguistic domains, playing a critical role in pre-training Large Vision-Language Models (LVLMs). Current state-of-the-art captioning models are typically trained with Supervised Fine-Tuning (SFT), a paradigm that relies on expensive, non-scalable data annotated by humans or proprietary models. This approach often leads to models that memorize specific ground-truth answers, limiting their generality and ability to generate diverse, creative descriptions. To overcome the limitation of SFT, we propose applying the Reinforcement Learning with Verifiable Rewards (RLVR) paradigm to the open-ended task of image captioning. A primary challenge, however, is designing an objective reward function for the inherently subjective nature of what constitutes a \"good\" caption. We introduce Captioning Reinforcement Learning (CapRL), a novel training framework that redefines caption quality through its utility: a high-quality caption should enable a non-visual language model to accurately answer questions about the corresponding image. CapRL employs a decoupled two-stage pipeline where an LVLM generates a caption, and the objective reward is derived from the accuracy of a separate, vision-free LLM answering Multiple-Choice Questions based solely on that caption. As the first study to apply RLVR to the subjective image captioning task, we demonstrate that CapRL significantly enhances multiple settings. Pretraining on the CapRL-5M caption dataset annotated by CapRL-3B results in substantial gains across 12 benchmarks. Moreover, within the Prism Framework for caption quality evaluation, CapRL achieves performance comparable to Qwen2.5-VL-72B, while exceeding the baseline by an average margin of 8.4%. Code is available here: https://github.com/InternLM/CapRL.",
+        "url": "http://arxiv.org/abs/2509.22647v1",
+        "published": "2025-09-26T17:59:55Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI",
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Learning Human-Perceived Fakeness in AI-Generated Videos via Multimodal\n  LLMs",
+        "authors": [
+          "Xingyu Fu",
+          "Siyi Liu",
+          "Yinuo Xu",
+          "Pan Lu",
+          "Guangqiuse Hu",
+          "Tianbo Yang",
+          "Taran Anantasagar",
+          "Christopher Shen",
+          "Yikai Mao",
+          "Yuanzhe Liu",
+          "Keyush Shah",
+          "Chung Un Lee",
+          "Yejin Choi",
+          "James Zou",
+          "Dan Roth",
+          "Chris Callison-Burch"
+        ],
+        "summary": "Can humans identify AI-generated (fake) videos and provide grounded reasons? While video generation models have advanced rapidly, a critical dimension -- whether humans can detect deepfake traces within a generated video, i.e., spatiotemporal grounded visual artifacts that reveal a video as machine generated -- has been largely overlooked. We introduce DeeptraceReward, the first fine-grained, spatially- and temporally- aware benchmark that annotates human-perceived fake traces for video generation reward. The dataset comprises 4.3K detailed annotations across 3.3K high-quality generated videos. Each annotation provides a natural-language explanation, pinpoints a bounding-box region containing the perceived trace, and marks precise onset and offset timestamps. We consolidate these annotations into 9 major categories of deepfake traces that lead humans to identify a video as AI-generated, and train multimodal language models (LMs) as reward models to mimic human judgments and localizations. On DeeptraceReward, our 7B reward model outperforms GPT-5 by 34.7% on average across fake clue identification, grounding, and explanation. Interestingly, we observe a consistent difficulty gradient: binary fake v.s. real classification is substantially easier than fine-grained deepfake trace detection; within the latter, performance degrades from natural language explanations (easiest), to spatial grounding, to temporal labeling (hardest). By foregrounding human-perceived deepfake traces, DeeptraceReward provides a rigorous testbed and training signal for socially aware and trustworthy video generation.",
+        "url": "http://arxiv.org/abs/2509.22646v1",
+        "published": "2025-09-26T17:59:54Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI",
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "WoW: Towards a World omniscient World model Through Embodied Interaction",
+        "authors": [
+          "Xiaowei Chi",
+          "Peidong Jia",
+          "Chun-Kai Fan",
+          "Xiaozhu Ju",
+          "Weishi Mi",
+          "Kevin Zhang",
+          "Zhiyuan Qin",
+          "Wanxin Tian",
+          "Kuangzhi Ge",
+          "Hao Li",
+          "Zezhong Qian",
+          "Anthony Chen",
+          "Qiang Zhou",
+          "Yueru Jia",
+          "Jiaming Liu",
+          "Yong Dai",
+          "Qingpo Wuwu",
+          "Chengyu Bai",
+          "Yu-Kai Wang",
+          "Ying Li",
+          "Lizhang Chen",
+          "Yong Bao",
+          "Zhiyuan Jiang",
+          "Jiacheng Zhu",
+          "Kai Tang",
+          "Ruichuan An",
+          "Yulin Luo",
+          "Qiuxuan Feng",
+          "Siyuan Zhou",
+          "Chi-min Chan",
+          "Chengkai Hou",
+          "Wei Xue",
+          "Sirui Han",
+          "Yike Guo",
+          "Shanghang Zhang",
+          "Jian Tang"
+        ],
+        "summary": "Humans develop an understanding of intuitive physics through active interaction with the world. This approach is in stark contrast to current video models, such as Sora, which rely on passive observation and therefore struggle with grasping physical causality. This observation leads to our central hypothesis: authentic physical intuition of the world model must be grounded in extensive, causally rich interactions with the real world. To test this hypothesis, we present WoW, a 14-billion-parameter generative world model trained on 2 million robot interaction trajectories. Our findings reveal that the model's understanding of physics is a probabilistic distribution of plausible outcomes, leading to stochastic instabilities and physical hallucinations. Furthermore, we demonstrate that this emergent capability can be actively constrained toward physical realism by SOPHIA, where vision-language model agents evaluate the DiT-generated output and guide its refinement by iteratively evolving the language instructions. In addition, a co-trained Inverse Dynamics Model translates these refined plans into executable robotic actions, thus closing the imagination-to-action loop. We establish WoWBench, a new benchmark focused on physical consistency and causal reasoning in video, where WoW achieves state-of-the-art performance in both human and autonomous evaluation, demonstrating strong ability in physical causality, collision dynamics, and object permanence. Our work provides systematic evidence that large-scale, real-world interaction is a cornerstone for developing physical intuition in AI. Models, data, and benchmarks will be open-sourced.",
+        "url": "http://arxiv.org/abs/2509.22642v1",
+        "published": "2025-09-26T17:59:07Z",
+        "categories": [
+          "cs.RO",
+          "cs.CV",
+          "cs.MM"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Death of the Novel(ty): Beyond n-Gram Novelty as a Metric for Textual\n  Creativity",
+        "authors": [
+          "Arkadiy Saakyan",
+          "Najoung Kim",
+          "Smaranda Muresan",
+          "Tuhin Chakrabarty"
+        ],
+        "summary": "N-gram novelty is widely used to evaluate language models' ability to generate text outside of their training data. More recently, it has also been adopted as a metric for measuring textual creativity. However, theoretical work on creativity suggests that this approach may be inadequate, as it does not account for creativity's dual nature: novelty (how original the text is) and appropriateness (how sensical and pragmatic it is). We investigate the relationship between this notion of creativity and n-gram novelty through 7542 expert writer annotations (n=26) of novelty, pragmaticality, and sensicality via close reading of human and AI-generated text. We find that while n-gram novelty is positively associated with expert writer-judged creativity, ~91% of top-quartile expressions by n-gram novelty are not judged as creative, cautioning against relying on n-gram novelty alone. Furthermore, unlike human-written text, higher n-gram novelty in open-source LLMs correlates with lower pragmaticality. In an exploratory study with frontier close-source models, we additionally confirm that they are less likely to produce creative expressions than humans. Using our dataset, we test whether zero-shot, few-shot, and finetuned models are able to identify creative expressions (a positive aspect of writing) and non-pragmatic ones (a negative aspect). Overall, frontier LLMs exhibit performance much higher than random but leave room for improvement, especially struggling to identify non-pragmatic expressions. We further find that LLM-as-a-Judge novelty scores from the best-performing model were predictive of expert writer preferences.",
+        "url": "http://arxiv.org/abs/2509.22641v1",
+        "published": "2025-09-26T17:59:05Z",
+        "categories": [
+          "cs.CL",
+          "cs.AI",
+          "cs.HC"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "VoiceAssistant-Eval: Benchmarking AI Assistants across Listening,\n  Speaking, and Viewing",
+        "authors": [
+          "Ke Wang",
+          "Houxing Ren",
+          "Zimu Lu",
+          "Mingjie Zhan",
+          "Hongsheng Li"
+        ],
+        "summary": "The growing capabilities of large language models and multimodal systems have spurred interest in voice-first AI assistants, yet existing benchmarks are inadequate for evaluating the full range of these systems' capabilities. We introduce VoiceAssistant-Eval, a comprehensive benchmark designed to assess AI assistants across listening, speaking, and viewing. VoiceAssistant-Eval comprises 10,497 curated examples spanning 13 task categories. These tasks include natural sounds, music, and spoken dialogue for listening; multi-turn dialogue, role-play imitation, and various scenarios for speaking; and highly heterogeneous images for viewing. To demonstrate its utility, we evaluate 21 open-source models and GPT-4o-Audio, measuring the quality of the response content and speech, as well as their consistency. The results reveal three key findings: (1) proprietary models do not universally outperform open-source models; (2) most models excel at speaking tasks but lag in audio understanding; and (3) well-designed smaller models can rival much larger ones. Notably, the mid-sized Step-Audio-2-mini (7B) achieves more than double the listening accuracy of LLaMA-Omni2-32B-Bilingual. However, challenges remain: multimodal (audio plus visual) input and role-play voice imitation tasks are difficult for current models, and significant gaps persist in robustness and safety alignment. VoiceAssistant-Eval identifies these gaps and establishes a rigorous framework for evaluating and guiding the development of next-generation AI assistants. Code and data will be released at https://mathllm.github.io/VoiceAssistantEval/ .",
+        "url": "http://arxiv.org/abs/2509.22651v1",
+        "published": "2025-09-26T17:59:59Z",
+        "categories": [
+          "cs.CL",
+          "cs.AI",
+          "cs.CV",
+          "cs.HC",
+          "cs.SD"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Pixel Motion Diffusion is What We Need for Robot Control",
+        "authors": [
+          "E-Ro Nguyen",
+          "Yichi Zhang",
+          "Kanchana Ranasinghe",
+          "Xiang Li",
+          "Michael S. Ryoo"
+        ],
+        "summary": "We present DAWN (Diffusion is All We Need for robot control), a unified diffusion-based framework for language-conditioned robotic manipulation that bridges high-level motion intent and low-level robot action via structured pixel motion representation. In DAWN, both the high-level and low-level controllers are modeled as diffusion processes, yielding a fully trainable, end-to-end system with interpretable intermediate motion abstractions. DAWN achieves state-of-the-art results on the challenging CALVIN benchmark, demonstrating strong multi-task performance, and further validates its effectiveness on MetaWorld. Despite the substantial domain gap between simulation and reality and limited real-world data, we demonstrate reliable real-world transfer with only minimal finetuning, illustrating the practical viability of diffusion-based motion abstractions for robotic control. Our results show the effectiveness of combining diffusion modeling with motion-centric representations as a strong baseline for scalable and robust robot learning. Project page: https://nero1342.github.io/DAWN/",
+        "url": "http://arxiv.org/abs/2509.22652v1",
+        "published": "2025-09-26T17:59:59Z",
+        "categories": [
+          "cs.RO",
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "See, Point, Fly: A Learning-Free VLM Framework for Universal Unmanned\n  Aerial Navigation",
+        "authors": [
+          "Chih Yao Hu",
+          "Yang-Sen Lin",
+          "Yuna Lee",
+          "Chih-Hai Su",
+          "Jie-Ying Lee",
+          "Shr-Ruei Tsai",
+          "Chin-Yang Lin",
+          "Kuan-Wen Chen",
+          "Tsung-Wei Ke",
+          "Yu-Lun Liu"
+        ],
+        "summary": "We present See, Point, Fly (SPF), a training-free aerial vision-and-language navigation (AVLN) framework built atop vision-language models (VLMs). SPF is capable of navigating to any goal based on any type of free-form instructions in any kind of environment. In contrast to existing VLM-based approaches that treat action prediction as a text generation task, our key insight is to consider action prediction for AVLN as a 2D spatial grounding task. SPF harnesses VLMs to decompose vague language instructions into iterative annotation of 2D waypoints on the input image. Along with the predicted traveling distance, SPF transforms predicted 2D waypoints into 3D displacement vectors as action commands for UAVs. Moreover, SPF also adaptively adjusts the traveling distance to facilitate more efficient navigation. Notably, SPF performs navigation in a closed-loop control manner, enabling UAVs to follow dynamic targets in dynamic environments. SPF sets a new state of the art in DRL simulation benchmark, outperforming the previous best method by an absolute margin of 63%. In extensive real-world evaluations, SPF outperforms strong baselines by a large margin. We also conduct comprehensive ablation studies to highlight the effectiveness of our design choice. Lastly, SPF shows remarkable generalization to different VLMs. Project page: https://spf-web.pages.dev",
+        "url": "http://arxiv.org/abs/2509.22653v1",
+        "published": "2025-09-26T17:59:59Z",
+        "categories": [
+          "cs.RO",
+          "cs.AI",
+          "cs.CL",
+          "cs.CV",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "RefAM: Attention Magnets for Zero-Shot Referral Segmentation",
+        "authors": [
+          "Anna Kukleva",
+          "Enis Simsar",
+          "Alessio Tonioni",
+          "Muhammad Ferjad Naeem",
+          "Federico Tombari",
+          "Jan Eric Lenssen",
+          "Bernt Schiele"
+        ],
+        "summary": "Most existing approaches to referring segmentation achieve strong performance only through fine-tuning or by composing multiple pre-trained models, often at the cost of additional training and architectural modifications. Meanwhile, large-scale generative diffusion models encode rich semantic information, making them attractive as general-purpose feature extractors. In this work, we introduce a new method that directly exploits features, attention scores, from diffusion transformers for downstream tasks, requiring neither architectural modifications nor additional training. To systematically evaluate these features, we extend benchmarks with vision-language grounding tasks spanning both images and videos. Our key insight is that stop words act as attention magnets: they accumulate surplus attention and can be filtered to reduce noise. Moreover, we identify global attention sinks (GAS) emerging in deeper layers and show that they can be safely suppressed or redirected onto auxiliary tokens, leading to sharper and more accurate grounding maps. We further propose an attention redistribution strategy, where appended stop words partition background activations into smaller clusters, yielding sharper and more localized heatmaps. Building on these findings, we develop RefAM, a simple training-free grounding framework that combines cross-attention maps, GAS handling, and redistribution. Across zero-shot referring image and video segmentation benchmarks, our approach consistently outperforms prior methods, establishing a new state of the art without fine-tuning or additional components.",
+        "url": "http://arxiv.org/abs/2509.22650v1",
+        "published": "2025-09-26T17:59:57Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "CapRL: Stimulating Dense Image Caption Capabilities via Reinforcement\n  Learning",
+        "authors": [
+          "Long Xing",
+          "Xiaoyi Dong",
+          "Yuhang Zang",
+          "Yuhang Cao",
+          "Jianze Liang",
+          "Qidong Huang",
+          "Jiaqi Wang",
+          "Feng Wu",
+          "Dahua Lin"
+        ],
+        "summary": "Image captioning is a fundamental task that bridges the visual and linguistic domains, playing a critical role in pre-training Large Vision-Language Models (LVLMs). Current state-of-the-art captioning models are typically trained with Supervised Fine-Tuning (SFT), a paradigm that relies on expensive, non-scalable data annotated by humans or proprietary models. This approach often leads to models that memorize specific ground-truth answers, limiting their generality and ability to generate diverse, creative descriptions. To overcome the limitation of SFT, we propose applying the Reinforcement Learning with Verifiable Rewards (RLVR) paradigm to the open-ended task of image captioning. A primary challenge, however, is designing an objective reward function for the inherently subjective nature of what constitutes a \"good\" caption. We introduce Captioning Reinforcement Learning (CapRL), a novel training framework that redefines caption quality through its utility: a high-quality caption should enable a non-visual language model to accurately answer questions about the corresponding image. CapRL employs a decoupled two-stage pipeline where an LVLM generates a caption, and the objective reward is derived from the accuracy of a separate, vision-free LLM answering Multiple-Choice Questions based solely on that caption. As the first study to apply RLVR to the subjective image captioning task, we demonstrate that CapRL significantly enhances multiple settings. Pretraining on the CapRL-5M caption dataset annotated by CapRL-3B results in substantial gains across 12 benchmarks. Moreover, within the Prism Framework for caption quality evaluation, CapRL achieves performance comparable to Qwen2.5-VL-72B, while exceeding the baseline by an average margin of 8.4%. Code is available here: https://github.com/InternLM/CapRL.",
+        "url": "http://arxiv.org/abs/2509.22647v1",
+        "published": "2025-09-26T17:59:55Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI",
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "VoiceAssistant-Eval: Benchmarking AI Assistants across Listening,\n  Speaking, and Viewing",
+        "authors": [
+          "Ke Wang",
+          "Houxing Ren",
+          "Zimu Lu",
+          "Mingjie Zhan",
+          "Hongsheng Li"
+        ],
+        "summary": "The growing capabilities of large language models and multimodal systems have spurred interest in voice-first AI assistants, yet existing benchmarks are inadequate for evaluating the full range of these systems' capabilities. We introduce VoiceAssistant-Eval, a comprehensive benchmark designed to assess AI assistants across listening, speaking, and viewing. VoiceAssistant-Eval comprises 10,497 curated examples spanning 13 task categories. These tasks include natural sounds, music, and spoken dialogue for listening; multi-turn dialogue, role-play imitation, and various scenarios for speaking; and highly heterogeneous images for viewing. To demonstrate its utility, we evaluate 21 open-source models and GPT-4o-Audio, measuring the quality of the response content and speech, as well as their consistency. The results reveal three key findings: (1) proprietary models do not universally outperform open-source models; (2) most models excel at speaking tasks but lag in audio understanding; and (3) well-designed smaller models can rival much larger ones. Notably, the mid-sized Step-Audio-2-mini (7B) achieves more than double the listening accuracy of LLaMA-Omni2-32B-Bilingual. However, challenges remain: multimodal (audio plus visual) input and role-play voice imitation tasks are difficult for current models, and significant gaps persist in robustness and safety alignment. VoiceAssistant-Eval identifies these gaps and establishes a rigorous framework for evaluating and guiding the development of next-generation AI assistants. Code and data will be released at https://mathllm.github.io/VoiceAssistantEval/ .",
+        "url": "http://arxiv.org/abs/2509.22651v1",
+        "published": "2025-09-26T17:59:59Z",
+        "categories": [
+          "cs.CL",
+          "cs.AI",
+          "cs.CV",
+          "cs.HC",
+          "cs.SD"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Pixel Motion Diffusion is What We Need for Robot Control",
+        "authors": [
+          "E-Ro Nguyen",
+          "Yichi Zhang",
+          "Kanchana Ranasinghe",
+          "Xiang Li",
+          "Michael S. Ryoo"
+        ],
+        "summary": "We present DAWN (Diffusion is All We Need for robot control), a unified diffusion-based framework for language-conditioned robotic manipulation that bridges high-level motion intent and low-level robot action via structured pixel motion representation. In DAWN, both the high-level and low-level controllers are modeled as diffusion processes, yielding a fully trainable, end-to-end system with interpretable intermediate motion abstractions. DAWN achieves state-of-the-art results on the challenging CALVIN benchmark, demonstrating strong multi-task performance, and further validates its effectiveness on MetaWorld. Despite the substantial domain gap between simulation and reality and limited real-world data, we demonstrate reliable real-world transfer with only minimal finetuning, illustrating the practical viability of diffusion-based motion abstractions for robotic control. Our results show the effectiveness of combining diffusion modeling with motion-centric representations as a strong baseline for scalable and robust robot learning. Project page: https://nero1342.github.io/DAWN/",
+        "url": "http://arxiv.org/abs/2509.22652v1",
+        "published": "2025-09-26T17:59:59Z",
+        "categories": [
+          "cs.RO",
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "See, Point, Fly: A Learning-Free VLM Framework for Universal Unmanned\n  Aerial Navigation",
+        "authors": [
+          "Chih Yao Hu",
+          "Yang-Sen Lin",
+          "Yuna Lee",
+          "Chih-Hai Su",
+          "Jie-Ying Lee",
+          "Shr-Ruei Tsai",
+          "Chin-Yang Lin",
+          "Kuan-Wen Chen",
+          "Tsung-Wei Ke",
+          "Yu-Lun Liu"
+        ],
+        "summary": "We present See, Point, Fly (SPF), a training-free aerial vision-and-language navigation (AVLN) framework built atop vision-language models (VLMs). SPF is capable of navigating to any goal based on any type of free-form instructions in any kind of environment. In contrast to existing VLM-based approaches that treat action prediction as a text generation task, our key insight is to consider action prediction for AVLN as a 2D spatial grounding task. SPF harnesses VLMs to decompose vague language instructions into iterative annotation of 2D waypoints on the input image. Along with the predicted traveling distance, SPF transforms predicted 2D waypoints into 3D displacement vectors as action commands for UAVs. Moreover, SPF also adaptively adjusts the traveling distance to facilitate more efficient navigation. Notably, SPF performs navigation in a closed-loop control manner, enabling UAVs to follow dynamic targets in dynamic environments. SPF sets a new state of the art in DRL simulation benchmark, outperforming the previous best method by an absolute margin of 63%. In extensive real-world evaluations, SPF outperforms strong baselines by a large margin. We also conduct comprehensive ablation studies to highlight the effectiveness of our design choice. Lastly, SPF shows remarkable generalization to different VLMs. Project page: https://spf-web.pages.dev",
+        "url": "http://arxiv.org/abs/2509.22653v1",
+        "published": "2025-09-26T17:59:59Z",
+        "categories": [
+          "cs.RO",
+          "cs.AI",
+          "cs.CL",
+          "cs.CV",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "RefAM: Attention Magnets for Zero-Shot Referral Segmentation",
+        "authors": [
+          "Anna Kukleva",
+          "Enis Simsar",
+          "Alessio Tonioni",
+          "Muhammad Ferjad Naeem",
+          "Federico Tombari",
+          "Jan Eric Lenssen",
+          "Bernt Schiele"
+        ],
+        "summary": "Most existing approaches to referring segmentation achieve strong performance only through fine-tuning or by composing multiple pre-trained models, often at the cost of additional training and architectural modifications. Meanwhile, large-scale generative diffusion models encode rich semantic information, making them attractive as general-purpose feature extractors. In this work, we introduce a new method that directly exploits features, attention scores, from diffusion transformers for downstream tasks, requiring neither architectural modifications nor additional training. To systematically evaluate these features, we extend benchmarks with vision-language grounding tasks spanning both images and videos. Our key insight is that stop words act as attention magnets: they accumulate surplus attention and can be filtered to reduce noise. Moreover, we identify global attention sinks (GAS) emerging in deeper layers and show that they can be safely suppressed or redirected onto auxiliary tokens, leading to sharper and more accurate grounding maps. We further propose an attention redistribution strategy, where appended stop words partition background activations into smaller clusters, yielding sharper and more localized heatmaps. Building on these findings, we develop RefAM, a simple training-free grounding framework that combines cross-attention maps, GAS handling, and redistribution. Across zero-shot referring image and video segmentation benchmarks, our approach consistently outperforms prior methods, establishing a new state of the art without fine-tuning or additional components.",
+        "url": "http://arxiv.org/abs/2509.22650v1",
+        "published": "2025-09-26T17:59:57Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "CapRL: Stimulating Dense Image Caption Capabilities via Reinforcement\n  Learning",
+        "authors": [
+          "Long Xing",
+          "Xiaoyi Dong",
+          "Yuhang Zang",
+          "Yuhang Cao",
+          "Jianze Liang",
+          "Qidong Huang",
+          "Jiaqi Wang",
+          "Feng Wu",
+          "Dahua Lin"
+        ],
+        "summary": "Image captioning is a fundamental task that bridges the visual and linguistic domains, playing a critical role in pre-training Large Vision-Language Models (LVLMs). Current state-of-the-art captioning models are typically trained with Supervised Fine-Tuning (SFT), a paradigm that relies on expensive, non-scalable data annotated by humans or proprietary models. This approach often leads to models that memorize specific ground-truth answers, limiting their generality and ability to generate diverse, creative descriptions. To overcome the limitation of SFT, we propose applying the Reinforcement Learning with Verifiable Rewards (RLVR) paradigm to the open-ended task of image captioning. A primary challenge, however, is designing an objective reward function for the inherently subjective nature of what constitutes a \"good\" caption. We introduce Captioning Reinforcement Learning (CapRL), a novel training framework that redefines caption quality through its utility: a high-quality caption should enable a non-visual language model to accurately answer questions about the corresponding image. CapRL employs a decoupled two-stage pipeline where an LVLM generates a caption, and the objective reward is derived from the accuracy of a separate, vision-free LLM answering Multiple-Choice Questions based solely on that caption. As the first study to apply RLVR to the subjective image captioning task, we demonstrate that CapRL significantly enhances multiple settings. Pretraining on the CapRL-5M caption dataset annotated by CapRL-3B results in substantial gains across 12 benchmarks. Moreover, within the Prism Framework for caption quality evaluation, CapRL achieves performance comparable to Qwen2.5-VL-72B, while exceeding the baseline by an average margin of 8.4%. Code is available here: https://github.com/InternLM/CapRL.",
+        "url": "http://arxiv.org/abs/2509.22647v1",
+        "published": "2025-09-26T17:59:55Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI",
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      }
+    ],
+    "discussions": [
+      {
+        "title": "Human-AI Collaborative Coding Patterns",
+        "summary": "Discussion about effective patterns for human-AI pair programming",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-09-29T09:25:58.106500",
+        "url": "placeholder",
+        "engagement": "active"
+      },
+      {
+        "title": "Visual Design Collaboration with AI Tools",
+        "summary": "Emerging patterns in visual design workflows with AI assistance",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-09-29T09:25:58.106516",
+        "url": "placeholder",
+        "engagement": "emerging"
+      }
+    ]
+  },
+  "trends": {
+    "trending_terms": {
+      "design": 11,
+      "creativity": 6,
+      "interaction": 5,
+      "trust": 1
+    },
+    "total_papers": 15,
+    "recent_focus_areas": [
+      "design",
+      "creativity",
+      "interaction",
+      "trust"
+    ],
+    "analysis_note": "Based on keyword frequency in recent research papers"
+  },
+  "opportunities": [
+    {
+      "topic": "design",
+      "research_frequency": 11,
+      "gap_level": "high",
+      "research_basis": "Appears 11 times in recent research",
+      "suggested_focus": "Investigate design in the context of human-AI collaboration"
+    },
+    {
+      "topic": "creativity",
+      "research_frequency": 6,
+      "gap_level": "high",
+      "research_basis": "Appears 6 times in recent research",
+      "suggested_focus": "Document creative collaboration patterns between humans and AI"
+    },
+    {
+      "topic": "interaction",
+      "research_frequency": 5,
+      "gap_level": "high",
+      "research_basis": "Appears 5 times in recent research",
+      "suggested_focus": "Investigate interaction in the context of human-AI collaboration"
+    }
+  ]
+}
