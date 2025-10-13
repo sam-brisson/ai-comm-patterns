@@ -1,0 +1,31 @@
+{
+  "timestamp": "2025-10-13T09:27:12.186412",
+  "depth": "light",
+  "sources": {
+    "arxiv": [],
+    "discussions": [
+      {
+        "title": "Human-AI Collaborative Coding Patterns",
+        "summary": "Discussion about effective patterns for human-AI pair programming",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-10-13T09:27:15.827168",
+        "url": "placeholder",
+        "engagement": "active"
+      },
+      {
+        "title": "Visual Design Collaboration with AI Tools",
+        "summary": "Emerging patterns in visual design workflows with AI assistance",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-10-13T09:27:15.827186",
+        "url": "placeholder",
+        "engagement": "emerging"
+      }
+    ]
+  },
+  "trends": {
+    "error": "No papers to analyze"
+  },
+  "opportunities": []
+}
