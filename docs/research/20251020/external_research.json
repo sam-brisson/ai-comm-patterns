@@ -1,0 +1,449 @@
+{
+  "timestamp": "2025-10-20T09:26:21.136083",
+  "depth": "light",
+  "sources": {
+    "arxiv": [
+      {
+        "title": "OmniVinci: Enhancing Architecture and Data for Omni-Modal Understanding\n  LLM",
+        "authors": [
+          "Hanrong Ye",
+          "Chao-Han Huck Yang",
+          "Arushi Goel",
+          "Wei Huang",
+          "Ligeng Zhu",
+          "Yuanhang Su",
+          "Sean Lin",
+          "An-Chieh Cheng",
+          "Zhen Wan",
+          "Jinchuan Tian",
+          "Yuming Lou",
+          "Dong Yang",
+          "Zhijian Liu",
+          "Yukang Chen",
+          "Ambrish Dantrey",
+          "Ehsan Jahangiri",
+          "Sreyan Ghosh",
+          "Daguang Xu",
+          "Ehsan Hosseini-Asl",
+          "Danial Mohseni Taheri",
+          "Vidya Murali",
+          "Sifei Liu",
+          "Jason Lu",
+          "Oluwatobi Olabiyi",
+          "Frank Wang",
+          "Rafael Valle",
+          "Bryan Catanzaro",
+          "Andrew Tao",
+          "Song Han",
+          "Jan Kautz",
+          "Hongxu Yin",
+          "Pavlo Molchanov"
+        ],
+        "summary": "Advancing machine intelligence requires developing the ability to perceive across multiple modalities, much as humans sense the world. We introduce OmniVinci, an initiative to build a strong, open-source, omni-modal LLM. We carefully study the design choices across model architecture and data curation. For model architecture, we present three key innovations: (i) OmniAlignNet for strengthening alignment between vision and audio embeddings in a shared omni-modal latent space; (ii) Temporal Embedding Grouping for capturing relative temporal alignment between vision and audio signals; and (iii) Constrained Rotary Time Embedding for encoding absolute temporal information in omni-modal embeddings. We introduce a curation and synthesis pipeline that generates 24M single-modal and omni-modal conversations. We find that modalities reinforce one another in both perception and reasoning. Our model, OmniVinci, outperforms Qwen2.5-Omni with +19.05 on DailyOmni (cross-modal understanding), +1.7 on MMAR (audio), and +3.9 on Video-MME (vision), while using just 0.2T training tokens - a 6 times reduction compared to Qwen2.5-Omni's 1.2T. We finally demonstrate omni-modal advantages in downstream applications spanning robotics, medical AI, and smart factory.",
+        "url": "http://arxiv.org/abs/2510.15870v1",
+        "published": "2025-10-17T17:59:59Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI",
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "BiomedXPro: Prompt Optimization for Explainable Diagnosis with\n  Biomedical Vision Language Models",
+        "authors": [
+          "Kaushitha Silva",
+          "Mansitha Eashwara",
+          "Sanduni Ubayasiri",
+          "Ruwan Tennakoon",
+          "Damayanthi Herath"
+        ],
+        "summary": "The clinical adoption of biomedical vision-language models is hindered by prompt optimization techniques that produce either uninterpretable latent vectors or single textual prompts. This lack of transparency and failure to capture the multi-faceted nature of clinical diagnosis, which relies on integrating diverse observations, limits their trustworthiness in high-stakes settings. To address this, we introduce BiomedXPro, an evolutionary framework that leverages a large language model as both a biomedical knowledge extractor and an adaptive optimizer to automatically generate a diverse ensemble of interpretable, natural-language prompt pairs for disease diagnosis. Experiments on multiple biomedical benchmarks show that BiomedXPro consistently outperforms state-of-the-art prompt-tuning methods, particularly in data-scarce few-shot settings. Furthermore, our analysis demonstrates a strong semantic alignment between the discovered prompts and statistically significant clinical features, grounding the model's performance in verifiable concepts. By producing a diverse ensemble of interpretable prompts, BiomedXPro provides a verifiable basis for model predictions, representing a critical step toward the development of more trustworthy and clinically-aligned AI systems.",
+        "url": "http://arxiv.org/abs/2510.15866v1",
+        "published": "2025-10-17T17:58:31Z",
+        "categories": [
+          "cs.CV",
+          "cs.NE"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Sound Clouds: Exploring ambient intelligence in public spaces to elicit\n  deep human experience of awe, wonder, and beauty",
+        "authors": [
+          "Chengzhi Zhang",
+          "Dashiel Carrera",
+          "Daksh Kapoor",
+          "Jasmine Kaur",
+          "Jisu Kim",
+          "Brian Magerko"
+        ],
+        "summary": "While the ambient intelligence (AmI) systems we encounter in our daily lives, including security monitoring and energy-saving systems, typically serve pragmatic purposes, we wonder how we can design and implement ambient artificial intelligence experiences in public spaces that elicit deep human feelings of awe, wonder, and beauty. As a manifestation, we introduce Sound Clouds, an immersive art installation that generates live music based on participants' interaction with several human-height spheres. Our installation serves as a provocation into future ambient intelligence that provokes, not limits, the future possibilities of AmI.",
+        "url": "http://arxiv.org/abs/2510.15865v1",
+        "published": "2025-10-17T17:56:58Z",
+        "categories": [
+          "cs.HC",
+          "cs.MM",
+          "cs.SD"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "PokeeResearch: Effective Deep Research via Reinforcement Learning from\n  AI Feedback and Robust Reasoning Scaffold",
+        "authors": [
+          "Yi Wan",
+          "Jiuqi Wang",
+          "Liam Li",
+          "Jinsong Liu",
+          "Ruihao Zhu",
+          "Zheqing Zhu"
+        ],
+        "summary": "Tool-augmented large language models (LLMs) are emerging as deep research agents, systems that decompose complex queries, retrieve external evidence, and synthesize grounded responses. Yet current agents remain limited by shallow retrieval, weak alignment metrics, and brittle tool-use behavior. We introduce PokeeResearch-7B, a 7B-parameter deep research agent built under a unified reinforcement learning framework for robustness, alignment, and scalability. PokeeResearch-7B is trained by an annotation-free Reinforcement Learning from AI Feedback (RLAIF) framework to optimize policies using LLM-based reward signals that capture factual accuracy, citation faithfulness, and instruction adherence. A chain-of-thought-driven multi-call reasoning scaffold further enhances robustness through self-verification and adaptive recovery from tool failures. Among 10 popular deep research benchmarks, PokeeResearch-7B achieves state-of-the-art performance among 7B-scale deep research agents. This highlights that careful reinforcement learning and reasoning design can produce efficient, resilient, and research-grade AI agents. The model and inference code is open-sourced under MIT license at https://github.com/Pokee-AI/PokeeResearchOSS.",
+        "url": "http://arxiv.org/abs/2510.15862v1",
+        "published": "2025-10-17T17:53:06Z",
+        "categories": [
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Memory-SAM: Human-Prompt-Free Tongue Segmentation via\n  Retrieval-to-Prompt",
+        "authors": [
+          "Joongwon Chae",
+          "Lihui Luo",
+          "Xi Yuan",
+          "Dongmei Yu",
+          "Zhenglin Chen",
+          "Lian Zhang",
+          "Peiwu Qin"
+        ],
+        "summary": "Accurate tongue segmentation is crucial for reliable TCM analysis. Supervised models require large annotated datasets, while SAM-family models remain prompt-driven. We present Memory-SAM, a training-free, human-prompt-free pipeline that automatically generates effective prompts from a small memory of prior cases via dense DINOv3 features and FAISS retrieval. Given a query image, mask-constrained correspondences to the retrieved exemplar are distilled into foreground/background point prompts that guide SAM2 without manual clicks or model fine-tuning. We evaluate on 600 expert-annotated images (300 controlled, 300 in-the-wild). On the mixed test split, Memory-SAM achieves mIoU 0.9863, surpassing FCN (0.8188) and a detector-to-box SAM baseline (0.1839). On controlled data, ceiling effects above 0.98 make small differences less meaningful given annotation variability, while our method shows clear gains under real-world conditions. Results indicate that retrieval-to-prompt enables data-efficient, robust segmentation of irregular boundaries in tongue imaging. The code is publicly available at https://github.com/jw-chae/memory-sam.",
+        "url": "http://arxiv.org/abs/2510.15849v1",
+        "published": "2025-10-17T17:42:28Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "OmniVinci: Enhancing Architecture and Data for Omni-Modal Understanding\n  LLM",
+        "authors": [
+          "Hanrong Ye",
+          "Chao-Han Huck Yang",
+          "Arushi Goel",
+          "Wei Huang",
+          "Ligeng Zhu",
+          "Yuanhang Su",
+          "Sean Lin",
+          "An-Chieh Cheng",
+          "Zhen Wan",
+          "Jinchuan Tian",
+          "Yuming Lou",
+          "Dong Yang",
+          "Zhijian Liu",
+          "Yukang Chen",
+          "Ambrish Dantrey",
+          "Ehsan Jahangiri",
+          "Sreyan Ghosh",
+          "Daguang Xu",
+          "Ehsan Hosseini-Asl",
+          "Danial Mohseni Taheri",
+          "Vidya Murali",
+          "Sifei Liu",
+          "Jason Lu",
+          "Oluwatobi Olabiyi",
+          "Frank Wang",
+          "Rafael Valle",
+          "Bryan Catanzaro",
+          "Andrew Tao",
+          "Song Han",
+          "Jan Kautz",
+          "Hongxu Yin",
+          "Pavlo Molchanov"
+        ],
+        "summary": "Advancing machine intelligence requires developing the ability to perceive across multiple modalities, much as humans sense the world. We introduce OmniVinci, an initiative to build a strong, open-source, omni-modal LLM. We carefully study the design choices across model architecture and data curation. For model architecture, we present three key innovations: (i) OmniAlignNet for strengthening alignment between vision and audio embeddings in a shared omni-modal latent space; (ii) Temporal Embedding Grouping for capturing relative temporal alignment between vision and audio signals; and (iii) Constrained Rotary Time Embedding for encoding absolute temporal information in omni-modal embeddings. We introduce a curation and synthesis pipeline that generates 24M single-modal and omni-modal conversations. We find that modalities reinforce one another in both perception and reasoning. Our model, OmniVinci, outperforms Qwen2.5-Omni with +19.05 on DailyOmni (cross-modal understanding), +1.7 on MMAR (audio), and +3.9 on Video-MME (vision), while using just 0.2T training tokens - a 6 times reduction compared to Qwen2.5-Omni's 1.2T. We finally demonstrate omni-modal advantages in downstream applications spanning robotics, medical AI, and smart factory.",
+        "url": "http://arxiv.org/abs/2510.15870v1",
+        "published": "2025-10-17T17:59:59Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI",
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Skyfall-GS: Synthesizing Immersive 3D Urban Scenes from Satellite\n  Imagery",
+        "authors": [
+          "Jie-Ying Lee",
+          "Yi-Ruei Liu",
+          "Shr-Ruei Tsai",
+          "Wei-Cheng Chang",
+          "Chung-Ho Wu",
+          "Jiewen Chan",
+          "Zhenjun Zhao",
+          "Chieh Hubert Lin",
+          "Yu-Lun Liu"
+        ],
+        "summary": "Synthesizing large-scale, explorable, and geometrically accurate 3D urban scenes is a challenging yet valuable task in providing immersive and embodied applications. The challenges lie in the lack of large-scale and high-quality real-world 3D scans for training generalizable generative models. In this paper, we take an alternative route to create large-scale 3D scenes by synergizing the readily available satellite imagery that supplies realistic coarse geometry and the open-domain diffusion model for creating high-quality close-up appearances. We propose \\textbf{Skyfall-GS}, the first city-block scale 3D scene creation framework without costly 3D annotations, also featuring real-time, immersive 3D exploration. We tailor a curriculum-driven iterative refinement strategy to progressively enhance geometric completeness and photorealistic textures. Extensive experiments demonstrate that Skyfall-GS provides improved cross-view consistent geometry and more realistic textures compared to state-of-the-art approaches. Project page: https://skyfall-gs.jayinnn.dev/",
+        "url": "http://arxiv.org/abs/2510.15869v1",
+        "published": "2025-10-17T17:59:51Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "LightsOut: Diffusion-based Outpainting for Enhanced Lens Flare Removal",
+        "authors": [
+          "Shr-Ruei Tsai",
+          "Wei-Cheng Chang",
+          "Jie-Ying Lee",
+          "Chih-Hai Su",
+          "Yu-Lun Liu"
+        ],
+        "summary": "Lens flare significantly degrades image quality, impacting critical computer vision tasks like object detection and autonomous driving. Recent Single Image Flare Removal (SIFR) methods perform poorly when off-frame light sources are incomplete or absent. We propose LightsOut, a diffusion-based outpainting framework tailored to enhance SIFR by reconstructing off-frame light sources. Our method leverages a multitask regression module and LoRA fine-tuned diffusion model to ensure realistic and physically consistent outpainting results. Comprehensive experiments demonstrate LightsOut consistently boosts the performance of existing SIFR methods across challenging scenarios without additional retraining, serving as a universally applicable plug-and-play preprocessing solution. Project page: https://ray-1026.github.io/lightsout/",
+        "url": "http://arxiv.org/abs/2510.15868v1",
+        "published": "2025-10-17T17:59:50Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "BiomedXPro: Prompt Optimization for Explainable Diagnosis with\n  Biomedical Vision Language Models",
+        "authors": [
+          "Kaushitha Silva",
+          "Mansitha Eashwara",
+          "Sanduni Ubayasiri",
+          "Ruwan Tennakoon",
+          "Damayanthi Herath"
+        ],
+        "summary": "The clinical adoption of biomedical vision-language models is hindered by prompt optimization techniques that produce either uninterpretable latent vectors or single textual prompts. This lack of transparency and failure to capture the multi-faceted nature of clinical diagnosis, which relies on integrating diverse observations, limits their trustworthiness in high-stakes settings. To address this, we introduce BiomedXPro, an evolutionary framework that leverages a large language model as both a biomedical knowledge extractor and an adaptive optimizer to automatically generate a diverse ensemble of interpretable, natural-language prompt pairs for disease diagnosis. Experiments on multiple biomedical benchmarks show that BiomedXPro consistently outperforms state-of-the-art prompt-tuning methods, particularly in data-scarce few-shot settings. Furthermore, our analysis demonstrates a strong semantic alignment between the discovered prompts and statistically significant clinical features, grounding the model's performance in verifiable concepts. By producing a diverse ensemble of interpretable prompts, BiomedXPro provides a verifiable basis for model predictions, representing a critical step toward the development of more trustworthy and clinically-aligned AI systems.",
+        "url": "http://arxiv.org/abs/2510.15866v1",
+        "published": "2025-10-17T17:58:31Z",
+        "categories": [
+          "cs.CV",
+          "cs.NE"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Sound Clouds: Exploring ambient intelligence in public spaces to elicit\n  deep human experience of awe, wonder, and beauty",
+        "authors": [
+          "Chengzhi Zhang",
+          "Dashiel Carrera",
+          "Daksh Kapoor",
+          "Jasmine Kaur",
+          "Jisu Kim",
+          "Brian Magerko"
+        ],
+        "summary": "While the ambient intelligence (AmI) systems we encounter in our daily lives, including security monitoring and energy-saving systems, typically serve pragmatic purposes, we wonder how we can design and implement ambient artificial intelligence experiences in public spaces that elicit deep human feelings of awe, wonder, and beauty. As a manifestation, we introduce Sound Clouds, an immersive art installation that generates live music based on participants' interaction with several human-height spheres. Our installation serves as a provocation into future ambient intelligence that provokes, not limits, the future possibilities of AmI.",
+        "url": "http://arxiv.org/abs/2510.15865v1",
+        "published": "2025-10-17T17:56:58Z",
+        "categories": [
+          "cs.HC",
+          "cs.MM",
+          "cs.SD"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "OmniVinci: Enhancing Architecture and Data for Omni-Modal Understanding\n  LLM",
+        "authors": [
+          "Hanrong Ye",
+          "Chao-Han Huck Yang",
+          "Arushi Goel",
+          "Wei Huang",
+          "Ligeng Zhu",
+          "Yuanhang Su",
+          "Sean Lin",
+          "An-Chieh Cheng",
+          "Zhen Wan",
+          "Jinchuan Tian",
+          "Yuming Lou",
+          "Dong Yang",
+          "Zhijian Liu",
+          "Yukang Chen",
+          "Ambrish Dantrey",
+          "Ehsan Jahangiri",
+          "Sreyan Ghosh",
+          "Daguang Xu",
+          "Ehsan Hosseini-Asl",
+          "Danial Mohseni Taheri",
+          "Vidya Murali",
+          "Sifei Liu",
+          "Jason Lu",
+          "Oluwatobi Olabiyi",
+          "Frank Wang",
+          "Rafael Valle",
+          "Bryan Catanzaro",
+          "Andrew Tao",
+          "Song Han",
+          "Jan Kautz",
+          "Hongxu Yin",
+          "Pavlo Molchanov"
+        ],
+        "summary": "Advancing machine intelligence requires developing the ability to perceive across multiple modalities, much as humans sense the world. We introduce OmniVinci, an initiative to build a strong, open-source, omni-modal LLM. We carefully study the design choices across model architecture and data curation. For model architecture, we present three key innovations: (i) OmniAlignNet for strengthening alignment between vision and audio embeddings in a shared omni-modal latent space; (ii) Temporal Embedding Grouping for capturing relative temporal alignment between vision and audio signals; and (iii) Constrained Rotary Time Embedding for encoding absolute temporal information in omni-modal embeddings. We introduce a curation and synthesis pipeline that generates 24M single-modal and omni-modal conversations. We find that modalities reinforce one another in both perception and reasoning. Our model, OmniVinci, outperforms Qwen2.5-Omni with +19.05 on DailyOmni (cross-modal understanding), +1.7 on MMAR (audio), and +3.9 on Video-MME (vision), while using just 0.2T training tokens - a 6 times reduction compared to Qwen2.5-Omni's 1.2T. We finally demonstrate omni-modal advantages in downstream applications spanning robotics, medical AI, and smart factory.",
+        "url": "http://arxiv.org/abs/2510.15870v1",
+        "published": "2025-10-17T17:59:59Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI",
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Skyfall-GS: Synthesizing Immersive 3D Urban Scenes from Satellite\n  Imagery",
+        "authors": [
+          "Jie-Ying Lee",
+          "Yi-Ruei Liu",
+          "Shr-Ruei Tsai",
+          "Wei-Cheng Chang",
+          "Chung-Ho Wu",
+          "Jiewen Chan",
+          "Zhenjun Zhao",
+          "Chieh Hubert Lin",
+          "Yu-Lun Liu"
+        ],
+        "summary": "Synthesizing large-scale, explorable, and geometrically accurate 3D urban scenes is a challenging yet valuable task in providing immersive and embodied applications. The challenges lie in the lack of large-scale and high-quality real-world 3D scans for training generalizable generative models. In this paper, we take an alternative route to create large-scale 3D scenes by synergizing the readily available satellite imagery that supplies realistic coarse geometry and the open-domain diffusion model for creating high-quality close-up appearances. We propose \\textbf{Skyfall-GS}, the first city-block scale 3D scene creation framework without costly 3D annotations, also featuring real-time, immersive 3D exploration. We tailor a curriculum-driven iterative refinement strategy to progressively enhance geometric completeness and photorealistic textures. Extensive experiments demonstrate that Skyfall-GS provides improved cross-view consistent geometry and more realistic textures compared to state-of-the-art approaches. Project page: https://skyfall-gs.jayinnn.dev/",
+        "url": "http://arxiv.org/abs/2510.15869v1",
+        "published": "2025-10-17T17:59:51Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "LightsOut: Diffusion-based Outpainting for Enhanced Lens Flare Removal",
+        "authors": [
+          "Shr-Ruei Tsai",
+          "Wei-Cheng Chang",
+          "Jie-Ying Lee",
+          "Chih-Hai Su",
+          "Yu-Lun Liu"
+        ],
+        "summary": "Lens flare significantly degrades image quality, impacting critical computer vision tasks like object detection and autonomous driving. Recent Single Image Flare Removal (SIFR) methods perform poorly when off-frame light sources are incomplete or absent. We propose LightsOut, a diffusion-based outpainting framework tailored to enhance SIFR by reconstructing off-frame light sources. Our method leverages a multitask regression module and LoRA fine-tuned diffusion model to ensure realistic and physically consistent outpainting results. Comprehensive experiments demonstrate LightsOut consistently boosts the performance of existing SIFR methods across challenging scenarios without additional retraining, serving as a universally applicable plug-and-play preprocessing solution. Project page: https://ray-1026.github.io/lightsout/",
+        "url": "http://arxiv.org/abs/2510.15868v1",
+        "published": "2025-10-17T17:59:50Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "A merger within a merger: Chandra pinpoints the short GRB 230906A in a\n  peculiar environment",
+        "authors": [
+          "S. Dichiara",
+          "E. Troja",
+          "B. O'Connor",
+          "Y. -H. Yang",
+          "P. Beniamini",
+          "A. Galvan-Gamez",
+          "T. Sakamoto",
+          "Y. Kawakubo",
+          "J. C. Charlton"
+        ],
+        "summary": "We report the precise X-ray localization of GRB~230906A, a short duration ($T_{90}\\sim$0.9 s) burst with no optical or radio counterpart. Deep imaging with the Hubble Space Telescope detects a faint galaxy (G$^\\ast$; $F160W\\simeq26$ AB mag) coincident with the sub-arcsecond X-ray position. Compared with standard GRB galaxies, its faintness, compact size and color would suggest a high redshift ($z\\gtrsim$3) host. However, our observations also reveal the presence of a galaxy group at $z\\!\\sim$0.453, confirmed spectroscopically with VLT/MUSE, with clear signs of interactions and mergers among group members. The GRB and its putative host project onto an extended ($\\approx$180 kpc) tidal tail emerging from the group's central galaxy. The probability of a chance alignment is small ($P_{cc}\\!\\lesssim\\!4$\\%), we thus argue that the GRB and its galaxy G$^*$ reside within the group. Their peculiar location along the tidal debris suggests that an enhanced burst of star formation, induced by the galaxy merger, might have formed the progenitor compact binary $\\lesssim$700 Myr ago. The compact binary later evolved in a neutron star merger which produced GRB 230906A and injected $r$-process material into the surrounding circumgalactic medium.",
+        "url": "http://arxiv.org/abs/2510.15867v1",
+        "published": "2025-10-17T17:59:25Z",
+        "categories": [
+          "astro-ph.HE"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "BiomedXPro: Prompt Optimization for Explainable Diagnosis with\n  Biomedical Vision Language Models",
+        "authors": [
+          "Kaushitha Silva",
+          "Mansitha Eashwara",
+          "Sanduni Ubayasiri",
+          "Ruwan Tennakoon",
+          "Damayanthi Herath"
+        ],
+        "summary": "The clinical adoption of biomedical vision-language models is hindered by prompt optimization techniques that produce either uninterpretable latent vectors or single textual prompts. This lack of transparency and failure to capture the multi-faceted nature of clinical diagnosis, which relies on integrating diverse observations, limits their trustworthiness in high-stakes settings. To address this, we introduce BiomedXPro, an evolutionary framework that leverages a large language model as both a biomedical knowledge extractor and an adaptive optimizer to automatically generate a diverse ensemble of interpretable, natural-language prompt pairs for disease diagnosis. Experiments on multiple biomedical benchmarks show that BiomedXPro consistently outperforms state-of-the-art prompt-tuning methods, particularly in data-scarce few-shot settings. Furthermore, our analysis demonstrates a strong semantic alignment between the discovered prompts and statistically significant clinical features, grounding the model's performance in verifiable concepts. By producing a diverse ensemble of interpretable prompts, BiomedXPro provides a verifiable basis for model predictions, representing a critical step toward the development of more trustworthy and clinically-aligned AI systems.",
+        "url": "http://arxiv.org/abs/2510.15866v1",
+        "published": "2025-10-17T17:58:31Z",
+        "categories": [
+          "cs.CV",
+          "cs.NE"
+        ],
+        "source": "arxiv"
+      }
+    ],
+    "discussions": [
+      {
+        "title": "Human-AI Collaborative Coding Patterns",
+        "summary": "Discussion about effective patterns for human-AI pair programming",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-10-20T09:26:25.005174",
+        "url": "placeholder",
+        "engagement": "active"
+      },
+      {
+        "title": "Visual Design Collaboration with AI Tools",
+        "summary": "Emerging patterns in visual design workflows with AI assistance",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-10-20T09:26:25.005191",
+        "url": "placeholder",
+        "engagement": "emerging"
+      }
+    ]
+  },
+  "trends": {
+    "trending_terms": {
+      "design": 6,
+      "trust": 6,
+      "experience": 4,
+      "interaction": 3,
+      "transparency": 3
+    },
+    "total_papers": 15,
+    "recent_focus_areas": [
+      "design",
+      "trust",
+      "experience",
+      "interaction",
+      "transparency"
+    ],
+    "analysis_note": "Based on keyword frequency in recent research papers"
+  },
+  "opportunities": [
+    {
+      "topic": "design",
+      "research_frequency": 6,
+      "gap_level": "high",
+      "research_basis": "Appears 6 times in recent research",
+      "suggested_focus": "Investigate design in the context of human-AI collaboration"
+    },
+    {
+      "topic": "trust",
+      "research_frequency": 6,
+      "gap_level": "high",
+      "research_basis": "Appears 6 times in recent research",
+      "suggested_focus": "Investigate trust-building mechanisms in AI communication"
+    },
+    {
+      "topic": "experience",
+      "research_frequency": 4,
+      "gap_level": "high",
+      "research_basis": "Appears 4 times in recent research",
+      "suggested_focus": "Document user experience patterns in human-AI collaboration"
+    },
+    {
+      "topic": "interaction",
+      "research_frequency": 3,
+      "gap_level": "high",
+      "research_basis": "Appears 3 times in recent research",
+      "suggested_focus": "Investigate interaction in the context of human-AI collaboration"
+    },
+    {
+      "topic": "transparency",
+      "research_frequency": 3,
+      "gap_level": "high",
+      "research_basis": "Appears 3 times in recent research",
+      "suggested_focus": "Design experiments around AI explainability and user understanding"
+    }
+  ]
+}
