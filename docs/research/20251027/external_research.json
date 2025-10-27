@@ -1,0 +1,181 @@
+{
+  "timestamp": "2025-10-27T09:28:05.904753",
+  "depth": "light",
+  "sources": {
+    "arxiv": [
+      {
+        "title": "Group Inertial Poser: Multi-Person Pose and Global Translation from\n  Sparse Inertial Sensors and Ultra-Wideband Ranging",
+        "authors": [
+          "Ying Xue",
+          "Jiaxi Jiang",
+          "Rayan Armani",
+          "Dominik Hollidt",
+          "Yi-Chi Liao",
+          "Christian Holz"
+        ],
+        "summary": "Tracking human full-body motion using sparse wearable inertial measurement units (IMUs) overcomes the limitations of occlusion and instrumentation of the environment inherent in vision-based approaches. However, purely IMU-based tracking compromises translation estimates and accurate relative positioning between individuals, as inertial cues are inherently self-referential and provide no direct spatial reference for others. In this paper, we present a novel approach for robustly estimating body poses and global translation for multiple individuals by leveraging the distances between sparse wearable sensors - both on each individual and across multiple individuals. Our method Group Inertial Poser estimates these absolute distances between pairs of sensors from ultra-wideband ranging (UWB) and fuses them with inertial observations as input into structured state-space models to integrate temporal motion patterns for precise 3D pose estimation. Our novel two-step optimization further leverages the estimated distances for accurately tracking people's global trajectories through the world. We also introduce GIP-DB, the first IMU+UWB dataset for two-person tracking, which comprises 200 minutes of motion recordings from 14 participants. In our evaluation, Group Inertial Poser outperforms previous state-of-the-art methods in accuracy and robustness across synthetic and real-world data, showing the promise of IMU+UWB-based multi-human motion capture in the wild. Code, models, dataset: https://github.com/eth-siplab/GroupInertialPoser",
+        "url": "http://arxiv.org/abs/2510.21654v1",
+        "published": "2025-10-24T17:11:50Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI",
+          "cs.GR",
+          "cs.HC",
+          "68T07, 68T45, 68U01",
+          "I.2; I.3; I.4; I.5"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "AstaBench: Rigorous Benchmarking of AI Agents with a Scientific Research\n  Suite",
+        "authors": [
+          "Jonathan Bragg",
+          "Mike D'Arcy",
+          "Nishant Balepur",
+          "Dan Bareket",
+          "Bhavana Dalvi",
+          "Sergey Feldman",
+          "Dany Haddad",
+          "Jena D. Hwang",
+          "Peter Jansen",
+          "Varsha Kishore",
+          "Bodhisattwa Prasad Majumder",
+          "Aakanksha Naik",
+          "Sigal Rahamimov",
+          "Kyle Richardson",
+          "Amanpreet Singh",
+          "Harshit Surana",
+          "Aryeh Tiktinsky",
+          "Rosni Vasu",
+          "Guy Wiener",
+          "Chloe Anastasiades",
+          "Stefan Candra",
+          "Jason Dunkelberger",
+          "Dan Emery",
+          "Rob Evans",
+          "Malachi Hamada",
+          "Regan Huff",
+          "Rodney Kinney",
+          "Matt Latzke",
+          "Jaron Lochner",
+          "Ruben Lozano-Aguilera",
+          "Cecile Nguyen",
+          "Smita Rao",
+          "Amber Tanaka",
+          "Brooke Vlahos",
+          "Peter Clark",
+          "Doug Downey",
+          "Yoav Goldberg",
+          "Ashish Sabharwal",
+          "Daniel S. Weld"
+        ],
+        "summary": "AI agents hold the potential to revolutionize scientific productivity by automating literature reviews, replicating experiments, analyzing data, and even proposing new directions of inquiry; indeed, there are now many such agents, ranging from general-purpose \"deep research\" systems to specialized science-specific agents, such as AI Scientist and AIGS. Rigorous evaluation of these agents is critical for progress. Yet existing benchmarks fall short on several fronts: they (1) fail to provide holistic, product-informed measures of real-world use cases such as science research; (2) lack reproducible agent tools necessary for a controlled comparison of core agentic capabilities; (3) do not account for confounding variables such as model cost and tool access; (4) do not provide standardized interfaces for quick agent prototyping and evaluation; and (5) lack comprehensive baseline agents necessary to identify true advances. In response, we define principles and tooling for more rigorously benchmarking agents. Using these, we present AstaBench, a suite that provides the first holistic measure of agentic ability to perform scientific research, comprising 2400+ problems spanning the entire scientific discovery process and multiple scientific domains, and including many problems inspired by actual user requests to deployed Asta agents. Our suite comes with the first scientific research environment with production-grade search tools that enable controlled, reproducible evaluation, better accounting for confounders. Alongside, we provide a comprehensive suite of nine science-optimized classes of Asta agents and numerous baselines. Our extensive evaluation of 57 agents across 22 agent classes reveals several interesting findings, most importantly that despite meaningful progress on certain individual aspects, AI remains far from solving the challenge of science research assistance.",
+        "url": "http://arxiv.org/abs/2510.21652v1",
+        "published": "2025-10-24T17:10:26Z",
+        "categories": [
+          "cs.AI",
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Search for dijet resonances with data scouting in proton-proton\n  collisions at $\\sqrt{s}$ = 13 TeV",
+        "authors": [
+          "CMS Collaboration"
+        ],
+        "summary": "A search is presented for narrow resonances, with a mass between 0.6 and 1.8 TeV, decaying to pairs of jets, in proton-proton collisions at $\\sqrt{s}$ = 13 TeV. The search is performed using dijets that are reconstructed, selected, and recorded in a compact form by the high-level trigger in a technique referred to as \"data scouting\", from data collected in 2016$-$2018 corresponding to an integrated luminosity of 177 fb$^{-1}$. The dijet mass spectra are well described by a smooth parameterization, and no significant evidence for the production of new particles is observed. Model-independent upper limits are presented on the product of the cross section, branching fraction, and acceptance for the individual cases of narrow quark-quark, quark-gluon, and gluon-gluon resonances, and are compared to the predictions from a variety of models of narrow dijet resonance production. The upper limit on the coupling of a dark matter mediator to quarks is presented as a function of the mediator mass. The sensitivity of this search goes beyond what is expected from statistical scaling with the integrated luminosity alone, as a consequence of the use of fewer parameters in the background function within a more robust statistical procedure.",
+        "url": "http://arxiv.org/abs/2510.21641v1",
+        "published": "2025-10-24T16:54:45Z",
+        "categories": [
+          "hep-ex"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "The Universal Landscape of Human Reasoning",
+        "authors": [
+          "Qiguang Chen",
+          "Jinhao Liu",
+          "Libo Qin",
+          "Yimeng Zhang",
+          "Yihao Liang",
+          "Shangxu Ren",
+          "Chengyu Luan",
+          "Dengyun Peng",
+          "Hanjing Li",
+          "Jiannan Guan",
+          "Zheng Yan",
+          "Jiaqi Wang",
+          "Mengkang Hu",
+          "Yantao Du",
+          "Zhi Chen",
+          "Xie Chen",
+          "Wanxiang Che"
+        ],
+        "summary": "Understanding how information is dynamically accumulated and transformed in human reasoning has long challenged cognitive psychology, philosophy, and artificial intelligence. Existing accounts, from classical logic to probabilistic models, illuminate aspects of output or individual modelling, but do not offer a unified, quantitative description of general human reasoning dynamics. To solve this, we introduce Information Flow Tracking (IF-Track), that uses large language models (LLMs) as probabilistic encoder to quantify information entropy and gain at each reasoning step. Through fine-grained analyses across diverse tasks, our method is the first successfully models the universal landscape of human reasoning behaviors within a single metric space. We show that IF-Track captures essential reasoning features, identifies systematic error patterns, and characterizes individual differences. Applied to discussion of advanced psychological theory, we first reconcile single- versus dual-process theories in IF-Track and discover the alignment of artificial and human cognition and how LLMs reshaping human reasoning process. This approach establishes a quantitative bridge between theory and measurement, offering mechanistic insights into the architecture of reasoning.",
+        "url": "http://arxiv.org/abs/2510.21623v1",
+        "published": "2025-10-24T16:26:36Z",
+        "categories": [
+          "cs.CL",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Huxley-G\u00f6del Machine: Human-Level Coding Agent Development by an\n  Approximation of the Optimal Self-Improving Machine",
+        "authors": [
+          "Wenyi Wang",
+          "Piotr Pi\u0119kos",
+          "Li Nanbo",
+          "Firas Laakom",
+          "Yimeng Chen",
+          "Mateusz Ostaszewski",
+          "Mingchen Zhuge",
+          "J\u00fcrgen Schmidhuber"
+        ],
+        "summary": "Recent studies operationalize self-improvement through coding agents that edit their own codebases. They grow a tree of self-modifications through expansion strategies that favor higher software engineering benchmark performance, assuming that this implies more promising subsequent self-modifications. However, we identify a mismatch between the agent's self-improvement potential (metaproductivity) and its coding benchmark performance, namely the Metaproductivity-Performance Mismatch. Inspired by Huxley's concept of clade, we propose a metric ($\\mathrm{CMP}$) that aggregates the benchmark performances of the descendants of an agent as an indicator of its potential for self-improvement. We show that, in our self-improving coding agent development setting, access to the true $\\mathrm{CMP}$ is sufficient to simulate how the G\\\"odel Machine would behave under certain assumptions. We introduce the Huxley-G\\\"odel Machine (HGM), which, by estimating $\\mathrm{CMP}$ and using it as guidance, searches the tree of self-modifications. On SWE-bench Verified and Polyglot, HGM outperforms prior self-improving coding agent development methods while using less wall-clock time. Last but not least, HGM demonstrates strong transfer to other coding datasets and large language models. The agent optimized by HGM on SWE-bench Verified with GPT-5-mini and evaluated on SWE-bench Lite with GPT-5 achieves human-level performance, matching the best officially checked results of human-engineered coding agents. Our code is available at https://github.com/metauto-ai/HGM.",
+        "url": "http://arxiv.org/abs/2510.21614v1",
+        "published": "2025-10-24T16:19:41Z",
+        "categories": [
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      }
+    ],
+    "discussions": [
+      {
+        "title": "Human-AI Collaborative Coding Patterns",
+        "summary": "Discussion about effective patterns for human-AI pair programming",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-10-27T09:29:12.120384",
+        "url": "placeholder",
+        "engagement": "active"
+      },
+      {
+        "title": "Visual Design Collaboration with AI Tools",
+        "summary": "Emerging patterns in visual design workflows with AI assistance",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-10-27T09:29:12.120403",
+        "url": "placeholder",
+        "engagement": "emerging"
+      }
+    ]
+  },
+  "trends": {
+    "trending_terms": {
+      "pattern": 2,
+      "interface": 1,
+      "cognition": 1
+    },
+    "total_papers": 5,
+    "recent_focus_areas": [
+      "pattern",
+      "interface",
+      "cognition"
+    ],
+    "analysis_note": "Based on keyword frequency in recent research papers"
+  },
+  "opportunities": []
+}
