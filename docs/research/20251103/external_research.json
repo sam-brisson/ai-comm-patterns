@@ -1,0 +1,366 @@
+{
+  "timestamp": "2025-11-03T09:28:02.821784",
+  "depth": "light",
+  "sources": {
+    "arxiv": [
+      {
+        "title": "Soft Gravitons, Hard Truths: Infrared Safety of Particle Processes in a\n  Gravitational-Wave Background",
+        "authors": [
+          "Wen-Yuan Ai",
+          "Sebastian A. R. Ellis",
+          "Josef Pradler"
+        ],
+        "summary": "Gravitational waves are thought to propagate unattenuated through matter due to a cancellation between graviton absorption and stimulated emission inferred from leading-order soft-graviton arguments. We revisit this reasoning and show that it fails for the converse problem: the effect of a gravitational-wave background on matter. For unstable particles, real graviton emission \\emph{and} absorption appear to enhance decay rates. By extending the soft-graviton framework describing real and virtual processes in a gravitational wave background, and resumming them to all orders, we show that inclusive decay rates remain essentially unchanged. The mutual transparency between matter and gravitational radiation thus follows from infrared safety, and not from a fortuitous cancellation in the lowest-order approximation of exclusive rates.",
+        "url": "http://arxiv.org/abs/2510.27690v1",
+        "published": "2025-10-31T17:59:03Z",
+        "categories": [
+          "hep-ph",
+          "hep-th"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Personalized AI Scaffolds Synergistic Multi-Turn Collaboration in\n  Creative Work",
+        "authors": [
+          "Sean Kelley",
+          "David De Cremer",
+          "Christoph Riedl"
+        ],
+        "summary": "As AI becomes more deeply embedded in knowledge work, building assistants that support human creativity and expertise becomes more important. Yet achieving synergy in human-AI collaboration is not easy. Providing AI with detailed information about a user's demographics, psychological attributes, divergent thinking, and domain expertise may improve performance by scaffolding more effective multi-turn interactions. We implemented a personalized LLM-based assistant, informed by users' psychometric profiles and an AI-guided interview about their work style, to help users complete a marketing task for a fictional startup. We randomized 331 participants to work with AI that was either generic (n = 116), partially personalized (n = 114), or fully personalized (n=101). Participants working with personalized AI produce marketing campaigns of significantly higher quality and creativity, beyond what AI alone could have produced. Compared to generic AI, personalized AI leads to higher self-reported levels of assistance and feedback, while also increasing participant trust and confidence. Causal mediation analysis shows that personalization improves performance indirectly by enhancing collective memory, attention, and reasoning in the human-AI interaction. These findings provide a theory-driven framework in which personalization functions as external scaffolding that builds common ground and shared partner models, reducing uncertainty and enhancing joint cognition. This informs the design of future AI assistants that maximize synergy and support human creative potential while limiting negative homogenization.",
+        "url": "http://arxiv.org/abs/2510.27681v1",
+        "published": "2025-10-31T17:49:50Z",
+        "categories": [
+          "cs.HC"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "PETAR: Localized Findings Generation with Mask-Aware Vision-Language\n  Modeling for PET Automated Reporting",
+        "authors": [
+          "Danyal Maqbool",
+          "Changhee Lee",
+          "Zachary Huemann",
+          "Samuel D. Church",
+          "Matthew E. Larson",
+          "Scott B. Perlman",
+          "Tomas A. Romero",
+          "Joshua D. Warner",
+          "Meghan Lubner",
+          "Xin Tie",
+          "Jameson Merkow",
+          "Junjie Hu",
+          "Steve Y. Cho",
+          "Tyler J. Bradshaw"
+        ],
+        "summary": "Recent advances in vision-language models (VLMs) have enabled impressive multimodal reasoning, yet most medical applications remain limited to 2D imaging. In this work, we extend VLMs to 3D positron emission tomography and computed tomography (PET/CT), a domain characterized by large volumetric data, small and dispersed lesions, and lengthy radiology reports. We introduce a large-scale dataset comprising over 11,000 lesion-level descriptions paired with 3D segmentations from more than 5,000 PET/CT exams, extracted via a hybrid rule-based and large language model (LLM) pipeline. Building upon this dataset, we propose PETAR-4B, a 3D mask-aware vision-language model that integrates PET, CT, and lesion contours for spatially grounded report generation. PETAR bridges global contextual reasoning with fine-grained lesion awareness, producing clinically coherent and localized findings. Comprehensive automated and human evaluations demonstrate that PETAR substantially improves PET/CT report generation quality, advancing 3D medical vision-language understanding.",
+        "url": "http://arxiv.org/abs/2510.27680v1",
+        "published": "2025-10-31T17:49:01Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Culture Cartography: Mapping the Landscape of Cultural Knowledge",
+        "authors": [
+          "Caleb Ziems",
+          "William Held",
+          "Jane Yu",
+          "Amir Goldberg",
+          "David Grusky",
+          "Diyi Yang"
+        ],
+        "summary": "To serve global users safely and productively, LLMs need culture-specific knowledge that might not be learned during pre-training. How do we find such knowledge that is (1) salient to in-group users, but (2) unknown to LLMs? The most common solutions are single-initiative: either researchers define challenging questions that users passively answer (traditional annotation), or users actively produce data that researchers structure as benchmarks (knowledge extraction). The process would benefit from mixed-initiative collaboration, where users guide the process to meaningfully reflect their cultures, and LLMs steer the process towards more challenging questions that meet the researcher's goals. We propose a mixed-initiative methodology called CultureCartography. Here, an LLM initializes annotation with questions for which it has low-confidence answers, making explicit both its prior knowledge and the gaps therein. This allows a human respondent to fill these gaps and steer the model towards salient topics through direct edits. We implement this methodology as a tool called CultureExplorer. Compared to a baseline where humans answer LLM-proposed questions, we find that CultureExplorer more effectively produces knowledge that leading models like DeepSeek R1 and GPT-4o are missing, even with web search. Fine-tuning on this data boosts the accuracy of Llama-3.1-8B by up to 19.2% on related culture benchmarks.",
+        "url": "http://arxiv.org/abs/2510.27672v1",
+        "published": "2025-10-31T17:37:34Z",
+        "categories": [
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Whole-Body Proprioceptive Morphing: A Modular Soft Gripper for Robust\n  Cross-Scale Grasping",
+        "authors": [
+          "Dong Heon Han",
+          "Xiaohao Xu",
+          "Yuxi Chen",
+          "Yusheng Zhou",
+          "Xinqi Zhang",
+          "Jiaqi Wang",
+          "Daniel Bruder",
+          "Xiaonan Huang"
+        ],
+        "summary": "Biological systems, such as the octopus, exhibit masterful cross-scale manipulation by adaptively reconfiguring their entire form, a capability that remains elusive in robotics. Conventional soft grippers, while compliant, are mostly constrained by a fixed global morphology, and prior shape-morphing efforts have been largely confined to localized deformations, failing to replicate this biological dexterity. Inspired by this natural exemplar, we introduce the paradigm of collaborative, whole-body proprioceptive morphing, realized in a modular soft gripper architecture. Our design is a distributed network of modular self-sensing pneumatic actuators that enables the gripper to intelligently reconfigure its entire topology, achieving multiple morphing states that are controllable to form diverse polygonal shapes. By integrating rich proprioceptive feedback from embedded sensors, our system can seamlessly transition from a precise pinch to a large envelope grasp. We experimentally demonstrate that this approach expands the grasping envelope and enhances generalization across diverse object geometries (standard and irregular) and scales (up to 10$\\times$), while also unlocking novel manipulation modalities such as multi-object and internal hook grasping. This work presents a low-cost, easy-to-fabricate, and scalable framework that fuses distributed actuation with integrated sensing, offering a new pathway toward achieving biological levels of dexterity in robotic manipulation.",
+        "url": "http://arxiv.org/abs/2510.27666v1",
+        "published": "2025-10-31T17:34:04Z",
+        "categories": [
+          "cs.RO"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "LifWavNet: Lifting Wavelet-based Network for Non-contact ECG\n  Reconstruction from Radar",
+        "authors": [
+          "Soumitra Kundu",
+          "Gargi Panda",
+          "Saumik Bhattacharya",
+          "Aurobinda Routray",
+          "Rajlakshmi Guha"
+        ],
+        "summary": "Non-contact electrocardiogram (ECG) reconstruction from radar signals offers a promising approach for unobtrusive cardiac monitoring. We present LifWavNet, a lifting wavelet network based on a multi-resolution analysis and synthesis (MRAS) model for radar-to-ECG reconstruction. Unlike prior models that use fixed wavelet approaches, LifWavNet employs learnable lifting wavelets with lifting and inverse lifting units to adaptively capture radar signal features and synthesize physiologically meaningful ECG waveforms. To improve reconstruction fidelity, we introduce a multi-resolution short-time Fourier transform (STFT) loss, that enforces consistency with the ground-truth ECG in both temporal and spectral domains. Evaluations on two public datasets demonstrate that LifWavNet outperforms state-of-the-art methods in ECG reconstruction and downstream vital sign estimation (heart rate and heart rate variability). Furthermore, intermediate feature visualization highlights the interpretability of multi-resolution decomposition and synthesis in radar-to-ECG reconstruction. These results establish LifWavNet as a robust framework for radar-based non-contact ECG measurement.",
+        "url": "http://arxiv.org/abs/2510.27692v1",
+        "published": "2025-10-31T17:59:58Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Soft Gravitons, Hard Truths: Infrared Safety of Particle Processes in a\n  Gravitational-Wave Background",
+        "authors": [
+          "Wen-Yuan Ai",
+          "Sebastian A. R. Ellis",
+          "Josef Pradler"
+        ],
+        "summary": "Gravitational waves are thought to propagate unattenuated through matter due to a cancellation between graviton absorption and stimulated emission inferred from leading-order soft-graviton arguments. We revisit this reasoning and show that it fails for the converse problem: the effect of a gravitational-wave background on matter. For unstable particles, real graviton emission \\emph{and} absorption appear to enhance decay rates. By extending the soft-graviton framework describing real and virtual processes in a gravitational wave background, and resumming them to all orders, we show that inclusive decay rates remain essentially unchanged. The mutual transparency between matter and gravitational radiation thus follows from infrared safety, and not from a fortuitous cancellation in the lowest-order approximation of exclusive rates.",
+        "url": "http://arxiv.org/abs/2510.27690v1",
+        "published": "2025-10-31T17:59:03Z",
+        "categories": [
+          "hep-ph",
+          "hep-th"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Phased DMD: Few-step Distribution Matching Distillation via Score\n  Matching within Subintervals",
+        "authors": [
+          "Xiangyu Fan",
+          "Zesong Qiu",
+          "Zhuguanyu Wu",
+          "Fanzhou Wang",
+          "Zhiqian Lin",
+          "Tianxiang Ren",
+          "Dahua Lin",
+          "Ruihao Gong",
+          "Lei Yang"
+        ],
+        "summary": "Distribution Matching Distillation (DMD) distills score-based generative models into efficient one-step generators, without requiring a one-to-one correspondence with the sampling trajectories of their teachers. However, limited model capacity causes one-step distilled models underperform on complex generative tasks, e.g., synthesizing intricate object motions in text-to-video generation. Directly extending DMD to multi-step distillation increases memory usage and computational depth, leading to instability and reduced efficiency. While prior works propose stochastic gradient truncation as a potential solution, we observe that it substantially reduces the generation diversity of multi-step distilled models, bringing it down to the level of their one-step counterparts. To address these limitations, we propose Phased DMD, a multi-step distillation framework that bridges the idea of phase-wise distillation with Mixture-of-Experts (MoE), reducing learning difficulty while enhancing model capacity. Phased DMD is built upon two key ideas: progressive distribution matching and score matching within subintervals. First, our model divides the SNR range into subintervals, progressively refining the model to higher SNR levels, to better capture complex distributions. Next, to ensure the training objective within each subinterval is accurate, we have conducted rigorous mathematical derivations. We validate Phased DMD by distilling state-of-the-art image and video generation models, including Qwen-Image (20B parameters) and Wan2.2 (28B parameters). Experimental results demonstrate that Phased DMD preserves output diversity better than DMD while retaining key generative capabilities. We will release our code and models.",
+        "url": "http://arxiv.org/abs/2510.27684v1",
+        "published": "2025-10-31T17:55:10Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Social learning moderates the tradeoffs between efficiency, stability,\n  and equity in group foraging",
+        "authors": [
+          "Ze-Xu Li",
+          "M. Amin Rahimian",
+          "Lei Fang"
+        ],
+        "summary": "Social learning shapes collective search by influencing how individuals use peer information. Empirical and computational studies show that optimal information sharing that is neither too localized nor too diffuse, can enhance resource detection and coordination. Building on these insights, we develop a randomized search model that integrates social learning with area-restricted search (ARS) to investigate how communication distance affects collective foraging. The model includes three behavioral modes: exploration, exploitation, and targeted walk, which are governed by a single parameter, $\\rho$, that balances exploration and exploitation at the group level. We quantify how $\\rho$ influences group efficiency ($\\eta$), temporal variability/burstiness ($B$), and agent variability/equity in resource distribution ($\\sigma$), revealing a clear trade-off among these outcomes. When $\\rho \\to 0$, agents explore independently, maximizing collective exploration. As $\\rho$ increases, individuals preferentially exploit patches discovered by others: $\\eta$ first rises and then declines, while $B$ shows the opposite trend. Group efficiency is optimized at interior $\\rho$ values that balance exploration and exploitation. At the largest $\\rho$, equality among agents is highest, but efficiency declines and burstiness is maximized too. Finally, by introducing negative rewards, we examine how social learning mitigates risk.",
+        "url": "http://arxiv.org/abs/2510.27683v1",
+        "published": "2025-10-31T17:53:00Z",
+        "categories": [
+          "physics.soc-ph",
+          "cs.MA",
+          "cs.SI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Personalized AI Scaffolds Synergistic Multi-Turn Collaboration in\n  Creative Work",
+        "authors": [
+          "Sean Kelley",
+          "David De Cremer",
+          "Christoph Riedl"
+        ],
+        "summary": "As AI becomes more deeply embedded in knowledge work, building assistants that support human creativity and expertise becomes more important. Yet achieving synergy in human-AI collaboration is not easy. Providing AI with detailed information about a user's demographics, psychological attributes, divergent thinking, and domain expertise may improve performance by scaffolding more effective multi-turn interactions. We implemented a personalized LLM-based assistant, informed by users' psychometric profiles and an AI-guided interview about their work style, to help users complete a marketing task for a fictional startup. We randomized 331 participants to work with AI that was either generic (n = 116), partially personalized (n = 114), or fully personalized (n=101). Participants working with personalized AI produce marketing campaigns of significantly higher quality and creativity, beyond what AI alone could have produced. Compared to generic AI, personalized AI leads to higher self-reported levels of assistance and feedback, while also increasing participant trust and confidence. Causal mediation analysis shows that personalization improves performance indirectly by enhancing collective memory, attention, and reasoning in the human-AI interaction. These findings provide a theory-driven framework in which personalization functions as external scaffolding that builds common ground and shared partner models, reducing uncertainty and enhancing joint cognition. This informs the design of future AI assistants that maximize synergy and support human creative potential while limiting negative homogenization.",
+        "url": "http://arxiv.org/abs/2510.27681v1",
+        "published": "2025-10-31T17:49:50Z",
+        "categories": [
+          "cs.HC"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "LifWavNet: Lifting Wavelet-based Network for Non-contact ECG\n  Reconstruction from Radar",
+        "authors": [
+          "Soumitra Kundu",
+          "Gargi Panda",
+          "Saumik Bhattacharya",
+          "Aurobinda Routray",
+          "Rajlakshmi Guha"
+        ],
+        "summary": "Non-contact electrocardiogram (ECG) reconstruction from radar signals offers a promising approach for unobtrusive cardiac monitoring. We present LifWavNet, a lifting wavelet network based on a multi-resolution analysis and synthesis (MRAS) model for radar-to-ECG reconstruction. Unlike prior models that use fixed wavelet approaches, LifWavNet employs learnable lifting wavelets with lifting and inverse lifting units to adaptively capture radar signal features and synthesize physiologically meaningful ECG waveforms. To improve reconstruction fidelity, we introduce a multi-resolution short-time Fourier transform (STFT) loss, that enforces consistency with the ground-truth ECG in both temporal and spectral domains. Evaluations on two public datasets demonstrate that LifWavNet outperforms state-of-the-art methods in ECG reconstruction and downstream vital sign estimation (heart rate and heart rate variability). Furthermore, intermediate feature visualization highlights the interpretability of multi-resolution decomposition and synthesis in radar-to-ECG reconstruction. These results establish LifWavNet as a robust framework for radar-based non-contact ECG measurement.",
+        "url": "http://arxiv.org/abs/2510.27692v1",
+        "published": "2025-10-31T17:59:58Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Soft Gravitons, Hard Truths: Infrared Safety of Particle Processes in a\n  Gravitational-Wave Background",
+        "authors": [
+          "Wen-Yuan Ai",
+          "Sebastian A. R. Ellis",
+          "Josef Pradler"
+        ],
+        "summary": "Gravitational waves are thought to propagate unattenuated through matter due to a cancellation between graviton absorption and stimulated emission inferred from leading-order soft-graviton arguments. We revisit this reasoning and show that it fails for the converse problem: the effect of a gravitational-wave background on matter. For unstable particles, real graviton emission \\emph{and} absorption appear to enhance decay rates. By extending the soft-graviton framework describing real and virtual processes in a gravitational wave background, and resumming them to all orders, we show that inclusive decay rates remain essentially unchanged. The mutual transparency between matter and gravitational radiation thus follows from infrared safety, and not from a fortuitous cancellation in the lowest-order approximation of exclusive rates.",
+        "url": "http://arxiv.org/abs/2510.27690v1",
+        "published": "2025-10-31T17:59:03Z",
+        "categories": [
+          "hep-ph",
+          "hep-th"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Continuous Autoregressive Language Models",
+        "authors": [
+          "Chenze Shao",
+          "Darren Li",
+          "Fandong Meng",
+          "Jie Zhou"
+        ],
+        "summary": "The efficiency of large language models (LLMs) is fundamentally limited by their sequential, token-by-token generation process. We argue that overcoming this bottleneck requires a new design axis for LLM scaling: increasing the semantic bandwidth of each generative step. To this end, we introduce Continuous Autoregressive Language Models (CALM), a paradigm shift from discrete next-token prediction to continuous next-vector prediction. CALM uses a high-fidelity autoencoder to compress a chunk of K tokens into a single continuous vector, from which the original tokens can be reconstructed with over 99.9\\% accuracy. This allows us to model language as a sequence of continuous vectors instead of discrete tokens, which reduces the number of generative steps by a factor of K. The paradigm shift necessitates a new modeling toolkit; therefore, we develop a comprehensive likelihood-free framework that enables robust training, evaluation, and controllable sampling in the continuous domain. Experiments show that CALM significantly improves the performance-compute trade-off, achieving the performance of strong discrete baselines at a significantly lower computational cost. More importantly, these findings establish next-vector prediction as a powerful and scalable pathway towards ultra-efficient language models. Code: https://github.com/shaochenze/calm. Project: https://shaochenze.github.io/blog/2025/CALM.",
+        "url": "http://arxiv.org/abs/2510.27688v1",
+        "published": "2025-10-31T17:58:11Z",
+        "categories": [
+          "cs.CL",
+          "cs.AI",
+          "cs.LG"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Phased DMD: Few-step Distribution Matching Distillation via Score\n  Matching within Subintervals",
+        "authors": [
+          "Xiangyu Fan",
+          "Zesong Qiu",
+          "Zhuguanyu Wu",
+          "Fanzhou Wang",
+          "Zhiqian Lin",
+          "Tianxiang Ren",
+          "Dahua Lin",
+          "Ruihao Gong",
+          "Lei Yang"
+        ],
+        "summary": "Distribution Matching Distillation (DMD) distills score-based generative models into efficient one-step generators, without requiring a one-to-one correspondence with the sampling trajectories of their teachers. However, limited model capacity causes one-step distilled models underperform on complex generative tasks, e.g., synthesizing intricate object motions in text-to-video generation. Directly extending DMD to multi-step distillation increases memory usage and computational depth, leading to instability and reduced efficiency. While prior works propose stochastic gradient truncation as a potential solution, we observe that it substantially reduces the generation diversity of multi-step distilled models, bringing it down to the level of their one-step counterparts. To address these limitations, we propose Phased DMD, a multi-step distillation framework that bridges the idea of phase-wise distillation with Mixture-of-Experts (MoE), reducing learning difficulty while enhancing model capacity. Phased DMD is built upon two key ideas: progressive distribution matching and score matching within subintervals. First, our model divides the SNR range into subintervals, progressively refining the model to higher SNR levels, to better capture complex distributions. Next, to ensure the training objective within each subinterval is accurate, we have conducted rigorous mathematical derivations. We validate Phased DMD by distilling state-of-the-art image and video generation models, including Qwen-Image (20B parameters) and Wan2.2 (28B parameters). Experimental results demonstrate that Phased DMD preserves output diversity better than DMD while retaining key generative capabilities. We will release our code and models.",
+        "url": "http://arxiv.org/abs/2510.27684v1",
+        "published": "2025-10-31T17:55:10Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Social learning moderates the tradeoffs between efficiency, stability,\n  and equity in group foraging",
+        "authors": [
+          "Ze-Xu Li",
+          "M. Amin Rahimian",
+          "Lei Fang"
+        ],
+        "summary": "Social learning shapes collective search by influencing how individuals use peer information. Empirical and computational studies show that optimal information sharing that is neither too localized nor too diffuse, can enhance resource detection and coordination. Building on these insights, we develop a randomized search model that integrates social learning with area-restricted search (ARS) to investigate how communication distance affects collective foraging. The model includes three behavioral modes: exploration, exploitation, and targeted walk, which are governed by a single parameter, $\\rho$, that balances exploration and exploitation at the group level. We quantify how $\\rho$ influences group efficiency ($\\eta$), temporal variability/burstiness ($B$), and agent variability/equity in resource distribution ($\\sigma$), revealing a clear trade-off among these outcomes. When $\\rho \\to 0$, agents explore independently, maximizing collective exploration. As $\\rho$ increases, individuals preferentially exploit patches discovered by others: $\\eta$ first rises and then declines, while $B$ shows the opposite trend. Group efficiency is optimized at interior $\\rho$ values that balance exploration and exploitation. At the largest $\\rho$, equality among agents is highest, but efficiency declines and burstiness is maximized too. Finally, by introducing negative rewards, we examine how social learning mitigates risk.",
+        "url": "http://arxiv.org/abs/2510.27683v1",
+        "published": "2025-10-31T17:53:00Z",
+        "categories": [
+          "physics.soc-ph",
+          "cs.MA",
+          "cs.SI"
+        ],
+        "source": "arxiv"
+      }
+    ],
+    "discussions": [
+      {
+        "title": "Human-AI Collaborative Coding Patterns",
+        "summary": "Discussion about effective patterns for human-AI pair programming",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-11-03T09:28:07.003018",
+        "url": "placeholder",
+        "engagement": "active"
+      },
+      {
+        "title": "Visual Design Collaboration with AI Tools",
+        "summary": "Emerging patterns in visual design workflows with AI assistance",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-11-03T09:28:07.003036",
+        "url": "placeholder",
+        "engagement": "emerging"
+      }
+    ]
+  },
+  "trends": {
+    "trending_terms": {
+      "collaboration": 5,
+      "human-ai": 4,
+      "interaction": 4,
+      "design": 4,
+      "creativity": 4,
+      "transparency": 3,
+      "communication": 2,
+      "trust": 2,
+      "cognition": 2
+    },
+    "total_papers": 15,
+    "recent_focus_areas": [
+      "collaboration",
+      "human-ai",
+      "interaction",
+      "design",
+      "creativity"
+    ],
+    "analysis_note": "Based on keyword frequency in recent research papers"
+  },
+  "opportunities": [
+    {
+      "topic": "collaboration",
+      "research_frequency": 5,
+      "gap_level": "high",
+      "research_basis": "Appears 5 times in recent research",
+      "suggested_focus": "Explore new patterns of human-AI collaborative workflows"
+    },
+    {
+      "topic": "human-ai",
+      "research_frequency": 4,
+      "gap_level": "high",
+      "research_basis": "Appears 4 times in recent research",
+      "suggested_focus": "Investigate human-ai in the context of human-AI collaboration"
+    },
+    {
+      "topic": "interaction",
+      "research_frequency": 4,
+      "gap_level": "high",
+      "research_basis": "Appears 4 times in recent research",
+      "suggested_focus": "Investigate interaction in the context of human-AI collaboration"
+    },
+    {
+      "topic": "design",
+      "research_frequency": 4,
+      "gap_level": "high",
+      "research_basis": "Appears 4 times in recent research",
+      "suggested_focus": "Investigate design in the context of human-AI collaboration"
+    },
+    {
+      "topic": "creativity",
+      "research_frequency": 4,
+      "gap_level": "high",
+      "research_basis": "Appears 4 times in recent research",
+      "suggested_focus": "Document creative collaboration patterns between humans and AI"
+    },
+    {
+      "topic": "transparency",
+      "research_frequency": 3,
+      "gap_level": "high",
+      "research_basis": "Appears 3 times in recent research",
+      "suggested_focus": "Design experiments around AI explainability and user understanding"
+    }
+  ]
+}
