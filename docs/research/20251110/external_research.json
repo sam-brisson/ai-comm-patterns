@@ -1,0 +1,339 @@
+{
+  "timestamp": "2025-11-10T09:27:49.116710",
+  "depth": "light",
+  "sources": {
+    "arxiv": [
+      {
+        "title": "Visual Spatial Tuning",
+        "authors": [
+          "Rui Yang",
+          "Ziyu Zhu",
+          "Yanwei Li",
+          "Jingjia Huang",
+          "Shen Yan",
+          "Siyuan Zhou",
+          "Zhe Liu",
+          "Xiangtai Li",
+          "Shuangye Li",
+          "Wenqian Wang",
+          "Yi Lin",
+          "Hengshuang Zhao"
+        ],
+        "summary": "Capturing spatial relationships from visual inputs is a cornerstone of human-like general intelligence. Several previous studies have tried to enhance the spatial awareness of Vision-Language Models (VLMs) by adding extra expert encoders, which brings extra overhead and usually harms general capabilities. To enhance the spatial ability in general architectures, we introduce Visual Spatial Tuning (VST), a comprehensive framework to cultivate VLMs with human-like visuospatial abilities, from spatial perception to reasoning. We first attempt to enhance spatial perception in VLMs by constructing a large-scale dataset termed VST-P, which comprises 4.1 million samples spanning 19 skills across single views, multiple images, and videos. Then, we present VST-R, a curated dataset with 135K samples that instruct models to reason in space. In particular, we adopt a progressive training pipeline: supervised fine-tuning to build foundational spatial knowledge, followed by reinforcement learning to further improve spatial reasoning abilities. Without the side-effect to general capabilities, the proposed VST consistently achieves state-of-the-art results on several spatial benchmarks, including $34.8\\%$ on MMSI-Bench and $61.2\\%$ on VSIBench. It turns out that the Vision-Language-Action models can be significantly enhanced with the proposed spatial tuning paradigm, paving the way for more physically grounded AI.",
+        "url": "http://arxiv.org/abs/2511.05491v1",
+        "published": "2025-11-07T18:59:16Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "AI Literacy Assessment Revisited: A Task-Oriented Approach Aligned with\n  Real-world Occupations",
+        "authors": [
+          "Christopher Bogart",
+          "Aparna Warrier",
+          "Arav Agarwal",
+          "Ross Higashi",
+          "Yufan Zhang",
+          "Jesse Flot",
+          "Jaromir Savelka",
+          "Heather Burte",
+          "Majd Sakr"
+        ],
+        "summary": "As artificial intelligence (AI) systems become ubiquitous in professional contexts, there is an urgent need to equip workers, often with backgrounds outside of STEM, with the skills to use these tools effectively as well as responsibly, that is, to be AI literate. However, prevailing definitions and therefore assessments of AI literacy often emphasize foundational technical knowledge, such as programming, mathematics, and statistics, over practical knowledge such as interpreting model outputs, selecting tools, or identifying ethical concerns. This leaves a noticeable gap in assessing someone's AI literacy for real-world job use. We propose a work-task-oriented assessment model for AI literacy which is grounded in the competencies required for effective use of AI tools in professional settings. We describe the development of a novel AI literacy assessment instrument, and accompanying formative assessments, in the context of a US Navy robotics training program. The program included training in robotics and AI literacy, as well as a competition with practical tasks and a multiple choice scenario task meant to simulate use of AI in a job setting. We found that, as a measure of applied AI literacy, the competition's scenario task outperformed the tests we adopted from past research or developed ourselves. We argue that when training people for AI-related work, educators should consider evaluating them with instruments that emphasize highly contextualized practical skills rather than abstract technical knowledge, especially when preparing workers without technical backgrounds for AI-integrated roles.",
+        "url": "http://arxiv.org/abs/2511.05475v1",
+        "published": "2025-11-07T18:38:15Z",
+        "categories": [
+          "cs.CY",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Identification of tau leptons using a convolutional neural network with\n  domain adaptation",
+        "authors": [
+          "CMS Collaboration"
+        ],
+        "summary": "A tau lepton identification algorithm, DeepTau, based on convolutional neural network techniques, has been developed in the CMS experiment to discriminate reconstructed hadronic decays of tau leptons ($\\tau_\\mathrm{h}$) from quark or gluon jets and electrons and muons that are misreconstructed as $\\tau_\\mathrm{h}$ candidates. The latest version of this algorithm, v2.5, includes domain adaptation by backpropagation, a technique that reduces discrepancies between collision data and simulation in the region with the highest purity of genuine $\\tau_\\mathrm{h}$ candidates. Additionally, a refined training workflow improves classification performance with respect to the previous version of the algorithm, with a reduction of 30$-$50% in the probability for quark and gluon jets to be misidentified as $\\tau_\\mathrm{h}$ candidates for given reconstruction and identification efficiencies. This paper presents the novel improvements introduced in the DeepTau algorithm and evaluates its performance in LHC proton-proton collision data at $\\sqrt{s}$ = 13 and 13.6 TeV collected in 2018 and 2022 with integrated luminosities of 60 and 35 fb$^{-1}$, respectively. Techniques to calibrate the performance of the $\\tau_\\mathrm{h}$ identification algorithm in simulation with respect to its measured performance in real data are presented, together with a subset of results among those measured for use in CMS physics analyses.",
+        "url": "http://arxiv.org/abs/2511.05468v1",
+        "published": "2025-11-07T18:22:56Z",
+        "categories": [
+          "hep-ex",
+          "physics.ins-det"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Adversarially Robust Multitask Adaptive Control",
+        "authors": [
+          "Kasra Fallah",
+          "Leonardo F. Toso",
+          "James Anderson"
+        ],
+        "summary": "We study adversarially robust multitask adaptive linear quadratic control; a setting where multiple systems collaboratively learn control policies under model uncertainty and adversarial corruption. We propose a clustered multitask approach that integrates clustering and system identification with resilient aggregation to mitigate corrupted model updates. Our analysis characterizes how clustering accuracy, intra-cluster heterogeneity, and adversarial behavior affect the expected regret of certainty-equivalent (CE) control across LQR tasks. We establish non-asymptotic bounds demonstrating that the regret decreases inversely with the number of honest systems per cluster and that this reduction is preserved under a bounded fraction of adversarial systems within each cluster.",
+        "url": "http://arxiv.org/abs/2511.05444v1",
+        "published": "2025-11-07T17:25:21Z",
+        "categories": [
+          "cs.LG",
+          "cs.SY",
+          "eess.SY",
+          "math.OC"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "\"I Like That You Have to Poke Around\": Instructors on How Experiential\n  Approaches to AI Literacy Spark Inquiry and Critical Thinking",
+        "authors": [
+          "Aparna Maya Warrier",
+          "Arav Agarwal",
+          "Jaromir Savelka",
+          "Christopher Bogart",
+          "Heather Burte"
+        ],
+        "summary": "As artificial intelligence (AI) increasingly shapes decision-making across domains, there is a growing need to support AI literacy among learners beyond computer science. However, many current approaches rely on programming-heavy tools or abstract lecture-based content, limiting accessibility for non-STEM audiences. This paper presents findings from a study of AI User, a modular, web-based curriculum that teaches core AI concepts through interactive, no-code projects grounded in real-world scenarios. The curriculum includes eight projects; this study focuses on instructor feedback on Projects 5-8, which address applied topics such as natural language processing, computer vision, decision support, and responsible AI. Fifteen community college instructors participated in structured focus groups, completing the projects as learners and providing feedback through individual reflection and group discussion. Using thematic analysis, we examined how instructors evaluated the design, instructional value, and classroom applicability of these experiential activities. Findings highlight instructors' appreciation for exploratory tasks, role-based simulations, and real-world relevance, while also surfacing design trade-offs around cognitive load, guidance, and adaptability for diverse learners. This work extends prior research on AI literacy by centering instructor perspectives on teaching complex AI topics without code. It offers actionable insights for designing inclusive, experiential AI learning resources that scale across disciplines and learner backgrounds.",
+        "url": "http://arxiv.org/abs/2511.05430v1",
+        "published": "2025-11-07T17:05:58Z",
+        "categories": [
+          "cs.CY",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Quantum Tensor Representation via Circuit Partitioning and Reintegration",
+        "authors": [
+          "Ziqing Guo",
+          "Jan Balewski",
+          "Kewen Xiao",
+          "Ziwen Pan"
+        ],
+        "summary": "Quantum computing enables faster computations than clas-sical algorithms through superposition and entanglement. Circuit cutting and knitting are effective techniques for ame-liorating current noisy quantum processing unit (QPUs) er-rors via a divide-and-conquer approach that splits quantum circuits into subcircuits and recombines them using classical post-processing. The development of circuit partitioning and recomposing has focused on tailoring the simulation frame-work by replacing generic non-local gates with probabilistic local gates and measuring the classical communication com-plexity. Designing a protocol that supports algorithms and non-all-to-all qubit-connected physical hardware remains underdeveloped owing to the convoluted properties of cut-ting compact controlled unitary gates and hardware topology. In this study, we introduce shardQ, a method that leverages the SparseCut algorithm with matrix product state (MPS) compilation and a global knitting technique. This method elucidates the optimal trade-off between the computational time and error rate for quantum encoding with a theoretical proof, evidenced by an ablation analysis using an IBM Mar-rakesh superconducting-type QPU. This study also presents the results regarding application readiness.",
+        "url": "http://arxiv.org/abs/2511.05492v1",
+        "published": "2025-11-07T18:59:58Z",
+        "categories": [
+          "quant-ph"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Visual Spatial Tuning",
+        "authors": [
+          "Rui Yang",
+          "Ziyu Zhu",
+          "Yanwei Li",
+          "Jingjia Huang",
+          "Shen Yan",
+          "Siyuan Zhou",
+          "Zhe Liu",
+          "Xiangtai Li",
+          "Shuangye Li",
+          "Wenqian Wang",
+          "Yi Lin",
+          "Hengshuang Zhao"
+        ],
+        "summary": "Capturing spatial relationships from visual inputs is a cornerstone of human-like general intelligence. Several previous studies have tried to enhance the spatial awareness of Vision-Language Models (VLMs) by adding extra expert encoders, which brings extra overhead and usually harms general capabilities. To enhance the spatial ability in general architectures, we introduce Visual Spatial Tuning (VST), a comprehensive framework to cultivate VLMs with human-like visuospatial abilities, from spatial perception to reasoning. We first attempt to enhance spatial perception in VLMs by constructing a large-scale dataset termed VST-P, which comprises 4.1 million samples spanning 19 skills across single views, multiple images, and videos. Then, we present VST-R, a curated dataset with 135K samples that instruct models to reason in space. In particular, we adopt a progressive training pipeline: supervised fine-tuning to build foundational spatial knowledge, followed by reinforcement learning to further improve spatial reasoning abilities. Without the side-effect to general capabilities, the proposed VST consistently achieves state-of-the-art results on several spatial benchmarks, including $34.8\\%$ on MMSI-Bench and $61.2\\%$ on VSIBench. It turns out that the Vision-Language-Action models can be significantly enhanced with the proposed spatial tuning paradigm, paving the way for more physically grounded AI.",
+        "url": "http://arxiv.org/abs/2511.05491v1",
+        "published": "2025-11-07T18:59:16Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "TimeSearch-R: Adaptive Temporal Search for Long-Form Video Understanding\n  via Self-Verification Reinforcement Learning",
+        "authors": [
+          "Junwen Pan",
+          "Qizhe Zhang",
+          "Rui Zhang",
+          "Ming Lu",
+          "Xin Wan",
+          "Yuan Zhang",
+          "Chang Liu",
+          "Qi She"
+        ],
+        "summary": "Temporal search aims to identify a minimal set of relevant frames from tens of thousands based on a given query, serving as a foundation for accurate long-form video understanding. Existing works attempt to progressively narrow the search space. However, these approaches typically rely on a hand-crafted search process, lacking end-to-end optimization for learning optimal search strategies. In this paper, we propose TimeSearch-R, which reformulates temporal search as interleaved text-video thinking, seamlessly integrating searching video clips into the reasoning process through reinforcement learning (RL). However, applying RL training methods, such as Group Relative Policy Optimization (GRPO), to video reasoning can result in unsupervised intermediate search decisions. This leads to insufficient exploration of the video content and inconsistent logical reasoning. To address these issues, we introduce GRPO with Completeness Self-Verification (GRPO-CSV), which gathers searched video frames from the interleaved reasoning process and utilizes the same policy model to verify the adequacy of searched frames, thereby improving the completeness of video reasoning. Additionally, we construct datasets specifically designed for the SFT cold-start and RL training of GRPO-CSV, filtering out samples with weak temporal dependencies to enhance task difficulty and improve temporal search capabilities. Extensive experiments demonstrate that TimeSearch-R achieves significant improvements on temporal search benchmarks such as Haystack-LVBench and Haystack-Ego4D, as well as long-form video understanding benchmarks like VideoMME and MLVU. Notably, TimeSearch-R establishes a new state-of-the-art on LongVideoBench with 4.1% improvement over the base model Qwen2.5-VL and 2.0% over the advanced video reasoning model Video-R1. Our code is available at https://github.com/Time-Search/TimeSearch-R.",
+        "url": "http://arxiv.org/abs/2511.05489v1",
+        "published": "2025-11-07T18:58:25Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "DGTN: Graph-Enhanced Transformer with Diffusive Attention Gating\n  Mechanism for Enzyme DDG Prediction",
+        "authors": [
+          "Abigail Lin"
+        ],
+        "summary": "Predicting the effect of amino acid mutations on enzyme thermodynamic stability (DDG) is fundamental to protein engineering and drug design. While recent deep learning approaches have shown promise, they often process sequence and structure information independently, failing to capture the intricate coupling between local structural geometry and global sequential patterns. We present DGTN (Diffused Graph-Transformer Network), a novel architecture that co-learns graph neural network (GNN) weights for structural priors and transformer attention through a diffusion mechanism. Our key innovation is a bidirectional diffusion process where: (1) GNN-derived structural embeddings guide transformer attention via learnable diffusion kernels, and (2) transformer representations refine GNN message passing through attention-modulated graph updates. We provide rigorous mathematical analysis showing this co-learning scheme achieves provably better approximation bounds than independent processing. On ProTherm and SKEMPI benchmarks, DGTN achieves state-of-the-art performance (Pearson Rho = 0.87, RMSE = 1.21 kcal/mol), with 6.2% improvement over best baselines. Ablation studies confirm the diffusion mechanism contributes 4.8 points to correlation. Our theoretical analysis proves the diffused attention converges to optimal structure-sequence coupling, with convergence rate O(1/sqrt(T) ) where T is diffusion steps. This work establishes a principled framework for integrating heterogeneous protein representations through learnable diffusion.",
+        "url": "http://arxiv.org/abs/2511.05483v1",
+        "published": "2025-11-07T18:52:17Z",
+        "categories": [
+          "cs.LG",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "On Flow Matching KL Divergence",
+        "authors": [
+          "Maojiang Su",
+          "Jerry Yao-Chieh Hu",
+          "Sophia Pi",
+          "Han Liu"
+        ],
+        "summary": "We derive a deterministic, non-asymptotic upper bound on the Kullback-Leibler (KL) divergence of the flow-matching distribution approximation. In particular, if the $L_2$ flow-matching loss is bounded by $\\epsilon^2 > 0$, then the KL divergence between the true data distribution and the estimated distribution is bounded by $A_1 \\epsilon + A_2 \\epsilon^2$. Here, the constants $A_1$ and $A_2$ depend only on the regularities of the data and velocity fields. Consequently, this bound implies statistical convergence rates of Flow Matching Transformers under the Total Variation (TV) distance. We show that, flow matching achieves nearly minimax-optimal efficiency in estimating smooth distributions. Our results make the statistical efficiency of flow matching comparable to that of diffusion models under the TV distance. Numerical studies on synthetic and learned velocities corroborate our theory.",
+        "url": "http://arxiv.org/abs/2511.05480v1",
+        "published": "2025-11-07T18:47:46Z",
+        "categories": [
+          "cs.LG",
+          "cs.AI",
+          "cs.CV",
+          "stat.ML"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Quantum Tensor Representation via Circuit Partitioning and Reintegration",
+        "authors": [
+          "Ziqing Guo",
+          "Jan Balewski",
+          "Kewen Xiao",
+          "Ziwen Pan"
+        ],
+        "summary": "Quantum computing enables faster computations than clas-sical algorithms through superposition and entanglement. Circuit cutting and knitting are effective techniques for ame-liorating current noisy quantum processing unit (QPUs) er-rors via a divide-and-conquer approach that splits quantum circuits into subcircuits and recombines them using classical post-processing. The development of circuit partitioning and recomposing has focused on tailoring the simulation frame-work by replacing generic non-local gates with probabilistic local gates and measuring the classical communication com-plexity. Designing a protocol that supports algorithms and non-all-to-all qubit-connected physical hardware remains underdeveloped owing to the convoluted properties of cut-ting compact controlled unitary gates and hardware topology. In this study, we introduce shardQ, a method that leverages the SparseCut algorithm with matrix product state (MPS) compilation and a global knitting technique. This method elucidates the optimal trade-off between the computational time and error rate for quantum encoding with a theoretical proof, evidenced by an ablation analysis using an IBM Mar-rakesh superconducting-type QPU. This study also presents the results regarding application readiness.",
+        "url": "http://arxiv.org/abs/2511.05492v1",
+        "published": "2025-11-07T18:59:58Z",
+        "categories": [
+          "quant-ph"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Visual Spatial Tuning",
+        "authors": [
+          "Rui Yang",
+          "Ziyu Zhu",
+          "Yanwei Li",
+          "Jingjia Huang",
+          "Shen Yan",
+          "Siyuan Zhou",
+          "Zhe Liu",
+          "Xiangtai Li",
+          "Shuangye Li",
+          "Wenqian Wang",
+          "Yi Lin",
+          "Hengshuang Zhao"
+        ],
+        "summary": "Capturing spatial relationships from visual inputs is a cornerstone of human-like general intelligence. Several previous studies have tried to enhance the spatial awareness of Vision-Language Models (VLMs) by adding extra expert encoders, which brings extra overhead and usually harms general capabilities. To enhance the spatial ability in general architectures, we introduce Visual Spatial Tuning (VST), a comprehensive framework to cultivate VLMs with human-like visuospatial abilities, from spatial perception to reasoning. We first attempt to enhance spatial perception in VLMs by constructing a large-scale dataset termed VST-P, which comprises 4.1 million samples spanning 19 skills across single views, multiple images, and videos. Then, we present VST-R, a curated dataset with 135K samples that instruct models to reason in space. In particular, we adopt a progressive training pipeline: supervised fine-tuning to build foundational spatial knowledge, followed by reinforcement learning to further improve spatial reasoning abilities. Without the side-effect to general capabilities, the proposed VST consistently achieves state-of-the-art results on several spatial benchmarks, including $34.8\\%$ on MMSI-Bench and $61.2\\%$ on VSIBench. It turns out that the Vision-Language-Action models can be significantly enhanced with the proposed spatial tuning paradigm, paving the way for more physically grounded AI.",
+        "url": "http://arxiv.org/abs/2511.05491v1",
+        "published": "2025-11-07T18:59:16Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "TimeSearch-R: Adaptive Temporal Search for Long-Form Video Understanding\n  via Self-Verification Reinforcement Learning",
+        "authors": [
+          "Junwen Pan",
+          "Qizhe Zhang",
+          "Rui Zhang",
+          "Ming Lu",
+          "Xin Wan",
+          "Yuan Zhang",
+          "Chang Liu",
+          "Qi She"
+        ],
+        "summary": "Temporal search aims to identify a minimal set of relevant frames from tens of thousands based on a given query, serving as a foundation for accurate long-form video understanding. Existing works attempt to progressively narrow the search space. However, these approaches typically rely on a hand-crafted search process, lacking end-to-end optimization for learning optimal search strategies. In this paper, we propose TimeSearch-R, which reformulates temporal search as interleaved text-video thinking, seamlessly integrating searching video clips into the reasoning process through reinforcement learning (RL). However, applying RL training methods, such as Group Relative Policy Optimization (GRPO), to video reasoning can result in unsupervised intermediate search decisions. This leads to insufficient exploration of the video content and inconsistent logical reasoning. To address these issues, we introduce GRPO with Completeness Self-Verification (GRPO-CSV), which gathers searched video frames from the interleaved reasoning process and utilizes the same policy model to verify the adequacy of searched frames, thereby improving the completeness of video reasoning. Additionally, we construct datasets specifically designed for the SFT cold-start and RL training of GRPO-CSV, filtering out samples with weak temporal dependencies to enhance task difficulty and improve temporal search capabilities. Extensive experiments demonstrate that TimeSearch-R achieves significant improvements on temporal search benchmarks such as Haystack-LVBench and Haystack-Ego4D, as well as long-form video understanding benchmarks like VideoMME and MLVU. Notably, TimeSearch-R establishes a new state-of-the-art on LongVideoBench with 4.1% improvement over the base model Qwen2.5-VL and 2.0% over the advanced video reasoning model Video-R1. Our code is available at https://github.com/Time-Search/TimeSearch-R.",
+        "url": "http://arxiv.org/abs/2511.05489v1",
+        "published": "2025-11-07T18:58:25Z",
+        "categories": [
+          "cs.CV",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "MIMIC-SR-ICD11: A Dataset for Narrative-Based Diagnosis",
+        "authors": [
+          "Yuexin Wu",
+          "Shiqi Wang",
+          "Vasile Rus"
+        ],
+        "summary": "Disease diagnosis is a central pillar of modern healthcare, enabling early detection and timely intervention for acute conditions while guiding lifestyle adjustments and medication regimens to prevent or slow chronic disease. Self-reports preserve clinically salient signals that templated electronic health record (EHR) documentation often attenuates or omits, especially subtle but consequential details. To operationalize this shift, we introduce MIMIC-SR-ICD11, a large English diagnostic dataset built from EHR discharge notes and natively aligned to WHO ICD-11 terminology. We further present LL-Rank, a likelihood-based re-ranking framework that computes a length-normalized joint likelihood of each label given the clinical report context and subtracts the corresponding report-free prior likelihood for that label. Across seven model backbones, LL-Rank consistently outperforms a strong generation-plus-mapping baseline (GenMap). Ablation experiments show that LL-Rank's gains primarily stem from its PMI-based scoring, which isolates semantic compatibility from label frequency bias.",
+        "url": "http://arxiv.org/abs/2511.05485v1",
+        "published": "2025-11-07T18:55:22Z",
+        "categories": [
+          "cs.CL",
+          "I.2.7; I.5.1"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Radiative corrections to superallowed beta decays at $\\mathcal\n  O(\u03b1^2 Z)$",
+        "authors": [
+          "\u00d2scar L. Crosas",
+          "Emanuele Mereghetti"
+        ],
+        "summary": "We compute $\\mathcal O(\\alpha^2 Z)$ radiative corrections to superallowed $\\beta$ decays with a heavy-particle effective field theory that systematically describes the interactions of low-energy ultrasoft photons with nuclei. We calculate two-loop virtual and one-loop real-virtual amplitudes by reducing the Feynman integrals to a set of master integrals, which we solve analytically using a variety of techniques. These techniques can be applied to other phenomenologically interesting observables. The ultrasoft corrections can then be combined with contributions arising from the exchange of potential photons to obtain the complete $\\mathcal O(\\alpha^2 Z)$ correction to the decay rate, with resummation of large logarithms of the electron energy times the nuclear radius. We find that $\\mathcal O(\\alpha^2 Z)$ ultrasoft loops induce a relative correction to the decay rate that ranges from $0.7 \\cdot 10^{-3}$ in the decay of $^{10}$C to $3.6 \\cdot 10^{-3}$ in the decay of $^{54}$Co, and will thus impact the extraction of $V_{ud}$ at the permille level. We show that the inclusion of these corrections reduces the residual renormalization scale dependence of the decay rate to a negligible level, making missing ultrasoft perturbative corrections a subdominant source of theoretical error.",
+        "url": "http://arxiv.org/abs/2511.05481v1",
+        "published": "2025-11-07T18:48:42Z",
+        "categories": [
+          "hep-ph",
+          "hep-ex",
+          "nucl-ex",
+          "nucl-th"
+        ],
+        "source": "arxiv"
+      }
+    ],
+    "discussions": [
+      {
+        "title": "Human-AI Collaborative Coding Patterns",
+        "summary": "Discussion about effective patterns for human-AI pair programming",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-11-10T09:27:53.221387",
+        "url": "placeholder",
+        "engagement": "active"
+      },
+      {
+        "title": "Visual Design Collaboration with AI Tools",
+        "summary": "Emerging patterns in visual design workflows with AI assistance",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-11-10T09:27:53.221405",
+        "url": "placeholder",
+        "engagement": "emerging"
+      }
+    ]
+  },
+  "trends": {
+    "trending_terms": {
+      "design": 8,
+      "communication": 2,
+      "interaction": 1,
+      "workflow": 1,
+      "pattern": 1
+    },
+    "total_papers": 15,
+    "recent_focus_areas": [
+      "design",
+      "communication",
+      "interaction",
+      "workflow",
+      "pattern"
+    ],
+    "analysis_note": "Based on keyword frequency in recent research papers"
+  },
+  "opportunities": [
+    {
+      "topic": "design",
+      "research_frequency": 8,
+      "gap_level": "high",
+      "research_basis": "Appears 8 times in recent research",
+      "suggested_focus": "Investigate design in the context of human-AI collaboration"
+    }
+  ]
+}
