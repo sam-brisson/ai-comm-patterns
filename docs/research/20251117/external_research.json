@@ -1,0 +1,365 @@
+{
+  "timestamp": "2025-11-17T09:28:40.502071",
+  "depth": "light",
+  "sources": {
+    "arxiv": [
+      {
+        "title": "PRBench: Large-Scale Expert Rubrics for Evaluating High-Stakes Professional Reasoning",
+        "authors": [
+          "Afra Feyza Aky\u00fcrek",
+          "Advait Gosai",
+          "Chen Bo Calvin Zhang",
+          "Vipul Gupta",
+          "Jaehwan Jeong",
+          "Anisha Gunjal",
+          "Tahseen Rabbani",
+          "Maria Mazzone",
+          "David Randolph",
+          "Mohammad Mahmoudi Meymand",
+          "Gurshaan Chattha",
+          "Paula Rodriguez",
+          "Diego Mares",
+          "Pavit Singh",
+          "Michael Liu",
+          "Subodh Chawla",
+          "Pete Cline",
+          "Lucy Ogaz",
+          "Ernesto Hernandez",
+          "Zihao Wang",
+          "Pavi Bhatter",
+          "Marcos Ayestaran",
+          "Bing Liu",
+          "Yunzhong He"
+        ],
+        "summary": "Frontier model progress is often measured by academic benchmarks, which offer a limited view of performance in real-world professional contexts. Existing evaluations often fail to assess open-ended, economically consequential tasks in high-stakes domains like Legal and Finance, where practical returns are paramount. To address this, we introduce Professional Reasoning Bench (PRBench), a realistic, open-ended, and difficult benchmark of real-world problems in Finance and Law. We open-source its 1,100 expert-authored tasks and 19,356 expert-curated criteria, making it, to our knowledge, the largest public, rubric-based benchmark for both legal and finance domains. We recruit 182 qualified professionals, holding JDs, CFAs, or 6+ years of experience, who contributed tasks inspired by their actual workflows. This process yields significant diversity, with tasks spanning 114 countries and 47 US jurisdictions. Our expert-curated rubrics are validated through a rigorous quality pipeline, including independent expert validation. Subsequent evaluation of 20 leading models reveals substantial room for improvement, with top scores of only 0.39 (Finance) and 0.37 (Legal) on our Hard subsets. We further catalog associated economic impacts of the prompts and analyze performance using human-annotated rubric categories. Our analysis shows that models with similar overall scores can diverge significantly on specific capabilities. Common failure modes include inaccurate judgments, a lack of process transparency and incomplete reasoning, highlighting critical gaps in their reliability for professional adoption.",
+        "url": "http://arxiv.org/abs/2511.11562v1",
+        "published": "2025-11-14T18:55:12Z",
+        "categories": [
+          "cs.CL",
+          "cs.CY"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Human-AI collaborative autonomous synthesis with pulsed laser deposition for remote epitaxy",
+        "authors": [
+          "Asraful Haque",
+          "Daniel T. Yimam",
+          "Jawad Chowdhury",
+          "Ralph Bulanadi",
+          "Ivan Vlassiouk",
+          "John Lasseter",
+          "Sujoy Ghosh",
+          "Christopher M. Rouleau",
+          "Kai Xiao",
+          "Yongtao Liu",
+          "Eva Zarkadoula",
+          "Rama K. Vasudevan",
+          "Sumner B. Harris"
+        ],
+        "summary": "Autonomous laboratories typically rely on data-driven decision-making, occasionally with human-in-the-loop oversight to inject domain expertise. Fully leveraging AI agents, however, requires tightly coupled, collaborative workflows spanning hypothesis generation, experimental planning, execution, and interpretation. To address this, we develop and deploy a human-AI collaborative (HAIC) workflow that integrates large language models for hypothesis generation and analysis, with collaborative policy updates driving autonomous pulsed laser deposition (PLD) experiments for remote epitaxy of BaTiO$_3$/graphene. HAIC accelerated the hypothesis formation and experimental design and efficiently mapped the growth space to graphene-damage. In situ Raman spectroscopy reveals that chemistry drives degradation while the highest energy plume components seed defects, identifying a low-O$_2$ pressure low-temperature synthesis window that preserves graphene but is incompatible with optimal BaTiO$_3$ growth. Thus, we show a two-step Ar/O$_2$ deposition is required to exfoliate ferroelectric BaTiO$_3$ while maintaining a monolayer graphene interlayer. HAIC stages human insight with AI reasoning between autonomous batches to drive rapid scientific progress, providing an evolution to many existing human-in-the-loop autonomous workflows.",
+        "url": "http://arxiv.org/abs/2511.11558v1",
+        "published": "2025-11-14T18:48:52Z",
+        "categories": [
+          "cond-mat.mtrl-sci",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Drone Swarm Energy Management",
+        "authors": [
+          "Michael Z. Zgurovsky",
+          "Pavlo O. Kasyanov",
+          "Liliia S. Paliichuk"
+        ],
+        "summary": "This note presents an analytical framework for decision-making in drone swarm systems operating under uncertainty, based on the integration of Partially Observable Markov Decision Processes (POMDP) with Deep Deterministic Policy Gradient (DDPG) reinforcement learning. The proposed approach enables adaptive control and cooperative behavior of unmanned aerial vehicles (UAVs) within a cognitive AI platform, where each agent learns optimal energy management and navigation policies from dynamic environmental states. We extend the standard DDPG architecture with a belief-state representation derived from Bayesian filtering, allowing for robust decision-making in partially observable environments. In this paper, for the Gaussian case, we numerically compare the performance of policies derived from DDPG to optimal policies for discretized versions of the original continuous problem. Simulation results demonstrate that the POMDP-DDPG-based swarm control model significantly improves mission success rates and energy efficiency compared to baseline methods. The developed framework supports distributed learning and decision coordination across multiple agents, providing a foundation for scalable cognitive swarm autonomy. The outcomes of this research contribute to the advancement of energy-aware control algorithms for intelligent multi-agent systems and can be applied in security, environmental monitoring, and infrastructure inspection scenarios.",
+        "url": "http://arxiv.org/abs/2511.11557v1",
+        "published": "2025-11-14T18:47:30Z",
+        "categories": [
+          "math.OC",
+          "cs.RO"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "DocLens : A Tool-Augmented Multi-Agent Framework for Long Visual Document Understanding",
+        "authors": [
+          "Dawei Zhu",
+          "Rui Meng",
+          "Jiefeng Chen",
+          "Sujian Li",
+          "Tomas Pfister",
+          "Jinsung Yoon"
+        ],
+        "summary": "Comprehending long visual documents, where information is distributed across extensive pages of text and visual elements, is a critical but challenging task for modern Vision-Language Models (VLMs). Existing approaches falter on a fundamental challenge: evidence localization. They struggle to retrieve relevant pages and overlook fine-grained details within visual elements, leading to limited performance and model hallucination. To address this, we propose DocLens, a tool-augmented multi-agent framework that effectively ``zooms in'' on evidence like a lens. It first navigates from the full document to specific visual elements on relevant pages, then employs a sampling-adjudication mechanism to generate a single, reliable answer. Paired with Gemini-2.5-Pro, DocLens achieves state-of-the-art performance on MMLongBench-Doc and FinRAGBench-V, surpassing even human experts. The framework's superiority is particularly evident on vision-centric and unanswerable queries, demonstrating the power of its enhanced localization capabilities.",
+        "url": "http://arxiv.org/abs/2511.11552v1",
+        "published": "2025-11-14T18:42:18Z",
+        "categories": [
+          "cs.CV",
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Aligning Machiavellian Agents: Behavior Steering via Test-Time Policy Shaping",
+        "authors": [
+          "Dena Mujtaba",
+          "Brian Hu",
+          "Anthony Hoogs",
+          "Arslan Basharat"
+        ],
+        "summary": "The deployment of decision-making AI agents presents a critical challenge in maintaining alignment with human values or guidelines while operating in complex, dynamic environments. Agents trained solely to achieve their objectives may adopt harmful behavior, exposing a key trade-off between maximizing the reward function and maintaining the alignment. For the pre-trained agents, ensuring alignment is particularly challenging, as retraining can be a costly and slow process. This is further complicated by the diverse and potentially conflicting attributes representing the ethical values for alignment. To address these challenges, we propose a test-time alignment technique based on model-guided policy shaping. Our method allows precise control over individual behavioral attributes, generalizes across diverse reinforcement learning (RL) environments, and facilitates a principled trade-off between ethical alignment and reward maximization without requiring agent retraining. We evaluate our approach using the MACHIAVELLI benchmark, which comprises 134 text-based game environments and thousands of annotated scenarios involving ethical decisions. The RL agents are first trained to maximize the reward in their respective games. At test time, we apply policy shaping via scenario-action attribute classifiers to ensure decision alignment with ethical attributes. We compare our approach against prior training-time methods and general-purpose agents, as well as study several types of ethical violations and power-seeking behavior. Our results demonstrate that test-time policy shaping provides an effective and scalable solution for mitigating unethical behavior across diverse environments and alignment attributes.",
+        "url": "http://arxiv.org/abs/2511.11551v1",
+        "published": "2025-11-14T18:42:18Z",
+        "categories": [
+          "cs.AI",
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Private Frequency Estimation Via Residue Number Systems",
+        "authors": [
+          "H\u00e9ber H. Arcolezi"
+        ],
+        "summary": "We present \\textsf{ModularSubsetSelection} (MSS), a new algorithm for locally differentially private (LDP) frequency estimation. Given a universe of size $k$ and $n$ users, our $\\varepsilon$-LDP mechanism encodes each input via a Residue Number System (RNS) over $\\ell$ pairwise-coprime moduli $m_0, \\ldots, m_{\\ell-1}$, and reports a randomly chosen index $j \\in [\\ell]$ along with the perturbed residue using the statistically optimal \\textsf{SubsetSelection}~(SS) (Wang et al. 2016). This design reduces the user communication cost from $\u0398\\bigl(\u03c9\\log_2(k/\u03c9)\\bigr)$ bits required by standard SS (with $\u03c9\\approx k/(e^\\varepsilon+1)$) down to $\\lceil \\log_2 \\ell \\rceil + \\lceil \\log_2 m_j \\rceil$ bits, where $m_j < k$. Server-side decoding runs in $\u0398(n + r k \\ell)$ time, where $r$ is the number of LSMR (Fong and Saunders 2011) iterations. In practice, with well-conditioned moduli (\\textit{i.e.}, constant $r$ and $\\ell = \u0398(\\log k)$), this becomes $\u0398(n + k \\log k)$. We prove that MSS achieves worst-case MSE within a constant factor of state-of-the-art protocols such as SS and \\textsf{ProjectiveGeometryResponse} (PGR) (Feldman et al. 2022), while avoiding the algebraic prerequisites and dynamic-programming decoder required by PGR. Empirically, MSS matches the estimation accuracy of SS, PGR, and \\textsf{RAPPOR} (Erlingsson, Pihur, and Korolova 2014) across realistic $(k, \\varepsilon)$ settings, while offering faster decoding than PGR and shorter user messages than SS. Lastly, by sampling from multiple moduli and reporting only a single perturbed residue, MSS achieves the lowest reconstruction-attack success rate among all evaluated LDP protocols.",
+        "url": "http://arxiv.org/abs/2511.11569v1",
+        "published": "2025-11-14T18:58:41Z",
+        "categories": [
+          "cs.CR",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "A Unified Convergence Analysis for Semi-Decentralized Learning: Sampled-to-Sampled vs. Sampled-to-All Communication",
+        "authors": [
+          "Angelo Rodio",
+          "Giovanni Neglia",
+          "Zheng Chen",
+          "Erik G. Larsson"
+        ],
+        "summary": "In semi-decentralized federated learning, devices primarily rely on device-to-device communication but occasionally interact with a central server. Periodically, a sampled subset of devices uploads their local models to the server, which computes an aggregate model. The server can then either (i) share this aggregate model only with the sampled clients (sampled-to-sampled, S2S) or (ii) broadcast it to all clients (sampled-to-all, S2A). Despite their practical significance, a rigorous theoretical and empirical comparison of these two strategies remains absent. We address this gap by analyzing S2S and S2A within a unified convergence framework that accounts for key system parameters: sampling rate, server aggregation frequency, and network connectivity. Our results, both analytical and experimental, reveal distinct regimes where one strategy outperforms the other, depending primarily on the degree of data heterogeneity across devices. These insights lead to concrete design guidelines for practical semi-decentralized FL deployments.",
+        "url": "http://arxiv.org/abs/2511.11560v1",
+        "published": "2025-11-14T18:53:37Z",
+        "categories": [
+          "cs.LG",
+          "cs.AI",
+          "cs.DC"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Human-AI collaborative autonomous synthesis with pulsed laser deposition for remote epitaxy",
+        "authors": [
+          "Asraful Haque",
+          "Daniel T. Yimam",
+          "Jawad Chowdhury",
+          "Ralph Bulanadi",
+          "Ivan Vlassiouk",
+          "John Lasseter",
+          "Sujoy Ghosh",
+          "Christopher M. Rouleau",
+          "Kai Xiao",
+          "Yongtao Liu",
+          "Eva Zarkadoula",
+          "Rama K. Vasudevan",
+          "Sumner B. Harris"
+        ],
+        "summary": "Autonomous laboratories typically rely on data-driven decision-making, occasionally with human-in-the-loop oversight to inject domain expertise. Fully leveraging AI agents, however, requires tightly coupled, collaborative workflows spanning hypothesis generation, experimental planning, execution, and interpretation. To address this, we develop and deploy a human-AI collaborative (HAIC) workflow that integrates large language models for hypothesis generation and analysis, with collaborative policy updates driving autonomous pulsed laser deposition (PLD) experiments for remote epitaxy of BaTiO$_3$/graphene. HAIC accelerated the hypothesis formation and experimental design and efficiently mapped the growth space to graphene-damage. In situ Raman spectroscopy reveals that chemistry drives degradation while the highest energy plume components seed defects, identifying a low-O$_2$ pressure low-temperature synthesis window that preserves graphene but is incompatible with optimal BaTiO$_3$ growth. Thus, we show a two-step Ar/O$_2$ deposition is required to exfoliate ferroelectric BaTiO$_3$ while maintaining a monolayer graphene interlayer. HAIC stages human insight with AI reasoning between autonomous batches to drive rapid scientific progress, providing an evolution to many existing human-in-the-loop autonomous workflows.",
+        "url": "http://arxiv.org/abs/2511.11558v1",
+        "published": "2025-11-14T18:48:52Z",
+        "categories": [
+          "cond-mat.mtrl-sci",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Drone Swarm Energy Management",
+        "authors": [
+          "Michael Z. Zgurovsky",
+          "Pavlo O. Kasyanov",
+          "Liliia S. Paliichuk"
+        ],
+        "summary": "This note presents an analytical framework for decision-making in drone swarm systems operating under uncertainty, based on the integration of Partially Observable Markov Decision Processes (POMDP) with Deep Deterministic Policy Gradient (DDPG) reinforcement learning. The proposed approach enables adaptive control and cooperative behavior of unmanned aerial vehicles (UAVs) within a cognitive AI platform, where each agent learns optimal energy management and navigation policies from dynamic environmental states. We extend the standard DDPG architecture with a belief-state representation derived from Bayesian filtering, allowing for robust decision-making in partially observable environments. In this paper, for the Gaussian case, we numerically compare the performance of policies derived from DDPG to optimal policies for discretized versions of the original continuous problem. Simulation results demonstrate that the POMDP-DDPG-based swarm control model significantly improves mission success rates and energy efficiency compared to baseline methods. The developed framework supports distributed learning and decision coordination across multiple agents, providing a foundation for scalable cognitive swarm autonomy. The outcomes of this research contribute to the advancement of energy-aware control algorithms for intelligent multi-agent systems and can be applied in security, environmental monitoring, and infrastructure inspection scenarios.",
+        "url": "http://arxiv.org/abs/2511.11557v1",
+        "published": "2025-11-14T18:47:30Z",
+        "categories": [
+          "math.OC",
+          "cs.RO"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Aligning Machiavellian Agents: Behavior Steering via Test-Time Policy Shaping",
+        "authors": [
+          "Dena Mujtaba",
+          "Brian Hu",
+          "Anthony Hoogs",
+          "Arslan Basharat"
+        ],
+        "summary": "The deployment of decision-making AI agents presents a critical challenge in maintaining alignment with human values or guidelines while operating in complex, dynamic environments. Agents trained solely to achieve their objectives may adopt harmful behavior, exposing a key trade-off between maximizing the reward function and maintaining the alignment. For the pre-trained agents, ensuring alignment is particularly challenging, as retraining can be a costly and slow process. This is further complicated by the diverse and potentially conflicting attributes representing the ethical values for alignment. To address these challenges, we propose a test-time alignment technique based on model-guided policy shaping. Our method allows precise control over individual behavioral attributes, generalizes across diverse reinforcement learning (RL) environments, and facilitates a principled trade-off between ethical alignment and reward maximization without requiring agent retraining. We evaluate our approach using the MACHIAVELLI benchmark, which comprises 134 text-based game environments and thousands of annotated scenarios involving ethical decisions. The RL agents are first trained to maximize the reward in their respective games. At test time, we apply policy shaping via scenario-action attribute classifiers to ensure decision alignment with ethical attributes. We compare our approach against prior training-time methods and general-purpose agents, as well as study several types of ethical violations and power-seeking behavior. Our results demonstrate that test-time policy shaping provides an effective and scalable solution for mitigating unethical behavior across diverse environments and alignment attributes.",
+        "url": "http://arxiv.org/abs/2511.11551v1",
+        "published": "2025-11-14T18:42:18Z",
+        "categories": [
+          "cs.AI",
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Optimizing Mixture of Block Attention",
+        "authors": [
+          "Guangxuan Xiao",
+          "Junxian Guo",
+          "Kasra Mazaheri",
+          "Song Han"
+        ],
+        "summary": "Mixture of Block Attention (MoBA) (Lu et al., 2025) is a promising building block for efficiently processing long contexts in LLMs by enabling queries to sparsely attend to a small subset of key-value blocks, drastically reducing computational cost. However, the design principles governing MoBA's performance are poorly understood, and it lacks an efficient GPU implementation, hindering its practical adoption. In this paper, we first develop a statistical model to analyze MoBA's underlying mechanics. Our model reveals that performance critically depends on the router's ability to accurately distinguish relevant from irrelevant blocks based on query-key affinities. We derive a signal-to-noise ratio that formally connects architectural parameters to this retrieval accuracy. Guided by our analysis, we identify two key pathways for improvement: using smaller block sizes and applying a short convolution on keys to cluster relevant signals, which enhances routing accuracy. While theoretically better, small block sizes are inefficient on GPUs. To bridge this gap, we introduce FlashMoBA, a hardware-aware CUDA kernel that enables efficient MoBA execution even with the small block sizes our theory recommends. We validate our insights by training LLMs from scratch, showing that our improved MoBA models match the performance of dense attention baselines. FlashMoBA achieves up to 14.7x speedup over FlashAttention-2 for small blocks, making our theoretically-grounded improvements practical. Code is available at: https://github.com/mit-han-lab/flash-moba.",
+        "url": "http://arxiv.org/abs/2511.11571v1",
+        "published": "2025-11-14T18:59:59Z",
+        "categories": [
+          "cs.LG",
+          "cs.CL"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Private Frequency Estimation Via Residue Number Systems",
+        "authors": [
+          "H\u00e9ber H. Arcolezi"
+        ],
+        "summary": "We present \\textsf{ModularSubsetSelection} (MSS), a new algorithm for locally differentially private (LDP) frequency estimation. Given a universe of size $k$ and $n$ users, our $\\varepsilon$-LDP mechanism encodes each input via a Residue Number System (RNS) over $\\ell$ pairwise-coprime moduli $m_0, \\ldots, m_{\\ell-1}$, and reports a randomly chosen index $j \\in [\\ell]$ along with the perturbed residue using the statistically optimal \\textsf{SubsetSelection}~(SS) (Wang et al. 2016). This design reduces the user communication cost from $\u0398\\bigl(\u03c9\\log_2(k/\u03c9)\\bigr)$ bits required by standard SS (with $\u03c9\\approx k/(e^\\varepsilon+1)$) down to $\\lceil \\log_2 \\ell \\rceil + \\lceil \\log_2 m_j \\rceil$ bits, where $m_j < k$. Server-side decoding runs in $\u0398(n + r k \\ell)$ time, where $r$ is the number of LSMR (Fong and Saunders 2011) iterations. In practice, with well-conditioned moduli (\\textit{i.e.}, constant $r$ and $\\ell = \u0398(\\log k)$), this becomes $\u0398(n + k \\log k)$. We prove that MSS achieves worst-case MSE within a constant factor of state-of-the-art protocols such as SS and \\textsf{ProjectiveGeometryResponse} (PGR) (Feldman et al. 2022), while avoiding the algebraic prerequisites and dynamic-programming decoder required by PGR. Empirically, MSS matches the estimation accuracy of SS, PGR, and \\textsf{RAPPOR} (Erlingsson, Pihur, and Korolova 2014) across realistic $(k, \\varepsilon)$ settings, while offering faster decoding than PGR and shorter user messages than SS. Lastly, by sampling from multiple moduli and reporting only a single perturbed residue, MSS achieves the lowest reconstruction-attack success rate among all evaluated LDP protocols.",
+        "url": "http://arxiv.org/abs/2511.11569v1",
+        "published": "2025-11-14T18:58:41Z",
+        "categories": [
+          "cs.CR",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Who Moved My Distribution? Conformal Prediction for Interactive Multi-Agent Systems",
+        "authors": [
+          "Allen Emmanuel Binny",
+          "Anushri Dixit"
+        ],
+        "summary": "Uncertainty-aware prediction is essential for safe motion planning, especially when using learned models to forecast the behavior of surrounding agents. Conformal prediction is a statistical tool often used to produce uncertainty-aware prediction regions for machine learning models. Most existing frameworks utilizing conformal prediction-based uncertainty predictions assume that the surrounding agents are non-interactive. This is because in closed-loop, as uncertainty-aware agents change their behavior to account for prediction uncertainty, the surrounding agents respond to this change, leading to a distribution shift which we call endogenous distribution shift. To address this challenge, we introduce an iterative conformal prediction framework that systematically adapts the uncertainty-aware ego-agent controller to the endogenous distribution shift. The proposed method provides probabilistic safety guarantees while adapting to the evolving behavior of reactive, non-ego agents. We establish a model for the endogenous distribution shift and provide the conditions for the iterative conformal prediction pipeline to converge under such a distribution shift. We validate our framework in simulation for 2- and 3- agent interaction scenarios, demonstrating collision avoidance without resulting in overly conservative behavior and an overall improvement in success rates of up to 9.6% compared to other conformal prediction-based baselines.",
+        "url": "http://arxiv.org/abs/2511.11567v1",
+        "published": "2025-11-14T18:57:13Z",
+        "categories": [
+          "eess.SY"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Estimating Total Effects in Bipartite Experiments with Spillovers and Partial Eligibility",
+        "authors": [
+          "Albert Tan",
+          "Mohsen Bayati",
+          "James Nordlund",
+          "Roman Istomin"
+        ],
+        "summary": "We study randomized experiments in bipartite systems where only a subset of treatment-side units are eligible for assignment while all units continue to interact, generating interference. We formalize eligibility-constrained bipartite experiments and define estimands aligned with full deployment: the Primary Total Treatment Effect (PTTE) on eligible units and the Secondary Total Treatment Effect (STTE) on ineligible units. Under randomization within the eligible set, we give identification conditions and develop interference-aware ensemble estimators that combine exposure mappings, generalized propensity scores, and flexible machine learning. We further introduce a projection that links treatment- and outcome-level estimands; this mapping is exact under a Linear Additive Edges condition and enables estimation on the (typically much smaller) treatment side with deterministic aggregation to outcomes. In simulations with known ground truth across realistic exposure regimes, the proposed estimators recover PTTE and STTE with low bias and variance and reduce the bias that could arise when interference is ignored. Two field experiments illustrate practical relevance: our method corrects the direction of expected interference bias for a pre-specified metric in both studies and reverses the sign and significance of the primary decision metric in one case.",
+        "url": "http://arxiv.org/abs/2511.11564v1",
+        "published": "2025-11-14T18:55:51Z",
+        "categories": [
+          "stat.ME",
+          "cs.LG",
+          "stat.ML"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "LARM: A Large Articulated-Object Reconstruction Model",
+        "authors": [
+          "Sylvia Yuan",
+          "Ruoxi Shi",
+          "Xinyue Wei",
+          "Xiaoshuai Zhang",
+          "Hao Su",
+          "Minghua Liu"
+        ],
+        "summary": "Modeling 3D articulated objects with realistic geometry, textures, and kinematics is essential for a wide range of applications. However, existing optimization-based reconstruction methods often require dense multi-view inputs and expensive per-instance optimization, limiting their scalability. Recent feedforward approaches offer faster alternatives but frequently produce coarse geometry, lack texture reconstruction, and rely on brittle, complex multi-stage pipelines. We introduce LARM, a unified feedforward framework that reconstructs 3D articulated objects from sparse-view images by jointly recovering detailed geometry, realistic textures, and accurate joint structures. LARM extends LVSM a recent novel view synthesis (NVS) approach for static 3D objects into the articulated setting by jointly reasoning over camera pose and articulation variation using a transformer-based architecture, enabling scalable and accurate novel view synthesis. In addition, LARM generates auxiliary outputs such as depth maps and part masks to facilitate explicit 3D mesh extraction and joint estimation. Our pipeline eliminates the need for dense supervision and supports high-fidelity reconstruction across diverse object categories. Extensive experiments demonstrate that LARM outperforms state-of-the-art methods in both novel view and state synthesis as well as 3D articulated object reconstruction, generating high-quality meshes that closely adhere to the input images. project page: https://sylviayuan-sy.github.io/larm-site/",
+        "url": "http://arxiv.org/abs/2511.11563v1",
+        "published": "2025-11-14T18:55:27Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      }
+    ],
+    "discussions": [
+      {
+        "title": "Human-AI Collaborative Coding Patterns",
+        "summary": "Discussion about effective patterns for human-AI pair programming",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-11-17T09:28:44.680721",
+        "url": "placeholder",
+        "engagement": "active"
+      },
+      {
+        "title": "Visual Design Collaboration with AI Tools",
+        "summary": "Emerging patterns in visual design workflows with AI assistance",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-11-17T09:28:44.680737",
+        "url": "placeholder",
+        "engagement": "emerging"
+      }
+    ]
+  },
+  "trends": {
+    "trending_terms": {
+      "workflow": 7,
+      "design": 6,
+      "human-ai": 4,
+      "communication": 4,
+      "interaction": 1,
+      "transparency": 1,
+      "experience": 1
+    },
+    "total_papers": 15,
+    "recent_focus_areas": [
+      "workflow",
+      "design",
+      "human-ai",
+      "communication",
+      "interaction"
+    ],
+    "analysis_note": "Based on keyword frequency in recent research papers"
+  },
+  "opportunities": [
+    {
+      "topic": "workflow",
+      "research_frequency": 7,
+      "gap_level": "high",
+      "research_basis": "Appears 7 times in recent research",
+      "suggested_focus": "Map effective workflow patterns for AI-assisted tasks"
+    },
+    {
+      "topic": "design",
+      "research_frequency": 6,
+      "gap_level": "high",
+      "research_basis": "Appears 6 times in recent research",
+      "suggested_focus": "Investigate design in the context of human-AI collaboration"
+    },
+    {
+      "topic": "human-ai",
+      "research_frequency": 4,
+      "gap_level": "high",
+      "research_basis": "Appears 4 times in recent research",
+      "suggested_focus": "Investigate human-ai in the context of human-AI collaboration"
+    },
+    {
+      "topic": "communication",
+      "research_frequency": 4,
+      "gap_level": "high",
+      "research_basis": "Appears 4 times in recent research",
+      "suggested_focus": "Study communication patterns that enhance human-AI collaboration"
+    }
+  ]
+}
