@@ -1,0 +1,343 @@
+{
+  "timestamp": "2025-11-24T09:28:57.545481",
+  "depth": "light",
+  "sources": {
+    "arxiv": [
+      {
+        "title": "Video-R4: Reinforcing Text-Rich Video Reasoning with Visual Rumination",
+        "authors": [
+          "Yolo Yunlong Tang",
+          "Daiki Shimada",
+          "Hang Hua",
+          "Chao Huang",
+          "Jing Bi",
+          "Rogerio Feris",
+          "Chenliang Xu"
+        ],
+        "summary": "Understanding text-rich videos requires reading small, transient textual cues that often demand repeated inspection. Yet most video QA models rely on single-pass perception over fixed frames, leading to hallucinations and failures on fine-grained evidence. Inspired by how humans pause, zoom, and re-read critical regions, we introduce Video-R4 (Reinforcing Text-Rich Video Reasoning with Visual Rumination), a video reasoning LMM that performs visual rumination: iteratively selecting frames, zooming into informative regions, re-encoding retrieved pixels, and updating its reasoning state. We construct two datasets with executable rumination trajectories: Video-R4-CoT-17k for supervised practice and Video-R4-RL-30k for reinforcement learning. We propose a multi-stage rumination learning framework that progressively finetunes a 7B LMM to learn atomic and mixing visual operations via SFT and GRPO-based RL. Video-R4-7B achieves state-of-the-art results on M4-ViteVQA and further generalizes to multi-page document QA, slides QA, and generic video QA, demonstrating that iterative rumination is an effective paradigm for pixel-grounded multimodal reasoning.",
+        "url": "http://arxiv.org/abs/2511.17490v1",
+        "published": "2025-11-21T18:47:09Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Harnessing Data from Clustered LQR Systems: Personalized and Collaborative Policy Optimization",
+        "authors": [
+          "Vinay Kanakeri",
+          "Shivam Bajaj",
+          "Ashwin Verma",
+          "Vijay Gupta",
+          "Aritra Mitra"
+        ],
+        "summary": "It is known that reinforcement learning (RL) is data-hungry. To improve sample-efficiency of RL, it has been proposed that the learning algorithm utilize data from 'approximately similar' processes. However, since the process models are unknown, identifying which other processes are similar poses a challenge. In this work, we study this problem in the context of the benchmark Linear Quadratic Regulator (LQR) setting. Specifically, we consider a setting with multiple agents, each corresponding to a copy of a linear process to be controlled. The agents' local processes can be partitioned into clusters based on similarities in dynamics and tasks. Combining ideas from sequential elimination and zeroth-order policy optimization, we propose a new algorithm that performs simultaneous clustering and learning to output a personalized policy (controller) for each cluster. Under a suitable notion of cluster separation that captures differences in closed-loop performance across systems, we prove that our approach guarantees correct clustering with high probability. Furthermore, we show that the sub-optimality gap of the policy learned for each cluster scales inversely with the size of the cluster, with no additional bias, unlike in prior works on collaborative learning-based control. Our work is the first to reveal how clustering can be used in data-driven control to learn personalized policies that enjoy statistical gains from collaboration but do not suffer sub-optimality due to inclusion of data from dissimilar processes. From a distributed implementation perspective, our method is attractive as it incurs only a mild logarithmic communication overhead.",
+        "url": "http://arxiv.org/abs/2511.17489v1",
+        "published": "2025-11-21T18:45:53Z",
+        "categories": [
+          "cs.LG",
+          "eess.SY",
+          "math.OC"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "An Artificial Intelligence Framework for Measuring Human Spine Aging Using MRI",
+        "authors": [
+          "Roozbeh Bazargani",
+          "Saqib Abdullah Basar",
+          "Daniel Daly-Grafstein",
+          "Rodrigo Solis Pompa",
+          "Soojin Lee",
+          "Saurabh Garg",
+          "Yuntong Ma",
+          "John A. Carrino",
+          "Siavash Khallaghi",
+          "Sam Hashemi"
+        ],
+        "summary": "The human spine is a complex structure composed of 33 vertebrae. It holds the body and is important for leading a healthy life. The spine is vulnerable to age-related degenerations that can be identified through magnetic resonance imaging (MRI). In this paper we propose a novel computer-vison-based deep learning method to estimate spine age using images from over 18,000 MRI series. Data are restricted to subjects with only age-related spine degeneration. Eligibility criteria are created by identifying common age-based clusters of degenerative spine conditions using uniform manifold approximation and projection (UMAP) and hierarchical density-based spatial clustering of applications with noise (HDBSCAN). Model selection is determined using a detailed ablation study on data size, loss, and the effect of different spine regions. We evaluate the clinical utility of our model by calculating the difference between actual spine age and model-predicted age, the spine age gap (SAG), and examining the association between these differences and spine degenerative conditions and lifestyle factors. We find that SAG is associated with conditions including disc bulges, disc osteophytes, spinal stenosis, and fractures, as well as lifestyle factors like smoking and physically demanding work, and thus may be a useful biomarker for measuring overall spine health.",
+        "url": "http://arxiv.org/abs/2511.17485v1",
+        "published": "2025-11-21T18:40:21Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Counterfactual World Models via Digital Twin-conditioned Video Diffusion",
+        "authors": [
+          "Yiqing Shen",
+          "Aiza Maksutova",
+          "Chenjia Li",
+          "Mathias Unberath"
+        ],
+        "summary": "World models learn to predict the temporal evolution of visual observations given a control signal, potentially enabling agents to reason about environments through forward simulation. Because of the focus on forward simulation, current world models generate predictions based on factual observations. For many emerging applications, such as comprehensive evaluations of physical AI behavior under varying conditions, the ability of world models to answer counterfactual queries, such as \"what would happen if this object was removed?\", is of increasing importance. We formalize counterfactual world models that additionally take interventions as explicit inputs, predicting temporal sequences under hypothetical modifications to observed scene properties. Traditional world models operate directly on entangled pixel-space representations where object properties and relationships cannot be selectively modified. This modeling choice prevents targeted interventions on specific scene properties. We introduce CWMDT, a framework to overcome those limitations, turning standard video diffusion models into effective counterfactual world models. First, CWMDT constructs digital twins of observed scenes to explicitly encode objects and their relationships, represented as structured text. Second, CWMDT applies large language models to reason over these representations and predict how a counterfactual intervention propagates through time to alter the observed scene. Third, CWMDT conditions a video diffusion model with the modified representation to generate counterfactual visual sequences. Evaluations on two benchmarks show that the CWMDT approach achieves state-of-the-art performance, suggesting that alternative representations of videos, such as the digital twins considered here, offer powerful control signals for video forward simulation-based world models.",
+        "url": "http://arxiv.org/abs/2511.17481v1",
+        "published": "2025-11-21T18:37:23Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "PersonaAgent with GraphRAG: Community-Aware Knowledge Graphs for Personalized LLM",
+        "authors": [
+          "Siqi Liang",
+          "Yudi Zhang",
+          "Yue Guo"
+        ],
+        "summary": "We propose a novel framework for persona-based language model system, motivated by the need for personalized AI agents that adapt to individual user preferences. In our approach, the agent embodies the user's \"persona\" (e.g. user profile or taste) and is powered by a large language model (LLM). To enable the agent to leverage rich contextual information, we introduce a Knowledge-Graph-enhanced Retrieval-Augmented Generation (Graph RAG) mechanism that constructs an LLM-derived graph index of relevant documents and summarizes communities of related information. Our framework generates personalized prompts by combining: (1) a summary of the user's historical behaviors and preferences extracted from the knowledge graph, and (2) relevant global interaction patterns identified through graph-based community detection. This dynamic prompt engineering approach allows the agent to maintain consistent persona-aligned behaviors while benefiting from collective knowledge. On the LaMP benchmark, our method improves news categorization F1 by 11.1%, movie tagging F1 by 56.1%, and reduces product rating MAE by 10.4% over prior methods. Our code is available at https://anonymous.4open.science/r/PersonaAgentwGraphRAG-DE6F",
+        "url": "http://arxiv.org/abs/2511.17467v1",
+        "published": "2025-11-21T18:15:47Z",
+        "categories": [
+          "cs.LG",
+          "cs.AI"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Local equations for the generalized Lotka-Volterra model on sparse asymmetric graphs",
+        "authors": [
+          "David Machado",
+          "Pietro Valigi",
+          "Tommaso Tonolo",
+          "Maria Chiara Angelini"
+        ],
+        "summary": "Real ecosystems are characterized by sparse and asymmetric interactions, posing a major challenge to theoretical analysis. We introduce a new method to study the generalized Lotka-Volterra model with stochastic dynamics on sparse graphs. By deriving local Fokker-Planck equations and employing a mean-field closure, we can efficiently compute stationary states for both symmetric and asymmetric interactions. We validate our approach by comparing the results with the direct integration of the dynamical equations and by reproducing known results and, for the first time, we map the phase diagram for sparse asymmetric networks. Our framework provides a versatile tool for exploring stability in realistic ecological communities and can be generalized to applications in different contexts, such as economics and evolutionary game theory.",
+        "url": "http://arxiv.org/abs/2511.17499v1",
+        "published": "2025-11-21T18:57:27Z",
+        "categories": [
+          "q-bio.PE",
+          "cond-mat.dis-nn"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Harnessing Data from Clustered LQR Systems: Personalized and Collaborative Policy Optimization",
+        "authors": [
+          "Vinay Kanakeri",
+          "Shivam Bajaj",
+          "Ashwin Verma",
+          "Vijay Gupta",
+          "Aritra Mitra"
+        ],
+        "summary": "It is known that reinforcement learning (RL) is data-hungry. To improve sample-efficiency of RL, it has been proposed that the learning algorithm utilize data from 'approximately similar' processes. However, since the process models are unknown, identifying which other processes are similar poses a challenge. In this work, we study this problem in the context of the benchmark Linear Quadratic Regulator (LQR) setting. Specifically, we consider a setting with multiple agents, each corresponding to a copy of a linear process to be controlled. The agents' local processes can be partitioned into clusters based on similarities in dynamics and tasks. Combining ideas from sequential elimination and zeroth-order policy optimization, we propose a new algorithm that performs simultaneous clustering and learning to output a personalized policy (controller) for each cluster. Under a suitable notion of cluster separation that captures differences in closed-loop performance across systems, we prove that our approach guarantees correct clustering with high probability. Furthermore, we show that the sub-optimality gap of the policy learned for each cluster scales inversely with the size of the cluster, with no additional bias, unlike in prior works on collaborative learning-based control. Our work is the first to reveal how clustering can be used in data-driven control to learn personalized policies that enjoy statistical gains from collaboration but do not suffer sub-optimality due to inclusion of data from dissimilar processes. From a distributed implementation perspective, our method is attractive as it incurs only a mild logarithmic communication overhead.",
+        "url": "http://arxiv.org/abs/2511.17489v1",
+        "published": "2025-11-21T18:45:53Z",
+        "categories": [
+          "cs.LG",
+          "eess.SY",
+          "math.OC"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Counterfactual World Models via Digital Twin-conditioned Video Diffusion",
+        "authors": [
+          "Yiqing Shen",
+          "Aiza Maksutova",
+          "Chenjia Li",
+          "Mathias Unberath"
+        ],
+        "summary": "World models learn to predict the temporal evolution of visual observations given a control signal, potentially enabling agents to reason about environments through forward simulation. Because of the focus on forward simulation, current world models generate predictions based on factual observations. For many emerging applications, such as comprehensive evaluations of physical AI behavior under varying conditions, the ability of world models to answer counterfactual queries, such as \"what would happen if this object was removed?\", is of increasing importance. We formalize counterfactual world models that additionally take interventions as explicit inputs, predicting temporal sequences under hypothetical modifications to observed scene properties. Traditional world models operate directly on entangled pixel-space representations where object properties and relationships cannot be selectively modified. This modeling choice prevents targeted interventions on specific scene properties. We introduce CWMDT, a framework to overcome those limitations, turning standard video diffusion models into effective counterfactual world models. First, CWMDT constructs digital twins of observed scenes to explicitly encode objects and their relationships, represented as structured text. Second, CWMDT applies large language models to reason over these representations and predict how a counterfactual intervention propagates through time to alter the observed scene. Third, CWMDT conditions a video diffusion model with the modified representation to generate counterfactual visual sequences. Evaluations on two benchmarks show that the CWMDT approach achieves state-of-the-art performance, suggesting that alternative representations of videos, such as the digital twins considered here, offer powerful control signals for video forward simulation-based world models.",
+        "url": "http://arxiv.org/abs/2511.17481v1",
+        "published": "2025-11-21T18:37:23Z",
+        "categories": [
+          "cs.CV"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Frustration driven magnetic correlations in the spin-$5/2$ triangular lattice antiferromagnet RbFe(HPO$_{3}$)$_{2}$",
+        "authors": [
+          "V. Nagpal",
+          "Sebin J. Sebastian",
+          "Surya P. Patra",
+          "S. Shibash",
+          "Q. -P. Ding",
+          "Y. Furukawa",
+          "R. Nath"
+        ],
+        "summary": "A detailed study of the structural and magnetic properties of a spin-$5/2$ triangular lattice antiferromagnet RbFe(HPO$_{3}$)$_{2}$ is presented using x-ray diffraction, magnetization, heat capacity, and $^{31}$P nuclear magnetic resonance (NMR) experiments on a polycrystalline sample. The crystal structure features an equilateral triangular lattice of Fe$^{3+}$ ions. The thermodynamic measurements reveal the onset of a magnetic long-range order at $T_{\\rm N1} \\simeq 7.8$ K in zero-field, followed by another low temperature field induced ordering at $T_{\\rm N2}$ in higher fields. The transition at $T_{\\rm N1}$ is further confirmed from the NMR spin lattice relaxation measurements. The value of the frustration ratio ($f \\simeq 7$) implies moderate spin frustration in the compound. The $^{31}$P NMR spectra exhibit two distinct spectral lines corresponding to two inequivalent phosphorus sites (P1 and P2), consistent with the crystal structure. The P1 site is strongly coupled with an isotropic hyperfine coupling of $A_{\\rm hf}^{\\rm iso} = 0.55(2)$ T/$\u03bc_{\\rm B}$ while the P2 site is weakly coupled with $A_{\\rm hf}^{\\rm iso} = 0.25(3)$ T/$\u03bc_{\\rm B}$ with the Fe$^{3+}$ ions. The magnetic susceptibility and NMR shift data are described well assuming a spin-$5/2$ isotropic triangular lattice antiferromagnetic model with an average exchange coupling of $J/k_{\\rm B} = 2.8(2)$ K. Below $T_{\\rm N1}$, the spectra evolve into a nearly rectangular powder pattern, indicating a commensurate antiferromagnetic type order. The $^{31}$P spin-lattice relaxation rate well below $T_{\\rm N1}$ follows a $T^3$ temperature dependence, implying a two-magnon Raman scattering mechanism in the ordered state. Three well-defined phase regimes are clearly ascertained in the $H-T$ phase diagram, reflecting a weak magnetic anisotropy in the compound.",
+        "url": "http://arxiv.org/abs/2511.17480v1",
+        "published": "2025-11-21T18:32:15Z",
+        "categories": [
+          "cond-mat.mtrl-sci"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Emergence of Randomness in Temporally Aggregated Financial Tick Sequences",
+        "authors": [
+          "Silvia Onofri",
+          "Andrey Shternshis",
+          "Stefano Marmi"
+        ],
+        "summary": "Markets efficiency implies that the stock returns are intrinsically unpredictable, a property that makes markets comparable to random number generators. We present a novel methodology to investigate ultra-high frequency financial data and to evaluate the extent to which tick by tick returns resemble random sequences. We extend the analysis of ultra high-frequency stock market data by applying comprehensive sets of randomness tests, beyond the usual reliance on serial correlation or entropy measures. Our purpose is to extensively analyze the randomness of these data using statistical tests from standard batteries that evaluate different aspects of randomness.   We illustrate the effect of time aggregation in transforming highly correlated high-frequency trade data to random streams. More specifically, we use many of the tests in the NIST Statistical Test Suite and in the TestU01 battery (in particular the Rabbit and Alphabit sub-batteries), to prove that the degree of randomness of financial tick data increases together with the increase of the aggregation level in transaction time. Additionally, the comprehensive nature of our tests also uncovers novel patterns, such as non-monotonic behaviors in predictability for certain assets. This study demonstrates a model-free approach for both assessing randomness in financial time series and generating pseudo-random sequences from them, with potential relevance in several applications.",
+        "url": "http://arxiv.org/abs/2511.17479v1",
+        "published": "2025-11-21T18:27:59Z",
+        "categories": [
+          "q-fin.ST",
+          "q-fin.TR"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "RynnVLA-002: A Unified Vision-Language-Action and World Model",
+        "authors": [
+          "Jun Cen",
+          "Siteng Huang",
+          "Yuqian Yuan",
+          "Hangjie Yuan",
+          "Chaohui Yu",
+          "Yuming Jiang",
+          "Jiayan Guo",
+          "Kehan Li",
+          "Hao Luo",
+          "Fan Wang",
+          "Xin Li",
+          "Deli Zhao",
+          "Hao Chen"
+        ],
+        "summary": "We introduce RynnVLA-002, a unified Vision-Language-Action (VLA) and world model. The world model leverages action and visual inputs to predict future image states, learning the underlying physics of the environment to refine action generation. Conversely, the VLA model produces subsequent actions from image observations, enhancing visual understanding and supporting the world model's image generation. The unified framework of RynnVLA-002 enables joint learning of environmental dynamics and action planning. Our experiments show that RynnVLA-002 surpasses individual VLA and world models, demonstrating their mutual enhancement. We evaluate RynnVLA-002 in both simulation and real-world robot tasks. RynnVLA-002 achieves 97.4% success rate on the LIBERO simulation benchmark without pretraining, while in real-world LeRobot experiments, its integrated world model boosts the overall success rate by 50%.",
+        "url": "http://arxiv.org/abs/2511.17502v1",
+        "published": "2025-11-21T18:59:32Z",
+        "categories": [
+          "cs.RO"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Native 3D Editing with Full Attention",
+        "authors": [
+          "Weiwei Cai",
+          "Shuangkang Fang",
+          "Weicai Ye",
+          "Xin Dong",
+          "Yunhan Yang",
+          "Xuanyang Zhang",
+          "Wei Cheng",
+          "Yanpei Cao",
+          "Gang Yu",
+          "Tao Chen"
+        ],
+        "summary": "Instruction-guided 3D editing is a rapidly emerging field with the potential to broaden access to 3D content creation. However, existing methods face critical limitations: optimization-based approaches are prohibitively slow, while feed-forward approaches relying on multi-view 2D editing often suffer from inconsistent geometry and degraded visual quality. To address these issues, we propose a novel native 3D editing framework that directly manipulates 3D representations in a single, efficient feed-forward pass. Specifically, we create a large-scale, multi-modal dataset for instruction-guided 3D editing, covering diverse addition, deletion, and modification tasks. This dataset is meticulously curated to ensure that edited objects faithfully adhere to the instructional changes while preserving the consistency of unedited regions with the source object. Building upon this dataset, we explore two distinct conditioning strategies for our model: a conventional cross-attention mechanism and a novel 3D token concatenation approach. Our results demonstrate that token concatenation is more parameter-efficient and achieves superior performance. Extensive evaluations show that our method outperforms existing 2D-lifting approaches, setting a new benchmark in generation quality, 3D consistency, and instruction fidelity.",
+        "url": "http://arxiv.org/abs/2511.17501v1",
+        "published": "2025-11-21T18:59:26Z",
+        "categories": [
+          "cs.CV",
+          "cs.GR"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "How Significant are Cosmological Collider Signals in the Planck Data?",
+        "authors": [
+          "Petar Suman",
+          "Dong-Gang Wang",
+          "Wuhyun Sohn",
+          "James R. Fergusson",
+          "E. P. S. Shellard"
+        ],
+        "summary": "The search for primordial non-Gaussianities (PNG) is theoretically well motivated but remains observationally challenging. Tight constraints with low significance for the standard non-Gaussian shapes suggest that detection may lie beyond the reach of near-future experiments. However, tests of PNG are highly template-dependent. From a theory perspective, a whole new family of bispectrum shapes arise in the cosmological collider program, with distinct signatures of heavy particles during inflation. In this work, we provide a class of simplified collider templates for these particles that encompasses a broader range of masses, sound speeds, and interactions. We propose that, given the current state of observations, the most effective strategy to search for PNG signals is through orthogonalizing the collider templates, such that they are uncorrelated with the tightly constrained single field predictions. Using the Modal pipeline and Planck CMB data, we perform a systematic parameter scan of the collider templates with the most significant result reaching $2.4\u03c3$ for spin-0, after taking into account the look-elsewhere effect; indicative results for spin-1 and spin-2 peak near 2$\u03c3$. These results indicate that, with refined collider templates and improved data analysis strategies, there are credible prospects with forthcoming observations to detect PNG and also rule out single field inflation.",
+        "url": "http://arxiv.org/abs/2511.17500v1",
+        "published": "2025-11-21T18:58:08Z",
+        "categories": [
+          "astro-ph.CO",
+          "gr-qc",
+          "hep-ph",
+          "hep-th"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "Local equations for the generalized Lotka-Volterra model on sparse asymmetric graphs",
+        "authors": [
+          "David Machado",
+          "Pietro Valigi",
+          "Tommaso Tonolo",
+          "Maria Chiara Angelini"
+        ],
+        "summary": "Real ecosystems are characterized by sparse and asymmetric interactions, posing a major challenge to theoretical analysis. We introduce a new method to study the generalized Lotka-Volterra model with stochastic dynamics on sparse graphs. By deriving local Fokker-Planck equations and employing a mean-field closure, we can efficiently compute stationary states for both symmetric and asymmetric interactions. We validate our approach by comparing the results with the direct integration of the dynamical equations and by reproducing known results and, for the first time, we map the phase diagram for sparse asymmetric networks. Our framework provides a versatile tool for exploring stability in realistic ecological communities and can be generalized to applications in different contexts, such as economics and evolutionary game theory.",
+        "url": "http://arxiv.org/abs/2511.17499v1",
+        "published": "2025-11-21T18:57:27Z",
+        "categories": [
+          "q-bio.PE",
+          "cond-mat.dis-nn"
+        ],
+        "source": "arxiv"
+      },
+      {
+        "title": "HALO: High-Altitude Language-Conditioned Monocular Aerial Exploration and Navigation",
+        "authors": [
+          "Yuezhan Tao",
+          "Dexter Ong",
+          "Fernando Cladera",
+          "Jason Hughes",
+          "Camillo J. Taylor",
+          "Pratik Chaudhari",
+          "Vijay Kumar"
+        ],
+        "summary": "We demonstrate real-time high-altitude aerial metric-semantic mapping and exploration using a monocular camera paired with a global positioning system (GPS) and an inertial measurement unit (IMU). Our system, named HALO, addresses two key challenges: (i) real-time dense 3D reconstruction using vision at large distances, and (ii) mapping and exploration of large-scale outdoor environments with accurate scene geometry and semantics. We demonstrate that HALO can plan informative paths that exploit this information to complete missions with multiple tasks specified in natural language. In simulation-based evaluation across large-scale environments of size up to 78,000 sq. m., HALO consistently completes tasks with less exploration time and achieves up to 68% higher competitive ratio in terms of the distance traveled compared to the state-of-the-art semantic exploration baseline. We use real-world experiments on a custom quadrotor platform to demonstrate that (i) all modules can run onboard the robot, and that (ii) in diverse environments HALO can support effective autonomous execution of missions covering up to 24,600 sq. m. area at an altitude of 40 m. Experiment videos and more details can be found on our project page: https://tyuezhan.github.io/halo/.",
+        "url": "http://arxiv.org/abs/2511.17497v1",
+        "published": "2025-11-21T18:55:02Z",
+        "categories": [
+          "cs.RO"
+        ],
+        "source": "arxiv"
+      }
+    ],
+    "discussions": [
+      {
+        "title": "Human-AI Collaborative Coding Patterns",
+        "summary": "Discussion about effective patterns for human-AI pair programming",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-11-24T09:29:05.147272",
+        "url": "placeholder",
+        "engagement": "active"
+      },
+      {
+        "title": "Visual Design Collaboration with AI Tools",
+        "summary": "Emerging patterns in visual design workflows with AI assistance",
+        "source": "community_discussion",
+        "relevance": "high",
+        "date": "2025-11-24T09:29:05.147289",
+        "url": "placeholder",
+        "engagement": "emerging"
+      }
+    ]
+  },
+  "trends": {
+    "trending_terms": {
+      "interaction": 6,
+      "pattern": 3,
+      "collaboration": 2,
+      "communication": 2
+    },
+    "total_papers": 15,
+    "recent_focus_areas": [
+      "interaction",
+      "pattern",
+      "collaboration",
+      "communication"
+    ],
+    "analysis_note": "Based on keyword frequency in recent research papers"
+  },
+  "opportunities": [
+    {
+      "topic": "interaction",
+      "research_frequency": 6,
+      "gap_level": "high",
+      "research_basis": "Appears 6 times in recent research",
+      "suggested_focus": "Investigate interaction in the context of human-AI collaboration"
+    },
+    {
+      "topic": "pattern",
+      "research_frequency": 3,
+      "gap_level": "high",
+      "research_basis": "Appears 3 times in recent research",
+      "suggested_focus": "Investigate pattern in the context of human-AI collaboration"
+    }
+  ]
+}
