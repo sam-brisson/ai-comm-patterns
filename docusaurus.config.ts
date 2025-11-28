@@ -70,6 +70,13 @@ const config: Config = {
   ],
   themes: ['@docusaurus/theme-mermaid'],
 
+  plugins: [
+    
+      'docusaurus-lunr-search',
+      
+    
+  ],
+
   markdown: {
     mermaid: true,
   },
