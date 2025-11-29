@@ -12,12 +12,19 @@ const getArg = (flag) => {
 const section = getArg('--section');
 const suggestedTitle = getArg('--suggested-title');
 const rawTranscript = getArg('--transcript');
-const context = getArg('--context');
+const additionalContext = getArg('--context');
 const customInstructions = getArg('--custom-instructions');
 const attachmentsJson = getArg('--attachments');
 const filename = getArg('--filename');
 
 const attachments = JSON.parse(attachmentsJson || '[]');
+
+console.log('Received arguments:');
+console.log('Section:', section);
+console.log('Suggested title:', suggestedTitle);
+console.log('Transcript length:', rawTranscript.length);
+console.log('Context:', additionalContext.substring(0, 100));
+console.log('Custom instructions:', customInstructions.substring(0, 100));
 
 // Load the master prompt template
 const promptTemplate = fs.readFileSync('.github/prompts/article-generation-prompt.md', 'utf8');
@@ -27,14 +34,17 @@ const attachmentsList = attachments.length > 0
   ? attachments.map((url, i) => `${i + 1}. ${url}`).join('\n')
   : 'No attachments';
 
-// Fill in the template
-const fullPrompt = promptTemplate
-  .replace('{section}', section)
-  .replace('{suggested_title}', suggestedTitle || 'Not provided - please suggest one')
-  .replace('{context}', context || 'No additional context provided')
-  .replace('{custom_instructions}', customInstructions || 'No custom instructions')
-  .replace('{raw_transcript}', rawTranscript)
-  .replace('{attachments_list}', attachmentsList);
+// Fill in the template - use replaceAll or global regex
+let fullPrompt = promptTemplate;
+fullPrompt = fullPrompt.replace(/{section}/g, section || 'Not specified');
+fullPrompt = fullPrompt.replace(/{suggested_title}/g, suggestedTitle || 'Not provided - please suggest one');
+fullPrompt = fullPrompt.replace(/{context}/g, additionalContext || 'No additional context provided');
+fullPrompt = fullPrompt.replace(/{custom_instructions}/g, customInstructions || 'No custom instructions');
+fullPrompt = fullPrompt.replace(/{raw_transcript}/g, rawTranscript || 'No transcript provided');
+fullPrompt = fullPrompt.replace(/{attachments_list}/g, attachmentsList);
+
+console.log('Prompt length after substitution:', fullPrompt.length);
+console.log('First 500 chars of prompt:', fullPrompt.substring(0, 500));
 
 // Initialize Claude API client
 const anthropic = new Anthropic({
