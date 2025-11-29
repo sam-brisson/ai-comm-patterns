@@ -45,7 +45,7 @@ jobs:
             const section = parseField('Knowledge Section');
             const suggestedTitle = parseField('Suggested Title');
             const rawTranscript = parseField('Raw Conversation Transcript');
-            const context = parseField('Additional Context');
+            const additionalContext = parseField('Additional Context');
             const customInstructions = parseField('Custom Instructions for Claude');
             
             // Extract attachment URLs
@@ -65,7 +65,7 @@ jobs:
             core.setOutput('section', section);
             core.setOutput('suggestedTitle', suggestedTitle);
             core.setOutput('rawTranscript', rawTranscript);
-            core.setOutput('context', context);
+            core.setOutput('context', additionalContext);
             core.setOutput('customInstructions', customInstructions);
             core.setOutput('attachments', JSON.stringify(attachments));
             core.setOutput('filename', filename);
