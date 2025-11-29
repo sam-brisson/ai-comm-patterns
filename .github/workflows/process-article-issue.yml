@@ -35,18 +35,36 @@ jobs:
             const issue = context.payload.issue;
             const body = issue.body;
             
-            // Parse YAML-like format from issue template
+            console.log("Full issue body:", body);
+            
+            // Parse YAML-like format from issue template - GitHub uses different formatting
             const parseField = (fieldName) => {
-              const regex = new RegExp(`### ${fieldName}\\s*([\\s\\S]*?)(?=###|$)`, 'i');
-              const match = body.match(regex);
-              return match ? match[1].trim() : '';
+              // Try multiple patterns because GitHub formats differently
+              const patterns = [
+                new RegExp(`### ${fieldName}\\s*\\n\\s*\\n(.+?)(?=\\n\\s*###|$)`, 'is'),
+                new RegExp(`### ${fieldName}\\s*\\n\\s*(.+?)(?=\\n\\s*###|$)`, 'is'),
+                new RegExp(`### ${fieldName}[\\s\\S]*?\\n\\n(.+?)(?=\\n###|$)`, 'is')
+              ];
+              
+              for (const pattern of patterns) {
+                const match = body.match(pattern);
+                if (match && match[1] && match[1].trim() !== '_No response_') {
+                  return match[1].trim();
+                }
+              }
+              return '';
             };
             
             const section = parseField('Knowledge Section');
-            const suggestedTitle = parseField('Suggested Title');
+            const suggestedTitle = parseField('Suggested Title \\(optional\\)') || parseField('Suggested Title');
             const rawTranscript = parseField('Raw Conversation Transcript');
-            const additionalContext = parseField('Additional Context');
-            const customInstructions = parseField('Custom Instructions for Claude');
+            const additionalContext = parseField('Additional Context \\(optional\\)') || parseField('Additional Context');
+            const customInstructions = parseField('Custom Instructions for Claude \\(optional\\)') || parseField('Custom Instructions for Claude');
+            
+            console.log("Parsed values:");
+            console.log("Section:", section);
+            console.log("Title:", suggestedTitle);
+            console.log("Transcript length:", rawTranscript.length);
             
             // Extract attachment URLs
             const attachmentRegex = /!\[.*?\]\((https:\/\/[^\)]+)\)/g;
@@ -60,6 +78,12 @@ jobs:
             let filename = suggestedTitle 
               ? suggestedTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-')
               : `article-${Date.now()}`;
+            
+            // Validation - make sure we have the required fields
+            if (!section || !rawTranscript) {
+              core.setFailed(`Missing required fields. Section: ${section ? 'OK' : 'MISSING'}, Transcript: ${rawTranscript ? 'OK' : 'MISSING'}`);
+              return;
+            }
             
             // Set outputs
             core.setOutput('section', section);
