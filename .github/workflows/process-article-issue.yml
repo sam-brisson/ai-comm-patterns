@@ -1,0 +1,168 @@
+ame: Process Article from Issue with Claude
+
+on:
+  issues:
+    types: [opened, labeled]
+
+jobs:
+  generate-article:
+    if: contains(github.event.issue.labels.*.name, 'content')
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: |
+          npm install @anthropic-ai/sdk
+      
+      - name: Parse Issue Body
+        id: parse
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body;
+            
+            // Parse YAML-like format from issue template
+            const parseField = (fieldName) => {
+              const regex = new RegExp(`### ${fieldName}\\s*([\\s\\S]*?)(?=###|$)`, 'i');
+              const match = body.match(regex);
+              return match ? match[1].trim() : '';
+            };
+            
+            const section = parseField('Knowledge Section');
+            const suggestedTitle = parseField('Suggested Title');
+            const rawTranscript = parseField('Raw Conversation Transcript');
+            const context = parseField('Additional Context');
+            const customInstructions = parseField('Custom Instructions for Claude');
+            
+            // Extract attachment URLs
+            const attachmentRegex = /!\[.*?\]\((https:\/\/[^\)]+)\)/g;
+            const attachments = [];
+            let match;
+            while ((match = attachmentRegex.exec(body)) !== null) {
+              attachments.push(match[1]);
+            }
+            
+            // Generate safe filename from title or use timestamp
+            let filename = suggestedTitle 
+              ? suggestedTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+              : `article-${Date.now()}`;
+            
+            // Set outputs
+            core.setOutput('section', section);
+            core.setOutput('suggestedTitle', suggestedTitle);
+            core.setOutput('rawTranscript', rawTranscript);
+            core.setOutput('context', context);
+            core.setOutput('customInstructions', customInstructions);
+            core.setOutput('attachments', JSON.stringify(attachments));
+            core.setOutput('filename', filename);
+            core.setOutput('issueNumber', issue.number);
+      
+      - name: Generate Article with Claude API
+        id: generate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          node .github/scripts/generate-with-claude.js \
+            --section "${{ steps.parse.outputs.section }}" \
+            --suggested-title "${{ steps.parse.outputs.suggestedTitle }}" \
+            --transcript "${{ steps.parse.outputs.rawTranscript }}" \
+            --context "${{ steps.parse.outputs.context }}" \
+            --custom-instructions "${{ steps.parse.outputs.customInstructions }}" \
+            --attachments '${{ steps.parse.outputs.attachments }}' \
+            --filename "${{ steps.parse.outputs.filename }}"
+      
+      - name: Create Branch and Commit Article
+        id: commit
+        run: |
+          BRANCH_NAME="article-from-issue-${{ steps.parse.outputs.issueNumber }}"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git checkout -b $BRANCH_NAME
+          git add docs/
+          git commit -m "Add article from issue #${{ steps.parse.outputs.issueNumber }}"
+          git push origin $BRANCH_NAME
+          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
+      
+      - name: Create Pull Request
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const section = '${{ steps.parse.outputs.section }}';
+            const filename = '${{ steps.parse.outputs.filename }}';
+            const issueNumber = ${{ steps.parse.outputs.issueNumber }};
+            const branch = '${{ steps.commit.outputs.branch }}';
+            
+            const pr = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Article from Issue #${issueNumber}`,
+              head: branch,
+              base: 'main',
+              body: `## 🤖 AI-Generated Article
+            
+            This article was automatically generated from Issue #${issueNumber} using Claude API.
+            
+            **Section**: ${section}
+            **File**: \`docs/${section}/${filename}.md\`
+            
+            ### Review Checklist
+            - [ ] Title accurately reflects content
+            - [ ] Key insights are relevant and clear
+            - [ ] Technical details are accurate
+            - [ ] Tone and style match site guidelines
+            - [ ] Code examples are properly formatted
+            - [ ] Links and references are correct
+            
+            ### Preview
+            View the article in the Files Changed tab above.
+            
+            ### Next Steps
+            - **Approve & Merge**: Article will be published to the site
+            - **Request Changes**: Comment with feedback, and I can regenerate
+            - **Close PR**: Discard this article
+            
+            ---
+            *Closes #${issueNumber}*`
+            });
+            
+            // Comment on original issue
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: `✅ Article generated and ready for review!\n\nPull Request: #${pr.data.number}\n\nPlease review the generated article and approve or request changes.`
+            });
+            
+            // Update issue labels
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              labels: ['pending-review']
+            });
+            
+            // Remove needs-processing label
+            try {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                name: 'needs-processing'
+              });
+            } catch (error) {
+              // Label might not exist, that's okay
+            }

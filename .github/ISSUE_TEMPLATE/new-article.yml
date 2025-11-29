@@ -1,0 +1,64 @@
+name: New Article from Conversation
+description: Submit a raw conversation transcript - Claude will process it into an article
+title: "[ARTICLE]: "
+labels: ["content", "needs-processing"]
+body:
+  - type: dropdown
+    id: section
+    attributes:
+      label: Knowledge Section
+      description: Which section should this content go in?
+      options:
+        - collaboration
+        - experimentation
+        - trust
+    validations:
+      required: true
+  
+  - type: input
+    id: suggested_title
+    attributes:
+      label: Suggested Title (optional)
+      description: Claude will suggest a title if you leave this blank
+      placeholder: "e.g., Learning About Docusaurus Sidebars"
+  
+  - type: textarea
+    id: raw_transcript
+    attributes:
+      label: Raw Conversation Transcript
+      description: Paste the complete, unformatted transcript here
+      placeholder: |
+        Just paste everything - Claude will clean it up:
+        
+        Human: How do I set up sidebars in Docusaurus?
+        Claude: Great question! Let me help you...
+        [entire conversation]
+    validations:
+      required: true
+  
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context (optional)
+      description: Any context that would help Claude understand what to emphasize
+      placeholder: |
+        e.g., "This was my first time setting up a static site"
+        "Focus on the debugging process, not just the solution"
+  
+  - type: checkboxes
+    id: attachments
+    attributes:
+      label: Attachments
+      description: Attach files by dragging them into the issue
+      options:
+        - label: I have attached sketches, diagrams, or code files
+  
+  - type: textarea
+    id: custom_instructions
+    attributes:
+      label: Custom Instructions for Claude (optional)
+      description: Any specific instructions for how Claude should process this
+      placeholder: |
+        e.g., "Extract the 3 main lessons learned"
+        "Create a step-by-step tutorial format"
+        "Focus on the 'why' not just the 'how'"
