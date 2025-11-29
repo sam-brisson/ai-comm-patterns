@@ -1,4 +1,4 @@
-ame: Process Article from Issue with Claude
+name: Process Article from Issue with Claude
 
 on:
   issues:
