@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+tags: [automation, workflow, github-actions, ai-agents, methodology]
 ---
 # Article Suggestions Workflow
 

@@ -4,7 +4,7 @@ description: "A case study in human-AI partnership exploring how unlimited visua
 authors: 
   - name: "Sam Brisson & Claude"
     title: "Collaborative Authors"
-tags: [visual-collaboration, human-ai-partnership, iteration-fatigue, design-thinking, knowledge-building]
+tags: [visual-collaboration, human-ai-partnership, iteration-fatigue, design-thinking, knowledge-building, case-study, meta-learning, accessibility, mode-switching, energy-patterns]
 date: 2025-08-10
 
 ---
