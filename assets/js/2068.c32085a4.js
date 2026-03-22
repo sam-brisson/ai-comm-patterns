@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkai_comm_patterns=self.webpackChunkai_comm_patterns||[]).push([[2068],{32068:(e,a,s)=>{s.d(a,{createInfoServices:()=>c.v});var c=s(41366);s(58198)}}]);

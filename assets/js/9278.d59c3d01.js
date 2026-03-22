@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkai_comm_patterns=self.webpackChunkai_comm_patterns||[]).push([[9278],{9278:(e,s,a)=>{a.r(s)}}]);
