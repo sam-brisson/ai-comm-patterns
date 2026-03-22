@@ -1,0 +1,401 @@
+.container {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  background: var(--ifm-background-surface-color);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--ifm-color-emphasis-100);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.headerIcon {
+  font-size: 1.1rem;
+}
+
+.headerText {
+  color: var(--ifm-color-emphasis-800);
+}
+
+/* Stage indicators */
+.stageIndicators {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+  background: var(--ifm-color-emphasis-50);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.stageButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 70px;
+}
+
+.stageButton:hover {
+  border-color: var(--ifm-color-primary);
+  background: var(--ifm-color-primary-lightest);
+}
+
+.stageButton.active {
+  border-color: var(--ifm-color-primary);
+  background: var(--ifm-color-primary-lightest);
+  box-shadow: 0 0 0 3px var(--ifm-color-primary-light);
+}
+
+.stageButton.completed {
+  border-color: var(--ifm-color-success);
+  background: var(--ifm-color-success-lightest, rgba(0, 164, 0, 0.1));
+}
+
+.stageIcon {
+  font-size: 1.25rem;
+}
+
+.stageLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.arrow {
+  color: var(--ifm-color-emphasis-400);
+  font-size: 1.25rem;
+  padding: 0 0.25rem;
+}
+
+.arrowCompleted {
+  color: var(--ifm-color-success);
+}
+
+/* Phase description bar */
+.phaseDescription {
+  padding: 0.75rem 1rem;
+  background: rgba(147, 112, 219, 0.1);
+  border-bottom: 1px solid rgba(147, 112, 219, 0.2);
+  border-left: 3px solid #9370db;
+  animation: fadeIn 0.3s ease;
+}
+
+.phaseIntent {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ifm-color-emphasis-800);
+  margin-bottom: 0.5rem;
+}
+
+.phaseIntent strong {
+  color: var(--ifm-color-primary-darkest);
+}
+
+.phaseScenario {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ifm-color-emphasis-700);
+  font-style: italic;
+}
+
+.phaseScenario strong {
+  font-style: normal;
+  color: var(--ifm-color-emphasis-800);
+}
+
+/* Conversation area */
+.conversationArea {
+  padding: 1rem;
+  min-height: 280px;
+}
+
+.conversation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Message bubbles */
+.message {
+  max-width: 85%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  position: relative;
+}
+
+.message.productManager {
+  align-self: flex-start;
+  background: var(--ifm-color-emphasis-100);
+  border-bottom-left-radius: 4px;
+}
+
+.message.engineer {
+  align-self: flex-end;
+  background: var(--ifm-color-primary-lightest);
+  border-bottom-right-radius: 4px;
+}
+
+.speaker {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.message.productManager .speaker {
+  color: #555;
+}
+
+.message.engineer .speaker {
+  color: var(--ifm-color-primary-darkest);
+}
+
+.messageText {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ifm-color-emphasis-900);
+}
+
+/* Artifact link */
+.artifactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-family: var(--ifm-font-family-monospace);
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.artifactLink:hover {
+  background: var(--ifm-color-primary-lightest);
+  border-color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+/* Modal styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal {
+  background: #1e1e1e;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: #2d2d2d;
+  border-bottom: 1px solid #404040;
+  border-radius: 8px 8px 0 0;
+}
+
+.modalFilename {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85rem;
+  color: #9cdcfe;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  color: #808080;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.modalClose:hover {
+  color: #fff;
+}
+
+.modalContent {
+  padding: 1.5rem;
+  overflow-y: auto;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #d4d4d4;
+}
+
+.modalContent h2 {
+  color: #569cd6;
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.75rem 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #404040;
+}
+
+.modalContent h2:first-child {
+  margin-top: 0;
+}
+
+.modalContent h3 {
+  color: #4ec9b0;
+  font-size: 1rem;
+  margin: 1.25rem 0 0.5rem 0;
+}
+
+.modalContent h4 {
+  color: #dcdcaa;
+  font-size: 0.9rem;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.modalContent strong {
+  color: #ce9178;
+}
+
+.modalContent code {
+  background: #333;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  color: #9cdcfe;
+  font-size: 0.8rem;
+}
+
+.modalContent li {
+  margin-left: 1.5rem;
+  margin-bottom: 0.25rem;
+  list-style-type: disc;
+}
+
+.modalContent hr {
+  border: none;
+  border-top: 1px solid #404040;
+  margin: 1.5rem 0;
+}
+
+.modalContent :global(.checkbox) {
+  margin-left: 0.5rem;
+  padding: 0.15rem 0;
+}
+
+.modalContent :global(.checkbox.checked) {
+  color: #6a9955;
+}
+
+.modalContent p {
+  margin: 0.5rem 0;
+}
+
+/* Navigation */
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  background: var(--ifm-color-emphasis-50);
+}
+
+.navButton {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  background: var(--ifm-background-color);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.navButton:hover:not(:disabled) {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.navButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.progress {
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-600);
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .stageIndicators {
+    gap: 0.5rem;
+  }
+
+  .stageButton {
+    min-width: 60px;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .stageLabel {
+    font-size: 0.65rem;
+  }
+
+  .arrow {
+    font-size: 1rem;
+  }
+
+  .message {
+    max-width: 95%;
+  }
+}
