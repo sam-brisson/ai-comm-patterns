@@ -71,10 +71,8 @@ const config: Config = {
   themes: ['@docusaurus/theme-mermaid'],
 
   plugins: [
-    
-      'docusaurus-lunr-search',
-      
-    
+    'docusaurus-lunr-search',
+    './plugins/knowledge-graph-plugin',
   ],
 
   markdown: {
@@ -107,6 +105,11 @@ const config: Config = {
           sidebarId: 'ExperimenationSidebar',
           position: 'left',
           label: 'Experimentation',
+        },
+        {
+          to: '/explore',
+          label: 'Explore',
+          position: 'left',
         }
       ],
     },

@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 sidebar_title: Initial Prompt - Concept
-tags: [human-ai-partnership, knowledge-building]
+tags: [human-ai-partnership, knowledge-building, workflow, methodology, publishing, conversation, weekly-rhythm]
 ---
 # Initial Prompt - Concept
 My goal with this knowledge management site is to build and co-create all of the details with AI as well as Human collaborators.   In my initial experiment, I'm working with Claude to create a sort of working agreement together on how we would develop knowledge, and then create a workflow that we can use to create and post markdown files on the knowledge site.
