@@ -11,13 +11,19 @@ const getArg = (flag) => {
 };
 
 const mode = getArg('--mode');
-const conversation = getArg('--conversation');
-const title = getArg('--title');
-const changesContextJson = getArg('--changes-context');
 const issueNumber = getArg('--issue-number');
+
+// Read content from files to avoid shell escaping issues
+const conversationFile = getArg('--conversation-file');
+const titleFile = getArg('--title-file');
+const changesContextFile = getArg('--changes-context-file');
+
+const conversation = conversationFile ? fs.readFileSync(conversationFile, 'utf8') : '';
+const title = titleFile ? fs.readFileSync(titleFile, 'utf8') : '';
 
 let changesContext;
 try {
+  const changesContextJson = changesContextFile ? fs.readFileSync(changesContextFile, 'utf8') : '{}';
   changesContext = JSON.parse(changesContextJson);
 } catch (e) {
   changesContext = { existingChanges: [], templates: {} };

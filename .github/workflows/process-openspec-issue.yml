@@ -37,6 +37,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            const fs = require('fs');
             let mode, conversation, title, issueNumber;
 
             if (context.eventName === 'repository_dispatch') {
@@ -80,6 +81,7 @@ jobs:
               console.log('Source: issue labeled');
               console.log('Mode:', mode);
               console.log('Issue:', issueNumber);
+              console.log('Conversation length:', conversation.length);
 
               if (!conversation) {
                 core.setFailed('Issue body is empty - no conversation to process');
@@ -87,9 +89,12 @@ jobs:
               }
             }
 
+            // Write conversation to file to avoid shell escaping issues
+            fs.writeFileSync('conversation.txt', conversation);
+            fs.writeFileSync('title.txt', title);
+            console.log('Wrote conversation.txt (' + conversation.length + ' chars)');
+
             core.setOutput('mode', mode);
-            core.setOutput('conversation', conversation);
-            core.setOutput('title', title);
             core.setOutput('issueNumber', issueNumber);
 
       - name: Gather Existing Changes
@@ -106,9 +111,9 @@ jobs:
         run: |
           node .github/scripts/process-openspec-conversation.js \
             --mode "${{ steps.parse.outputs.mode }}" \
-            --conversation "${{ steps.parse.outputs.conversation }}" \
-            --title "${{ steps.parse.outputs.title }}" \
-            --changes-context "$(cat changes-context.json)" \
+            --conversation-file "conversation.txt" \
+            --title-file "title.txt" \
+            --changes-context-file "changes-context.json" \
             --issue-number "${{ steps.parse.outputs.issueNumber }}"
 
       - name: Create Branch and Commit (Propose Mode)
