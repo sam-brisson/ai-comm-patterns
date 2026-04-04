@@ -2,7 +2,7 @@ name: Process Article from Issue with Claude
 
 on:
   issues:
-    types: [opened, labeled]
+    types: [labeled]
 
 jobs:
   generate-article:
