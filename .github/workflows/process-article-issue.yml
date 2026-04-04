@@ -115,6 +115,16 @@ jobs:
           BRANCH_NAME="article-from-issue-${{ steps.parse.outputs.issueNumber }}"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+
+          # Fetch remote branches to check if branch exists
+          git fetch origin
+
+          # Check if branch exists remotely and delete it if so
+          if git ls-remote --exit-code --heads origin $BRANCH_NAME; then
+            echo "Branch $BRANCH_NAME exists remotely, deleting it first..."
+            git push origin --delete $BRANCH_NAME
+          fi
+
           git checkout -b $BRANCH_NAME
           git add docs/
           git commit -m "Add article from issue #${{ steps.parse.outputs.issueNumber }}"
