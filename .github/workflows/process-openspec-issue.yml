@@ -93,11 +93,11 @@ jobs:
             core.setOutput('issueNumber', issueNumber);
 
       - name: Gather Existing Changes
-        id: changes
         run: |
           # Scan all existing changes and create summaries
           node .github/scripts/gather-openspec-context.js > changes-context.json
-          echo "changes=$(cat changes-context.json)" >> $GITHUB_OUTPUT
+          echo "Generated changes context:"
+          cat changes-context.json
 
       - name: Process with Claude API
         id: process
