@@ -71,6 +71,42 @@
   border-color: var(--ifm-color-primary);
 }
 
+.result {
+  white-space: nowrap;
+}
+
+.resultLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  background: var(--ifm-color-success-lightest, rgba(0, 164, 0, 0.1));
+  border: 1px solid var(--ifm-color-success);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ifm-color-success-darkest, #006400);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.resultLink:hover {
+  background: var(--ifm-color-success);
+  color: #fff;
+  text-decoration: none;
+}
+
+.resultPending {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  background: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-600);
+  font-style: italic;
+}
+
 /* Modal styles - matching OpenSpec demo */
 .modalOverlay {
   position: fixed;

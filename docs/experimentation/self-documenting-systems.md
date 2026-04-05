@@ -1,11 +1,12 @@
 ---
-title: "Can a System Document Itself? Exploring OpenSpec + LLMs for Small Teams"
-sidebar_label: "Self-Documenting Systems"
+title: "OpenSpec Playbook - Iteration 1"
+sidebar_label: "OpenSpec Playbook - Iteration 1"
+sidebar_position: 1
 description: "An exploration of how spec-driven development tools like OpenSpec combined with LLMs might help small teams build domain knowledge while building their product."
-tags: [knowledge-management, ai-assisted-development, tools, patterns]
+tags: [knowledge-management, ai-assisted-development, tools, patterns, openspec]
 ---
 
-import SpecFlowDemo from '@site/src/components/SpecFlowDemo';
+import OpenSpecDemo from '@site/src/components/OpenSpecDemo';
 
 What if the process of building software could also be the process of documenting it? For small product teams moving fast with AI coding assistants, this question isn't academic — it's survival.
 
@@ -37,7 +38,7 @@ When you run `/opsx:propose`, you're not just prompting an AI — you're creatin
 
 Try clicking through this demo to see what a real PM/Engineer conversation looks like at each stage — and click the artifact links to see the actual spec files:
 
-<SpecFlowDemo />
+<OpenSpecDemo />
 
 *This component was itself built using the OpenSpec workflow. Click "View proposal.md" or any artifact link to see the real specs that guided its implementation.*
 

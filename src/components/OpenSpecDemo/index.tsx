@@ -294,7 +294,7 @@ function renderMarkdown(content: string): string {
     .replace(/\n/g, '<br />');
 }
 
-export default function SpecFlowDemo(): React.ReactElement {
+export default function OpenSpecDemo(): React.ReactElement {
   const [currentStage, setCurrentStage] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const stage = stages[currentStage];

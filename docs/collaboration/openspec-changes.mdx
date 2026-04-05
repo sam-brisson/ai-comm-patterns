@@ -5,11 +5,19 @@ title: OpenSpec Changes
 
 import OpenSpecChanges from '@site/src/components/OpenSpecChanges';
 
-# OpenSpec: Self-Documenting Changes
+# OpenSpec Changes
+
+These are the changes we're building using the OpenSpec process. Click any artifact to read the proposal, design, or tasks — then check out the result to see what got built.
+
+<OpenSpecChanges />
+
+---
+
+## What Is This?
 
 One of the core ideas we're exploring is whether **systems can document themselves** through the natural flow of team collaboration.
 
-## The Problem with Documentation
+### The Problem with Documentation
 
 Traditional documentation has a fundamental tension:
 
@@ -19,7 +27,7 @@ Traditional documentation has a fundamental tension:
 
 What if documentation emerged automatically from the conversations teams already have?
 
-## Our Approach: OpenSpec
+### Our Approach: OpenSpec
 
 OpenSpec is our experiment in self-documenting systems. The idea is simple:
 
@@ -41,40 +49,32 @@ Every OpenSpec change produces three artifacts:
 
 These artifacts aren't written by hand. They're generated from team conversations and refined through review.
 
-## Active Changes
+### How It Works
 
-The table below shows changes currently being developed using the OpenSpec process. Click any artifact to read it.
-
-<OpenSpecChanges />
-
-## How It Works
-
-### 1. Capture the Conversation
+**1. Capture the Conversation**
 
 When a team has a meaningful discussion — whether it's a huddle about a new feature, a refinement session exploring edge cases, or a thread debating architectural approaches — the conversation gets captured.
 
-### 2. Process with AI
+**2. Process with AI**
 
 The captured conversation is submitted to our [GitHub workflow](https://github.com/sam-brisson/ai-comm-patterns/blob/main/.github/workflows/process-openspec-issue.yml). Claude analyzes the transcript, identifies key decisions, and generates appropriate artifacts.
 
-### 3. Review and Refine
+**3. Review and Refine**
 
 The generated artifacts become a pull request. The team reviews, refines, and merges — just like code. The artifacts evolve through normal collaboration.
 
-### 4. Build from the Spec
+**4. Build from the Spec**
 
 When it's time to implement, the artifacts serve as the shared understanding. They're not a contract — they're a starting point that captured the team's thinking.
 
-## The Self-Referential Part
+### The Self-Referential Part
 
-Here's what makes this interesting: **this very page was built using OpenSpec**.
+Here's what makes this interesting: **the changes in the table above were built using OpenSpec**.
 
-The [TDD Knowledge Page](/docs/collaboration/openspec-changes) change you see in the table above? That started as a team conversation about how to standardize TDD practices. The conversation was processed, artifacts were generated, and now those artifacts are guiding the implementation.
+The OpenSpec Workflow Demo started as a conversation about needing a tangible example. The conversation was processed, artifacts were generated, and the demo was built from those specs. Now you can read the artifacts AND see what they produced.
 
 The system is documenting itself.
 
-## Try It
+### Try It
 
 Want to see how it works? Create a GitHub issue in our repository with a conversation transcript and add the `propose` label. The workflow will process it and generate artifacts automatically.
-
-Or just read through the active changes above to see real examples of AI-generated documentation from team conversations.

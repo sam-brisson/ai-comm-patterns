@@ -6,6 +6,8 @@ interface Change {
   title: string;
   status: 'active' | 'archived';
   description: string;
+  resultLink?: string;
+  resultLabel?: string;
   artifacts: {
     proposal?: string;
     design?: string;
@@ -17,10 +19,93 @@ interface Change {
 // and keep content in sync with the actual files
 const changes: Change[] = [
   {
+    id: 'openspec-demo',
+    title: 'OpenSpec Workflow Demo',
+    status: 'active',
+    description: 'Interactive component showing the OpenSpec workflow stages with realistic team conversations and artifact examples.',
+    resultLink: '/docs/experimentation/self-documenting-systems',
+    resultLabel: 'View Demo',
+    artifacts: {
+      proposal: `# OpenSpec Workflow Demo
+
+## Why
+
+The article about self-documenting systems needs a tangible example that shows what team collaboration looks like at each OpenSpec stage. Text descriptions aren't enough — readers need to see realistic PM/Engineer conversations that demonstrate how specs evolve through refinement.
+
+## What Changes
+
+- Add an interactive React component to the Docusaurus site
+- Component shows four stages: Propose → Design → Tasks → Archive
+- Each stage displays a realistic conversation snippet between PM and Engineer
+- Uses a generalized "Document Import with Smart Sync" feature as the example
+- Each stage includes a link to view the actual OpenSpec artifact
+- The component itself is built using OpenSpec, making it self-referential
+
+## Capabilities
+
+### New Capabilities
+- \`openspec-demo\`: Interactive React component that visualizes the OpenSpec workflow with example team conversations at each stage
+
+## Impact
+
+- New component in \`src/components/OpenSpecDemo/\`
+- Updated article at \`docs/experimentation/self-documenting-systems.md\`
+- No external dependencies beyond existing Docusaurus setup`,
+      design: `# OpenSpec Workflow Demo - Design
+
+## Component Structure
+
+The OpenSpecDemo component provides:
+- Stage navigator with clickable buttons
+- Conversation panel showing PM/Engineer dialogue
+- Artifact viewer modal for each stage's output
+- Navigation controls for stepping through stages
+
+## Stage Definitions
+
+### Stage 1: Propose
+Shows the initial problem framing conversation where the engineer's question reframes the approach.
+
+### Stage 2: Design
+Shows technical discussion of parsing approach and edge case handling.
+
+### Stage 3: Tasks
+Shows task breakdown and dependency ordering conversation.
+
+### Stage 4: Archive
+Shows reflection on what shipped vs planned, capturing learnings.
+
+## UI Pattern
+
+Reuses familiar patterns:
+- Horizontal stage indicators with arrows
+- Chat-bubble style messages
+- Modal overlay for artifact viewing
+- Simple markdown rendering`,
+      tasks: `# OpenSpec Workflow Demo - Tasks
+
+## Completed
+- [x] Create stage navigator component
+- [x] Implement conversation panel with speaker styling
+- [x] Build artifact modal with markdown rendering
+- [x] Write content for all 4 stages
+- [x] Add to self-documenting-systems article
+- [x] Style to match site theme
+
+## Definition of Done
+- [x] Component renders all 4 stages
+- [x] Users can navigate between stages
+- [x] Artifact modal displays formatted content
+- [x] Responsive on mobile devices`
+    }
+  },
+  {
     id: 'tdd-explorer-enhancement',
     title: 'TDD Knowledge Page with Example Mapping',
     status: 'active',
     description: 'Interactive documentation teaching TDD workflow using Example Mapping and Pytest, modeled on the OpenSpec demo pattern.',
+    resultLink: undefined, // Not yet built
+    resultLabel: 'Coming Soon',
     artifacts: {
       proposal: `# TDD Knowledge Page with Example Mapping
 
@@ -230,6 +315,8 @@ Goal: Ensure the knowledge page can be maintained over time.
     title: 'Slack to OpenSpec Action',
     status: 'active',
     description: 'GitHub Action that processes Slack huddle transcripts and generates OpenSpec artifacts automatically.',
+    resultLink: 'https://github.com/sam-brisson/ai-comm-patterns/blob/main/.github/workflows/process-openspec-issue.yml',
+    resultLabel: 'View Workflow',
     artifacts: {
       proposal: `# Slack to OpenSpec Action
 
@@ -381,6 +468,7 @@ export default function OpenSpecChanges(): React.ReactElement {
             <th>Change</th>
             <th>Description</th>
             <th>Artifacts</th>
+            <th>Result</th>
           </tr>
         </thead>
         <tbody>
@@ -400,6 +488,15 @@ export default function OpenSpecChanges(): React.ReactElement {
                     </button>
                   )
                 ))}
+              </td>
+              <td className={styles.result}>
+                {change.resultLink ? (
+                  <a href={change.resultLink} className={styles.resultLink}>
+                    {change.resultLabel || 'View Result'} →
+                  </a>
+                ) : (
+                  <span className={styles.resultPending}>{change.resultLabel || 'In Progress'}</span>
+                )}
               </td>
             </tr>
           ))}
