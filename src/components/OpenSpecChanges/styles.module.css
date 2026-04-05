@@ -1,0 +1,309 @@
+.container {
+  margin: 1.5rem 0;
+}
+
+/* Table styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table th {
+  background: var(--ifm-color-emphasis-100);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-800);
+  border-bottom: 2px solid var(--ifm-color-emphasis-300);
+}
+
+.table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  vertical-align: top;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background: var(--ifm-color-emphasis-50);
+}
+
+.changeTitle {
+  font-weight: 600;
+  color: var(--ifm-color-primary-darkest);
+  min-width: 200px;
+}
+
+.changeDescription {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+  line-height: 1.5;
+}
+
+.artifacts {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.artifactButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  background: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: var(--ifm-color-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.artifactButton:hover {
+  background: var(--ifm-color-primary-lightest);
+  border-color: var(--ifm-color-primary);
+}
+
+/* Modal styles - matching OpenSpec demo */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  background: #1e1e1e;
+  border-radius: 8px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: #2d2d2d;
+  border-bottom: 1px solid #404040;
+  border-radius: 8px 8px 0 0;
+  gap: 1rem;
+}
+
+.modalTitleArea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  flex-shrink: 1;
+}
+
+.modalChangeTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modalFilename {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.75rem;
+  color: #9cdcfe;
+}
+
+.modalTabs {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.modalTab {
+  padding: 0.4rem 0.75rem;
+  background: transparent;
+  border: 1px solid #404040;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: #808080;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modalTab:hover {
+  color: #fff;
+  border-color: #606060;
+}
+
+.modalTabActive {
+  background: #404040;
+  color: #fff;
+  border-color: #606060;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  color: #808080;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.modalClose:hover {
+  color: #fff;
+}
+
+.modalContent {
+  padding: 1.5rem;
+  overflow-y: auto;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #d4d4d4;
+}
+
+.modalContent h1 {
+  color: #569cd6;
+  font-size: 1.3rem;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #404040;
+}
+
+.modalContent h2 {
+  color: #569cd6;
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.75rem 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #404040;
+}
+
+.modalContent h2:first-child {
+  margin-top: 0;
+}
+
+.modalContent h3 {
+  color: #4ec9b0;
+  font-size: 1rem;
+  margin: 1.25rem 0 0.5rem 0;
+}
+
+.modalContent h4 {
+  color: #dcdcaa;
+  font-size: 0.9rem;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.modalContent strong {
+  color: #ce9178;
+}
+
+.modalContent code {
+  background: #333;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  color: #9cdcfe;
+  font-size: 0.8rem;
+}
+
+.modalContent pre {
+  background: #1a1a1a;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 1rem 0;
+  border: 1px solid #333;
+}
+
+.modalContent pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.8rem;
+  color: #d4d4d4;
+}
+
+.modalContent li {
+  margin-left: 1.5rem;
+  margin-bottom: 0.25rem;
+  list-style-type: disc;
+}
+
+.modalContent hr {
+  border: none;
+  border-top: 1px solid #404040;
+  margin: 1.5rem 0;
+}
+
+.modalContent :global(.checkbox) {
+  margin-left: 0.5rem;
+  padding: 0.15rem 0;
+}
+
+.modalContent :global(.checkbox.checked) {
+  color: #6a9955;
+}
+
+.modalContent p {
+  margin: 0.5rem 0;
+}
+
+.modalContent table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.modalContent td {
+  padding: 0.5rem;
+  border: 1px solid #404040;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .table th:nth-child(2),
+  .table td:nth-child(2) {
+    display: none;
+  }
+
+  .modalHeader {
+    flex-wrap: wrap;
+  }
+
+  .modalTabs {
+    order: 3;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}
