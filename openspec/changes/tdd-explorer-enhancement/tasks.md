@@ -1,156 +1,128 @@
-# TDD Explorer Enhancement - Tasks
+# TDD Knowledge Page - Tasks
 
-## Phase 1: Pytest Integration Foundation
+## Slice 1: Component Skeleton + First Stage (Ship & Learn)
 
-### Research & Planning
-- [ ] Research Pytest output formats for different failure types
-- [ ] Document Pytest collection API and test discovery mechanisms
-- [ ] Analyze existing codebase for common Pytest patterns and conventions
-- [ ] Define test file structure and naming conventions to standardize
-- [ ] Study Matt Wynn's Example Mapping methodology and workshop formats
+Goal: Get something live that team members can click through, even if incomplete.
 
-### Core Pytest Integration
-- [ ] Implement Pytest test discovery using `--collect-only`
-- [ ] Build parser for Pytest collection output to create test hierarchy
-- [ ] Create Pytest execution wrapper with configurable options
-- [ ] Implement JUnit XML output parsing for structured test results
-- [ ] Handle pytest marks, fixtures, and parameterized test parsing
-- [ ] Build assertion introspection parser for inline failure details
-- [ ] Implement fixture failure detection and reporting
-- [ ] Add support for conftest.py scope and fixture inheritance
-- [ ] Create test re-run functionality with various scopes
-- [ ] Implement search and filter capabilities across test tree
+### Component Setup
+- [ ] Create `src/components/TDDKnowledgePage/` directory structure
+- [ ] Copy and adapt stage navigator from OpenSpec demo
+- [ ] Set up content loading from external JSON file
+- [ ] Implement basic styling (reuse OpenSpec demo CSS as starting point)
 
-## Phase 2: Enhanced UI Components
+### First Stage: Story Definition
+- [ ] Write Stage 1 content: user story, conversation, artifact
+- [ ] Implement conversation panel with PM/Engineer/QA speaker support
+- [ ] Implement artifact modal (reuse from OpenSpec demo)
+- [ ] Add component to a documentation page for testing
 
-### Tree View Implementation
-- [ ] Design hierarchical tree component matching Pytest structure
-- [ ] Implement expandable/collapsible tree nodes with state persistence
-- [ ] Add visual indicators for test status (pass/fail/skip/error)
-- [ ] Create inline failure display with expandable details
-- [ ] Implement context menu for test operations (run, debug, navigate)
-- [ ] Add keyboard shortcuts for common tree operations
-- [ ] Build bulk selection and operation capabilities
-- [ ] Implement tree search with highlighting
+### Checkpoint
+- [ ] Team member walks through Stage 1 and provides feedback
+- [ ] Identify any usability issues before building more stages
 
-### Failure Detail Display
-- [ ] Create assertion failure inline display component
-- [ ] Implement diff visualization for object comparisons
-- [ ] Build stack trace viewer with source code navigation
-- [ ] Add fixture setup/teardown failure reporting
-- [ ] Create parameterized test result grouping
-- [ ] Implement copy/share functionality for failure details
+---
 
-## Phase 3: Interactive Knowledge Page
+## Slice 2: Example Mapping Stage (Core Value)
 
-### Content Architecture
-- [ ] Define TDD workflow stages and learning objectives
-- [ ] Create realistic user story examples for different domains
-- [ ] Draft Example Mapping workshop scenarios with team contexts
-- [ ] Document team's Pytest conventions and best practices
-- [ ] Create progression from basic to advanced TDD concepts
-- [ ] Define success criteria for each knowledge page section
+Goal: The Example Mapping stage is the key differentiator — this is what teaches the new concept.
 
-### Component Development
-- [ ] Build stage navigator component (reusing OpenSpec demo patterns)
-- [ ] Implement story display panel with acceptance criteria
-- [ ] Create interactive Example Mapping card system
-- [ ] Build drag-and-drop interface for colored cards
-- [ ] Implement card-to-test-code transition animations
-- [ ] Create syntax-highlighted Pytest code display
-- [ ] Build simulated test execution panel
-- [ ] Implement red-green-refactor cycle demonstration
-- [ ] Add progress tracking and completion status
-- [ ] Create responsive design for different screen sizes
+### Stage 2: Example Mapping Content
+- [ ] Write realistic three-amigos conversation discovering rules and examples
+- [ ] Create example map artifact showing colored card structure
+- [ ] Design static card visualization (colored borders, hierarchy)
 
-### Example Mapping Integration
-- [ ] Implement colored card system (yellow/green/red/blue)
-- [ ] Create workshop simulation with realistic team dialogue
-- [ ] Build rule-to-test and example-to-test mapping visualizations
-- [ ] Implement question resolution workflow
-- [ ] Create templates for different story types
-- [ ] Add collaborative discovery simulation
-- [ ] Build transition from workshop artifacts to executable tests
+### Card Display Component
+- [ ] Build card display component (static, not drag-and-drop)
+- [ ] Style cards with appropriate colors (blue/yellow/green/red)
+- [ ] Show cards grouped under parent rules
 
-## Phase 4: Team Standardization
+### Checkpoint
+- [ ] Team member unfamiliar with Example Mapping reviews Stage 2
+- [ ] Verify the concept is clear without prior knowledge
 
-### Documentation & Guidelines
-- [ ] Document standard test file organization patterns
-- [ ] Create fixture usage guidelines and best practices
-- [ ] Define conftest.py organization standards
-- [ ] Document mocking approaches and when to use different strategies
-- [ ] Create guidelines for parametrized test design
-- [ ] Define when TDD fits into refinement and story development
-- [ ] Create onboarding checklist for new team members
+---
 
-### Process Integration
-- [ ] Create Example Mapping workshop templates for common scenarios
-- [ ] Build story-to-test traceability guidelines
-- [ ] Define collaboration patterns between PM/Engineer/QA roles
-- [ ] Create refinement process integration points
-- [ ] Document test review and maintenance practices
-- [ ] Build metrics and success criteria for TDD adoption
+## Slice 3: Pytest Tests Stage (The Payoff)
 
-## Phase 5: Advanced Features
+Goal: Show the direct connection from Example Mapping outputs to executable tests.
 
-### Performance & Scalability
-- [ ] Implement lazy loading for large test suites
-- [ ] Add caching for test discovery and results
-- [ ] Optimize tree rendering for hundreds of tests
-- [ ] Implement background test execution
-- [ ] Add parallel test execution support
-- [ ] Create performance monitoring for test runs
+### Stage 3: Pytest Tests Content
+- [ ] Write conversation explaining card-to-test translation
+- [ ] Create test file artifact with real Pytest patterns
+- [ ] Demonstrate class grouping matching rules, methods matching examples
 
-### Integration & Ecosystem
-- [ ] Integrate with pytest-cov for coverage visualization
-- [ ] Add support for pytest-benchmark performance tracking
-- [ ] Implement pytest-mock integration for mocking workflows
-- [ ] Create custom pytest mark support for team categorization
-- [ ] Add CI/CD integration for automated test feedback
-- [ ] Implement code review integration showing test impact
+### Code Display Enhancement
+- [ ] Add syntax highlighting for Python code in artifact viewer
+- [ ] Add copy-to-clipboard button for code examples
 
-### Analytics & Improvement
-- [ ] Implement usage analytics for test explorer features
-- [ ] Track knowledge page completion and effectiveness metrics
-- [ ] Create feedback collection mechanisms
-- [ ] Build automated suggestions for missing test coverage
-- [ ] Implement team TDD adoption tracking
-- [ ] Create continuous improvement feedback loops
+### Checkpoint
+- [ ] Engineer reviews test examples for accuracy to team conventions
+- [ ] Verify fixture usage and patterns match what we actually do
 
-## Phase 6: Testing & Deployment
+---
 
-### Quality Assurance
-- [ ] Write comprehensive tests for Pytest output parsing
-- [ ] Test tree view performance with large test suites
-- [ ] Validate knowledge page accessibility compliance
-- [ ] Test responsive design across different devices
-- [ ] Perform user acceptance testing with team members
-- [ ] Validate Example Mapping workflow effectiveness
+## Slice 4: Red-Green-Refactor + Integration Stages
 
-### Documentation & Rollout
-- [ ] Create user documentation for enhanced test explorer
-- [ ] Write team onboarding guide for knowledge page
-- [ ] Document troubleshooting guide for common issues
-- [ ] Create migration guide from existing test workflows
-- [ ] Plan phased rollout strategy across team
-- [ ] Establish feedback collection and iteration process
+Goal: Complete the workflow with TDD cycle demonstration and test suite organization.
 
-## Success Criteria
+### Stage 4: Red-Green-Refactor Content
+- [ ] Write conversation walking through the TDD cycle
+- [ ] Create before/after code artifacts showing refactor step
+- [ ] Show test output (red → green)
 
-### Test Explorer
-- ✅ Tree view loads test hierarchy in under 2 seconds for typical project
-- ✅ Inline failure details eliminate need to check console output
-- ✅ Re-run functionality works for individual tests and test suites
-- ✅ Search and filter reduce time to find specific tests
+### Stage 5: Integration Content
+- [ ] Write conversation about test organization and CI
+- [ ] Create conftest.py artifact demonstrating fixture patterns
+- [ ] Show how tests fit into larger suite structure
 
-### Knowledge Page
-- ✅ Team members complete full workflow walkthrough
-- ✅ Example Mapping concepts are clearly understood
-- ✅ Pytest best practices are documented and accessible
-- ✅ New team members can onboard using knowledge page
+### Final Polish
+- [ ] Add navigation between all 5 stages
+- [ ] Verify stage progression feels natural
+- [ ] Test responsive layout on different screen sizes
 
-### Team Adoption
-- ✅ Consistent test file structure across all new features
-- ✅ Example Mapping used in story refinement sessions
-- ✅ Reduced time from test failure to resolution
-- ✅ Positive feedback on TDD workflow improvements
+---
+
+## Slice 5: Content Maintenance & Documentation
+
+Goal: Ensure the knowledge page can be maintained over time.
+
+### Content Infrastructure
+- [ ] Document content file format and how to update
+- [ ] Add lastUpdated metadata to content file
+- [ ] Assign initial content ownership
+
+### Documentation
+- [ ] Link knowledge page from relevant docs (onboarding, testing guide)
+- [ ] Add brief README in component directory explaining structure
+
+---
+
+## Definition of Done
+
+- [ ] All 5 stages have content and are navigable
+- [ ] At least 2 team members have walked through and confirmed it's clear
+- [ ] Content is in external files, not hardcoded in TSX
+- [ ] Component is linked from documentation site
+- [ ] Content ownership is assigned
+
+---
+
+## Deferred (Future Changes)
+
+These items are explicitly out of scope. Captured here for future reference:
+
+### Test Explorer Tooling (Separate Change)
+- Hierarchical tree view for Pytest tests
+- Inline failure details with assertion info
+- Re-run buttons for failed tests
+- Search and filter across test names
+
+### Workshop Facilitation Mode
+- Drag-and-drop card interface for live Example Mapping sessions
+- Real-time collaboration features
+- Export workshop results to markdown
+
+### Extended Content
+- Multiple example scenarios (API, data migration, bug fix)
+- Advanced Pytest patterns (parametrize, marks, plugins)
+- Quiz/assessment after walkthrough

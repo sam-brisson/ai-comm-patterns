@@ -1,72 +1,50 @@
-# TDD Explorer Enhancement
+# TDD Knowledge Page with Example Mapping
 
 ## Why
 
-The current test discovery and result viewing flow is clunky and unintuitive. Users have to navigate through multiple menus just to see their test results, and when tests fail, they must click through to console output to hunt for actual error details. This friction significantly impacts the test-driven development workflow and developer productivity.
+Our team lacks standardized TDD practices. Different engineers approach test-driven development inconsistently, and new team members have no clear resource for understanding how TDD fits into our workflow. The success of our OpenSpec demo showed that interactive documentation effectively communicates complex processes — people finally "got it" when they could click through the stages and see realistic conversations.
 
-User feedback has consistently highlighted:
-- Difficulty understanding test failures without context
-- Poor test organization and navigation
-- Lack of quick re-run capabilities
-- Need for better visual hierarchy in test suites
+We want to apply the same approach to TDD: an interactive knowledge page that explains how our team uses Example Mapping to discover test cases and Pytest to implement them.
 
-Additionally, our team lacks standardized TDD practices and documentation. Different engineers approach test-driven development inconsistently, and we need shared understanding of how TDD fits into our refinement and development workflow. The success of our OpenSpec demo showed how interactive documentation can effectively communicate complex processes.
+Additionally, the original TDD Explorer Enhancement proposed Jest integration, but our team uses Python/Pytest. This change pivots to Pytest and focuses on the knowledge page as the primary deliverable. Test explorer tooling improvements are deferred to a future change.
 
 ## What Changes
 
-### Framework Pivot to Pytest
-After team discussion, we're pivoting from Jest to Pytest integration since our team uses Python/Pytest as our primary testing stack. This aligns the tool with our actual development practices and leverages existing institutional knowledge.
-
-### Hierarchical Tree View
-- Replace flat test list with expandable/collapsible tree structure
-- Enable running individual tests or entire suites by clicking tree nodes
-- Inspired by VSCode's test explorer for familiar UX patterns
-- Integrate with Pytest's test collection and execution model
-
-### Inline Test Failure Details
-- Display assertion failures directly next to test names (e.g., "expected 5, got 7")
-- Parse Pytest output to extract assertion details, diffs, and stack traces
-- Include diff visualization for complex object comparisons
-- Surface fixture setup/teardown failures clearly
-
 ### Interactive TDD Knowledge Page
-- Build comprehensive documentation of our team's TDD practices using interactive components
-- Structure around Matt Wynn's Example Mapping collaboration model
-- Show full workflow: Story → Example Mapping → Pytest tests → Execution → Refinement
-- Reuse successful component patterns from OpenSpec demo
-- Include colored card system (yellow=rules, green=examples, red=questions, blue=stories)
-- Demonstrate transition from workshop examples to executable Pytest tests
 
-### Team Standardization
-- Document test file structure and naming conventions
-- Standardize fixture usage patterns and conftest organization
-- Define mocking approaches and when to use different Pytest features
-- Establish when TDD fits into refinement process and story development
-- Enable new team members to understand both "what" and "how" of our TDD practices
+Build an interactive explanation of our TDD workflow, modeled on the OpenSpec demo:
+
+- **Stage navigator** showing the TDD workflow: Story → Example Mapping → Pytest Tests → Red/Green/Refactor
+- **Example Mapping visualization** with Matt Wynn's colored card system (yellow=rules, green=examples, red=questions, blue=story)
+- **Realistic team conversations** at each stage showing how PM, Engineer, and QA collaborate
+- **Pytest code examples** demonstrating how workshop outputs become executable tests
+- **Artifact viewer** letting users inspect the actual test files, fixtures, and conftest patterns
+
+### Content Focus
+
+The knowledge page documents our team's actual practices:
+
+- When Example Mapping fits into story refinement
+- How rules and examples translate to Pytest test cases
+- Our conventions for test file organization and naming
+- Fixture patterns and conftest.py organization
+- When to use parametrize, marks, and other Pytest features
+
+### What's NOT in Scope
+
+- Test explorer UI improvements (tree view, inline failures, re-run buttons) — deferred to separate change
+- Drag-and-drop interactivity for Example Mapping cards — static step-through is sufficient to teach the concept
+- Live test execution or workshop tooling — this is documentation, not a workshop facilitation tool
 
 ## Capabilities
 
-### Enhanced Test Navigation
-- Tree-structured test organization matching Pytest's collection hierarchy
-- Quick re-run of failed tests, individual tests, or test suites
-- Search and filter capabilities across test names and descriptions
+### New Capability
 
-### Improved Debugging Experience
-- Inline display of assertion failures with context
-- Diff visualization for failed comparisons
-- Stack trace navigation with source code links
-- Fixture dependency visualization
+- `tdd-knowledge-page`: Interactive React component explaining TDD workflow with Example Mapping, reusing the proven OpenSpec demo pattern
 
-### Process Documentation
-- Step-through Example Mapping workshop format
-- Live examples of story-to-test translation
-- Interactive demonstration of red-green-refactor cycle
-- Best practices for Pytest feature usage (parametrize, fixtures, marks)
+## Impact
 
-## Success Metrics
-
-- Reduced time from test failure to understanding root cause
-- Increased adoption of TDD practices across team members
-- Standardized test structure and organization in new features
-- Positive feedback on knowledge page effectiveness (similar to OpenSpec demo)
-- Faster onboarding of new team members to TDD workflow
+- New component in `src/components/TDDKnowledgePage/`
+- New documentation page linking to the component
+- Content files (markdown/JSON) for stages, conversations, and code examples
+- No changes to existing test infrastructure or tooling
