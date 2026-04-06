@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'AI Communication Patterns',
-  tagline: 'Ideas and Exploration on the Topic of Human / AI Collaboration',
+  title: 'AI Collab Playbook',
+  tagline: 'Stay in the Conversation, Never Lose the Plot',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -82,9 +82,9 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'AI Communication Patterns',
+      title: 'AI Collab Playbook',
       logo: {
-        alt: 'AI Communication Patterns Logo',
+        alt: 'AI Collab Playbook Logo',
         src: 'img/ai-logo.svg',
       },
       items: [
@@ -135,7 +135,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} AI Communication Patterns. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} AI Collab Playbook. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

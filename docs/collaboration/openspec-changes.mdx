@@ -13,6 +13,18 @@ These are the changes we're building using the OpenSpec process. Click any artif
 
 ---
 
+## Start a New Change
+
+Want to propose a new change or explore an idea? Use our project board to create and track OpenSpec issues.
+
+<a href="https://github.com/users/sam-brisson/projects/2" target="_blank" rel="noopener noreferrer" className="button button--primary button--lg" style={{marginBottom: '1rem', display: 'inline-block'}}>
+  View Project Board →
+</a>
+
+Create an issue with a conversation transcript and label it `propose` or `explore` to kick off the process.
+
+---
+
 ## What Is This?
 
 One of the core ideas we're exploring is whether **systems can document themselves** through the natural flow of team collaboration.
@@ -51,13 +63,28 @@ These artifacts aren't written by hand. They're generated from team conversation
 
 ### How It Works
 
+```mermaid
+flowchart LR
+    A[Team Conversation] --> B[Capture Transcript]
+    B --> C[Create GitHub Issue]
+    C --> D{Label Type}
+    D -->|propose| E[Generate Artifacts]
+    D -->|explore| F[Analyze & Comment]
+    E --> G[Create Pull Request]
+    G --> H[Review & Refine]
+    H --> I[Merge to Main]
+    I --> J[Build from Spec]
+```
+
 **1. Capture the Conversation**
 
 When a team has a meaningful discussion — whether it's a huddle about a new feature, a refinement session exploring edge cases, or a thread debating architectural approaches — the conversation gets captured.
 
 **2. Process with AI**
 
-The captured conversation is submitted to our [GitHub workflow](https://github.com/sam-brisson/ai-comm-patterns/blob/main/.github/workflows/process-openspec-issue.yml). Claude analyzes the transcript, identifies key decisions, and generates appropriate artifacts.
+The captured conversation is submitted as a GitHub issue. Claude analyzes the transcript, identifies key decisions, and generates appropriate artifacts based on the label:
+- **`propose`** — generates proposal.md, design.md, tasks.md and creates a PR
+- **`explore`** — analyzes the conversation and posts insights as a comment
 
 **3. Review and Refine**
 
@@ -74,7 +101,3 @@ Here's what makes this interesting: **the changes in the table above were built 
 The OpenSpec Workflow Demo started as a conversation about needing a tangible example. The conversation was processed, artifacts were generated, and the demo was built from those specs. Now you can read the artifacts AND see what they produced.
 
 The system is documenting itself.
-
-### Try It
-
-Want to see how it works? Create a GitHub issue in our repository with a conversation transcript and add the `propose` label. The workflow will process it and generate artifacts automatically.

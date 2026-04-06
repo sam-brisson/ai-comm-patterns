@@ -5,26 +5,27 @@
  */
 
 /* You can override the default Infima variables here. */
+/* Updated to match xplains.ai emerald green theme */
 :root {
-  --ifm-color-primary: #0d6efd; /* Your base blue */
-  --ifm-color-primary-dark: #0b5ed7; /* Darker shade of blue */
-  --ifm-color-primary-darker: #0a58cb; /* Even darker shade */
-  --ifm-color-primary-darkest: #084298; /* Darkest shade */
-  --ifm-color-primary-light: #388aff; /* Lighter shade */
-  --ifm-color-primary-lighter: #539dff; /* Even lighter shade */
-  --ifm-color-primary-lightest: #7cb4ff; /* Lightest shade */
+  --ifm-color-primary: #10b981; /* Emerald green */
+  --ifm-color-primary-dark: #059669; /* Darker emerald */
+  --ifm-color-primary-darker: #047857; /* Even darker */
+  --ifm-color-primary-darkest: #065f46; /* Darkest */
+  --ifm-color-primary-light: #34d399; /* Lighter emerald */
+  --ifm-color-primary-lighter: #6ee7b7; /* Even lighter */
+  --ifm-color-primary-lightest: #a7f3d0; /* Lightest */
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-color-primary: #10b981; /* Emerald green */
+  --ifm-color-primary-dark: #059669;
+  --ifm-color-primary-darker: #047857;
+  --ifm-color-primary-darkest: #065f46;
+  --ifm-color-primary-light: #34d399;
+  --ifm-color-primary-lighter: #6ee7b7;
+  --ifm-color-primary-lightest: #a7f3d0;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }

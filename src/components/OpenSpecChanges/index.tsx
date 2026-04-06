@@ -23,7 +23,7 @@ const changes: Change[] = [
     title: 'OpenSpec Workflow Demo',
     status: 'active',
     description: 'Interactive component showing the OpenSpec workflow stages with realistic team conversations and artifact examples.',
-    resultLink: '/docs/experimentation/openspec-playbook-iteration-2',
+    resultLink: '/ai-comm-patterns/docs/experimentation/openspec-playbook-iteration-2',
     resultLabel: 'View Demo',
     artifacts: {
       proposal: `# OpenSpec Workflow Demo
