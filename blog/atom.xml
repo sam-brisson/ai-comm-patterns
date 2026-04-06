@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="atom.xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sam-brisson.github.io/ai-comm-patterns/blog</id>
-    <title>AI Communication Patterns Blog</title>
+    <title>AI Collab Playbook Blog</title>
     <updated>2021-08-26T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sam-brisson.github.io/ai-comm-patterns/blog"/>
-    <subtitle>AI Communication Patterns Blog</subtitle>
+    <subtitle>AI Collab Playbook Blog</subtitle>
     <icon>https://sam-brisson.github.io/ai-comm-patterns/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
