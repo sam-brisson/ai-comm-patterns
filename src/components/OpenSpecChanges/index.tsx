@@ -8,6 +8,7 @@ interface Change {
   description: string;
   resultLink?: string;
   resultLabel?: string;
+  showWorkflowModal?: boolean;
   artifacts: {
     proposal?: string;
     design?: string;
@@ -315,8 +316,9 @@ Goal: Ensure the knowledge page can be maintained over time.
     title: 'Slack to OpenSpec Action',
     status: 'active',
     description: 'GitHub Action that processes Slack huddle transcripts and generates OpenSpec artifacts automatically.',
-    resultLink: 'https://github.com/sam-brisson/ai-comm-patterns/blob/main/.github/workflows/process-openspec-issue.yml',
+    resultLink: undefined,
     resultLabel: 'View Workflow',
+    showWorkflowModal: true,
     artifacts: {
       proposal: `# Slack to OpenSpec Action
 
@@ -438,9 +440,73 @@ function renderMarkdown(content: string): string {
 
 type ArtifactType = 'proposal' | 'design' | 'tasks';
 
+const workflowDiagram = `
+## How It Works
+
+\`\`\`
+┌─────────────────────┐
+│  Team Conversation  │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│  Capture Transcript │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────────────┐
+│ Create GitHub Issue w/      │
+│ Transcript                  │
+└──────────┬──────────────────┘
+           │
+           ▼
+      ┌────┴────┐
+      │  Label  │
+      │  Type   │
+      └────┬────┘
+     ┌─────┴─────┐
+     │           │
+     ▼           ▼
+┌─────────┐ ┌───────────────┐
+│ propose │ │    explore    │
+└────┬────┘ └───────┬───────┘
+     │              │
+     ▼              ▼
+┌──────────┐ ┌─────────────┐
+│ Generate │ │ Analyze &   │
+│ Artifacts│ │ Document    │
+└────┬─────┘ └──────┬──────┘
+     │              │
+     └──────┬───────┘
+            │
+            ▼
+┌───────────────────────┐
+│  Create Pull Request  │
+└───────────┬───────────┘
+            │
+            ▼
+┌───────────────────────┐
+│   Review & Refine     │
+└───────────┬───────────┘
+            │
+            ▼
+┌───────────────────────┐
+│    Merge to Main      │
+└───────────┬───────────┘
+            │
+            ▼
+┌───────────────────────┐
+│ Published to Docs Site│
+└───────────────────────┘
+\`\`\`
+
+Both \`propose\` and \`explore\` can create a **new** OpenSpec change or **update an existing one**.
+`;
+
 export default function OpenSpecChanges(): React.ReactElement {
   const [selectedChange, setSelectedChange] = useState<Change | null>(null);
   const [selectedArtifact, setSelectedArtifact] = useState<ArtifactType | null>(null);
+  const [showWorkflow, setShowWorkflow] = useState(false);
 
   const openArtifact = (change: Change, artifact: ArtifactType) => {
     setSelectedChange(change);
@@ -450,6 +516,7 @@ export default function OpenSpecChanges(): React.ReactElement {
   const closeModal = () => {
     setSelectedChange(null);
     setSelectedArtifact(null);
+    setShowWorkflow(false);
   };
 
   const activeChanges = changes.filter(c => c.status === 'active');
@@ -490,7 +557,15 @@ export default function OpenSpecChanges(): React.ReactElement {
                 ))}
               </td>
               <td className={styles.result}>
-                {change.resultLink ? (
+                {change.showWorkflowModal ? (
+                  <button
+                    className={styles.resultLink}
+                    onClick={() => setShowWorkflow(true)}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                  >
+                    {change.resultLabel || 'View Workflow'} →
+                  </button>
+                ) : change.resultLink ? (
                   <a href={change.resultLink} className={styles.resultLink}>
                     {change.resultLabel || 'View Result'} →
                   </a>
@@ -536,6 +611,31 @@ export default function OpenSpecChanges(): React.ReactElement {
               className={styles.modalContent}
               dangerouslySetInnerHTML={{
                 __html: renderMarkdown(selectedChange.artifacts[selectedArtifact] || '')
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {showWorkflow && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalHeader}>
+              <div className={styles.modalTitleArea}>
+                <span className={styles.modalChangeTitle}>OpenSpec Workflow</span>
+              </div>
+              <button
+                className={styles.modalClose}
+                onClick={closeModal}
+                aria-label="Close modal"
+              >
+                ✕
+              </button>
+            </div>
+            <div
+              className={styles.modalContent}
+              dangerouslySetInnerHTML={{
+                __html: renderMarkdown(workflowDiagram)
               }}
             />
           </div>

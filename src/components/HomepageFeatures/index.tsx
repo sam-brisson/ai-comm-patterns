@@ -46,7 +46,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/ai-experiment.svg').default,
     description: (
       <>
-        How will Human-AI Collaboration (HAIC) change the way we design and run experients?
+        How will Human-AI Collaboration (HAIC) change the way we design and run experiments?
         <br /><br />
         <Link
           className="button button--secondary button--lg"

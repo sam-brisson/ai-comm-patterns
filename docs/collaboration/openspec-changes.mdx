@@ -18,10 +18,46 @@ These are the changes we're building using the OpenSpec process. Click any artif
 Want to propose a new change or explore an idea? Use our project board to create and track OpenSpec issues.
 
 <a href="https://github.com/users/sam-brisson/projects/2" target="_blank" rel="noopener noreferrer" className="button button--primary button--lg" style={{marginBottom: '1rem', display: 'inline-block'}}>
-  View Project Board →
+  View Issues on Board →
 </a>
 
 Create an issue with a conversation transcript and label it `propose` or `explore` to kick off the process.
+
+### How It Works
+
+```mermaid
+flowchart TB
+    A[Team Conversation] --> B[Capture Transcript]
+    B --> C[Create GitHub Issue w/ Transcript]
+    C --> D{Label Type}
+    D -->|propose| E[Generate Artifacts]
+    D -->|explore| F[Analyze & Document]
+    E --> G[Create Pull Request]
+    F --> G
+    G --> H[Review & Refine]
+    H --> I[Merge to Main]
+    I --> J[Published to Docs Site]
+```
+
+**1. Capture the Conversation**
+
+When a team has a meaningful discussion — whether it's a huddle about a new feature, a refinement session exploring edge cases, or a thread debating architectural approaches — the conversation gets captured.
+
+**2. Process with AI**
+
+The captured conversation is submitted as a GitHub issue. Claude analyzes the transcript, identifies key decisions, and generates artifacts based on the label:
+- **`propose`** — generates proposal.md, design.md, tasks.md
+- **`explore`** — analyzes the conversation and documents insights
+
+Both can create a **new** OpenSpec change or **update an existing one**. Either way, a pull request is created for review.
+
+**3. Review and Refine**
+
+The generated artifacts become a pull request. The team reviews, refines, and merges — just like code. The artifacts evolve through normal collaboration.
+
+**4. Merge and Publish**
+
+Once approved, the PR merges to main. The specs become searchable knowledge on the docs site — documentation that emerged from the work itself.
 
 ---
 
@@ -60,39 +96,6 @@ Every OpenSpec change produces three artifacts:
 | **Tasks** | The "when" — implementation breakdown, sequencing, checkpoints |
 
 These artifacts aren't written by hand. They're generated from team conversations and refined through review.
-
-### How It Works
-
-```mermaid
-flowchart LR
-    A[Team Conversation] --> B[Capture Transcript]
-    B --> C[Create GitHub Issue]
-    C --> D{Label Type}
-    D -->|propose| E[Generate Artifacts]
-    D -->|explore| F[Analyze & Comment]
-    E --> G[Create Pull Request]
-    G --> H[Review & Refine]
-    H --> I[Merge to Main]
-    I --> J[Build from Spec]
-```
-
-**1. Capture the Conversation**
-
-When a team has a meaningful discussion — whether it's a huddle about a new feature, a refinement session exploring edge cases, or a thread debating architectural approaches — the conversation gets captured.
-
-**2. Process with AI**
-
-The captured conversation is submitted as a GitHub issue. Claude analyzes the transcript, identifies key decisions, and generates appropriate artifacts based on the label:
-- **`propose`** — generates proposal.md, design.md, tasks.md and creates a PR
-- **`explore`** — analyzes the conversation and posts insights as a comment
-
-**3. Review and Refine**
-
-The generated artifacts become a pull request. The team reviews, refines, and merges — just like code. The artifacts evolve through normal collaboration.
-
-**4. Build from the Spec**
-
-When it's time to implement, the artifacts serve as the shared understanding. They're not a contract — they're a starting point that captured the team's thinking.
 
 ### The Self-Referential Part
 

@@ -29,3 +29,45 @@
   --ifm-color-primary-lightest: #a7f3d0;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Dark green navbar like xplains.ai */
+.navbar {
+  background: #111827; /* gray-900 */
+  --ifm-navbar-background-color: #111827;
+}
+
+.navbar__title,
+.navbar__link {
+  color: #fff;
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+  color: #34d399; /* emerald-400 */
+}
+
+/* Hero banner with dark green */
+.hero--primary {
+  background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  --ifm-hero-background-color: #111827;
+  --ifm-hero-text-color: #fff;
+}
+
+.hero__title,
+.hero__subtitle {
+  color: #fff;
+}
+
+/* xplains.ai style buttons - dark bg with emerald accents */
+.button--secondary {
+  background: #1f2937; /* gray-800 */
+  border: 1px solid #374151; /* gray-700 */
+  color: #34d399; /* emerald-400 */
+  transition: all 0.2s ease;
+}
+
+.button--secondary:hover {
+  background: #059669; /* emerald-600 */
+  border-color: #059669;
+  color: #fff;
+}
