@@ -11,8 +11,8 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  background: var(--ifm-color-emphasis-100);
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  background: #111827; /* gray-900 - matches navbar */
+  border-bottom: 1px solid #374151; /* gray-700 */
   font-weight: 600;
   font-size: 0.9rem;
 }
@@ -22,7 +22,7 @@
 }
 
 .headerText {
-  color: var(--ifm-color-emphasis-800);
+  color: #fff;
 }
 
 /* Stage indicators */

@@ -7,26 +7,15 @@ tags: [knowledge-management, ai-assisted-development, tools, patterns, openspec]
 ---
 
 import ArtifactViewer from '@site/src/components/ArtifactViewer';
+import OpenSpecDemo from '@site/src/components/OpenSpecDemo';
 
 After publishing [Iteration 1](/docs/experimentation/self-documenting-systems), we gathered feedback in a team jam session. This article documents how we processed that feedback using OpenSpec to propose improvements.
 
 ## OpenSpec Workflow
 
-```mermaid
-flowchart TB
-    A[Team Conversation] --> B[Capture Transcript]
-    B --> C[Create GitHub Issue w/ Transcript]
-    C --> D{Label Type}
-    D -->|propose| E[Generate Artifacts]
-    D -->|explore| F[Analyze & Document]
-    E --> G[Create Pull Request]
-    F --> G
-    G --> H[Review & Refine]
-    H --> I[Merge to Main]
-    I --> J[Published to Docs Site]
-```
+Try clicking through this demo to see what a real PM/Engineer conversation looks like at each stage — and click the artifact links to see the actual spec files:
 
-Both `propose` and `explore` can create a **new** OpenSpec change or **update an existing one**. Either way, a pull request is created for review.
+<OpenSpecDemo />
 
 ## The Process
 
