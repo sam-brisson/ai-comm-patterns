@@ -10,6 +10,24 @@ import ArtifactViewer from '@site/src/components/ArtifactViewer';
 
 After publishing [Iteration 1](/docs/experimentation/self-documenting-systems), we gathered feedback in a team jam session. This article documents how we processed that feedback using OpenSpec to propose improvements.
 
+## OpenSpec Workflow
+
+```mermaid
+flowchart TB
+    A[Team Conversation] --> B[Capture Transcript]
+    B --> C[Create GitHub Issue w/ Transcript]
+    C --> D{Label Type}
+    D -->|propose| E[Generate Artifacts]
+    D -->|explore| F[Analyze & Document]
+    E --> G[Create Pull Request]
+    F --> G
+    G --> H[Review & Refine]
+    H --> I[Merge to Main]
+    I --> J[Published to Docs Site]
+```
+
+Both `propose` and `explore` can create a **new** OpenSpec change or **update an existing one**. Either way, a pull request is created for review.
+
 ## The Process
 
 Here's how we iterated from unstructured conversation to structured proposals:
