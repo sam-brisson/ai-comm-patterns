@@ -73,6 +73,7 @@ const config: Config = {
   plugins: [
     'docusaurus-lunr-search',
     './plugins/knowledge-graph-plugin',
+    './plugins/openspec-artifacts-plugin',
   ],
 
   markdown: {
