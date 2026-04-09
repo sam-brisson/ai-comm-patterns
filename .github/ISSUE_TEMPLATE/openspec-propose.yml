@@ -1,0 +1,47 @@
+name: OpenSpec - Propose
+description: Submit a conversation transcript to propose new OpenSpec changes or update existing ones
+title: "[PROPOSE]: "
+labels: ["propose"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Propose Mode
+        Use this template to generate or update OpenSpec artifacts from conversations. Propose mode is ideal for:
+        - Creating new change proposals from team discussions
+        - Capturing requirements and action items
+        - Generating initial proposal.md, design.md, and tasks.md files
+
+  - type: input
+    id: title
+    attributes:
+      label: Conversation Title
+      description: A brief title describing what this conversation is about
+      placeholder: "e.g., Planning the new metrics dashboard"
+    validations:
+      required: true
+
+  - type: textarea
+    id: transcript
+    attributes:
+      label: Conversation Transcript
+      description: Paste the complete conversation or huddle transcript here
+      placeholder: |
+        Paste your Slack huddle transcript, meeting notes, or team conversation here.
+
+        Example:
+        Sam: We need to build a new feature for...
+        Brian: What about using the existing...
+        Maaz: I think we should consider...
+        [entire conversation]
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context (optional)
+      description: Any context that would help with proposal generation
+      placeholder: |
+        e.g., "This should be a new change called 'metrics-dashboard'"
+        "This updates the existing 'spec-viewer-v2' change"
