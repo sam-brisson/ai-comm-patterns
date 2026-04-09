@@ -1,128 +1,143 @@
-# TDD Knowledge Page - Tasks
+# TDD Knowledge Page Tasks
 
-## Slice 1: Component Skeleton + First Stage (Ship & Learn)
+## Epic: Interactive TDD Documentation
 
-Goal: Get something live that team members can click through, even if incomplete.
+### Phase 1: Content & Structure (Sprint 1)
 
-### Component Setup
-- [ ] Create `src/components/TDDKnowledgePage/` directory structure
-- [ ] Copy and adapt stage navigator from OpenSpec demo
-- [ ] Set up content loading from external JSON file
-- [ ] Implement basic styling (reuse OpenSpec demo CSS as starting point)
+- [ ] **Content Strategy**
+  - [ ] Finalize booking form user story
+  - [ ] Write Example Mapping card content
+  - [ ] Draft stage explanations (beginner-friendly)
+  - [ ] Create Pytest code examples for each stage
+  - [ ] Review content with Product team
 
-### First Stage: Story Definition
-- [ ] Write Stage 1 content: user story, conversation, artifact
-- [ ] Implement conversation panel with PM/Engineer/QA speaker support
-- [ ] Implement artifact modal (reuse from OpenSpec demo)
-- [ ] Add component to a documentation page for testing
+- [ ] **Page Architecture** 
+  - [ ] Design Docusaurus page structure
+  - [ ] Plan component hierarchy
+  - [ ] Define props interfaces for React components
+  - [ ] Sketch responsive layouts
 
-### Checkpoint
-- [ ] Team member walks through Stage 1 and provides feedback
-- [ ] Identify any usability issues before building more stages
+### Phase 2: Visual Components (Sprint 1-2)
 
----
+- [ ] **Booking Form Component**
+  - [ ] Create BookingFormDemo React component
+  - [ ] Implement start time and end time inputs
+  - [ ] Add submit button with enabled/disabled states
+  - [ ] Style to look like realistic booking form
+  - [ ] Add visual indicators for demo states
+  - [ ] Test responsive behavior
 
-## Slice 2: Example Mapping Stage (Core Value)
+- [ ] **Example Mapping Visualization**
+  - [ ] Design card layout (story, rules, examples)
+  - [ ] Implement static card components
+  - [ ] Add color coding (yellow story, blue rules, green examples)
+  - [ ] Ensure readability and visual hierarchy
 
-Goal: The Example Mapping stage is the key differentiator — this is what teaches the new concept.
+### Phase 3: Code Display (Sprint 2)
 
-### Stage 2: Example Mapping Content
-- [ ] Write realistic three-amigos conversation discovering rules and examples
-- [ ] Create example map artifact showing colored card structure
-- [ ] Design static card visualization (colored borders, hierarchy)
+- [ ] **Code Panel Component**
+  - [ ] Integrate syntax highlighting for Python
+  - [ ] Add test status indicators (pass/fail)
+  - [ ] Implement copy-to-clipboard functionality
+  - [ ] Design side-by-side layout with form visual
+  - [ ] Add expandable sections for longer code
 
-### Card Display Component
-- [ ] Build card display component (static, not drag-and-drop)
-- [ ] Style cards with appropriate colors (blue/yellow/green/red)
-- [ ] Show cards grouped under parent rules
+- [ ] **Test Examples**
+  - [ ] Write realistic Pytest test for submit validation
+  - [ ] Create minimal implementation code
+  - [ ] Add refactored version with better structure
+  - [ ] Ensure all code examples actually work
+  - [ ] Add inline comments for clarity
 
-### Checkpoint
-- [ ] Team member unfamiliar with Example Mapping reviews Stage 2
-- [ ] Verify the concept is clear without prior knowledge
+### Phase 4: Stage Navigation (Sprint 2)
 
----
+- [ ] **Navigation System**
+  - [ ] Implement stage navigation component
+  - [ ] Add URL routing for direct stage links
+  - [ ] Create progress indicators
+  - [ ] Add next/previous buttons
+  - [ ] Implement keyboard navigation
 
-## Slice 3: Pytest Tests Stage (The Payoff)
+- [ ] **State Management**
+  - [ ] Manage current stage state
+  - [ ] Coordinate form visual with code panel
+  - [ ] Handle stage transitions smoothly
+  - [ ] Persist stage in URL for sharing
 
-Goal: Show the direct connection from Example Mapping outputs to executable tests.
+### Phase 5: Content Integration (Sprint 2-3)
 
-### Stage 3: Pytest Tests Content
-- [ ] Write conversation explaining card-to-test translation
-- [ ] Create test file artifact with real Pytest patterns
-- [ ] Demonstrate class grouping matching rules, methods matching examples
+- [ ] **Stage 1: Example Mapping**
+  - [ ] Integrate card visualization
+  - [ ] Add explanation of two-role process (Product + Engineer)
+  - [ ] Connect to booking form context
+  - [ ] Explain rule identification process
 
-### Code Display Enhancement
-- [ ] Add syntax highlighting for Python code in artifact viewer
-- [ ] Add copy-to-clipboard button for code examples
+- [ ] **Stage 2: Red - Failing Test**
+  - [ ] Show form with enabled button (bug state)
+  - [ ] Display failing test code
+  - [ ] Add failure indicator and explanation
+  - [ ] Emphasize "write test first" principle
 
-### Checkpoint
-- [ ] Engineer reviews test examples for accuracy to team conventions
-- [ ] Verify fixture usage and patterns match what we actually do
+- [ ] **Stage 3: Green - Passing Test**
+  - [ ] Show form with disabled button (fixed state)
+  - [ ] Display same test (now passing) + implementation
+  - [ ] Add success indicator
+  - [ ] Highlight minimal code approach
 
----
+- [ ] **Stage 4: Refactor**
+  - [ ] Keep same form visual (behavior unchanged)
+  - [ ] Show improved code structure
+  - [ ] Emphasize tests enable safe refactoring
+  - [ ] Demonstrate continuing green state
 
-## Slice 4: Red-Green-Refactor + Integration Stages
+### Phase 6: Polish & Testing (Sprint 3)
 
-Goal: Complete the workflow with TDD cycle demonstration and test suite organization.
+- [ ] **User Experience**
+  - [ ] Test with non-technical team members
+  - [ ] Gather feedback on clarity and flow
+  - [ ] Refine explanations based on feedback
+  - [ ] Optimize page performance
+  - [ ] Add loading states if needed
 
-### Stage 4: Red-Green-Refactor Content
-- [ ] Write conversation walking through the TDD cycle
-- [ ] Create before/after code artifacts showing refactor step
-- [ ] Show test output (red → green)
+- [ ] **Accessibility & Quality**
+  - [ ] Add alt text and ARIA labels
+  - [ ] Test screen reader compatibility
+  - [ ] Verify keyboard navigation works
+  - [ ] Check color contrast ratios
+  - [ ] Test on mobile devices
+  - [ ] Cross-browser testing
 
-### Stage 5: Integration Content
-- [ ] Write conversation about test organization and CI
-- [ ] Create conftest.py artifact demonstrating fixture patterns
-- [ ] Show how tests fit into larger suite structure
+- [ ] **Documentation**
+  - [ ] Document component APIs
+  - [ ] Add maintenance notes
+  - [ ] Create content update guidelines
+  - [ ] Write deployment instructions
 
-### Final Polish
-- [ ] Add navigation between all 5 stages
-- [ ] Verify stage progression feels natural
-- [ ] Test responsive layout on different screen sizes
+### Phase 7: Launch & Iteration (Sprint 3)
 
----
+- [ ] **Deployment**
+  - [ ] Deploy to staging environment
+  - [ ] Content review with stakeholders
+  - [ ] Deploy to production
+  - [ ] Announce to team
 
-## Slice 5: Content Maintenance & Documentation
+- [ ] **Measurement & Iteration**
+  - [ ] Set up page analytics
+  - [ ] Gather team feedback after 2 weeks
+  - [ ] Identify areas for improvement
+  - [ ] Plan future enhancements (more examples, advanced topics)
 
-Goal: Ensure the knowledge page can be maintained over time.
+## Technical Notes
 
-### Content Infrastructure
-- [ ] Document content file format and how to update
-- [ ] Add lastUpdated metadata to content file
-- [ ] Assign initial content ownership
+- All React components built for Docusaurus environment
+- Booking form is display-only (no actual form submission)
+- Code examples should be copy-pasteable and functional
+- Focus on teaching concepts, not building production form
+- Visual design should feel professional but not overengineered
 
-### Documentation
-- [ ] Link knowledge page from relevant docs (onboarding, testing guide)
-- [ ] Add brief README in component directory explaining structure
+## Success Metrics
 
----
-
-## Definition of Done
-
-- [ ] All 5 stages have content and are navigable
-- [ ] At least 2 team members have walked through and confirmed it's clear
-- [ ] Content is in external files, not hardcoded in TSX
-- [ ] Component is linked from documentation site
-- [ ] Content ownership is assigned
-
----
-
-## Deferred (Future Changes)
-
-These items are explicitly out of scope. Captured here for future reference:
-
-### Test Explorer Tooling (Separate Change)
-- Hierarchical tree view for Pytest tests
-- Inline failure details with assertion info
-- Re-run buttons for failed tests
-- Search and filter across test names
-
-### Workshop Facilitation Mode
-- Drag-and-drop card interface for live Example Mapping sessions
-- Real-time collaboration features
-- Export workshop results to markdown
-
-### Extended Content
-- Multiple example scenarios (API, data migration, bug fix)
-- Advanced Pytest patterns (parametrize, marks, plugins)
-- Quiz/assessment after walkthrough
+- Team members can explain Example Mapping after reading
+- Engineers report improved TDD adoption
+- Reduced questions about TDD process in team channels
+- Positive feedback on visual connection between tests and UX

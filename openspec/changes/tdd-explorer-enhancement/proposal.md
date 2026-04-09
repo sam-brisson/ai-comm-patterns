@@ -12,39 +12,56 @@ Additionally, the original TDD Explorer Enhancement proposed Jest integration, b
 
 ### Interactive TDD Knowledge Page
 
-Build an interactive explanation of our TDD workflow, modeled on the OpenSpec demo:
+Build an interactive explanation of our TDD workflow using a booking form as the example domain. The page demonstrates the full cycle from Example Mapping through test implementation.
 
-- **Stage navigator** showing the TDD workflow: Story → Example Mapping → Pytest Tests → Red/Green/Refactor
-- **Example Mapping visualization** with Matt Wynn's colored card system (yellow=rules, green=examples, red=questions, blue=story)
-- **Realistic team conversations** at each stage showing how PM, Engineer, and QA collaborate
-- **Pytest code examples** demonstrating how workshop outputs become executable tests
-- **Artifact viewer** letting users inspect the actual test files, fixtures, and conftest patterns
+**Example Domain**: Resource booking form (meeting room reservation)
+- Familiar to all team members (technical and non-technical)
+- Clear visual states that map to business rules
+- Natural validation scenarios
 
-### Content Focus
+**Demo Scenario**: Submit button validation
+- Rule: Submit button should be disabled until both start and end time are filled
+- Simple, visual, demonstrates full Red-Green-Refactor cycle
 
-The knowledge page documents our team's actual practices:
+### Workflow Stages
 
-- When Example Mapping fits into story refinement
-- How rules and examples translate to Pytest test cases
-- Our conventions for test file organization and naming
-- Fixture patterns and conftest.py organization
-- When to use parametrize, marks, and other Pytest features
+1. **Example Mapping Workshop**
+   - Static visualization of colored cards (story, rules, examples)
+   - Two roles: Product Manager and Engineer
+   - Focus on the submit button validation rule
 
-### What's NOT in Scope
+2. **Red Stage - Failing Test**
+   - Show booking form with submit button enabled (broken state)
+   - Display Pytest test that captures expected behavior
+   - Test fails, demonstrating the bug
 
-- Test explorer UI improvements (tree view, inline failures, re-run buttons) — deferred to separate change
-- Drag-and-drop interactivity for Example Mapping cards — static step-through is sufficient to teach the concept
-- Live test execution or workshop tooling — this is documentation, not a workshop facilitation tool
+3. **Green Stage - Passing Test**
+   - Show booking form with submit button disabled (fixed state)
+   - Same test now passes
+   - Include minimal implementation code
 
-## Capabilities
+4. **Refactor Stage**
+   - Code cleanup examples
+   - Maintain passing tests
 
-### New Capability
+### Technical Implementation
 
-- `tdd-knowledge-page`: Interactive React component explaining TDD workflow with Example Mapping, reusing the proven OpenSpec demo pattern
+- Built in Docusaurus with React components
+- Side-by-side layout: form visual + test code
+- Interactive form component that renders different states
+- Syntax-highlighted Pytest code examples
+- Step-by-step navigation through the TDD cycle
 
-## Impact
+### Target Audience
 
-- New component in `src/components/TDDKnowledgePage/`
-- New documentation page linking to the component
-- Content files (markdown/JSON) for stages, conversations, and code examples
-- No changes to existing test infrastructure or tooling
+- Engineers new to TDD
+- Product managers who participate in Example Mapping
+- Mixed technical/non-technical team members
+- Visual learners who need concrete examples
+
+## Success Criteria
+
+- Team members can explain Example Mapping process
+- Engineers consistently follow Red-Green-Refactor cycle
+- Reduced onboarding time for TDD practices
+- Increased participation in Example Mapping sessions

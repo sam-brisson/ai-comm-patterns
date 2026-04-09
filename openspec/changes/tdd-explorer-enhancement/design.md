@@ -1,226 +1,206 @@
-# TDD Knowledge Page - Design
+# TDD Knowledge Page Design
 
 ## Overview
 
-The TDD Knowledge Page is an interactive documentation component that teaches our team's TDD workflow using Example Mapping. It follows the same proven pattern as the OpenSpec demo: a stage navigator with conversations, artifacts, and step-through navigation.
+An interactive documentation page that teaches TDD through a realistic booking form example. The design emphasizes visual connection between test code and user experience.
 
-## Architecture
+## Example Domain: Booking Form
 
-### Component Structure
+### Why This Domain
+- Universal familiarity (everyone has used booking forms)
+- Clear visual states (enabled/disabled buttons, filled/empty fields)
+- Natural business rules that map to test cases
+- Bridges technical and non-technical understanding
 
+### Form Structure
 ```
-src/components/TDDKnowledgePage/
-├── index.tsx           # Main component with stage navigation
-├── styles.module.css   # Styling (based on OpenSpec demo)
-└── content/
-    └── stages.json     # Stage definitions, conversations, artifacts
-```
+[ Meeting Room Booking ]
 
-### Why External Content Files
+Start Time: [_____________]
+End Time:   [_____________]
 
-The OpenSpec demo hardcodes ~250 lines of content in the TSX file. For maintainability, the TDD Knowledge Page will load content from external JSON/markdown files:
-
-- **Easier updates**: Team members can update conventions without touching React code
-- **Clear ownership**: Content changes are visible in PRs as documentation changes
-- **Version tracking**: Content files can include last-updated dates
-
-### Reusing OpenSpec Demo Patterns
-
-The OpenSpec demo component (`src/components/OpenSpecDemo/index.tsx`) provides a working pattern:
-
-| OpenSpec Demo | TDD Knowledge Page |
-|---------------|-------------------|
-| 4 stages (Propose → Design → Tasks → Archive) | 5 stages (Story → Example Mapping → Tests → Red-Green-Refactor → Integration) |
-| PM/Engineer conversations | PM/Engineer/QA conversations (three amigos) |
-| Artifact modal (proposal.md, design.md, etc.) | Artifact modal (example_map.md, test_user_login.py, conftest.py) |
-| ~400 lines of React | ~400 lines of React + external content |
-
-## Stage Definitions
-
-### Stage 1: Story Definition
-
-**Intent**: Present the user story and acceptance criteria that will drive the Example Mapping session.
-
-**Conversation**: PM introduces the story, team asks clarifying questions about scope and constraints.
-
-**Artifact**: `story.md` — The user story with acceptance criteria.
-
-### Stage 2: Example Mapping
-
-**Intent**: Show how the team collaboratively discovers rules and examples using Matt Wynn's colored card technique.
-
-**Conversation**: Three amigos (PM, Engineer, QA) workshop the story. They identify rules (yellow), concrete examples (green), and surface questions (red).
-
-**Artifact**: `example_map.md` — Visual representation of the cards:
-
-```
-┌─────────────────────────────────────────────────┐
-│ 🔵 STORY: User can log in with email/password   │
-├─────────────────────────────────────────────────┤
-│ 🟡 RULE: Valid credentials grant access         │
-│   🟢 Example: correct email + password → success│
-│   🟢 Example: correct email, wrong pw → failure │
-│   🔴 Question: What about case sensitivity?     │
-├─────────────────────────────────────────────────┤
-│ 🟡 RULE: Account must be active                 │
-│   🟢 Example: suspended account → denied        │
-│   🟢 Example: unverified email → denied         │
-└─────────────────────────────────────────────────┘
+[Submit Booking] <- Focus of demo
 ```
 
-### Stage 3: Pytest Tests
+### Demo Rule
+**Submit button should be disabled until both start and end time are filled**
 
-**Intent**: Show how Example Mapping outputs translate directly to Pytest test cases.
+- Simple validation rule
+- Visually obvious
+- Clear pass/fail criteria
+- Demonstrates full TDD cycle
 
-**Conversation**: Engineer explains how each green card becomes a test case, how rules become test groupings or parametrization.
+## Page Layout
 
-**Artifact**: `test_user_login.py` — The actual Pytest tests:
+### Stage Navigation
+```
+[1. Example Mapping] [2. Red] [3. Green] [4. Refactor]
+```
 
+### Content Layout
+```
++------------------+------------------+
+|                  |                  |
+|   Visual Demo    |   Code Example   |
+|                  |                  |
+|  [Booking Form]  |  ```python       |
+|                  |  def test_...     |
+|                  |  ```             |
++------------------+------------------+
+|            Explanation               |
++--------------------------------------+
+```
+
+## Stage Details
+
+### Stage 1: Example Mapping
+
+**Visual**: Static card layout
+```
+[User Story Card]
+"As a user, I want to book a meeting room"
+
+[Rule Cards]
+"Submit disabled without times"
+"Can't book past dates"
+"No overlapping bookings"
+
+[Example Cards]
+"Both fields empty -> disabled"
+"Only start time -> disabled"
+"Both filled -> enabled"
+```
+
+**Participants**: Product Manager + Engineer
+
+**Content**: 
+- Brief explanation of Example Mapping
+- How to identify rules and examples
+- Focus on the submit validation rule for the demo
+
+### Stage 2: Red - Failing Test
+
+**Form Visual**: 
+- Empty start/end time fields
+- Submit button ENABLED (bug state)
+- Visual indicator that this is wrong
+
+**Code Panel**:
 ```python
-import pytest
-from auth import authenticate
-
-class TestValidCredentials:
-    """Rule: Valid credentials grant access"""
-
-    def test_correct_credentials_succeed(self, active_user):
-        result = authenticate(active_user.email, "correct_password")
-        assert result.success is True
-
-    def test_wrong_password_fails(self, active_user):
-        result = authenticate(active_user.email, "wrong_password")
-        assert result.success is False
-        assert result.error == "invalid_credentials"
-
-class TestAccountStatus:
-    """Rule: Account must be active"""
-
-    def test_suspended_account_denied(self, suspended_user):
-        result = authenticate(suspended_user.email, "correct_password")
-        assert result.success is False
-        assert result.error == "account_suspended"
+def test_submit_disabled_when_times_empty():
+    form = BookingForm()
+    assert form.submit_button.disabled == True
 ```
 
-### Stage 4: Red-Green-Refactor
+**Status**: ❌ Test Fails
 
-**Intent**: Demonstrate the TDD cycle in action — write failing test, make it pass, clean up.
+**Explanation**: 
+- Write test first to capture expected behavior
+- Test fails because button is currently enabled
+- This failure shows us what to fix
 
-**Conversation**: Engineer walks through running the tests (red), implementing the minimal code (green), and improving the implementation (refactor).
+### Stage 3: Green - Passing Test
 
-**Artifact**: `implementation.py` — The production code that makes tests pass, with before/after showing the refactor step.
+**Form Visual**:
+- Same empty fields
+- Submit button DISABLED (fixed state)
+- Visual indicator that this is correct
 
-### Stage 5: Integration
-
-**Intent**: Show how individual tests fit into the larger test suite and CI pipeline.
-
-**Conversation**: Team discusses test organization, fixture sharing via conftest.py, and how these tests run in CI.
-
-**Artifact**: `conftest.py` — Shared fixtures demonstrating our team's patterns:
-
+**Code Panel**:
 ```python
-import pytest
-from models import User
+# Test (same as before)
+def test_submit_disabled_when_times_empty():
+    form = BookingForm()
+    assert form.submit_button.disabled == True
 
-@pytest.fixture
-def active_user(db_session):
-    """An active, verified user for testing happy paths."""
-    user = User(email="test@example.com", status="active", verified=True)
-    db_session.add(user)
-    db_session.commit()
-    yield user
-    db_session.delete(user)
-
-@pytest.fixture
-def suspended_user(db_session):
-    """A suspended user for testing access denial."""
-    user = User(email="suspended@example.com", status="suspended")
-    db_session.add(user)
-    db_session.commit()
-    yield user
-    db_session.delete(user)
+# Implementation
+class BookingForm:
+    @property
+    def submit_button_disabled(self):
+        return not (self.start_time and self.end_time)
 ```
 
-## UI Components
+**Status**: ✅ Test Passes
 
-### Stage Navigator
+**Explanation**:
+- Minimal code to make test pass
+- Visual shows the fixed behavior
+- Connection between test and user experience
 
-Identical to OpenSpec demo:
-- Horizontal button row with icons and labels
-- Arrow connectors between stages
-- Active/completed state styling
-- Click to jump to any stage
+### Stage 4: Refactor
 
-### Conversation Panel
+**Form Visual**: Same as Stage 3 (behavior unchanged)
 
-Identical to OpenSpec demo:
-- Speaker labels (PM, Engineer, QA)
-- Message bubbles with role-based styling
-- Static content, no typing animations
-
-### Artifact Viewer
-
-Modal overlay (like OpenSpec demo) with enhancements:
-- Syntax highlighting for Python code blocks
-- Tab interface if stage has multiple artifacts
-- Copy-to-clipboard button for code examples
-
-### Example Mapping Card Display
-
-**Not drag-and-drop.** Static visualization of cards appearing in sequence:
-- Colored card styling (blue/yellow/green/red borders)
-- Cards grouped under their parent rule
-- Clean visual hierarchy showing the mapping structure
-
-## Content Schema
-
-```typescript
-interface Stage {
-  id: string;
-  label: string;
-  icon: string;
-  intent: string;           // "Intent:" line shown above conversation
-  scenario: string;         // "In this example:" line
-  conversation: Message[];
-  artifacts: Artifact[];    // Multiple artifacts per stage supported
-}
-
-interface Message {
-  speaker: 'PM' | 'Engineer' | 'QA';
-  text: string;
-}
-
-interface Artifact {
-  name: string;             // e.g., "test_user_login.py"
-  language?: string;        // For syntax highlighting
-  content: string;
-}
+**Code Panel**:
+```python
+# Refactored implementation
+class BookingForm:
+    def _has_required_times(self):
+        return bool(self.start_time and self.end_time)
+    
+    @property
+    def submit_button_disabled(self):
+        return not self._has_required_times()
 ```
 
-## Content Maintenance
+**Status**: ✅ Tests Still Pass
 
-### Ownership
+**Explanation**:
+- Improve code structure
+- Tests ensure behavior unchanged
+- Safe to refactor with test coverage
 
-Content updates should be reviewed by someone familiar with the team's Pytest conventions. Suggested: rotate ownership quarterly or assign to whoever last updated the testing guidelines.
+## Technical Implementation
 
-### Staleness Indicators
+### React Components
 
-Each content file includes metadata:
-
-```json
-{
-  "lastUpdated": "2026-04-05",
-  "maintainer": "larry",
-  "stages": [...]
-}
+**BookingFormDemo**
+```jsx
+<BookingFormDemo 
+  startTime=""
+  endTime=""
+  submitEnabled={stage === 'red'}
+  highlightSubmit={true}
+/>
 ```
 
-The component can optionally display "Last updated X months ago" if content is aging.
+**CodePanel**
+```jsx
+<CodePanel 
+  language="python"
+  code={stageCode[currentStage]}
+  testStatus={testStatus[currentStage]}
+/>
+```
 
-## Future Considerations
+### Styling
+- Form looks realistic (similar to actual booking forms)
+- Clear visual states (enabled/disabled button styling)
+- Syntax highlighting for code
+- Responsive layout for mobile
 
-These are explicitly **not** in scope for this change but noted for potential follow-up:
+### Interactions
+- Stage navigation
+- No form interaction (static demo)
+- Hover states for UI elements
+- Copy code functionality
 
-- **Test Explorer tooling**: Tree view, inline failures, re-run buttons (separate change)
-- **Workshop facilitation mode**: Actual drag-and-drop for running Example Mapping sessions
-- **Multiple examples**: Different story types (API endpoint, data migration, bug fix)
-- **Quiz/assessment**: Knowledge check after completing the walkthrough
+## Content Strategy
+
+### Language
+- Beginner-friendly explanations
+- Avoid TDD jargon without context
+- Connect technical concepts to user value
+- Emphasize "why" not just "how"
+
+### Progressive Disclosure
+- Start with familiar concepts (booking forms)
+- Introduce TDD concepts gradually
+- Build complexity through stages
+- Reinforce key principles
+
+### Accessibility
+- Alt text for visual elements
+- Keyboard navigation
+- Screen reader friendly
+- High contrast for code examples
