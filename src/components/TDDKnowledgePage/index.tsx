@@ -19,6 +19,26 @@ const testCode = `def test_submit_disabled_when_times_empty():
     form = BookingForm()
     assert not form.can_submit`;
 
+// Red stage: Buggy implementation - button is always enabled
+const redImplementationCode = `class BookingForm:
+    def __init__(self):
+        self.start_time = ""
+        self.end_time = ""
+
+    @property
+    def can_submit(self):
+        return True  # Bug: always enabled!`;
+
+// Green stage: Fixed implementation - button only enabled when both filled
+const greenImplementationCode = `class BookingForm:
+    def __init__(self):
+        self.start_time = ""
+        self.end_time = ""
+
+    @property
+    def can_submit(self):
+        return bool(self.start_time and self.end_time)`;
+
 export default function TDDKnowledgePage(): React.ReactElement {
   const [currentStage, setCurrentStage] = useState(0);
   const [startTime, setStartTime] = useState('');
@@ -142,9 +162,9 @@ export default function TDDKnowledgePage(): React.ReactElement {
           </div>
           <div className={styles.codeSide}>
             <CodePanel
-              code={testCode}
+              code={redImplementationCode}
               status="fail"
-              comment="Both empty → disabled"
+              comment="Bug: can_submit always returns True"
             />
           </div>
         </div>
@@ -196,9 +216,9 @@ export default function TDDKnowledgePage(): React.ReactElement {
           </div>
           <div className={styles.codeSide}>
             <CodePanel
-              code={testCode}
+              code={greenImplementationCode}
               status="pass"
-              comment="Both empty → disabled"
+              comment="Fixed: checks both fields are filled"
             />
           </div>
         </div>
