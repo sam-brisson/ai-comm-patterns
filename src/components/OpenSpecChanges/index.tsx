@@ -121,8 +121,8 @@ Reuses familiar patterns:
     title: 'TDD Knowledge Page with Example Mapping',
     status: 'active',
     description: 'Interactive documentation teaching TDD workflow using Example Mapping and Pytest, modeled on the OpenSpec demo pattern.',
-    resultLink: undefined,
-    resultLabel: 'Coming Soon',
+    resultLink: '/ai-comm-patterns/docs/experimentation/tdd-example-mapping',
+    resultLabel: 'View Demo',
     artifactDir: 'tdd-explorer-enhancement', // Maps to openspec/changes/tdd-explorer-enhancement/
   },
   {

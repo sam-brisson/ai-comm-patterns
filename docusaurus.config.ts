@@ -111,7 +111,13 @@ const config: Config = {
           to: '/explore',
           label: 'Explore',
           position: 'left',
-        }
+        },
+        {
+          to: '/docs/collaboration/openspec-changes',
+          label: '📋',
+          position: 'right',
+          title: 'OpenSpec Changes',
+        },
       ],
     },
     footer: {

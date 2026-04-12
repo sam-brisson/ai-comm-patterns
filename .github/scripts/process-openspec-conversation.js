@@ -231,6 +231,66 @@ async function generateExploreUpdates() {
   return JSON.parse(jsonMatch[0]);
 }
 
+function addChangeToComponent(changeName, title, description) {
+  const componentPath = path.join(process.cwd(), 'src', 'components', 'OpenSpecChanges', 'index.tsx');
+
+  if (!fs.existsSync(componentPath)) {
+    console.log('OpenSpecChanges component not found, skipping component update');
+    return;
+  }
+
+  let content = fs.readFileSync(componentPath, 'utf8');
+
+  // Check if change already exists in the component
+  if (content.includes(`id: '${changeName}'`)) {
+    console.log(`Change ${changeName} already exists in component, skipping`);
+    return;
+  }
+
+  // Create the new entry
+  const newEntry = `  {
+    id: '${changeName}',
+    title: '${title.replace(/'/g, "\\'")}',
+    status: 'active',
+    description: '${description.replace(/'/g, "\\'")}',
+    resultLink: undefined,
+    resultLabel: 'In Progress',
+    artifactDir: '${changeName}',
+  },`;
+
+  // Find the position to insert - after the last entry in changeMetadata array
+  // Look for the pattern: the closing of the last entry before the array closes
+  const insertPattern = /(\s*}\s*,?\s*\n)(const changeMetadata)/;
+  const match = content.match(insertPattern);
+
+  if (!match) {
+    // Try alternative: find closing bracket of changeMetadata array
+    const arrayEndPattern = /(\n\];)\s*\n\s*\/\/ Simple markdown/;
+    const arrayMatch = content.match(arrayEndPattern);
+    if (arrayMatch) {
+      // Insert before the closing bracket
+      content = content.replace(arrayEndPattern, `\n${newEntry}\n];\\n\\n// Simple markdown`);
+    } else {
+      console.log('Could not find insertion point in component, skipping');
+      return;
+    }
+  } else {
+    // Insert before "const changeMetadata" would mean we need different approach
+    // Let's find the last entry and insert after it
+    const lastEntryPattern = /(artifactDir: '[^']+',?\s*\n\s*},?\s*\n)(\];)/;
+    const lastMatch = content.match(lastEntryPattern);
+    if (lastMatch) {
+      content = content.replace(lastEntryPattern, `$1${newEntry}\n$2`);
+    } else {
+      console.log('Could not find insertion point in component, skipping');
+      return;
+    }
+  }
+
+  fs.writeFileSync(componentPath, content);
+  console.log(`Added ${changeName} to OpenSpecChanges component`);
+}
+
 async function writeArtifacts(proposal) {
   const changesDir = path.join(process.cwd(), 'openspec', 'changes', proposal.changeName);
 
@@ -246,6 +306,34 @@ async function writeArtifacts(proposal) {
       // If openspec CLI fails, create directory manually
       fs.mkdirSync(changesDir, { recursive: true });
     }
+
+    // Also add entry to OpenSpecChanges component
+    // Extract title from proposal or use changeName
+    let title = proposal.changeName
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+
+    // Try to extract a better title from the proposal content
+    if (proposal.artifacts.proposal) {
+      const titleMatch = proposal.artifacts.proposal.match(/^#\s+(.+)$/m);
+      if (titleMatch) {
+        title = titleMatch[1];
+      }
+    }
+
+    // Extract description from proposal or generate one
+    let description = `OpenSpec change for ${title}`;
+    if (proposal.artifacts.proposal) {
+      // Try to get the first paragraph after "## Why"
+      const whyMatch = proposal.artifacts.proposal.match(/##\s*Why\s*\n+([^\n#]+)/);
+      if (whyMatch) {
+        description = whyMatch[1].trim().substring(0, 150);
+        if (description.length === 150) description += '...';
+      }
+    }
+
+    addChangeToComponent(proposal.changeName, title, description);
   }
 
   // Write artifacts
