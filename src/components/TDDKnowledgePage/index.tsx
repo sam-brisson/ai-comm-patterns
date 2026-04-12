@@ -249,15 +249,17 @@ export default function TDDKnowledgePage(): React.ReactElement {
 
       {/* Conversation */}
       <div className={styles.conversationArea}>
-        {stage.conversation.map((msg, index) => (
-          <div
-            key={index}
-            className={`${styles.message} ${msg.speaker === 'PM' ? styles.pmMessage : styles.engineerMessage}`}
-          >
-            <span className={styles.speaker}>{msg.speaker}:</span>
-            <span className={styles.messageText}>{msg.text}</span>
-          </div>
-        ))}
+        <div className={styles.conversation}>
+          {stage.conversation.map((msg, index) => (
+            <div
+              key={index}
+              className={`${styles.message} ${msg.speaker === 'PM' ? styles.pmMessage : styles.engineerMessage}`}
+            >
+              <span className={styles.speaker}>{msg.speaker === 'PM' ? 'Product Manager' : 'Engineer'}</span>
+              <p className={styles.messageText}>{msg.text}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Navigation */}
