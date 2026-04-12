@@ -113,10 +113,9 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: '/docs/collaboration/openspec-changes',
-          label: '📋',
+          type: 'html',
           position: 'right',
-          title: 'OpenSpec Changes',
+          value: '<a href="/ai-comm-patterns/docs/collaboration/openspec-changes" class="navbar__link openspec-nav-link"><img src="/ai-comm-patterns/img/openspec-logo.png" alt="OpenSpec" style="width: 20px; height: 20px; border-radius: 4px; margin-right: 6px; vertical-align: middle;" />OpenSpec</a>',
         },
       ],
     },

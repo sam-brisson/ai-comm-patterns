@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { usePluginData } from '@docusaurus/useGlobalData';
+import MermaidDiagram from '../MermaidDiagram';
 import styles from './styles.module.css';
 
 interface ChangeMetadata {
@@ -174,68 +175,17 @@ function renderMarkdown(content: string): string {
 
 type ArtifactType = 'proposal' | 'design' | 'tasks';
 
-const workflowDiagram = `
-## How It Works
-
-\`\`\`
-┌─────────────────────┐
-│  Team Conversation  │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│  Capture Transcript │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────────────┐
-│ Create GitHub Issue w/      │
-│ Transcript                  │
-└──────────┬──────────────────┘
-           │
-           ▼
-      ┌────┴────┐
-      │  Label  │
-      │  Type   │
-      └────┬────┘
-     ┌─────┴─────┐
-     │           │
-     ▼           ▼
-┌─────────┐ ┌───────────────┐
-│ propose │ │    explore    │
-└────┬────┘ └───────┬───────┘
-     │              │
-     ▼              ▼
-┌──────────┐ ┌─────────────┐
-│ Generate │ │ Analyze &   │
-│ Artifacts│ │ Document    │
-└────┬─────┘ └──────┬──────┘
-     │              │
-     └──────┬───────┘
-            │
-            ▼
-┌───────────────────────┐
-│  Create Pull Request  │
-└───────────┬───────────┘
-            │
-            ▼
-┌───────────────────────┐
-│   Review & Refine     │
-└───────────┬───────────┘
-            │
-            ▼
-┌───────────────────────┐
-│    Merge to Main      │
-└───────────┬───────────┘
-            │
-            ▼
-┌───────────────────────┐
-│ Published to Docs Site│
-└───────────────────────┘
-\`\`\`
-
-Both \`propose\` and \`explore\` can create a **new** OpenSpec change or **update an existing one**.
-`;
+const workflowMermaidChart = `flowchart TB
+    A[Team Conversation] --> B[Capture Transcript]
+    B --> C[Create GitHub Issue w/ Transcript]
+    C --> D{Label Type}
+    D -->|propose| E[Generate Artifacts]
+    D -->|explore| F[Analyze & Document]
+    E --> G[Create Pull Request]
+    F --> G
+    G --> H[Review & Refine]
+    H --> I[Merge to Main]
+    I --> J[Published to Docs Site]`;
 
 interface ChangeWithArtifacts extends ChangeMetadata {
   artifacts: Artifacts;
@@ -389,12 +339,13 @@ export default function OpenSpecChanges(): React.ReactElement {
                 ✕
               </button>
             </div>
-            <div
-              className={styles.modalContent}
-              dangerouslySetInnerHTML={{
-                __html: renderMarkdown(workflowDiagram)
-              }}
-            />
+            <div className={styles.modalContent}>
+              <h2>How It Works</h2>
+              <MermaidDiagram chart={workflowMermaidChart} />
+              <p style={{ marginTop: '1rem' }}>
+                Both <code>propose</code> and <code>explore</code> can create a <strong>new</strong> OpenSpec change or <strong>update an existing one</strong>.
+              </p>
+            </div>
           </div>
         </div>
       )}

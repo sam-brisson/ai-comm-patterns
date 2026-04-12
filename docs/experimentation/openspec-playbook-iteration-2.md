@@ -11,6 +11,14 @@ import OpenSpecDemo from '@site/src/components/OpenSpecDemo';
 
 After publishing [Iteration 1](/docs/experimentation/self-documenting-systems), we gathered feedback in a team jam session. This article documents how we processed that feedback using OpenSpec to propose improvements.
 
+<div style={{textAlign: 'center', marginBottom: '2rem'}}>
+  <img
+    src="/ai-comm-patterns/img/openspec-loop.webp"
+    alt="OpenSpec iterative workflow loop showing Propose, Design, Tasks, Implement, and Archive stages"
+    style={{maxWidth: '500px', width: '100%', borderRadius: '8px'}}
+  />
+</div>
+
 ## OpenSpec Workflow
 
 Try clicking through this demo to see what a real PM/Engineer conversation looks like at each stage — and click the artifact links to see the actual spec files:
