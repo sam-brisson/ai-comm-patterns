@@ -51,35 +51,46 @@ export default function TDDKnowledgePage(): React.ReactElement {
       id: 'example-mapping',
       label: 'Example Mapping',
       content: (
-        <div className={styles.cardHierarchy}>
-          {/* Story Card */}
-          <div className={styles.storyCard}>
-            <span className={styles.cardLabel}>STORY</span>
-            <p>"As a user, I want to book a meeting room"</p>
-          </div>
-
-          <div className={styles.cardConnector}>|</div>
-
-          {/* Rule Card */}
-          <div className={styles.ruleCard}>
-            <span className={styles.cardLabel}>RULE</span>
-            <p>"Can't submit without both times filled"</p>
-          </div>
-
-          <div className={styles.cardConnector}>
-            <span className={styles.cardBranch}>/</span>
-            <span className={styles.cardBranch}>\</span>
-          </div>
-
-          {/* Example Cards */}
-          <div className={styles.exampleCards}>
-            <div className={styles.exampleCard}>
-              <span className={styles.cardLabel}>EXAMPLE</span>
-              <p>Both empty → disabled</p>
+        <div className={styles.exampleMappingLayout}>
+          <div className={styles.cardHierarchy}>
+            {/* Story Card */}
+            <div className={styles.storyCard}>
+              <span className={styles.cardLabel}>STORY</span>
+              <p>"As a user, I want to book a meeting room"</p>
             </div>
-            <div className={styles.exampleCard}>
-              <span className={styles.cardLabel}>EXAMPLE</span>
-              <p>Both filled → enabled</p>
+
+            <div className={styles.cardConnector}>|</div>
+
+            {/* Rule Card */}
+            <div className={styles.ruleCard}>
+              <span className={styles.cardLabel}>RULE</span>
+              <p>"Can't submit without both times filled"</p>
+            </div>
+
+            <div className={styles.cardConnector}>
+              <span className={styles.cardBranch}>/</span>
+              <span className={styles.cardBranch}>\</span>
+            </div>
+
+            {/* Example Cards */}
+            <div className={styles.exampleCards}>
+              <div className={styles.exampleCard}>
+                <span className={styles.cardLabel}>EXAMPLE</span>
+                <p>Both empty → disabled</p>
+              </div>
+              <div className={styles.exampleCard}>
+                <span className={styles.cardLabel}>EXAMPLE</span>
+                <p>Both filled → enabled</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Questions Area */}
+          <div className={styles.questionsArea}>
+            <span className={styles.questionsLabel}>Questions</span>
+            <div className={styles.questionCard}>
+              <span className={styles.cardLabel}>QUESTION</span>
+              <p>Should the user be able to submit with just an end time?</p>
             </div>
           </div>
         </div>
