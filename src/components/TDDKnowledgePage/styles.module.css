@@ -1,0 +1,408 @@
+.container {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  background: var(--ifm-background-surface-color);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #111827; /* gray-900 - matches navbar */
+  border-bottom: 1px solid #374151; /* gray-700 */
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.headerText {
+  color: #fff;
+}
+
+/* Stage Navigation */
+.stageNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--ifm-color-emphasis-50);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.stageButton {
+  padding: 0.5rem 1.25rem;
+  border: 2px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-color);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.stageButton:hover {
+  border-color: var(--ifm-color-primary);
+  background: var(--ifm-color-primary-lightest);
+}
+
+.stageActive {
+  border-color: var(--ifm-color-primary);
+  background: var(--ifm-color-primary-lightest);
+  box-shadow: 0 0 0 3px var(--ifm-color-primary-light);
+}
+
+.stageArrow {
+  color: var(--ifm-color-emphasis-400);
+  font-size: 1.25rem;
+}
+
+/* Main Content Area */
+.mainContent {
+  padding: 1.5rem;
+  min-height: 280px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Example Mapping Card Hierarchy */
+.cardHierarchy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.storyCard,
+.ruleCard,
+.exampleCard {
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 320px;
+}
+
+.storyCard {
+  background: #3B82F6;
+  color: white;
+}
+
+.ruleCard {
+  background: #F59E0B;
+  color: white;
+}
+
+.exampleCard {
+  background: #10B981;
+  color: white;
+}
+
+.cardLabel {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.9;
+  margin-bottom: 0.25rem;
+}
+
+.storyCard p,
+.ruleCard p,
+.exampleCard p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.cardConnector {
+  color: var(--ifm-color-emphasis-400);
+  font-size: 1.25rem;
+  font-family: monospace;
+}
+
+.cardBranch {
+  margin: 0 1rem;
+}
+
+.exampleCards {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Side by Side Layout (Red/Green stages) */
+.sideBySide {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.formSide,
+.codeSide {
+  flex: 1;
+}
+
+/* Booking Form */
+.bookingForm {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--ifm-background-color);
+}
+
+.formHeader {
+  padding: 0.75rem 1rem;
+  background: var(--ifm-color-emphasis-100);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.bookingForm form {
+  padding: 1rem;
+}
+
+.formField {
+  margin-bottom: 1rem;
+}
+
+.formField label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.formField input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background: var(--ifm-background-color);
+}
+
+.formField input:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 2px var(--ifm-color-primary-light);
+}
+
+.readOnlyInput {
+  background: var(--ifm-color-emphasis-100) !important;
+  cursor: not-allowed;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submitEnabled {
+  background: var(--ifm-color-primary);
+  color: white;
+}
+
+.submitEnabled:hover {
+  background: var(--ifm-color-primary-dark);
+}
+
+.submitDisabled {
+  background: var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-500);
+  cursor: not-allowed;
+}
+
+.bugIndicator {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #DC2626;
+  font-style: italic;
+  text-align: center;
+}
+
+.fixedIndicator {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--ifm-color-emphasis-600);
+  font-style: italic;
+  text-align: center;
+}
+
+.enabledIndicator {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #10B981;
+  font-style: italic;
+  text-align: center;
+}
+
+.submittedMessage {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background: #FEE2E2;
+  border: 1px solid #FECACA;
+  border-radius: 4px;
+  color: #DC2626;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.submittedMessageSuccess {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background: #D1FAE5;
+  border: 1px solid #A7F3D0;
+  border-radius: 4px;
+  color: #059669;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.tryIt {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-600);
+  font-style: italic;
+}
+
+/* Code Panel */
+.codePanel {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1e1e1e;
+}
+
+.codeComment {
+  padding: 0.5rem 1rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.8rem;
+  color: #6A9955;
+  background: #252526;
+  border-bottom: 1px solid #3c3c3c;
+}
+
+.codeBlock {
+  margin: 0;
+  padding: 1rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #d4d4d4;
+  overflow-x: auto;
+}
+
+.codeBlock code {
+  background: none;
+  padding: 0;
+}
+
+.testStatus {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-top: 1px solid #3c3c3c;
+}
+
+.testPass {
+  background: #1a3d2e;
+  color: #4ade80;
+}
+
+.testFail {
+  background: #3d1a1a;
+  color: #f87171;
+}
+
+/* Conversation Area */
+.conversationArea {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  background: var(--ifm-color-emphasis-50);
+}
+
+.message {
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.pmMessage .speaker {
+  color: #6B7280;
+  font-weight: 700;
+}
+
+.engineerMessage .speaker {
+  color: var(--ifm-color-primary-darkest);
+  font-weight: 700;
+}
+
+.speaker {
+  margin-right: 0.5rem;
+}
+
+.messageText {
+  color: var(--ifm-color-emphasis-800);
+}
+
+/* Navigation */
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  background: var(--ifm-color-emphasis-100);
+}
+
+.navButton {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  background: var(--ifm-background-color);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.navButton:hover:not(:disabled) {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.navButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.progress {
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-600);
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .sideBySide {
+    flex-direction: column;
+  }
+
+  .exampleCards {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .stageNav {
+    flex-wrap: wrap;
+  }
+}
