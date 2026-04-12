@@ -35,23 +35,47 @@ const STATUS_COLUMNS = [
 const ISSUE_TEMPLATES = {
   propose: {
     title: 'Propose a Change',
-    template: 'openspec-propose',
     description: 'Generate artifacts from a conversation',
     color: '#10B981',
+    icon: 'P',
+    titlePrefix: '[Propose] ',
+    bodyTemplate: `## Conversation Transcript
+
+Paste your conversation here...
+
+## Context
+
+Any additional context about this change.`,
   },
   explore: {
     title: 'Explore an Idea',
-    template: 'openspec-explore',
     description: 'Analyze and document insights',
     color: '#6366F1',
+    icon: 'E',
+    titlePrefix: '[Explore] ',
+    bodyTemplate: `## Topic
+
+What are you exploring?
+
+## Conversation Transcript
+
+Paste your conversation here...`,
   },
 };
+
+type IssueType = 'propose' | 'explore';
 
 export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardProps): React.ReactElement {
   const [issues, setIssues] = useState<Issue[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showTemplateMenu, setShowTemplateMenu] = useState(false);
+
+  // Modal state
+  const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState<IssueType | null>(null);
+  const [issueTitle, setIssueTitle] = useState('');
+  const [issueBody, setIssueBody] = useState('');
 
   useEffect(() => {
     async function fetchIssues() {
@@ -75,7 +99,6 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
   }, [owner, repo]);
 
   const getIssueStatus = (issue: Issue): string => {
-    // Check for status labels
     const statusLabels = issue.labels.map(l => l.name.toLowerCase());
     if (statusLabels.includes('done') || issue.state === 'closed') return 'done';
     if (statusLabels.includes('in-progress') || statusLabels.includes('in progress')) return 'in-progress';
@@ -83,7 +106,7 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
     return 'new';
   };
 
-  const getIssueType = (issue: Issue): 'propose' | 'explore' | null => {
+  const getIssueType = (issue: Issue): IssueType | null => {
     const labels = issue.labels.map(l => l.name.toLowerCase());
     if (labels.includes('propose')) return 'propose';
     if (labels.includes('explore')) return 'explore';
@@ -95,71 +118,55 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   };
 
-  const openIssueTemplate = (template: 'propose' | 'explore') => {
-    const labels = template;
-    const title = template === 'propose' ? '[Propose] ' : '[Explore] ';
-    const body = template === 'propose'
-      ? encodeURIComponent('## Conversation Transcript\n\nPaste your conversation here...\n\n## Context\n\nAny additional context about this change.')
-      : encodeURIComponent('## Topic\n\nWhat are you exploring?\n\n## Conversation Transcript\n\nPaste your conversation here...');
-
-    window.open(
-      `https://github.com/${owner}/${repo}/issues/new?labels=${labels}&title=${title}&body=${body}`,
-      '_blank'
-    );
+  const openNewIssueModal = (type: IssueType) => {
+    const template = ISSUE_TEMPLATES[type];
+    setModalType(type);
+    setIssueTitle('');
+    setIssueBody(template.bodyTemplate);
+    setShowModal(true);
     setShowTemplateMenu(false);
   };
 
-  const IssueCard = ({ issue }: { issue: Issue }) => {
-    const issueType = getIssueType(issue);
-    return (
-      <a href={issue.html_url} target="_blank" rel="noopener noreferrer" className={styles.issueCard}>
-        <div className={styles.issueHeader}>
-          <span className={styles.issueNumber}>#{issue.number}</span>
-          <span className={styles.issueDate}>{formatDate(issue.created_at)}</span>
-        </div>
-        <div className={styles.issueTitle}>{issue.title}</div>
-        <div className={styles.issueLabels}>
-          {issue.labels
-            .filter(label => !['propose', 'explore', 'new', 'in-progress', 'review', 'done'].includes(label.name.toLowerCase()))
-            .map(label => (
-              <span
-                key={label.name}
-                className={styles.label}
-                style={{ backgroundColor: `#${label.color}` }}
-              >
-                {label.name}
-              </span>
-            ))}
-        </div>
-      </a>
-    );
+  const closeModal = () => {
+    setShowModal(false);
+    setModalType(null);
+    setIssueTitle('');
+    setIssueBody('');
   };
 
-  const Swimlane = ({
-    type,
-    issues,
-    statusId
-  }: {
-    type: 'propose' | 'explore';
-    issues: Issue[];
-    statusId: string;
-  }) => {
-    const filteredIssues = issues.filter(issue => {
-      const issueType = getIssueType(issue);
-      const issueStatus = getIssueStatus(issue);
-      return issueType === type && issueStatus === statusId;
-    });
+  const submitToGitHub = () => {
+    if (!modalType) return;
 
-    if (filteredIssues.length === 0) return null;
+    const template = ISSUE_TEMPLATES[modalType];
+    const fullTitle = template.titlePrefix + issueTitle;
+    const url = `https://github.com/${owner}/${repo}/issues/new?labels=${modalType}&title=${encodeURIComponent(fullTitle)}&body=${encodeURIComponent(issueBody)}`;
 
-    return (
-      <div className={styles.swimlane}>
-        {filteredIssues.map(issue => (
-          <IssueCard key={issue.id} issue={issue} />
-        ))}
+    window.open(url, '_blank');
+    closeModal();
+  };
+
+  const IssueCard = ({ issue }: { issue: Issue }) => (
+    <a href={issue.html_url} target="_blank" rel="noopener noreferrer" className={styles.issueCard}>
+      <div className={styles.issueHeader}>
+        <span className={styles.issueNumber}>#{issue.number}</span>
+        <span className={styles.issueDate}>{formatDate(issue.created_at)}</span>
       </div>
-    );
-  };
+      <div className={styles.issueTitle}>{issue.title}</div>
+      <div className={styles.issueLabels}>
+        {issue.labels
+          .filter(label => !['propose', 'explore', 'new', 'in-progress', 'review', 'done'].includes(label.name.toLowerCase()))
+          .map(label => (
+            <span
+              key={label.name}
+              className={styles.label}
+              style={{ backgroundColor: `#${label.color}` }}
+            >
+              {label.name}
+            </span>
+          ))}
+      </div>
+    </a>
+  );
 
   const StatusColumn = ({ status }: { status: typeof STATUS_COLUMNS[0] }) => {
     const proposeIssues = issues.filter(i => getIssueType(i) === 'propose' && getIssueStatus(i) === status.id);
@@ -227,6 +234,8 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
     );
   }
 
+  const currentTemplate = modalType ? ISSUE_TEMPLATES[modalType] : null;
+
   return (
     <div className={styles.container}>
       <div className={styles.toolbar}>
@@ -241,7 +250,7 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
             <div className={styles.templateMenu}>
               <button
                 className={styles.templateOption}
-                onClick={() => openIssueTemplate('propose')}
+                onClick={() => openNewIssueModal('propose')}
               >
                 <span className={styles.templateIcon} style={{ backgroundColor: ISSUE_TEMPLATES.propose.color }}>P</span>
                 <div className={styles.templateInfo}>
@@ -251,7 +260,7 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
               </button>
               <button
                 className={styles.templateOption}
-                onClick={() => openIssueTemplate('explore')}
+                onClick={() => openNewIssueModal('explore')}
               >
                 <span className={styles.templateIcon} style={{ backgroundColor: ISSUE_TEMPLATES.explore.color }}>E</span>
                 <div className={styles.templateInfo}>
@@ -276,6 +285,64 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
           <StatusColumn key={status.id} status={status} />
         ))}
       </div>
+
+      {/* New Issue Modal */}
+      {showModal && currentTemplate && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalHeader}>
+              <div className={styles.modalHeaderLeft}>
+                <span
+                  className={styles.modalTypeIcon}
+                  style={{ backgroundColor: currentTemplate.color }}
+                >
+                  {currentTemplate.icon}
+                </span>
+                <span className={styles.modalTitle}>{currentTemplate.title}</span>
+              </div>
+              <button className={styles.modalClose} onClick={closeModal}>×</button>
+            </div>
+            <div className={styles.modalBody}>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Title</label>
+                <div className={styles.titleInputWrapper}>
+                  <span className={styles.titlePrefix}>{currentTemplate.titlePrefix}</span>
+                  <input
+                    type="text"
+                    className={styles.titleInput}
+                    placeholder="Brief description of the change..."
+                    value={issueTitle}
+                    onChange={(e) => setIssueTitle(e.target.value)}
+                    autoFocus
+                  />
+                </div>
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Details</label>
+                <textarea
+                  className={styles.bodyInput}
+                  value={issueBody}
+                  onChange={(e) => setIssueBody(e.target.value)}
+                  rows={12}
+                />
+              </div>
+            </div>
+            <div className={styles.modalFooter}>
+              <button className={styles.cancelButton} onClick={closeModal}>
+                Cancel
+              </button>
+              <button
+                className={styles.submitButton}
+                onClick={submitToGitHub}
+                disabled={!issueTitle.trim()}
+                style={{ backgroundColor: currentTemplate.color }}
+              >
+                Create on GitHub →
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

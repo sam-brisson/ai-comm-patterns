@@ -84,15 +84,22 @@
   border-radius: 4px;
   font-size: 0.8rem;
   font-weight: 500;
+  font-family: inherit;
   color: var(--ifm-color-success-darkest, #006400);
   text-decoration: none;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .resultLink:hover {
   background: var(--ifm-color-success);
   color: #fff;
   text-decoration: none;
+}
+
+/* Ensure button version matches anchor version */
+button.resultLink {
+  line-height: inherit;
 }
 
 .resultPending {

@@ -268,7 +268,6 @@ export default function OpenSpecChanges(): React.ReactElement {
                   <button
                     className={styles.resultLink}
                     onClick={() => setShowWorkflow(true)}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
                   >
                     {change.resultLabel || 'View Workflow'} →
                   </button>
