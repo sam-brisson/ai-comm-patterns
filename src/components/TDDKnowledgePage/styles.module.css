@@ -276,21 +276,21 @@
   font-style: italic;
 }
 
-/* Code Panel */
+/* Code Panel - Console style */
 .codePanel {
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 8px;
   overflow: hidden;
-  background: #1e1e1e;
+  background: #000;
 }
 
 .codeComment {
   padding: 0.5rem 1rem;
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.8rem;
-  color: #6A9955;
-  background: #252526;
-  border-bottom: 1px solid #3c3c3c;
+  color: #333;
+  background: #e5e5e5;
+  border-bottom: 1px solid #ccc;
 }
 
 .codeBlock {
@@ -299,30 +299,34 @@
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.85rem;
   line-height: 1.5;
-  color: #d4d4d4;
+  color: #4ade80;
+  background: #000;
   overflow-x: auto;
 }
 
 .codeBlock code {
   background: none;
   padding: 0;
+  color: #4ade80;
 }
 
 .testStatus {
   padding: 0.5rem 1rem;
   font-size: 0.85rem;
   font-weight: 600;
-  border-top: 1px solid #3c3c3c;
+  background: #e5e5e5;
+  color: #333;
+  border-top: 1px solid #ccc;
 }
 
 .testPass {
-  background: #1a3d2e;
-  color: #4ade80;
+  background: #e5e5e5;
+  color: #059669;
 }
 
 .testFail {
-  background: #3d1a1a;
-  color: #f87171;
+  background: #e5e5e5;
+  color: #DC2626;
 }
 
 /* Conversation Area */
