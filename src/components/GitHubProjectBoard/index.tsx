@@ -251,26 +251,28 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
           </button>
           {showTemplateMenu && (
             <div className={styles.templateMenu}>
-              <button
-                className={styles.templateOption}
-                onClick={() => openNewIssueModal('propose')}
-              >
-                <span className={styles.templateIcon} style={{ backgroundColor: ISSUE_TEMPLATES.propose.color }}>P</span>
-                <div className={styles.templateInfo}>
-                  <span className={styles.templateTitle}>{ISSUE_TEMPLATES.propose.title}</span>
-                  <span className={styles.templateDesc}>{ISSUE_TEMPLATES.propose.description}</span>
-                </div>
-              </button>
-              <button
-                className={styles.templateOption}
-                onClick={() => openNewIssueModal('explore')}
-              >
-                <span className={styles.templateIcon} style={{ backgroundColor: ISSUE_TEMPLATES.explore.color }}>E</span>
-                <div className={styles.templateInfo}>
-                  <span className={styles.templateTitle}>{ISSUE_TEMPLATES.explore.title}</span>
-                  <span className={styles.templateDesc}>{ISSUE_TEMPLATES.explore.description}</span>
-                </div>
-              </button>
+              <div className={styles.templateMenuInner}>
+                <button
+                  className={styles.templateOption}
+                  onClick={() => openNewIssueModal('propose')}
+                >
+                  <span className={styles.templateIcon} style={{ backgroundColor: ISSUE_TEMPLATES.propose.color }}>P</span>
+                  <div className={styles.templateInfo}>
+                    <span className={styles.templateTitle}>{ISSUE_TEMPLATES.propose.title}</span>
+                    <span className={styles.templateDesc}>{ISSUE_TEMPLATES.propose.description}</span>
+                  </div>
+                </button>
+                <button
+                  className={styles.templateOption}
+                  onClick={() => openNewIssueModal('explore')}
+                >
+                  <span className={styles.templateIcon} style={{ backgroundColor: ISSUE_TEMPLATES.explore.color }}>E</span>
+                  <div className={styles.templateInfo}>
+                    <span className={styles.templateTitle}>{ISSUE_TEMPLATES.explore.title}</span>
+                    <span className={styles.templateDesc}>{ISSUE_TEMPLATES.explore.description}</span>
+                  </div>
+                </button>
+              </div>
             </div>
           )}
         </div>

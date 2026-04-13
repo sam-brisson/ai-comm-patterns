@@ -32,17 +32,20 @@
   position: absolute;
   top: 100%;
   left: 0;
-  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  z-index: 100;
+  min-width: 280px;
+}
+
+.templateMenuInner {
   background-color: #ffffff;
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 100;
-  min-width: 280px;
   overflow: hidden;
 }
 
-[data-theme='dark'] .templateMenu {
+[data-theme='dark'] .templateMenuInner {
   background-color: #1e1e1e;
 }
 
