@@ -239,7 +239,10 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
   return (
     <div className={styles.container}>
       <div className={styles.toolbar}>
-        <div className={styles.newIssueDropdown}>
+        <div
+          className={styles.newIssueDropdown}
+          onMouseLeave={() => setShowTemplateMenu(false)}
+        >
           <button
             className={styles.newIssueButton}
             onClick={() => setShowTemplateMenu(!showTemplateMenu)}

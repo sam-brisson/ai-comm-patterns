@@ -33,13 +33,17 @@
   top: 100%;
   left: 0;
   margin-top: 0.5rem;
-  background-color: var(--ifm-background-color);
+  background-color: #ffffff;
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 100;
   min-width: 280px;
   overflow: hidden;
+}
+
+[data-theme='dark'] .templateMenu {
+  background-color: #1e1e1e;
 }
 
 .templateOption {
@@ -276,7 +280,7 @@
 }
 
 .modal {
-  background: var(--ifm-background-color);
+  background: #ffffff;
   border-radius: 12px;
   max-width: 600px;
   width: 100%;
@@ -285,6 +289,10 @@
   flex-direction: column;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
   overflow: hidden;
+}
+
+[data-theme='dark'] .modal {
+  background: #1e1e1e;
 }
 
 .modalHeader {
