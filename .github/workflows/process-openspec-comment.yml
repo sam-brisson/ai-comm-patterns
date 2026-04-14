@@ -1,0 +1,207 @@
+name: Process OpenSpec from Comment
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  process-comment:
+    # Run if: comment on an issue/PR with propose or explore label, by allowed user, starts with /update
+    if: |
+      startsWith(github.event.comment.body, '/update') &&
+      (contains(github.event.issue.labels.*.name, 'propose') || contains(github.event.issue.labels.*.name, 'explore')) &&
+      contains(fromJson('["barnold1675", "sam-brisson", "maazshafi"]'), github.event.comment.user.login)
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          npm install @anthropic-ai/sdk
+
+      - name: Acknowledge comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'eyes'
+            });
+
+      - name: Gather conversation context
+        id: gather
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const issue = context.payload.issue;
+            const comment = context.payload.comment;
+            const labels = issue.labels.map(l => l.name);
+            const mode = labels.includes('propose') ? 'propose' : 'explore';
+
+            // Get the original issue body
+            let conversation = issue.body || '';
+
+            // Get all comments on the issue
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              per_page: 100
+            });
+
+            // Add comments to the conversation (excluding bot comments and the /update trigger)
+            for (const c of comments.data) {
+              if (c.user.type !== 'Bot' && c.id !== comment.id) {
+                conversation += `\n\n---\n**${c.user.login}** commented:\n${c.body}`;
+              }
+            }
+
+            // Add the new comment (without the /update prefix)
+            const newContent = comment.body.replace(/^\/update\s*/i, '').trim();
+            if (newContent) {
+              conversation += `\n\n---\n**${comment.user.login}** (update request):\n${newContent}`;
+            }
+
+            console.log('Mode:', mode);
+            console.log('Issue:', issue.number);
+            console.log('Total conversation length:', conversation.length);
+
+            // Write to files
+            fs.writeFileSync('conversation.txt', conversation);
+            fs.writeFileSync('title.txt', issue.title);
+
+            core.setOutput('mode', mode);
+            core.setOutput('issueNumber', issue.number);
+
+      - name: Gather Existing Changes
+        run: |
+          node .github/scripts/gather-openspec-context.js > changes-context.json
+          echo "Generated changes context"
+
+      - name: Process with Claude API
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          node .github/scripts/process-openspec-conversation.js \
+            --mode "${{ steps.gather.outputs.mode }}" \
+            --conversation-file "conversation.txt" \
+            --title-file "title.txt" \
+            --changes-context-file "changes-context.json" \
+            --issue-number "${{ steps.gather.outputs.issueNumber }}"
+
+      - name: Create or Update Branch
+        id: commit
+        run: |
+          BRANCH_NAME="openspec-from-issue-${{ steps.gather.outputs.issueNumber }}"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git fetch origin
+
+          # Check if branch exists remotely
+          if git ls-remote --exit-code --heads origin $BRANCH_NAME; then
+            echo "Branch exists, checking it out..."
+            git checkout -B $BRANCH_NAME origin/$BRANCH_NAME
+          else
+            echo "Creating new branch..."
+            git checkout -b $BRANCH_NAME
+          fi
+
+          git add openspec/
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            git commit -m "OpenSpec update from comment on issue #${{ steps.gather.outputs.issueNumber }}"
+            git push origin $BRANCH_NAME --force-with-lease
+            echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update or Create Pull Request
+        if: steps.commit.outputs.has_changes == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const issueNumber = ${{ steps.gather.outputs.issueNumber }};
+            const branch = '${{ steps.commit.outputs.branch }}';
+
+            // Read the PR description
+            let prBody = '';
+            try {
+              prBody = fs.readFileSync('pr-description.md', 'utf8');
+            } catch (e) {
+              prBody = `Updated from comment on Issue #${issueNumber}`;
+            }
+
+            // Check if PR already exists
+            const existingPRs = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${context.repo.owner}:${branch}`,
+              state: 'open'
+            });
+
+            if (existingPRs.data.length > 0) {
+              // Update existing PR
+              const pr = existingPRs.data[0];
+              await github.rest.pulls.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                body: prBody
+              });
+
+              // Comment on the issue
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `✅ Updated PR #${pr.number} based on your comment.\n\nReview the changes and provide more feedback if needed.`
+              });
+            } else {
+              // Create new PR
+              const pr = await github.rest.pulls.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `OpenSpec update: Issue #${issueNumber}`,
+                head: branch,
+                base: 'main',
+                body: prBody
+              });
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `✅ Created PR #${pr.data.number} based on your comment.\n\nReview the changes and provide more feedback if needed.`
+              });
+            }
+
+      - name: Mark complete
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'rocket'
+            });

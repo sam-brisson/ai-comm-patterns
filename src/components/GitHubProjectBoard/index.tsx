@@ -80,14 +80,29 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
   useEffect(() => {
     async function fetchIssues() {
       try {
-        const response = await fetch(
-          `https://api.github.com/repos/${owner}/${repo}/issues?state=all&per_page=50&labels=propose,explore`
-        );
-        if (!response.ok) {
+        // Fetch propose and explore issues separately (labels param is AND, not OR)
+        const cacheBuster = `&_=${Date.now()}`;
+        const [proposeRes, exploreRes] = await Promise.all([
+          fetch(`https://api.github.com/repos/${owner}/${repo}/issues?state=all&per_page=50&labels=propose${cacheBuster}`),
+          fetch(`https://api.github.com/repos/${owner}/${repo}/issues?state=all&per_page=50&labels=explore${cacheBuster}`)
+        ]);
+
+        if (!proposeRes.ok || !exploreRes.ok) {
           throw new Error('Failed to fetch issues');
         }
-        const data = await response.json();
-        setIssues(data);
+
+        const [proposeIssues, exploreIssues] = await Promise.all([
+          proposeRes.json(),
+          exploreRes.json()
+        ]);
+
+        // Combine and dedupe (in case an issue has both labels)
+        const allIssues = [...proposeIssues, ...exploreIssues];
+        const uniqueIssues = allIssues.filter((issue, index, self) =>
+          index === self.findIndex(i => i.id === issue.id)
+        );
+
+        setIssues(uniqueIssues);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load issues');
       } finally {
