@@ -23,12 +23,13 @@ interface GitHubProjectBoardProps {
   repo: string;
 }
 
-// Status columns matching the AI Knowledge Mgmt project
+// Status columns matching the AI Knowledge Mgmt GitHub project
+// Only showing active work columns (Done is viewable on GitHub)
 const STATUS_COLUMNS = [
-  { id: 'new', label: 'New', color: '#6366F1' },
+  { id: 'backlog', label: 'Backlog', color: '#6B7280' },
+  { id: 'ready', label: 'Ready', color: '#10B981' },
   { id: 'in-progress', label: 'In Progress', color: '#F59E0B' },
-  { id: 'review', label: 'Review', color: '#8B5CF6' },
-  { id: 'done', label: 'Done', color: '#10B981' },
+  { id: 'in-review', label: 'In Review', color: '#8B5CF6' },
 ];
 
 // Issue templates
@@ -115,10 +116,12 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
 
   const getIssueStatus = (issue: Issue): string => {
     const statusLabels = issue.labels.map(l => l.name.toLowerCase());
+    // Map labels to our column IDs - closed/done issues are filtered out of display
     if (statusLabels.includes('done') || issue.state === 'closed') return 'done';
+    if (statusLabels.includes('in-review') || statusLabels.includes('in review') || statusLabels.includes('review')) return 'in-review';
     if (statusLabels.includes('in-progress') || statusLabels.includes('in progress')) return 'in-progress';
-    if (statusLabels.includes('review') || statusLabels.includes('in-review')) return 'review';
-    return 'new';
+    if (statusLabels.includes('ready')) return 'ready';
+    return 'backlog';
   };
 
   const getIssueType = (issue: Issue): IssueType | null => {
@@ -169,7 +172,7 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
       <div className={styles.issueTitle}>{issue.title}</div>
       <div className={styles.issueLabels}>
         {issue.labels
-          .filter(label => !['propose', 'explore', 'new', 'in-progress', 'review', 'done'].includes(label.name.toLowerCase()))
+          .filter(label => !['propose', 'explore', 'backlog', 'ready', 'in-progress', 'in-review', 'in review', 'review', 'done'].includes(label.name.toLowerCase()))
           .map(label => (
             <span
               key={label.name}
@@ -295,9 +298,9 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
           href={`https://github.com/${owner}/${repo}/issues`}
           target="_blank"
           rel="noopener noreferrer"
-          className={styles.viewAllLink}
+          className={styles.viewAllButton}
         >
-          View all on GitHub →
+          View all on GitHub
         </a>
       </div>
       <div className={styles.board}>
