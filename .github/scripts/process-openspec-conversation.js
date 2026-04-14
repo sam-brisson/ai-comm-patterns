@@ -39,6 +39,26 @@ const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
+// Retry wrapper for API calls with exponential backoff
+async function withRetry(fn, maxRetries = 3, baseDelayMs = 2000) {
+  let lastError;
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (error) {
+      lastError = error;
+      const isRetryable = error.status === 529 || error.status === 503 || error.status === 500;
+      if (!isRetryable || attempt === maxRetries) {
+        throw error;
+      }
+      const delay = baseDelayMs * Math.pow(2, attempt - 1);
+      console.log(`API error (${error.status}), retrying in ${delay}ms... (attempt ${attempt}/${maxRetries})`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+  throw lastError;
+}
+
 // Build context about existing changes for Claude
 function buildChangesContext() {
   if (changesContext.existingChanges.length === 0) {
@@ -172,11 +192,11 @@ Respond in JSON format:
 async function analyzeConversation() {
   console.log('Step 1: Analyzing conversation...');
 
-  const response = await anthropic.messages.create({
+  const response = await withRetry(() => anthropic.messages.create({
     model: 'claude-sonnet-4-20250514',
     max_tokens: 4096,
     messages: [{ role: 'user', content: ANALYZE_PROMPT }]
-  });
+  }));
 
   const text = response.content[0].text;
 
@@ -194,11 +214,11 @@ async function generateProposal(analysis) {
 
   const prompt = PROPOSE_PROMPT.replace('{analysis}', JSON.stringify(analysis, null, 2));
 
-  const response = await anthropic.messages.create({
+  const response = await withRetry(() => anthropic.messages.create({
     model: 'claude-sonnet-4-20250514',
     max_tokens: 8192,
     messages: [{ role: 'user', content: prompt }]
-  });
+  }));
 
   const text = response.content[0].text;
 
@@ -214,11 +234,11 @@ async function generateProposal(analysis) {
 async function generateExploreUpdates() {
   console.log('Generating explore updates...');
 
-  const response = await anthropic.messages.create({
+  const response = await withRetry(() => anthropic.messages.create({
     model: 'claude-sonnet-4-20250514',
     max_tokens: 8192,
     messages: [{ role: 'user', content: EXPLORE_PROMPT }]
-  });
+  }));
 
   const text = response.content[0].text;
 
