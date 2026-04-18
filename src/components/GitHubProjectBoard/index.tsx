@@ -302,7 +302,7 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
           )}
         </div>
         <a
-          href="https://github.com/users/sam-brisson/projects/2"
+          href="https://github.com/users/sam-brisson/projects/2/views/9"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.viewAllButton}
