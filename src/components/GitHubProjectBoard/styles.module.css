@@ -602,3 +602,91 @@
 .issueViewBody strong {
   color: #e6edf3;
 }
+
+/* Drag and drop styles */
+.issueCard[draggable="true"] {
+  cursor: grab;
+}
+
+.issueCard[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+.columnDragOver {
+  background-color: #1c2128;
+  border-color: #10B981 !important;
+  box-shadow: inset 0 0 0 2px #10B981;
+}
+
+.columnDragOver .emptyColumn {
+  color: #10B981;
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* Status Change Modal */
+.statusChangeModal {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.statusChangeBody {
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.statusChangeIssue {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.statusChangeIssueTitle {
+  color: #e6edf3;
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.statusChangeArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+}
+
+.statusBadge {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.arrowIcon {
+  color: #8b949e;
+  font-size: 1.25rem;
+}
+
+.statusChangeInstructions {
+  color: #8b949e;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.statusChangeInstructions code {
+  background: #21262d;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  color: #79c0ff;
+  font-size: 0.85em;
+}

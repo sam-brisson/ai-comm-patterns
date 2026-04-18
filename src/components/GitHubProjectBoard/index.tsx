@@ -82,6 +82,14 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
   // View issue modal state
   const [viewingIssue, setViewingIssue] = useState<Issue | null>(null);
 
+  // Drag and drop state
+  const [draggedIssue, setDraggedIssue] = useState<Issue | null>(null);
+  const [dragOverColumn, setDragOverColumn] = useState<string | null>(null);
+
+  // Status change modal state
+  const [statusChangeIssue, setStatusChangeIssue] = useState<Issue | null>(null);
+  const [newStatus, setNewStatus] = useState<string | null>(null);
+
   useEffect(() => {
     async function fetchIssues() {
       try {
@@ -167,6 +175,80 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
     setViewingIssue(null);
   };
 
+  const closeStatusChangeModal = () => {
+    setStatusChangeIssue(null);
+    setNewStatus(null);
+  };
+
+  // Map status ID to label name
+  const getStatusLabel = (statusId: string): string => {
+    const statusMap: Record<string, string> = {
+      'backlog': 'backlog',
+      'ready': 'ready',
+      'in-progress': 'in-progress',
+      'in-review': 'in-review',
+    };
+    return statusMap[statusId] || statusId;
+  };
+
+  // Get current status labels to remove
+  const STATUS_LABEL_NAMES = ['backlog', 'ready', 'in-progress', 'in-review', 'pending-review'];
+
+  // Build URL to add new status label on GitHub
+  const getStatusChangeUrl = (issue: Issue, targetStatus: string): string => {
+    // GitHub doesn't have a direct "edit labels" URL, but we can link to the issue
+    // The user will need to change labels there
+    // We'll open the issue page where they can easily edit labels
+    return issue.html_url;
+  };
+
+  // Drag handlers
+  const handleDragStart = (e: React.DragEvent, issue: Issue) => {
+    setDraggedIssue(issue);
+    e.dataTransfer.effectAllowed = 'move';
+    // Add some visual feedback
+    if (e.currentTarget instanceof HTMLElement) {
+      e.currentTarget.style.opacity = '0.5';
+    }
+  };
+
+  const handleDragEnd = (e: React.DragEvent) => {
+    setDraggedIssue(null);
+    setDragOverColumn(null);
+    if (e.currentTarget instanceof HTMLElement) {
+      e.currentTarget.style.opacity = '1';
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent, columnId: string) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    setDragOverColumn(columnId);
+  };
+
+  const handleDragLeave = () => {
+    setDragOverColumn(null);
+  };
+
+  const handleDrop = (e: React.DragEvent, targetColumnId: string) => {
+    e.preventDefault();
+    setDragOverColumn(null);
+
+    if (!draggedIssue) return;
+
+    const currentStatus = getIssueStatus(draggedIssue);
+    if (currentStatus === targetColumnId) {
+      // Dropped in same column, no change needed
+      setDraggedIssue(null);
+      return;
+    }
+
+    // Show status change confirmation modal
+    setStatusChangeIssue(draggedIssue);
+    setNewStatus(targetColumnId);
+    setDraggedIssue(null);
+  };
+
   // Simple markdown renderer for issue body
   const renderIssueBody = (body: string | null): string => {
     if (!body) return '<p><em>No description provided.</em></p>';
@@ -204,8 +286,11 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
   };
 
   const IssueCard = ({ issue }: { issue: Issue }) => (
-    <button
+    <div
       className={styles.issueCard}
+      draggable
+      onDragStart={(e) => handleDragStart(e, issue)}
+      onDragEnd={handleDragEnd}
       onClick={() => setViewingIssue(issue)}
     >
       <div className={styles.issueHeader}>
@@ -226,16 +311,22 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
             </span>
           ))}
       </div>
-    </button>
+    </div>
   );
 
   const StatusColumn = ({ status }: { status: typeof STATUS_COLUMNS[0] }) => {
     const proposeIssues = issues.filter(i => getIssueType(i) === 'propose' && getIssueStatus(i) === status.id);
     const exploreIssues = issues.filter(i => getIssueType(i) === 'explore' && getIssueStatus(i) === status.id);
     const totalCount = proposeIssues.length + exploreIssues.length;
+    const isDragOver = dragOverColumn === status.id;
 
     return (
-      <div className={styles.column}>
+      <div
+        className={`${styles.column} ${isDragOver ? styles.columnDragOver : ''}`}
+        onDragOver={(e) => handleDragOver(e, status.id)}
+        onDragLeave={handleDragLeave}
+        onDrop={(e) => handleDrop(e, status.id)}
+      >
         <div className={styles.columnHeader} style={{ borderTopColor: status.color }}>
           <span className={styles.columnTitle}>{status.label}</span>
           <span className={styles.columnCount}>{totalCount}</span>
@@ -262,7 +353,7 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
             </div>
           )}
           {totalCount === 0 && (
-            <div className={styles.emptyColumn}>No issues</div>
+            <div className={styles.emptyColumn}>Drop here</div>
           )}
         </div>
       </div>
@@ -459,6 +550,59 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
                 style={{ backgroundColor: getIssueType(viewingIssue) === 'propose' ? ISSUE_TEMPLATES.propose.color : ISSUE_TEMPLATES.explore.color }}
               >
                 Edit on GitHub →
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Status Change Confirmation Modal */}
+      {statusChangeIssue && newStatus && (
+        <div className={styles.modalOverlay} onClick={closeStatusChangeModal}>
+          <div className={styles.statusChangeModal} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalHeader}>
+              <div className={styles.modalHeaderLeft}>
+                <span className={styles.modalTitle}>Change Status</span>
+              </div>
+              <button className={styles.modalClose} onClick={closeStatusChangeModal}>×</button>
+            </div>
+            <div className={styles.statusChangeBody}>
+              <div className={styles.statusChangeIssue}>
+                <span className={styles.issueNumber}>#{statusChangeIssue.number}</span>
+                <span className={styles.statusChangeIssueTitle}>{statusChangeIssue.title}</span>
+              </div>
+              <div className={styles.statusChangeArrow}>
+                <span
+                  className={styles.statusBadge}
+                  style={{ backgroundColor: STATUS_COLUMNS.find(c => c.id === getIssueStatus(statusChangeIssue))?.color }}
+                >
+                  {STATUS_COLUMNS.find(c => c.id === getIssueStatus(statusChangeIssue))?.label}
+                </span>
+                <span className={styles.arrowIcon}>→</span>
+                <span
+                  className={styles.statusBadge}
+                  style={{ backgroundColor: STATUS_COLUMNS.find(c => c.id === newStatus)?.color }}
+                >
+                  {STATUS_COLUMNS.find(c => c.id === newStatus)?.label}
+                </span>
+              </div>
+              <p className={styles.statusChangeInstructions}>
+                To change the status, add the <code>{getStatusLabel(newStatus)}</code> label and remove any other status labels on GitHub.
+              </p>
+            </div>
+            <div className={styles.modalFooter}>
+              <button className={styles.cancelButton} onClick={closeStatusChangeModal}>
+                Cancel
+              </button>
+              <a
+                href={statusChangeIssue.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.submitButton}
+                style={{ backgroundColor: STATUS_COLUMNS.find(c => c.id === newStatus)?.color }}
+                onClick={closeStatusChangeModal}
+              >
+                Update on GitHub →
               </a>
             </div>
           </div>
