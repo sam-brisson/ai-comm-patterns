@@ -295,7 +295,7 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
           )}
         </div>
         <a
-          href={`https://github.com/${owner}/${repo}/issues`}
+          href="https://github.com/users/sam-brisson/projects/2"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.viewAllButton}

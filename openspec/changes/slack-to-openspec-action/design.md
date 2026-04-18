@@ -1,25 +1,27 @@
 ## Context
 
-Currently, the repo has a GitHub Action (`process-article-issue.yml`) that generates knowledge articles from Slack conversations dropped into GitHub Issues. The team wants to pivot this to instead update OpenSpec change artifacts, enabling a "Slack to sprint planning" workflow.
+The repository has a GitHub Action workflow that processes conversation transcripts from GitHub Issues and generates or updates OpenSpec change artifacts. This enables a low-friction workflow where team discussions can be captured and translated into structured change documentation.
 
-The existing infrastructure includes:
+The infrastructure includes:
 - GitHub Actions with Claude API integration
 - `openspec` CLI tool (npm package) for managing changes
 - Existing changes in `openspec/changes/*/`
-- GitHub Slack integration for creating issues from messages
+- OpenSpecChanges React component for displaying changes on the site
+- GitHubProjectBoard component for tracking issues
 
 ## Goals / Non-Goals
 
 **Goals:**
-- Enable zero-friction flow: Slack thread → GitHub Issue → OpenSpec artifact updates
+- Enable zero-friction flow: Conversation transcript → GitHub Issue → OpenSpec artifact updates
 - Intelligently match conversations to existing changes without requiring user to specify
-- Support both "propose" (update artifacts) and "explore" (analyze only) modes
+- Support both "propose" (create/update artifacts) and "explore" (analyze and refine) modes
+- Allow iterative updates via comment commands
 - Provide clear reasoning in PRs so humans can review Claude's decisions
 - Handle edge cases gracefully (no matches, multiple matches, ambiguous content)
 
 **Non-Goals:**
-- Building a custom Slack bot (use native GitHub integration)
-- Real-time Slack monitoring (manual trigger via issue creation)
+- Direct Slack integration (future enhancement - see separate change)
+- Real-time monitoring (manual trigger via issue creation)
 - Replacing interactive Claude Code sessions for deep exploration
 - Supporting changes across multiple repos
 
@@ -48,7 +50,7 @@ The existing infrastructure includes:
 
 ### 3. PR as the review interface
 
-**Decision**: Always create a PR (for `propose` mode). PR description includes Claude's analysis: matched change(s), confidence, reasoning, and suggestions.
+**Decision**: Always create a PR (for both modes). PR description includes Claude's analysis: matched change(s), confidence, reasoning, and suggestions.
 
 **Alternatives considered**:
 - Commit directly to main → No review, dangerous
@@ -57,19 +59,19 @@ The existing infrastructure includes:
 
 **Rationale**: PRs are the natural review surface. Humans approve or reject Claude's suggestions via normal PR workflow.
 
-### 4. Explore mode posts comment (no PR)
+### 4. Explore mode updates artifacts with refinements
 
-**Decision**: For `explore` label, Claude analyzes and posts a structured comment on the issue. No file changes.
+**Decision**: For `explore` label, Claude analyzes the conversation, identifies refinements, and updates artifacts accordingly. Also posts structured analysis as issue comment.
 
 **Alternatives considered**:
+- Analysis only (no artifact changes) → Less useful, doesn't capture insights
 - Create exploration notes file → Clutters repo with temporary content
-- Still create PR with "suggestions" → Confuses explore vs propose intent
 
-**Rationale**: Exploration is about thinking, not committing. Issue comments capture insights without requiring merge decisions.
+**Rationale**: Exploration discussions often contain valuable refinements. Capturing these in artifacts (with PR review) is more useful than just comments.
 
 ### 5. Create new changes when no match found
 
-**Decision**: If Claude determines the conversation represents a genuinely new initiative, create a new change directory and populate initial artifacts.
+**Decision**: If Claude determines the conversation represents a genuinely new initiative, create a new change directory and populate initial artifacts. Also add entry to OpenSpecChanges component.
 
 **Alternatives considered**:
 - Fail and ask user to create manually → Adds friction
@@ -77,60 +79,35 @@ The existing infrastructure includes:
 
 **Rationale**: The "new change" case is valid for sprint planning. Claude can suggest a name; human approves via PR review.
 
-### 6. Reuse openspec CLI for artifact generation
+### 6. Comment-triggered iterative updates
 
-**Decision**: Install `openspec` in the Action, use `openspec instructions` to get templates and rules, then have Claude fill them in.
-
-**Alternatives considered**:
-- Hardcode templates in the Action → Drifts from openspec standards
-- Call Claude without templates → Inconsistent artifact format
-
-**Rationale**: Leveraging `openspec instructions` ensures artifacts follow project conventions and stay in sync with schema updates.
-
-### 7. Summary message convention for Slack threads
-
-**Decision**: Use team convention where someone posts a summary message at the end of a discussion, then creates the GitHub issue from that summary message.
+**Decision**: Support `/update` command in issue comments to trigger re-analysis with new context. Updates existing PR branch if one exists.
 
 **Alternatives considered**:
-- Full thread capture via native integration → Not supported (only captures single message)
-- Custom Slack bot to fetch threads → Adds infrastructure to build/maintain
-- Slack Workflow Builder → Medium complexity, requires Slack admin setup
-- Manual copy-paste of full thread → Works but adds friction
+- New issue for each update → Clutters issue tracker
+- Manual re-labeling → Confusing workflow
 
-**Rationale**: The summary convention is zero-infrastructure and often produces better input for Claude than raw thread noise. It forces someone to synthesize the discussion, which is valuable in itself. Can upgrade to automated thread capture later if needed.
+**Rationale**: Conversations evolve. The `/update` command allows iterative refinement without creating new issues.
 
-### 8. Slack Huddle transcripts via repository_dispatch
+### 7. Retry logic for API reliability
 
-**Decision**: Support `repository_dispatch` webhook trigger to receive full Slack Huddle transcripts directly. The workflow auto-creates a GitHub Issue from the transcript, then processes it normally.
+**Decision**: Implement exponential backoff retry for transient API errors (529 Overloaded, 503, 500).
 
-**Flow**:
-```
-Slack Huddle ends
-       ↓
-Transcript posted to channel
-       ↓
-Slack Workflow Builder sends webhook to GitHub
-       ↓
-repository_dispatch triggers Action
-       ↓
-Action creates Issue with transcript
-       ↓
-Action processes and creates PR
-```
+**Alternatives considered**:
+- Fail immediately → Poor UX, requires manual re-run
+- Fixed delay retry → Less efficient
 
-**Webhook payload format**:
-```json
-{
-  "event_type": "slack-transcript",
-  "client_payload": {
-    "transcript": "Alice (0:00): We should use WebSockets...",
-    "title": "Sprint Planning Huddle - April 4",
-    "mode": "propose"
-  }
-}
-```
+**Rationale**: Transient errors are common with LLM APIs. Automatic retry improves reliability.
 
-**Rationale**: Slack Huddle transcripts are often longer than what fits in the native "Create issue from message" flow. Using `repository_dispatch` allows Slack Workflow Builder to send the full transcript programmatically, keeping the friction low while supporting richer input.
+### 8. Automatic component registration
+
+**Decision**: When creating a new change, automatically add an entry to the OpenSpecChanges React component so it appears on the site.
+
+**Alternatives considered**:
+- Manual registration → Easy to forget, extra step
+- Scan directory at runtime → Would work but adds complexity
+
+**Rationale**: Keeping the component in sync with changes reduces manual work and ensures visibility.
 
 ## Risks / Trade-offs
 
@@ -138,7 +115,7 @@ Action processes and creates PR
 → Mitigation: PR review catches this. PR description explains reasoning so reviewer can verify. Include confidence indicator.
 
 **[Risk] Conversation is too vague for meaningful updates**
-→ Mitigation: Claude can decline to make changes and instead post a comment asking for clarification or suggesting explore mode.
+→ Mitigation: Claude can decline to make changes and post a comment asking for clarification or suggesting explore mode.
 
 **[Risk] Large conversations exceed context limits**
 → Mitigation: Summarize existing artifacts rather than including full text. Truncate very long conversations with note.
