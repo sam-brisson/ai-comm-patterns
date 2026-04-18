@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'AI Collab Playbook',
   tagline: 'Stay in the Conversation, Never Lose the Plot',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/ai-logo.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
