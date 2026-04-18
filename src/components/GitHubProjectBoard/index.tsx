@@ -115,12 +115,19 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
   }, [owner, repo]);
 
   const getIssueStatus = (issue: Issue): string => {
-    const statusLabels = issue.labels.map(l => l.name.toLowerCase());
-    // Map labels to our column IDs - closed/done issues are filtered out of display
-    if (statusLabels.includes('done') || issue.state === 'closed') return 'done';
-    if (statusLabels.includes('in-review') || statusLabels.includes('in review') || statusLabels.includes('review')) return 'in-review';
-    if (statusLabels.includes('in-progress') || statusLabels.includes('in progress')) return 'in-progress';
-    if (statusLabels.includes('ready')) return 'ready';
+    const labelNames = issue.labels.map(l => l.name.toLowerCase());
+
+    // Closed issues go to done (filtered out of display)
+    if (issue.state === 'closed') return 'done';
+
+    // Map labels to column IDs
+    // Check for explicit status labels first
+    if (labelNames.includes('in-review') || labelNames.includes('pending-review')) return 'in-review';
+    if (labelNames.includes('in-progress')) return 'in-progress';
+    if (labelNames.includes('ready')) return 'ready';
+    if (labelNames.includes('backlog')) return 'backlog';
+
+    // Default: open issues without status labels go to backlog
     return 'backlog';
   };
 
