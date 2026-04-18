@@ -7,6 +7,7 @@ interface Issue {
   title: string;
   html_url: string;
   state: string;
+  body: string | null;
   labels: Array<{
     name: string;
     color: string;
@@ -72,11 +73,14 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
   const [error, setError] = useState<string | null>(null);
   const [showTemplateMenu, setShowTemplateMenu] = useState(false);
 
-  // Modal state
+  // New issue modal state
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState<IssueType | null>(null);
   const [issueTitle, setIssueTitle] = useState('');
   const [issueBody, setIssueBody] = useState('');
+
+  // View issue modal state
+  const [viewingIssue, setViewingIssue] = useState<Issue | null>(null);
 
   useEffect(() => {
     async function fetchIssues() {
@@ -159,6 +163,35 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
     setIssueBody('');
   };
 
+  const closeViewModal = () => {
+    setViewingIssue(null);
+  };
+
+  // Simple markdown renderer for issue body
+  const renderIssueBody = (body: string | null): string => {
+    if (!body) return '<p><em>No description provided.</em></p>';
+    return body
+      // Code blocks
+      .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>')
+      // Headers
+      .replace(/^### (.+)$/gm, '<h4>$1</h4>')
+      .replace(/^## (.+)$/gm, '<h3>$1</h3>')
+      .replace(/^# (.+)$/gm, '<h2>$1</h2>')
+      // Bold
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      // Inline code
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      // Links
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+      // List items
+      .replace(/^- (.+)$/gm, '<li>$1</li>')
+      // Horizontal rules
+      .replace(/^---$/gm, '<hr />')
+      // Paragraphs
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br />');
+  };
+
   const submitToGitHub = () => {
     if (!modalType) return;
 
@@ -171,7 +204,10 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
   };
 
   const IssueCard = ({ issue }: { issue: Issue }) => (
-    <a href={issue.html_url} target="_blank" rel="noopener noreferrer" className={styles.issueCard}>
+    <button
+      className={styles.issueCard}
+      onClick={() => setViewingIssue(issue)}
+    >
       <div className={styles.issueHeader}>
         <span className={styles.issueNumber}>#{issue.number}</span>
         <span className={styles.issueDate}>{formatDate(issue.created_at)}</span>
@@ -179,7 +215,7 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
       <div className={styles.issueTitle}>{issue.title}</div>
       <div className={styles.issueLabels}>
         {issue.labels
-          .filter(label => !['propose', 'explore', 'backlog', 'ready', 'in-progress', 'in-review', 'in review', 'review', 'done'].includes(label.name.toLowerCase()))
+          .filter(label => !['propose', 'explore', 'backlog', 'ready', 'in-progress', 'in-review', 'in review', 'review', 'done', 'pending-review'].includes(label.name.toLowerCase()))
           .map(label => (
             <span
               key={label.name}
@@ -190,7 +226,7 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
             </span>
           ))}
       </div>
-    </a>
+    </button>
   );
 
   const StatusColumn = ({ status }: { status: typeof STATUS_COLUMNS[0] }) => {
@@ -369,6 +405,61 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
               >
                 Create on GitHub →
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* View Issue Modal */}
+      {viewingIssue && (
+        <div className={styles.modalOverlay} onClick={closeViewModal}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalHeader}>
+              <div className={styles.modalHeaderLeft}>
+                <span
+                  className={styles.modalTypeIcon}
+                  style={{ backgroundColor: getIssueType(viewingIssue) === 'propose' ? ISSUE_TEMPLATES.propose.color : ISSUE_TEMPLATES.explore.color }}
+                >
+                  {getIssueType(viewingIssue) === 'propose' ? 'P' : 'E'}
+                </span>
+                <span className={styles.issueViewNumber}>#{viewingIssue.number}</span>
+              </div>
+              <button className={styles.modalClose} onClick={closeViewModal}>×</button>
+            </div>
+            <div className={styles.issueViewTitle}>{viewingIssue.title}</div>
+            <div className={styles.issueViewMeta}>
+              <span>Opened {formatDate(viewingIssue.created_at)} by {viewingIssue.user.login}</span>
+              <div className={styles.issueViewLabels}>
+                {viewingIssue.labels
+                  .filter(label => !['propose', 'explore'].includes(label.name.toLowerCase()))
+                  .map(label => (
+                    <span
+                      key={label.name}
+                      className={styles.label}
+                      style={{ backgroundColor: `#${label.color}` }}
+                    >
+                      {label.name}
+                    </span>
+                  ))}
+              </div>
+            </div>
+            <div
+              className={styles.issueViewBody}
+              dangerouslySetInnerHTML={{ __html: renderIssueBody(viewingIssue.body) }}
+            />
+            <div className={styles.modalFooter}>
+              <button className={styles.cancelButton} onClick={closeViewModal}>
+                Close
+              </button>
+              <a
+                href={viewingIssue.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.submitButton}
+                style={{ backgroundColor: getIssueType(viewingIssue) === 'propose' ? ISSUE_TEMPLATES.propose.color : ISSUE_TEMPLATES.explore.color }}
+              >
+                Edit on GitHub →
+              </a>
             </div>
           </div>
         </div>

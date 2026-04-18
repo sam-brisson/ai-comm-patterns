@@ -198,6 +198,9 @@
   transition: all 0.2s;
   text-decoration: none;
   display: block;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
 }
 
 .issueCard:hover {
@@ -481,4 +484,121 @@
 .submitButton:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* View Issue Modal styles */
+.issueViewNumber {
+  color: #8b949e;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.issueViewTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e6edf3;
+  padding: 0 1.25rem;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+.issueViewMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  color: #8b949e;
+  font-size: 0.8rem;
+  border-bottom: 1px solid #30363d;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.issueViewLabels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.issueViewBody {
+  padding: 1.25rem;
+  color: #e6edf3;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.issueViewBody h2 {
+  font-size: 1.2rem;
+  margin: 1.5rem 0 0.75rem 0;
+  color: #e6edf3;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 0.5rem;
+}
+
+.issueViewBody h2:first-child {
+  margin-top: 0;
+}
+
+.issueViewBody h3 {
+  font-size: 1rem;
+  margin: 1.25rem 0 0.5rem 0;
+  color: #e6edf3;
+}
+
+.issueViewBody h4 {
+  font-size: 0.9rem;
+  margin: 1rem 0 0.5rem 0;
+  color: #e6edf3;
+}
+
+.issueViewBody p {
+  margin: 0.75rem 0;
+}
+
+.issueViewBody code {
+  background: #21262d;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: #79c0ff;
+}
+
+.issueViewBody pre {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.issueViewBody pre code {
+  background: none;
+  padding: 0;
+  color: #e6edf3;
+}
+
+.issueViewBody li {
+  margin: 0.25rem 0;
+  margin-left: 1.5rem;
+}
+
+.issueViewBody hr {
+  border: none;
+  border-top: 1px solid #30363d;
+  margin: 1.5rem 0;
+}
+
+.issueViewBody a {
+  color: #58a6ff;
+}
+
+.issueViewBody a:hover {
+  text-decoration: underline;
+}
+
+.issueViewBody strong {
+  color: #e6edf3;
 }
