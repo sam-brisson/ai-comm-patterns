@@ -81,7 +81,7 @@ function buildChangesContext() {
 }
 
 // Prompts for different operations
-const ANALYZE_PROMPT = `You are analyzing a Slack conversation to extract information relevant to OpenSpec change management.
+const ANALYZE_PROMPT = `You are analyzing a conversation transcript to extract information relevant to OpenSpec change management.
 
 <existing_changes>
 ${buildChangesContext()}
@@ -112,7 +112,7 @@ Respond in JSON format:
   "summary": "Brief summary of what this conversation is about"
 }`;
 
-const PROPOSE_PROMPT = `You are updating OpenSpec artifacts based on a Slack conversation analysis.
+const PROPOSE_PROMPT = `You are updating OpenSpec artifacts based on a conversation transcript analysis.
 
 <analysis>
 {analysis}
@@ -147,7 +147,7 @@ Respond in JSON format:
   "reasoning": "Why these updates were made"
 }`;
 
-const EXPLORE_PROMPT = `You are analyzing a Slack conversation and updating OpenSpec artifacts based on the insights.
+const EXPLORE_PROMPT = `You are analyzing a conversation transcript and updating OpenSpec artifacts based on the insights.
 
 <existing_changes>
 ${buildChangesContext()}
@@ -376,7 +376,7 @@ async function writeArtifacts(proposal) {
   }
 
   // Write PR description
-  const prDescription = `## OpenSpec Updates from Slack Conversation
+  const prDescription = `## OpenSpec Updates from Transcript
 
 ${proposal.prDescription}
 

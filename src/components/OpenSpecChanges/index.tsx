@@ -134,7 +134,7 @@ Reuses familiar patterns:
     resultLink: undefined,
     resultLabel: 'View Workflow',
     showWorkflowModal: true,
-    artifactDir: 'slack-to-openspec-action', // Maps to openspec/changes/slack-to-openspec-action/
+    artifactDir: 'transcript-to-openspec-action', // Maps to openspec/changes/transcript-to-openspec-action/
   }
 ];
 

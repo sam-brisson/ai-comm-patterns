@@ -1,10 +1,10 @@
-name: Process OpenSpec from Slack Conversation
+name: Process OpenSpec from Transcript
 
 on:
   issues:
     types: [labeled]
   repository_dispatch:
-    types: [slack-transcript]
+    types: [transcript]
 
 jobs:
   process-openspec:
@@ -45,14 +45,14 @@ jobs:
             let mode, conversation, title, issueNumber;
 
             if (context.eventName === 'repository_dispatch') {
-              // Slack webhook payload
+              // External webhook payload (Slack, etc.)
               const payload = context.payload.client_payload;
               mode = payload.mode || 'propose';
               conversation = payload.transcript || payload.message || '';
-              title = payload.title || 'Slack Huddle Transcript';
+              title = payload.title || 'Transcript';
               issueNumber = null; // Will create issue
 
-              console.log('Source: repository_dispatch (Slack webhook)');
+              console.log('Source: repository_dispatch (webhook)');
               console.log('Mode:', mode);
               console.log('Transcript length:', conversation.length);
 
@@ -66,7 +66,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 title: title,
-                body: `## Slack Transcript\n\n${conversation}\n\n---\n*Submitted via Slack webhook*`,
+                body: `## Transcript\n\n${conversation}\n\n---\n*Submitted via webhook*`,
                 labels: [mode]
               });
 
