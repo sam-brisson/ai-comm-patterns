@@ -690,3 +690,27 @@
   color: #79c0ff;
   font-size: 0.85em;
 }
+
+.statusChangePreview {
+  margin-top: 0.75rem;
+}
+
+.previewLabel {
+  font-size: 0.75rem;
+  color: #8b949e;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.previewCode {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin: 0;
+  font-size: 0.85rem;
+  color: #e6edf3;
+  font-family: var(--ifm-font-family-monospace);
+  white-space: pre-wrap;
+}

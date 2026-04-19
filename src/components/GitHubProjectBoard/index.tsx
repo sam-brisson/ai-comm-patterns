@@ -126,20 +126,61 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
     fetchIssues();
   }, [owner, repo]);
 
-  const getIssueStatus = (issue: Issue): string => {
-    const labelNames = issue.labels.map(l => l.name.toLowerCase());
+  // Parse status from issue body (GitHub issue form dropdown creates "### Status\n\nValue" format)
+  const parseStatusFromBody = (body: string | null): string | null => {
+    if (!body) return null;
 
+    // Match "### Status\n\nValue" pattern from GitHub issue forms
+    const statusMatch = body.match(/### Status\s*\n\s*\n?\s*(Backlog|Ready|In Progress|In Review)/i);
+    if (statusMatch) {
+      const status = statusMatch[1].toLowerCase();
+      if (status === 'in progress') return 'in-progress';
+      if (status === 'in review') return 'in-review';
+      return status;
+    }
+    return null;
+  };
+
+  // Get the display label for a status ID
+  const getStatusDisplayLabel = (statusId: string): string => {
+    const column = STATUS_COLUMNS.find(c => c.id === statusId);
+    return column?.label || statusId;
+  };
+
+  // Update issue body with new status value
+  const getUpdatedBodyWithStatus = (body: string | null, newStatusId: string): string => {
+    const newStatusLabel = getStatusDisplayLabel(newStatusId);
+
+    if (!body) {
+      return `### Status\n\n${newStatusLabel}`;
+    }
+
+    // Replace existing status in body
+    const statusPattern = /### Status\s*\n\s*\n?\s*(Backlog|Ready|In Progress|In Review)/i;
+    if (statusPattern.test(body)) {
+      return body.replace(statusPattern, `### Status\n\n${newStatusLabel}`);
+    }
+
+    // Status not found - prepend it
+    return `### Status\n\n${newStatusLabel}\n\n${body}`;
+  };
+
+  const getIssueStatus = (issue: Issue): string => {
     // Closed issues go to done (filtered out of display)
     if (issue.state === 'closed') return 'done';
 
-    // Map labels to column IDs
-    // Check for explicit status labels first
+    // First, try to parse status from issue body (new approach using dropdown)
+    const bodyStatus = parseStatusFromBody(issue.body);
+    if (bodyStatus) return bodyStatus;
+
+    // Fallback: check labels for legacy issues
+    const labelNames = issue.labels.map(l => l.name.toLowerCase());
     if (labelNames.includes('in-review') || labelNames.includes('pending-review')) return 'in-review';
     if (labelNames.includes('in-progress')) return 'in-progress';
     if (labelNames.includes('ready')) return 'ready';
     if (labelNames.includes('backlog')) return 'backlog';
 
-    // Default: open issues without status labels go to backlog
+    // Default: open issues without status go to backlog
     return 'backlog';
   };
 
@@ -180,27 +221,6 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
     setNewStatus(null);
   };
 
-  // Map status ID to label name
-  const getStatusLabel = (statusId: string): string => {
-    const statusMap: Record<string, string> = {
-      'backlog': 'backlog',
-      'ready': 'ready',
-      'in-progress': 'in-progress',
-      'in-review': 'in-review',
-    };
-    return statusMap[statusId] || statusId;
-  };
-
-  // Get current status labels to remove
-  const STATUS_LABEL_NAMES = ['backlog', 'ready', 'in-progress', 'in-review', 'pending-review'];
-
-  // Build URL to add new status label on GitHub
-  const getStatusChangeUrl = (issue: Issue, targetStatus: string): string => {
-    // GitHub doesn't have a direct "edit labels" URL, but we can link to the issue
-    // The user will need to change labels there
-    // We'll open the issue page where they can easily edit labels
-    return issue.html_url;
-  };
 
   // Drag handlers
   const handleDragStart = (e: React.DragEvent, issue: Issue) => {
@@ -587,8 +607,12 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
                 </span>
               </div>
               <p className={styles.statusChangeInstructions}>
-                To change the status, add the <code>{getStatusLabel(newStatus)}</code> label and remove any other status labels on GitHub.
+                Update the Status field in the issue body to <code>{getStatusDisplayLabel(newStatus)}</code> and save.
               </p>
+              <div className={styles.statusChangePreview}>
+                <div className={styles.previewLabel}>Updated body preview:</div>
+                <pre className={styles.previewCode}>### Status{'\n\n'}{getStatusDisplayLabel(newStatus)}</pre>
+              </div>
             </div>
             <div className={styles.modalFooter}>
               <button className={styles.cancelButton} onClick={closeStatusChangeModal}>
@@ -602,7 +626,7 @@ export default function GitHubProjectBoard({ owner, repo }: GitHubProjectBoardPr
                 style={{ backgroundColor: STATUS_COLUMNS.find(c => c.id === newStatus)?.color }}
                 onClick={closeStatusChangeModal}
               >
-                Update on GitHub →
+                Edit on GitHub →
               </a>
             </div>
           </div>

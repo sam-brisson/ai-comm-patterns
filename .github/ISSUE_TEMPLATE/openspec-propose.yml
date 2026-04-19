@@ -12,6 +12,20 @@ body:
         - Capturing requirements and action items
         - Generating initial proposal.md, design.md, and tasks.md files
 
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      description: Current status of this change
+      options:
+        - Backlog
+        - Ready
+        - In Progress
+        - In Review
+      default: 0
+    validations:
+      required: true
+
   - type: input
     id: title
     attributes:

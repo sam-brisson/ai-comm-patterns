@@ -3,109 +3,54 @@ sidebar_position: 10
 title: OpenSpec Changes
 ---
 
-import OpenSpecChanges from '@site/src/components/OpenSpecChanges';
-import GitHubProjectBoard from '@site/src/components/GitHubProjectBoard';
+import OpenSpecWorkflowBoard from '@site/src/components/OpenSpecWorkflowBoard';
 
 # OpenSpec Changes
 
-<div style={{textAlign: 'center', marginBottom: '2rem'}}>
-  <img
-    src="/ai-comm-patterns/img/openspec-loop.webp"
-    alt="OpenSpec iterative workflow loop showing Propose, Design, Tasks, Implement, and Archive stages"
-    style={{maxWidth: '500px', width: '100%', borderRadius: '8px'}}
-  />
-</div>
+Track changes through the OpenSpec workflow. Click any card to view artifacts and see what action comes next.
 
-These are the changes we're building using the OpenSpec process. Click any artifact to read the proposal, design, or tasks — then check out the result to see what got built.
-
-<OpenSpecChanges />
+<OpenSpecWorkflowBoard />
 
 ---
 
-## Start a New Change
+## How It Works
 
-Want to propose a new change or explore an idea? Create an issue with a conversation transcript and label it `propose` or `explore` to kick off the process.
+Changes flow through four stages, each triggered by a slash command:
 
-<GitHubProjectBoard owner="sam-brisson" repo="ai-comm-patterns" />
+**1. Exploring** (`/opsx:explore`)
 
-### How It Works
+Start by exploring an idea. Run `/opsx:explore` with a conversation transcript to analyze the discussion, identify key themes, and document insights. This creates the initial change folder with exploration notes.
+
+**2. Proposed** (`/opsx:propose`)
+
+When ready to formalize, run `/opsx:propose` to generate the full artifact set: proposal.md (the why and what), design.md (the how), and tasks.md (the implementation breakdown). A PR is created for review.
+
+**3. Applied** (`/opsx:apply`)
+
+With artifacts approved, run `/opsx:apply` to implement the change. The system executes the tasks, builds the feature, and captures any deviations from the plan. Another PR documents what was actually built.
+
+**4. Archived** (`/opsx:archive`)
+
+Once complete, run `/opsx:archive` to move the change to the archive. This captures final learnings, documents what shipped vs. planned, and makes the knowledge searchable.
 
 ```mermaid
-flowchart TB
-    A[Team Conversation] --> B[Capture Transcript]
-    B --> C[Create GitHub Issue w/ Transcript]
-    C --> D{Label Type}
-    D -->|propose| E[Generate Artifacts]
-    D -->|explore| F[Analyze & Document]
-    E --> G[Create Pull Request]
-    F --> G
-    G --> H[Review & Refine]
-    H --> I[Merge to Main]
-    I --> J[Published to Docs Site]
+flowchart LR
+    A["/opsx:explore"] --> B["Exploring"]
+    B --> C["/opsx:propose"]
+    C --> D["Proposed"]
+    D --> E["/opsx:apply"]
+    E --> F["Applied"]
+    F --> G["/opsx:archive"]
+    G --> H["Archived"]
+
+    style A fill:#6366F1,color:#fff
+    style B fill:#1c2128,stroke:#6366F1,color:#e6edf3
+    style C fill:#F59E0B,color:#fff
+    style D fill:#1c2128,stroke:#F59E0B,color:#e6edf3
+    style E fill:#10B981,color:#fff
+    style F fill:#1c2128,stroke:#10B981,color:#e6edf3
+    style G fill:#6B7280,color:#fff
+    style H fill:#1c2128,stroke:#6B7280,color:#e6edf3
 ```
 
-**1. Capture the Conversation**
-
-When a team has a meaningful discussion — whether it's a huddle about a new feature, a refinement session exploring edge cases, or a thread debating architectural approaches — the conversation gets captured.
-
-**2. Process with AI**
-
-The captured conversation is submitted as a GitHub issue. Claude analyzes the transcript, identifies key decisions, and generates artifacts based on the label:
-- **`propose`** — generates proposal.md, design.md, tasks.md
-- **`explore`** — analyzes the conversation and documents insights
-
-Both can create a **new** OpenSpec change or **update an existing one**. Either way, a pull request is created for review.
-
-**3. Review and Refine**
-
-The generated artifacts become a pull request. The team reviews, refines, and merges — just like code. The artifacts evolve through normal collaboration.
-
-**4. Merge and Publish**
-
-Once approved, the PR merges to main. The specs become searchable knowledge on the docs site — documentation that emerged from the work itself.
-
----
-
-## What Is This?
-
-One of the core ideas we're exploring is whether **systems can document themselves** through the natural flow of team collaboration.
-
-### The Problem with Documentation
-
-Traditional documentation has a fundamental tension:
-
-- **It's written after the fact** — by then, context is lost and motivation is fuzzy
-- **It's separate from the work** — so it drifts out of sync as code evolves
-- **It's nobody's job** — so it becomes everybody's afterthought
-
-What if documentation emerged automatically from the conversations teams already have?
-
-### Our Approach: OpenSpec
-
-OpenSpec is our experiment in self-documenting systems. The idea is simple:
-
-1. **Teams have conversations** — in Slack huddles, refinement sessions, async threads
-2. **Those conversations get captured** — via transcripts, recordings, or notes
-3. **AI processes the conversation** — extracting decisions, designs, and tasks
-4. **Artifacts are generated automatically** — proposal.md, design.md, tasks.md
-5. **The system documents itself** — as a byproduct of normal collaboration
-
-### The Artifacts
-
-Every OpenSpec change produces three artifacts:
-
-| Artifact | Purpose |
-|----------|---------|
-| **Proposal** | The "why" and "what" — problem statement, proposed solution, scope boundaries |
-| **Design** | The "how" — technical approach, architecture decisions, tradeoffs |
-| **Tasks** | The "when" — implementation breakdown, sequencing, checkpoints |
-
-These artifacts aren't written by hand. They're generated from team conversations and refined through review.
-
-### The Self-Referential Part
-
-Here's what makes this interesting: **the changes in the table above were built using OpenSpec**.
-
-The OpenSpec Workflow Demo started as a conversation about needing a tangible example. The conversation was processed, artifacts were generated, and the demo was built from those specs. Now you can read the artifacts AND see what they produced.
-
-The system is documenting itself.
+For more background on why we're building this approach, see [OpenSpec Background](/docs/collaboration/openspec-background).

@@ -1,0 +1,49 @@
+---
+sidebar_position: 11
+title: OpenSpec Background
+---
+
+# OpenSpec Background
+
+One of the core ideas we're exploring is whether **systems can document themselves** through the natural flow of team collaboration.
+
+## The Problem with Documentation
+
+Traditional documentation has a fundamental tension:
+
+- **It's written after the fact** — by then, context is lost and motivation is fuzzy
+- **It's separate from the work** — so it drifts out of sync as code evolves
+- **It's nobody's job** — so it becomes everybody's afterthought
+
+What if documentation emerged automatically from the conversations teams already have?
+
+## Our Approach: OpenSpec
+
+OpenSpec is our experiment in self-documenting systems. The workflow is driven by slash commands that move a **Change** through four stages:
+
+1. **Exploring** (`/opsx:explore`) — Investigate an idea, analyze a conversation, document insights
+2. **Proposed** (`/opsx:propose`) — Generate formal artifacts: proposal.md, design.md, tasks.md
+3. **Applied** (`/opsx:apply`) — Implement the change, capturing deviations from the plan
+4. **Archived** (`/opsx:archive`) — Complete the change, document learnings, make it searchable
+
+The key insight: **Changes are the primary object**, not issues or PRs. Issues are just triggers that create PRs. The Change lives in the `openspec/changes/` folder and flows through the workflow via these commands.
+
+## The Artifacts
+
+Every OpenSpec change produces three artifacts:
+
+| Artifact | Purpose |
+|----------|---------|
+| **Proposal** | The "why" and "what" — problem statement, proposed solution, scope boundaries |
+| **Design** | The "how" — technical approach, architecture decisions, tradeoffs |
+| **Tasks** | The "when" — implementation breakdown, sequencing, checkpoints |
+
+These artifacts aren't written by hand. They're generated from team conversations and refined through review.
+
+## The Self-Referential Part
+
+Here's what makes this interesting: **the changes on the [OpenSpec Changes](/docs/collaboration/openspec-changes) page were built using OpenSpec**.
+
+The OpenSpec Workflow Demo started as a conversation about needing a tangible example. The conversation was processed, artifacts were generated, and the demo was built from those specs. Now you can read the artifacts AND see what they produced.
+
+The system is documenting itself.

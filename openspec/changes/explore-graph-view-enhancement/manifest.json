@@ -1,0 +1,10 @@
+{
+  "id": "explore-graph-view-enhancement",
+  "title": "Enhanced Graph View for OpenSpec",
+  "description": "Transform the Explore page graph to show real OpenSpec changes and their relationships instead of abstract concepts.",
+  "workflowStatus": "proposed",
+  "resultLink": null,
+  "resultLabel": null,
+  "createdAt": "2026-04-05",
+  "updatedAt": "2026-04-05"
+}
