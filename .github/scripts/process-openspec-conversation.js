@@ -59,6 +59,23 @@ async function withRetry(fn, maxRetries = 3, baseDelayMs = 2000) {
   throw lastError;
 }
 
+// Extract explicit change name from conversation if specified in ### Change section
+function extractExplicitChangeName() {
+  const changeMatch = conversation.match(/###\s*Change\s*\n+([a-z][a-z0-9-]*)/i);
+  if (changeMatch) {
+    return changeMatch[1].toLowerCase().trim();
+  }
+  // Also check title for [ACTION]: change-name pattern
+  const titleMatch = title.match(/\[(EXPLORE|PROPOSE|APPLY|ARCHIVE)\]:\s*([a-z][a-z0-9-]*)/i);
+  if (titleMatch) {
+    return titleMatch[2].toLowerCase().trim();
+  }
+  return null;
+}
+
+const explicitChangeName = extractExplicitChangeName();
+console.log('Explicit change name:', explicitChangeName || '(none detected)');
+
 // Build context about existing changes for Claude
 function buildChangesContext() {
   if (changesContext.existingChanges.length === 0) {
@@ -78,6 +95,11 @@ function buildChangesContext() {
     context += '\n---\n\n';
   }
   return context;
+}
+
+// Check if explicit change name matches an existing change
+function isExistingChange(name) {
+  return changesContext.existingChanges.some(c => c.name === name);
 }
 
 // Prompts for different operations
@@ -112,10 +134,19 @@ Respond in JSON format:
   "summary": "Brief summary of what this conversation is about"
 }`;
 
-const PROPOSE_PROMPT = `You are updating OpenSpec artifacts based on a conversation transcript analysis.
+// Build propose prompt with explicit change name constraint
+function buildProposePrompt(analysis) {
+  const explicitChangeInstruction = explicitChangeName
+    ? `IMPORTANT: The user has explicitly specified the change name as "${explicitChangeName}".
+You MUST use this exact name. ${isExistingChange(explicitChangeName)
+  ? `This matches an existing change, so update that change's artifacts.`
+  : `This is a NEW change - create a new change folder with this name. Do NOT merge this into an existing change.`}`
+    : '';
+
+  return `You are updating OpenSpec artifacts based on a conversation transcript analysis.
 
 <analysis>
-{analysis}
+${analysis}
 </analysis>
 
 <existing_changes>
@@ -125,6 +156,8 @@ ${buildChangesContext()}
 <conversation>
 ${conversation}
 </conversation>
+
+${explicitChangeInstruction}
 
 Based on the analysis, generate updates to OpenSpec artifacts.
 
@@ -146,8 +179,18 @@ Respond in JSON format:
   "confidence": 0-100,
   "reasoning": "Why these updates were made"
 }`;
+}
 
-const EXPLORE_PROMPT = `You are analyzing a conversation transcript and updating OpenSpec artifacts based on the insights.
+// Build explore prompt with explicit change name constraint
+function buildExplorePrompt() {
+  const explicitChangeInstruction = explicitChangeName
+    ? `IMPORTANT: The user has explicitly specified the change name as "${explicitChangeName}".
+You MUST use this exact name. ${isExistingChange(explicitChangeName)
+  ? `This matches an existing change, so update that change's artifacts.`
+  : `This is a NEW change - create a new change folder with this name. Do NOT merge this into an existing change.`}`
+    : '';
+
+  return `You are analyzing a conversation transcript and updating OpenSpec artifacts based on the insights.
 
 <existing_changes>
 ${buildChangesContext()}
@@ -160,6 +203,8 @@ ${title}
 <conversation>
 ${conversation}
 </conversation>
+
+${explicitChangeInstruction}
 
 Analyze this conversation and update the relevant OpenSpec change artifacts. Explore mode is for refining and iterating on existing changes based on team discussions.
 
@@ -188,6 +233,7 @@ Respond in JSON format:
   "confidence": 0-100,
   "reasoning": "Why these updates were made"
 }`;
+}
 
 async function analyzeConversation() {
   console.log('Step 1: Analyzing conversation...');
@@ -212,7 +258,7 @@ async function analyzeConversation() {
 async function generateProposal(analysis) {
   console.log('Step 2: Generating artifact updates...');
 
-  const prompt = PROPOSE_PROMPT.replace('{analysis}', JSON.stringify(analysis, null, 2));
+  const prompt = buildProposePrompt(JSON.stringify(analysis, null, 2));
 
   const response = await withRetry(() => anthropic.messages.create({
     model: 'claude-sonnet-4-20250514',
@@ -234,10 +280,12 @@ async function generateProposal(analysis) {
 async function generateExploreUpdates() {
   console.log('Generating explore updates...');
 
+  const prompt = buildExplorePrompt();
+
   const response = await withRetry(() => anthropic.messages.create({
     model: 'claude-sonnet-4-20250514',
     max_tokens: 8192,
-    messages: [{ role: 'user', content: EXPLORE_PROMPT }]
+    messages: [{ role: 'user', content: prompt }]
   }));
 
   const text = response.content[0].text;
@@ -317,18 +365,11 @@ async function writeArtifacts(proposal) {
   // Create new change directory if needed
   if (proposal.isNewChange) {
     console.log(`Creating new change: ${proposal.changeName}`);
-    try {
-      execSync(`npx openspec new change "${proposal.changeName}"`, {
-        cwd: process.cwd(),
-        stdio: 'inherit'
-      });
-    } catch (e) {
-      // If openspec CLI fails, create directory manually
-      fs.mkdirSync(changesDir, { recursive: true });
-    }
 
-    // Also add entry to OpenSpecChanges component
-    // Extract title from proposal or use changeName
+    // Create directory
+    fs.mkdirSync(changesDir, { recursive: true });
+
+    // Extract title from proposal or generate from changeName
     let title = proposal.changeName
       .split('-')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -345,14 +386,34 @@ async function writeArtifacts(proposal) {
     // Extract description from proposal or generate one
     let description = `OpenSpec change for ${title}`;
     if (proposal.artifacts.proposal) {
-      // Try to get the first paragraph after "## Why"
-      const whyMatch = proposal.artifacts.proposal.match(/##\s*Why\s*\n+([^\n#]+)/);
-      if (whyMatch) {
-        description = whyMatch[1].trim().substring(0, 150);
-        if (description.length === 150) description += '...';
+      // Try to get the first paragraph after "## Problem" or "## Why"
+      const problemMatch = proposal.artifacts.proposal.match(/##\s*(Problem|Why)\s*\n+([^\n#]+)/);
+      if (problemMatch) {
+        description = problemMatch[2].trim().substring(0, 200);
+        if (description.length === 200) description += '...';
       }
     }
 
+    // Determine workflow status based on mode
+    const workflowStatus = mode === 'explore' ? 'exploring' : 'proposed';
+
+    // Create manifest.json for the workflow board
+    const manifest = {
+      id: proposal.changeName,
+      title: title,
+      description: description,
+      workflowStatus: workflowStatus,
+      resultLink: null,
+      resultLabel: null,
+      createdAt: new Date().toISOString().split('T')[0],
+      updatedAt: new Date().toISOString().split('T')[0]
+    };
+
+    const manifestPath = path.join(changesDir, 'manifest.json');
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+    console.log(`Created: ${manifestPath}`);
+
+    // Also add entry to OpenSpecChanges component (legacy support)
     addChangeToComponent(proposal.changeName, title, description);
   }
 

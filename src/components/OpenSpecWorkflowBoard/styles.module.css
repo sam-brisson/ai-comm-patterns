@@ -615,6 +615,29 @@
   color: #6e7681;
 }
 
+.wizardCharCount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #8b949e;
+  gap: 0.5rem;
+}
+
+.wizardCharCountWarning {
+  color: #d29922;
+}
+
+.wizardCharCountError {
+  color: #f85149;
+  font-weight: 500;
+}
+
+.wizardCharCountHint {
+  font-style: italic;
+  color: #8b949e;
+}
+
 .wizardFooter {
   display: flex;
   justify-content: flex-end;

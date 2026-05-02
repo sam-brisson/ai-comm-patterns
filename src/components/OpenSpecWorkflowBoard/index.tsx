@@ -4,7 +4,11 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './styles.module.css';
 
 // GitHub repo URL - will be read from config or use default
-const DEFAULT_GITHUB_REPO = 'https://github.com/samuelbrisson/knowledge-site';
+const DEFAULT_GITHUB_REPO = 'https://github.com/sam-brisson/ai-comm-patterns';
+
+// Character limit for transcript (URL length limit ~8000, leave room for encoding overhead)
+const TRANSCRIPT_CHAR_LIMIT = 5000;
+const TRANSCRIPT_WARNING_THRESHOLD = 4000;
 
 type ActionType = 'explore' | 'propose' | 'apply' | 'archive';
 
@@ -229,6 +233,8 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
 
   const isWizardValid = (): boolean => {
     if (!wizardState) return false;
+    // Always enforce character limit
+    if (wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT) return false;
     if (wizardState.mode === 'new') {
       return isValidChangeName(wizardState.changeName) && wizardState.transcript.trim().length > 0;
     }
@@ -594,16 +600,40 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
                   {wizardState.mode === 'advance' && <span className={styles.wizardOptional}>(optional)</span>}
                 </label>
                 <textarea
-                  className={styles.wizardTextarea}
+                  className={`${styles.wizardTextarea} ${
+                    wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT ? styles.wizardInputError : ''
+                  }`}
                   value={wizardState.transcript}
                   onChange={(e) => updateWizardField('transcript', e.target.value)}
                   placeholder={
                     wizardState.mode === 'new'
-                      ? 'Paste your conversation or describe what you want to build...'
-                      : 'Add any new transcript, instructions, or context for this step...'
+                      ? 'Brief description to get started. You can add the full transcript in the GitHub issue before submitting...'
+                      : 'Add context for this step. You can add more detail in the GitHub issue before submitting...'
                   }
                   rows={6}
                 />
+                <div className={styles.wizardCharCount}>
+                  <span className={
+                    wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT
+                      ? styles.wizardCharCountError
+                      : wizardState.transcript.length > TRANSCRIPT_WARNING_THRESHOLD
+                      ? styles.wizardCharCountWarning
+                      : ''
+                  }>
+                    {wizardState.transcript.length.toLocaleString()} / {TRANSCRIPT_CHAR_LIMIT.toLocaleString()}
+                  </span>
+                  {wizardState.transcript.length > TRANSCRIPT_WARNING_THRESHOLD &&
+                   wizardState.transcript.length <= TRANSCRIPT_CHAR_LIMIT && (
+                    <span className={styles.wizardCharCountHint}>
+                      Approaching limit - you can add more in the GitHub issue
+                    </span>
+                  )}
+                  {wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT && (
+                    <span className={styles.wizardCharCountHint}>
+                      Over limit - trim here, then paste full transcript in GitHub issue
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
 
