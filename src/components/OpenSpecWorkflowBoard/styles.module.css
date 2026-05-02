@@ -385,22 +385,278 @@
   color: white;
 }
 
-.nextActionHint {
+/* Add button */
+.addButton {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #238636;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.addButton:hover {
+  background: #2ea043;
+}
+
+/* Advance button (replaces hint) */
+.advanceButton {
+  padding: 0.5rem 1rem;
+  background: #238636;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.advanceButton:hover {
+  background: #2ea043;
+}
+
+.advanceButton::after {
+  content: '▶';
+  font-size: 0.7rem;
+}
+
+/* Drag styles */
+.dragging {
+  opacity: 0.5;
+  transform: rotate(2deg);
+}
+
+.dropTarget {
+  background: rgba(35, 134, 54, 0.15) !important;
+  border: 2px dashed #238636 !important;
+}
+
+/* Wizard Modal */
+.wizardModal {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.wizardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #30363d;
+  background: #1c2128;
+}
+
+.wizardTitle {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #e6edf3;
+}
+
+.wizardContent {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  overflow-y: auto;
+}
+
+.wizardField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.wizardLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #e6edf3;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.nextActionLabel {
+.wizardOptional {
+  font-weight: 400;
   color: #8b949e;
   font-size: 0.8rem;
 }
 
-.nextActionCommand {
-  background: #21262d;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  color: #79c0ff;
+.wizardInput {
+  padding: 0.6rem 0.75rem;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #e6edf3;
+  font-size: 0.9rem;
   font-family: var(--ifm-font-family-monospace);
+}
+
+.wizardInput:focus {
+  outline: none;
+  border-color: #238636;
+  box-shadow: 0 0 0 2px rgba(35, 134, 54, 0.3);
+}
+
+.wizardInputError {
+  border-color: #f85149;
+}
+
+.wizardInputError:focus {
+  border-color: #f85149;
+  box-shadow: 0 0 0 2px rgba(248, 81, 73, 0.3);
+}
+
+.wizardHint {
+  font-size: 0.75rem;
+  color: #8b949e;
+}
+
+.wizardError {
+  font-size: 0.75rem;
+  color: #f85149;
+}
+
+.wizardReadOnly {
+  padding: 0.6rem 0.75rem;
+  background: #21262d;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #8b949e;
+  font-size: 0.9rem;
+}
+
+.wizardReadOnly code {
+  background: #0d1117;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  color: #79c0ff;
+  font-size: 0.85rem;
+}
+
+.wizardRadioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.wizardRadio {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: #21262d;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.wizardRadio:hover {
+  background: #2d333b;
+  border-color: #484f58;
+}
+
+.wizardRadio input[type="radio"] {
+  margin-top: 0.25rem;
+  accent-color: #238636;
+}
+
+.wizardRadioLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.wizardRadioLabel strong {
+  color: #e6edf3;
+  font-size: 0.9rem;
+}
+
+.wizardRadioLabel span {
+  color: #8b949e;
+  font-size: 0.8rem;
+}
+
+.wizardTextarea {
+  padding: 0.75rem;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #e6edf3;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.wizardTextarea:focus {
+  outline: none;
+  border-color: #238636;
+  box-shadow: 0 0 0 2px rgba(35, 134, 54, 0.3);
+}
+
+.wizardTextarea::placeholder {
+  color: #6e7681;
+}
+
+.wizardFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #30363d;
+  background: #1c2128;
+}
+
+.wizardCancelButton {
+  padding: 0.6rem 1rem;
+  background: transparent;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #e6edf3;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.wizardCancelButton:hover {
+  background: #21262d;
+  border-color: #484f58;
+}
+
+.wizardSubmitButton {
+  padding: 0.6rem 1rem;
+  background: #238636;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.wizardSubmitButton:hover:not(:disabled) {
+  background: #2ea043;
+}
+
+.wizardSubmitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
