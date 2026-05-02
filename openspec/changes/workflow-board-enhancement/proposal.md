@@ -8,7 +8,7 @@ The OpenSpec workflow board currently displays changes and their status, but lac
 2. Remember the exact change name and correct label
 3. Know the issue body format expected by the GitHub Action
 
-This friction breaks the flow and increases the chance of errors.
+Additionally, as the number of active changes grows, users need a way to quickly find specific changes on the board without manually scanning through all displayed items.
 
 ## Solution
 
@@ -22,35 +22,13 @@ All three entry points open the same wizard that:
 - Shows the opsx command being invoked
 - Displays the change name (editable for new, fixed for existing)
 - Provides a textarea for transcript/instructions
-- Opens a pre-filled GitHub issue on submit
+- Opens a pre-filled GitHub issue on submission
 
-## Two Distinct Flows
+### Search Functionality
 
-### Flow A: New Change
-User clicks [+ Start New Change] → enters change name → chooses explore or propose → adds transcript → creates issue
-
-### Flow B: Existing Change
-User clicks [Advance] or drags card → wizard pre-filled with change name and next action → adds optional context → creates issue
-
-The key insight: **existing changes don't need fuzzy matching**. When advancing a known change, we pass the explicit change ID in the issue body so the GitHub Action skips matching logic.
-
-## Scope
-
-### In Scope
-- [+ Start New Change] button on the board
-- [Advance] button replacing "Next:" hint in modal footer
-- Drag-to-advance between workflow columns
-- Shared wizard modal component
-- Direct GitHub issue URL construction (bypasses template picker)
-
-### Out of Scope
-- Changes to the GitHub Action itself (it already supports explicit change matching)
-- New issue templates for apply/archive (URL construction handles this)
-- Authentication or GitHub API integration (we open issues in browser)
-
-## Success Criteria
-
-1. User can start a new change without leaving the site until the final "Create Issue" step
-2. User can advance any existing change with two clicks (open modal → click Advance → submit wizard)
-3. Drag-to-advance provides a quick alternative to the button flow
-4. GitHub issues are correctly formatted with change name and appropriate label
+Add search capability to help users quickly locate specific changes:
+- Search input field prominently displayed above the workflow board
+- Real-time filtering of displayed changes as user types
+- Search matches change names, descriptions, and tags
+- Clear visual indication when search is active (showing "X of Y changes")
+- Easy search reset/clear functionality
