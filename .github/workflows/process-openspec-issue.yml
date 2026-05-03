@@ -77,8 +77,10 @@ jobs:
               // Issue labeled event
               const issue = context.payload.issue;
               const labels = issue.labels.map(l => l.name);
-              // Determine mode from labels (design > propose > explore priority)
-              mode = labels.includes('design') ? 'design' :
+              // Determine mode from labels (priority: archive > apply > design > propose > explore)
+              mode = labels.includes('archive') ? 'archive' :
+                     labels.includes('apply') ? 'apply' :
+                     labels.includes('design') ? 'design' :
                      labels.includes('propose') ? 'propose' : 'explore';
               conversation = (issue.body || '').trim();
               title = issue.title || '';
