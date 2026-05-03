@@ -322,6 +322,117 @@ async function generateDesign() {
   return JSON.parse(jsonMatch[0]);
 }
 
+function buildApplyPrompt() {
+  if (!explicitChangeName) {
+    throw new Error('Apply mode requires an explicit change name');
+  }
+
+  const existingChange = changesContext.existingChanges.find(c => c.name === explicitChangeName);
+  if (!existingChange) {
+    throw new Error(`Change not found: ${explicitChangeName}`);
+  }
+
+  const changesDir = path.join(process.cwd(), 'openspec', 'changes', explicitChangeName);
+
+  // Read the design and tasks artifacts
+  let designContent = '';
+  let tasksContent = '';
+  let proposalContent = '';
+
+  const designPath = path.join(changesDir, 'design.md');
+  const tasksPath = path.join(changesDir, 'tasks.md');
+  const proposalPath = path.join(changesDir, 'proposal.md');
+
+  if (fs.existsSync(designPath)) {
+    designContent = fs.readFileSync(designPath, 'utf-8');
+  }
+  if (fs.existsSync(tasksPath)) {
+    tasksContent = fs.readFileSync(tasksPath, 'utf-8');
+  }
+  if (fs.existsSync(proposalPath)) {
+    proposalContent = fs.readFileSync(proposalPath, 'utf-8');
+  }
+
+  if (!designContent || !tasksContent) {
+    throw new Error(`Design or tasks artifacts missing for change: ${explicitChangeName}`);
+  }
+
+  return `You are implementing an OpenSpec change based on its design and task breakdown.
+
+<change_name>${explicitChangeName}</change_name>
+
+<proposal>
+${proposalContent}
+</proposal>
+
+<design>
+${designContent}
+</design>
+
+<tasks>
+${tasksContent}
+</tasks>
+
+<additional_context>
+${conversation || '(No additional context provided)'}
+</additional_context>
+
+Based on the design and tasks above, implement the change. You should:
+
+1. Follow the design document's architecture and decisions
+2. Complete the tasks outlined in tasks.md
+3. Write clean, well-documented code
+4. Follow existing patterns in the codebase
+
+Respond with a JSON object containing:
+{
+  "changeName": "${explicitChangeName}",
+  "implementation": {
+    "files": [
+      {
+        "path": "relative/path/to/file.ext",
+        "action": "create" | "modify" | "delete",
+        "content": "Full file content for create, or null for delete",
+        "diff": "For modifications, describe what changed"
+      }
+    ],
+    "summary": "Brief summary of what was implemented",
+    "completedTasks": ["List of task descriptions that were completed"],
+    "remainingTasks": ["List of tasks that couldn't be completed, if any"],
+    "notes": "Any implementation notes or caveats"
+  },
+  "prDescription": "Markdown description for the pull request",
+  "confidence": 0-100
+}
+
+Important:
+- Only include files that need to be created or modified
+- For this Docusaurus site, focus on the relevant components and pages
+- Mark tasks as completed in the tasks.md if you implement them`;
+}
+
+async function generateImplementation() {
+  console.log('Generating implementation for:', explicitChangeName);
+
+  const prompt = buildApplyPrompt();
+
+  const response = await withRetry(() => anthropic.messages.create({
+    model: 'claude-sonnet-4-20250514',
+    max_tokens: 16384,
+    messages: [{ role: 'user', content: prompt }]
+  }));
+
+  const text = response.content[0].text;
+
+  // Extract JSON from response
+  const jsonMatch = text.match(/\{[\s\S]*\}/);
+  if (!jsonMatch) {
+    throw new Error('Could not parse implementation response');
+  }
+
+  return JSON.parse(jsonMatch[0]);
+}
+
 async function analyzeConversation() {
   console.log('Step 1: Analyzing conversation...');
 
@@ -621,32 +732,78 @@ ${exploreResult.analysis.refinements.map(r => `- ${r}`).join('\n')}
       console.log('Design artifacts written successfully');
 
     } else if (mode === 'apply') {
-      // Apply mode: update manifest to 'applied' status
-      if (!explicitChangeName) {
-        throw new Error('Apply mode requires an explicit change name');
+      // Apply mode: generate implementation based on design and tasks
+      const implementation = await generateImplementation();
+      console.log('Implementation generated for:', implementation.changeName);
+      console.log('Files to create/modify:', implementation.implementation.files.length);
+
+      // Write implementation files
+      for (const file of implementation.implementation.files) {
+        const filePath = path.join(process.cwd(), file.path);
+        const fileDir = path.dirname(filePath);
+
+        if (file.action === 'delete') {
+          if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+            console.log(`Deleted: ${file.path}`);
+          }
+        } else if (file.action === 'create' || file.action === 'modify') {
+          // Ensure directory exists
+          fs.mkdirSync(fileDir, { recursive: true });
+          fs.writeFileSync(filePath, file.content);
+          console.log(`${file.action === 'create' ? 'Created' : 'Modified'}: ${file.path}`);
+        }
       }
+
+      // Update tasks.md to mark completed tasks
       const changesDir = path.join(process.cwd(), 'openspec', 'changes', explicitChangeName);
-      const manifestPath = path.join(changesDir, 'manifest.json');
-
-      if (!fs.existsSync(manifestPath)) {
-        throw new Error(`Manifest not found for change: ${explicitChangeName}`);
+      const tasksPath = path.join(changesDir, 'tasks.md');
+      if (fs.existsSync(tasksPath) && implementation.implementation.completedTasks.length > 0) {
+        let tasksContent = fs.readFileSync(tasksPath, 'utf-8');
+        // Mark completed tasks (simple approach - mark checkboxes as done)
+        for (const task of implementation.implementation.completedTasks) {
+          // Try to find and check off the task
+          const escapedTask = task.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          tasksContent = tasksContent.replace(
+            new RegExp(`- \\[ \\] (${escapedTask})`, 'i'),
+            '- [x] $1'
+          );
+        }
+        fs.writeFileSync(tasksPath, tasksContent);
+        console.log('Updated tasks.md with completed tasks');
       }
 
-      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
-      manifest.workflowStatus = 'applied';
-      manifest.updatedAt = new Date().toISOString().split('T')[0];
-      fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
-      console.log(`Updated manifest status to 'applied': ${manifestPath}`);
+      // Update manifest to 'applied' status
+      const manifestPath = path.join(changesDir, 'manifest.json');
+      if (fs.existsSync(manifestPath)) {
+        const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+        manifest.workflowStatus = 'applied';
+        manifest.updatedAt = new Date().toISOString().split('T')[0];
+        fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+        console.log(`Updated manifest status to 'applied': ${manifestPath}`);
+      }
 
       // Write PR description
-      fs.writeFileSync('pr-description.md', `## OpenSpec Change Applied
+      fs.writeFileSync('pr-description.md', `## OpenSpec Implementation: ${explicitChangeName}
 
-**Change**: \`${explicitChangeName}\`
+${implementation.prDescription}
 
-This change has been marked as applied/implemented.
+### Implementation Summary
+${implementation.implementation.summary}
+
+### Files Changed
+${implementation.implementation.files.map(f => `- \`${f.path}\` (${f.action})`).join('\n')}
+
+### Completed Tasks
+${implementation.implementation.completedTasks.map(t => `- [x] ${t}`).join('\n')}
+
+${implementation.implementation.remainingTasks.length > 0 ? `### Remaining Tasks\n${implementation.implementation.remainingTasks.map(t => `- [ ] ${t}`).join('\n')}` : ''}
+
+${implementation.implementation.notes ? `### Notes\n${implementation.implementation.notes}` : ''}
 
 ---
-*Generated from Issue #${issueNumber}*`);
+*Generated from Issue #${issueNumber}*
+*Confidence: ${implementation.confidence}%*`);
 
     } else if (mode === 'archive') {
       // Archive mode: update manifest to 'archived' status
