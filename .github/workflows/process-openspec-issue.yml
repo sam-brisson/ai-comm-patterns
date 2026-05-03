@@ -8,11 +8,11 @@ on:
 
 jobs:
   process-openspec:
-    # Run if: issue labeled with propose/explore/design by allowed user OR repository_dispatch event
+    # Run if: issue labeled with propose/explore/design/apply/archive by allowed user OR repository_dispatch event
     if: |
       (
         github.event_name == 'issues' &&
-        (contains(github.event.issue.labels.*.name, 'propose') || contains(github.event.issue.labels.*.name, 'explore') || contains(github.event.issue.labels.*.name, 'design')) &&
+        (contains(github.event.issue.labels.*.name, 'propose') || contains(github.event.issue.labels.*.name, 'explore') || contains(github.event.issue.labels.*.name, 'design') || contains(github.event.issue.labels.*.name, 'apply') || contains(github.event.issue.labels.*.name, 'archive')) &&
         contains(fromJson('["barnold1675", "sam-brisson", "maazshafi"]'), github.event.issue.user.login)
       ) ||
       github.event_name == 'repository_dispatch'

@@ -620,6 +620,63 @@ ${exploreResult.analysis.refinements.map(r => `- ${r}`).join('\n')}
       await writeArtifacts(designResult);
       console.log('Design artifacts written successfully');
 
+    } else if (mode === 'apply') {
+      // Apply mode: update manifest to 'applied' status
+      if (!explicitChangeName) {
+        throw new Error('Apply mode requires an explicit change name');
+      }
+      const changesDir = path.join(process.cwd(), 'openspec', 'changes', explicitChangeName);
+      const manifestPath = path.join(changesDir, 'manifest.json');
+
+      if (!fs.existsSync(manifestPath)) {
+        throw new Error(`Manifest not found for change: ${explicitChangeName}`);
+      }
+
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+      manifest.workflowStatus = 'applied';
+      manifest.updatedAt = new Date().toISOString().split('T')[0];
+      fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+      console.log(`Updated manifest status to 'applied': ${manifestPath}`);
+
+      // Write PR description
+      fs.writeFileSync('pr-description.md', `## OpenSpec Change Applied
+
+**Change**: \`${explicitChangeName}\`
+
+This change has been marked as applied/implemented.
+
+---
+*Generated from Issue #${issueNumber}*`);
+
+    } else if (mode === 'archive') {
+      // Archive mode: update manifest to 'archived' status
+      if (!explicitChangeName) {
+        throw new Error('Archive mode requires an explicit change name');
+      }
+      const changesDir = path.join(process.cwd(), 'openspec', 'changes', explicitChangeName);
+      const manifestPath = path.join(changesDir, 'manifest.json');
+
+      if (!fs.existsSync(manifestPath)) {
+        throw new Error(`Manifest not found for change: ${explicitChangeName}`);
+      }
+
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+      manifest.workflowStatus = 'archived';
+      manifest.archivedAt = new Date().toISOString().split('T')[0];
+      manifest.updatedAt = new Date().toISOString().split('T')[0];
+      fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+      console.log(`Updated manifest status to 'archived': ${manifestPath}`);
+
+      // Write PR description
+      fs.writeFileSync('pr-description.md', `## OpenSpec Change Archived
+
+**Change**: \`${explicitChangeName}\`
+
+This change has been archived.
+
+---
+*Generated from Issue #${issueNumber}*`);
+
     } else if (mode === 'propose') {
       // Propose mode: analyze, generate updates, write files
       const analysis = await analyzeConversation();
