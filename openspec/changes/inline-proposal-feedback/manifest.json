@@ -2,7 +2,7 @@
   "id": "inline-proposal-feedback",
   "title": "Inline Proposal Feedback System",
   "description": "The current workflow for providing feedback on proposed changes requires users to navigate away from the proposal view to submit comments through GitHub issues or other external systems. This breaks t...",
-  "workflowStatus": "designed",
+  "workflowStatus": "applied",
   "resultLink": null,
   "resultLabel": null,
   "createdAt": "2026-05-02",
