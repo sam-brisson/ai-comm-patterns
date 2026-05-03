@@ -1,99 +1,132 @@
-# Implementation Tasks - Inline Proposal Feedback System
+# Tasks: Inline Proposal Feedback System
 
-## Phase 1: Core Modal Infrastructure
+## Frontend Components
 
-- [ ] Create FeedbackModal component with backdrop and overlay
-- [ ] Implement modal open/close state management
-- [ ] Add keyboard navigation (ESC to close, tab trapping)
-- [ ] Create responsive modal styling (mobile + desktop)
-- [ ] Add ARIA attributes for accessibility
-- [ ] Implement focus management on modal open/close
+### Core Components
+- [ ] Create FeedbackSection component with proper TypeScript interfaces
+- [ ] Implement CommentBox component with auto-resize textarea functionality  
+- [ ] Add character counter (2000 char limit) with visual feedback
+- [ ] Build markdown preview toggle for comment formatting
+- [ ] Create WorkflowGuidance component with clear next-step messaging
+- [ ] Implement loading states for both submit and advance actions
+- [ ] Add proper error handling and user-friendly error messages
+- [ ] Design and implement success messaging after submission
 
-## Phase 2: Feedback Form Components
+### Local Storage Integration
+- [ ] Implement draft persistence with debounced saving while typing
+- [ ] Create draft loading on component mount with timestamp validation
+- [ ] Add automatic cleanup of drafts older than 7 days
+- [ ] Handle edge cases for localStorage unavailability
+- [ ] Test draft persistence across browser sessions
 
-- [ ] Build FeedbackTypeSelector with radio button options
-  - [ ] General comment
-  - [ ] Suggest changes
-  - [ ] Request clarification
-  - [ ] Approve with notes
-- [ ] Create CommentTextArea with placeholder text including transcript tip
-- [ ] Add character counter for user guidance
-- [ ] Implement form validation (required field checks)
-- [ ] Add form submission state management
+### User Interface
+- [ ] Style feedback section to match existing OpenSpec design system
+- [ ] Position feedback section appropriately at bottom of proposal views
+- [ ] Implement responsive design for mobile screens
+- [ ] Ensure touch-friendly button sizing (minimum 44px) for mobile
+- [ ] Create proper visual separation between proposal content and feedback
+- [ ] Add proper focus management for accessibility
 
-## Phase 3: GitHub Integration
+## GitHub Integration
 
-- [ ] Build URL generation function for GitHub issue creation
-- [ ] Create issue title template with proposal name and feedback type
-- [ ] Design issue body template with sections:
-  - [ ] Proposal link and context
-  - [ ] Feedback type and comments
-  - [ ] Metadata (reviewer, date, version)
-  - [ ] Transcript section with workflow guidance
-- [ ] Implement URL encoding for special characters
-- [ ] Add URL length validation and truncation handling
+### Issue Creation
+- [ ] Implement GitHub API integration for automated issue creation
+- [ ] Create structured issue format for feedback submissions
+- [ ] Design issue format for workflow advancement with optional context
+- [ ] Add proper error handling for GitHub API failures with retry logic
+- [ ] Implement authentication handling for GitHub API calls
+- [ ] Test issue creation with various content types and edge cases
 
-## Phase 4: Proposal Viewer Integration
+### API Error Handling
+- [ ] Handle network connectivity issues gracefully
+- [ ] Preserve user comments during retry attempts
+- [ ] Log technical errors while showing user-friendly messages
+- [ ] Implement exponential backoff for API retry logic
+- [ ] Add timeout handling for slow API responses
 
-- [ ] Add floating action button to proposal viewer
-  - [ ] Position in bottom-right corner
-  - [ ] Style with primary colors and comment icon
-  - [ ] Add subtle animation to draw attention
-- [ ] Extract proposal context data (name, URL, commit hash)
-- [ ] Wire feedback button to open modal
-- [ ] Ensure modal doesn't interfere with existing proposal navigation
+## Integration with Existing System
 
-## Phase 5: User Experience Enhancements
+### Proposal View Integration
+- [ ] Add FeedbackSection component to all existing proposal view pages
+- [ ] Pass changeName and currentStatus props correctly
+- [ ] Handle feedback submission callbacks and page updates
+- [ ] Test integration with different proposal states and types
+- [ ] Ensure proper component lifecycle management
 
-- [ ] Add workflow guidance text in modal
-- [ ] Create loading state for form submission
-- [ ] Implement success feedback before GitHub redirect
-- [ ] Add confirmation dialog for form submission
-- [ ] Create help tooltips for feedback types
+### Workflow Coordination
+- [ ] Verify GitHub Action processes new issue formats correctly
+- [ ] Test label-based routing for feedback vs advancement issues
+- [ ] Implement proper redirection after workflow advancement
+- [ ] Coordinate with workflow board updates after submission
+- [ ] Handle concurrent feedback submissions gracefully
 
-## Phase 6: Error Handling & Edge Cases
+## User Experience Enhancement
 
-- [ ] Handle empty form submission attempts
-- [ ] Add error states for URL generation failures
-- [ ] Implement fallback for GitHub unavailability
-- [ ] Handle offline state detection and messaging
-- [ ] Add graceful degradation for unsupported browsers
-- [ ] Test and handle extremely long comment edge cases
+### Flow Optimization
+- [ ] Implement smooth scrolling to feedback section if needed
+- [ ] Add keyboard shortcuts for common actions (Ctrl+Enter to submit)
+- [ ] Create clear visual feedback for all user actions
+- [ ] Implement proper form validation with inline error messages
+- [ ] Add confirmation dialogs for workflow advancement actions
 
-## Phase 7: Testing & Quality Assurance
+### Performance Optimization
+- [ ] Implement lazy loading for feedback section component
+- [ ] Optimize re-rendering during typing with proper React patterns
+- [ ] Minimize localStorage operations with efficient debouncing
+- [ ] Profile component performance and optimize critical paths
+- [ ] Implement proper cleanup on component unmount
 
-- [ ] Write unit tests for modal functionality
-- [ ] Test form validation logic
-- [ ] Verify URL generation with various input combinations
-- [ ] Test keyboard navigation and accessibility features
-- [ ] Perform cross-browser testing (Chrome, Firefox, Safari, Edge)
-- [ ] Test mobile responsiveness on various screen sizes
-- [ ] Validate GitHub issue creation with pre-populated data
+## Testing and Quality Assurance
 
-## Phase 8: Documentation & Deployment
+### Unit Testing
+- [ ] Write comprehensive tests for FeedbackSection component
+- [ ] Test CommentBox component behavior and edge cases
+- [ ] Create tests for draft persistence and loading functionality
+- [ ] Test GitHub API integration with mocked responses
+- [ ] Verify error handling paths with appropriate test scenarios
 
-- [ ] Create user documentation for feedback workflow
-- [ ] Document component API and integration points
-- [ ] Add inline code comments for maintainability
-- [ ] Create deployment checklist
-- [ ] Set up monitoring for feedback submission rates
-- [ ] Prepare rollback plan if issues arise
+### Integration Testing
+- [ ] Test complete feedback submission flow end-to-end
+- [ ] Verify workflow advancement integration with GitHub Actions
+- [ ] Test responsive design across different screen sizes
+- [ ] Validate accessibility compliance with screen readers
+- [ ] Performance testing under various network conditions
 
-## Phase 9: Post-Launch Optimization
+### User Acceptance Testing
+- [ ] Test feedback submission flow with real team members
+- [ ] Validate workflow advancement experience matches expectations
+- [ ] Gather feedback on comment box usability and features
+- [ ] Test mobile experience with actual devices
+- [ ] Verify integration doesn't disrupt existing proposal review workflows
 
-- [ ] Gather user feedback on modal UX
-- [ ] Monitor GitHub issue creation success rates
-- [ ] Analyze feedback submission patterns
-- [ ] Optimize modal load performance
-- [ ] Consider adding draft saving to local storage
-- [ ] Evaluate need for feedback preview feature
+## Documentation and Deployment
 
----
+### Documentation
+- [ ] Update component documentation with new FeedbackSection usage
+- [ ] Document GitHub issue format requirements for future reference
+- [ ] Create user guide for inline feedback system features
+- [ ] Update development setup instructions for new dependencies
+- [ ] Document troubleshooting steps for common issues
 
-**Acceptance Criteria:**
-- Users can provide feedback without leaving proposal view
-- GitHub issues are pre-populated with proposal context
-- Transcript section is included in issue template with guidance
-- Modal works across all supported browsers and devices
-- Feedback submission process is intuitive and fast
-- System gracefully handles errors and edge cases
+### Deployment Preparation
+- [ ] Create feature flag for gradual rollout of feedback system
+- [ ] Set up monitoring for GitHub API usage and rate limits
+- [ ] Configure error tracking for production feedback submissions
+- [ ] Plan rollback strategy in case of critical issues
+- [ ] Coordinate deployment with GitHub Action updates if needed
+
+## Success Metrics and Monitoring
+
+### Analytics Implementation
+- [ ] Track feedback submission rates per proposal
+- [ ] Monitor workflow advancement usage vs external GitHub issues
+- [ ] Measure user engagement time on proposal pages
+- [ ] Track error rates and types for continuous improvement
+- [ ] Monitor performance metrics for feedback component loading
+
+### Success Criteria Validation
+- [ ] Verify reduced external GitHub issue creation for simple feedback
+- [ ] Confirm faster feedback cycles on proposals
+- [ ] Measure improved user satisfaction with proposal review process
+- [ ] Validate system reliability under normal and peak usage
+- [ ] Ensure accessibility compliance meets organizational standards
