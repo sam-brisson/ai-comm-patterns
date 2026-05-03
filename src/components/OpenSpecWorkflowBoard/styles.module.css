@@ -428,6 +428,20 @@
   font-size: 0.7rem;
 }
 
+/* Design button variant - orange/amber for "needs work" state */
+.designButton {
+  background: #d97706;
+}
+
+.designButton:hover {
+  background: #f59e0b;
+}
+
+.designButton::after {
+  content: '✎';
+  font-size: 0.85rem;
+}
+
 /* Drag styles */
 .dragging {
   opacity: 0.5;

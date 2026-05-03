@@ -10,7 +10,7 @@ const DEFAULT_GITHUB_REPO = 'https://github.com/sam-brisson/ai-comm-patterns';
 const TRANSCRIPT_CHAR_LIMIT = 5000;
 const TRANSCRIPT_WARNING_THRESHOLD = 4000;
 
-type ActionType = 'explore' | 'propose' | 'apply' | 'archive';
+type ActionType = 'explore' | 'propose' | 'design' | 'apply' | 'archive';
 
 // Workflow stages in order
 const WORKFLOW_STAGES = [
@@ -100,6 +100,16 @@ interface PluginData {
 }
 
 type ArtifactType = 'proposal' | 'design' | 'tasks';
+
+// Check if a change has all required artifacts for implementation
+function hasAllArtifacts(change: Change): boolean {
+  return !!(change.artifacts.proposal && change.artifacts.design && change.artifacts.tasks);
+}
+
+// Check if a change needs design artifacts generated
+function needsDesign(change: Change): boolean {
+  return !!(change.artifacts.proposal && (!change.artifacts.design || !change.artifacts.tasks));
+}
 
 // Simple markdown renderer
 function renderMarkdown(content: string): string {
@@ -193,9 +203,13 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
     });
   };
 
-  const openWizardForAdvance = (change: Change) => {
+  const openWizardForAdvance = (change: Change, forceAction?: ActionType) => {
     const stage = getStageForChange(change);
-    if (!stage?.nextAction) return;
+    if (!stage?.nextAction && !forceAction) return;
+
+    // Determine the action to use
+    let action = forceAction || stage?.nextAction?.command;
+    if (!action) return;
 
     setSelectedChange(null);
     setSelectedArtifact(null);
@@ -203,9 +217,46 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
       isOpen: true,
       mode: 'advance',
       changeName: change.id,
-      action: stage.nextAction.command,
+      action,
       transcript: '',
     });
+  };
+
+  // Open wizard specifically for design generation
+  const openWizardForDesign = (change: Change) => {
+    setSelectedChange(null);
+    setSelectedArtifact(null);
+    setWizardState({
+      isOpen: true,
+      mode: 'advance',
+      changeName: change.id,
+      action: 'design',
+      transcript: '',
+    });
+  };
+
+  // Get the appropriate next action for a change (considering artifact completeness)
+  const getNextActionForChange = (change: Change): { label: string; action: ActionType } | null => {
+    const stage = getStageForChange(change);
+    if (!stage) return null;
+
+    // For proposed changes, check if they need design first
+    if (change.workflowStatus === 'proposed') {
+      if (needsDesign(change)) {
+        return { label: 'Generate Design', action: 'design' };
+      }
+      if (hasAllArtifacts(change)) {
+        return { label: 'Advance to Applied', action: 'apply' };
+      }
+      return null; // No proposal yet, shouldn't happen in proposed state
+    }
+
+    // For other stages, use the default next action
+    if (stage.nextAction) {
+      return { label: stage.nextAction.label, action: stage.nextAction.command };
+    }
+
+    return null;
   };
 
   const closeWizard = () => {
@@ -261,6 +312,11 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
 
     // Only allow forward movement by one stage
     if (targetIndex === currentIndex + 1) {
+      // Block dropping to Applied if design artifacts are missing
+      if (stageId === 'applied' && !hasAllArtifacts(draggedChange)) {
+        e.dataTransfer.dropEffect = 'none';
+        return;
+      }
       setDropTarget(stageId);
       e.dataTransfer.dropEffect = 'move';
     } else {
@@ -276,16 +332,15 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
     e.preventDefault();
     if (!draggedChange || !dropTarget) return;
 
-    // Find the action for the target stage
-    const currentIndex = WORKFLOW_STAGES.findIndex(s => s.id === draggedChange.workflowStatus);
-    const currentStage = WORKFLOW_STAGES[currentIndex];
+    // Use smart action detection
+    const nextAction = getNextActionForChange(draggedChange);
 
-    if (currentStage?.nextAction) {
+    if (nextAction) {
       setWizardState({
         isOpen: true,
         mode: 'advance',
         changeName: draggedChange.id,
-        action: currentStage.nextAction.command,
+        action: nextAction.action,
         transcript: '',
       });
     }
@@ -489,15 +544,21 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
                 </a>
               )}
 
-              {/* Advance button - opens wizard */}
-              {getStageForChange(selectedChange)?.nextAction && (
-                <button
-                  className={styles.advanceButton}
-                  onClick={() => openWizardForAdvance(selectedChange)}
-                >
-                  {getStageForChange(selectedChange)?.nextAction.label}
-                </button>
-              )}
+              {/* Advance button - uses smart action detection */}
+              {(() => {
+                const nextAction = getNextActionForChange(selectedChange);
+                if (!nextAction) return null;
+
+                const isDesignAction = nextAction.action === 'design';
+                return (
+                  <button
+                    className={`${styles.advanceButton} ${isDesignAction ? styles.designButton : ''}`}
+                    onClick={() => openWizardForAdvance(selectedChange, nextAction.action)}
+                  >
+                    {nextAction.label}
+                  </button>
+                );
+              })()}
             </div>
           </div>
         </div>
@@ -509,11 +570,14 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
           <div className={styles.wizardModal} onClick={(e) => e.stopPropagation()}>
             <div className={styles.wizardHeader}>
               <span className={styles.wizardTitle}>
-                {wizardState.mode === 'new' ? 'Start New Change' : `Advance to ${
-                  wizardState.action === 'propose' ? 'Proposed' :
-                  wizardState.action === 'apply' ? 'Applied' :
-                  'Archived'
-                }`}
+                {wizardState.mode === 'new' ? 'Start New Change' :
+                  wizardState.action === 'design' ? 'Generate Design & Tasks' :
+                  `Advance to ${
+                    wizardState.action === 'propose' ? 'Proposed' :
+                    wizardState.action === 'apply' ? 'Applied' :
+                    'Archived'
+                  }`
+                }
               </span>
               <button className={styles.modalClose} onClick={closeWizard}>×</button>
             </div>

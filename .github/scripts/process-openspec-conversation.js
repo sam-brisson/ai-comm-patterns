@@ -66,7 +66,7 @@ function extractExplicitChangeName() {
     return changeMatch[1].toLowerCase().trim();
   }
   // Also check title for [ACTION]: change-name pattern
-  const titleMatch = title.match(/\[(EXPLORE|PROPOSE|APPLY|ARCHIVE)\]:\s*([a-z][a-z0-9-]*)/i);
+  const titleMatch = title.match(/\[(EXPLORE|PROPOSE|DESIGN|APPLY|ARCHIVE)\]:\s*([a-z][a-z0-9-]*)/i);
   if (titleMatch) {
     return titleMatch[2].toLowerCase().trim();
   }
@@ -233,6 +233,93 @@ Respond in JSON format:
   "confidence": 0-100,
   "reasoning": "Why these updates were made"
 }`;
+}
+
+// Build design prompt for generating design.md and tasks.md from existing proposal
+function buildDesignPrompt() {
+  if (!explicitChangeName) {
+    throw new Error('Design mode requires an explicit change name');
+  }
+
+  // Find the existing change to get its proposal
+  const existingChange = changesContext.existingChanges.find(c => c.name === explicitChangeName);
+  if (!existingChange) {
+    throw new Error(`Change "${explicitChangeName}" not found. Design mode requires an existing change with a proposal.`);
+  }
+
+  return `You are generating the design.md and tasks.md artifacts for an existing OpenSpec change proposal.
+
+<change_name>
+${explicitChangeName}
+</change_name>
+
+<existing_proposal>
+${existingChange.proposal || 'No proposal content available'}
+</existing_proposal>
+
+<additional_context>
+${conversation || '(No additional context provided)'}
+</additional_context>
+
+Based on the proposal above, generate:
+
+1. **design.md** - Technical design document that includes:
+   - Architecture decisions and rationale
+   - Component/module breakdown
+   - Data flow and interactions
+   - API contracts (if applicable)
+   - Dependencies and integration points
+   - Error handling strategy
+   - Testing approach
+
+2. **tasks.md** - Implementation task breakdown with:
+   - Clear, actionable tasks with checkbox format
+   - Logical ordering (dependencies respected)
+   - Tasks grouped by phase or component
+   - Estimated complexity hints where helpful
+   - Acceptance criteria for each major task
+
+Guidelines:
+- Keep the design practical and focused on what needs to be built
+- Tasks should be granular enough to track progress but not so small as to be noise
+- Use checkbox format: "- [ ] Task description"
+- Reference the proposal's requirements to ensure all are covered
+
+Respond in JSON format:
+{
+  "changeName": "${explicitChangeName}",
+  "isNewChange": false,
+  "artifacts": {
+    "proposal": null,
+    "design": "Full content for design.md",
+    "tasks": "Full content for tasks.md with checkbox format"
+  },
+  "prDescription": "Markdown content explaining the design and tasks generated",
+  "confidence": 0-100,
+  "reasoning": "Brief explanation of design decisions"
+}`;
+}
+
+async function generateDesign() {
+  console.log('Generating design and tasks for:', explicitChangeName);
+
+  const prompt = buildDesignPrompt();
+
+  const response = await withRetry(() => anthropic.messages.create({
+    model: 'claude-sonnet-4-20250514',
+    max_tokens: 8192,
+    messages: [{ role: 'user', content: prompt }]
+  }));
+
+  const text = response.content[0].text;
+
+  // Extract JSON from response
+  const jsonMatch = text.match(/\{[\s\S]*\}/);
+  if (!jsonMatch) {
+    throw new Error('Could not parse design response');
+  }
+
+  return JSON.parse(jsonMatch[0]);
 }
 
 async function analyzeConversation() {
@@ -512,6 +599,14 @@ ${exploreResult.analysis.refinements.map(r => `- ${r}`).join('\n')}
 *A pull request has been created with the artifact updates.*`;
       fs.writeFileSync('explore-analysis.md', analysisComment);
       console.log('Wrote explore-analysis.md');
+
+    } else if (mode === 'design') {
+      // Design mode: generate design.md and tasks.md for existing proposal
+      const designResult = await generateDesign();
+      console.log('Design generated for:', designResult.changeName);
+
+      await writeArtifacts(designResult);
+      console.log('Design artifacts written successfully');
 
     } else if (mode === 'propose') {
       // Propose mode: analyze, generate updates, write files

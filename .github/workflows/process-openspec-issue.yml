@@ -8,11 +8,11 @@ on:
 
 jobs:
   process-openspec:
-    # Run if: issue labeled with propose/explore by allowed user OR repository_dispatch event
+    # Run if: issue labeled with propose/explore/design by allowed user OR repository_dispatch event
     if: |
       (
         github.event_name == 'issues' &&
-        (contains(github.event.issue.labels.*.name, 'propose') || contains(github.event.issue.labels.*.name, 'explore')) &&
+        (contains(github.event.issue.labels.*.name, 'propose') || contains(github.event.issue.labels.*.name, 'explore') || contains(github.event.issue.labels.*.name, 'design')) &&
         contains(fromJson('["barnold1675", "sam-brisson", "maazshafi"]'), github.event.issue.user.login)
       ) ||
       github.event_name == 'repository_dispatch'
@@ -77,7 +77,9 @@ jobs:
               // Issue labeled event
               const issue = context.payload.issue;
               const labels = issue.labels.map(l => l.name);
-              mode = labels.includes('propose') ? 'propose' : 'explore';
+              // Determine mode from labels (design > propose > explore priority)
+              mode = labels.includes('design') ? 'design' :
+                     labels.includes('propose') ? 'propose' : 'explore';
               conversation = (issue.body || '').trim();
               title = issue.title || '';
               issueNumber = issue.number;
