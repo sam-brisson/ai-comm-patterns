@@ -2,6 +2,15 @@
   margin: 1.5rem 0;
 }
 
+/* Controls header bar */
+.controlsBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
 .board {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -132,30 +141,6 @@
 .hasResult {
   color: #10B981;
   font-size: 0.8rem;
-}
-
-/* Archived column */
-.archivedPlaceholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1.5rem 0.5rem;
-}
-
-.archivedCount {
-  color: #8b949e;
-  font-size: 0.9rem;
-}
-
-.archivedLink {
-  color: #10B981;
-  font-size: 0.85rem;
-  text-decoration: none;
-}
-
-.archivedLink:hover {
-  text-decoration: underline;
 }
 
 /* Modal */
@@ -387,7 +372,6 @@
 
 /* Add button */
 .addButton {
-  margin-bottom: 1rem;
   padding: 0.75rem 1.5rem;
   background: #238636;
   color: white;
@@ -401,6 +385,25 @@
 
 .addButton:hover {
   background: #2ea043;
+}
+
+/* Archive button */
+.archiveButton {
+  padding: 0.6rem 1rem;
+  background: #21262d;
+  color: #8b949e;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.archiveButton:hover {
+  background: #30363d;
+  color: #e6edf3;
+  text-decoration: none;
 }
 
 /* Advance button (replaces hint) */

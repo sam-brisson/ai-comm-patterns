@@ -523,6 +523,18 @@ async function writeArtifacts(proposal) {
     console.log(`Updated: ${tasksPath}`);
   }
 
+  // If in design mode, update manifest to 'designed' status
+  if (mode === 'design') {
+    const manifestPath = path.join(changesDir, 'manifest.json');
+    if (fs.existsSync(manifestPath)) {
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+      manifest.workflowStatus = 'designed';
+      manifest.updatedAt = new Date().toISOString().split('T')[0];
+      fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+      console.log(`Updated manifest status to 'designed': ${manifestPath}`);
+    }
+  }
+
   // Write PR description
   const prDescription = `## OpenSpec Updates from Transcript
 

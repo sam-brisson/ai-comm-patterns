@@ -25,7 +25,14 @@ const WORKFLOW_STAGES = [
     id: 'proposed',
     label: 'Proposed',
     color: '#F59E0B',
-    description: 'Artifacts generated, soliciting feedback',
+    description: 'Proposal ready, needs design artifacts',
+    nextAction: { label: 'Generate Design', command: 'design' as ActionType }
+  },
+  {
+    id: 'designed',
+    label: 'Designed',
+    color: '#8B5CF6',
+    description: 'Design complete, ready to implement',
     nextAction: { label: 'Advance to Applied', command: 'apply' as ActionType }
   },
   {
@@ -81,7 +88,7 @@ interface Change {
   id: string;
   title?: string;
   description?: string;
-  workflowStatus?: 'exploring' | 'proposed' | 'applied' | 'archived';
+  workflowStatus?: 'exploring' | 'proposed' | 'designed' | 'applied' | 'archived';
   resultLink?: string | null;
   resultLabel?: string | null;
   createdAt?: string;
@@ -100,16 +107,6 @@ interface PluginData {
 }
 
 type ArtifactType = 'proposal' | 'design' | 'tasks';
-
-// Check if a change has all required artifacts for implementation
-function hasAllArtifacts(change: Change): boolean {
-  return !!(change.artifacts.proposal && change.artifacts.design && change.artifacts.tasks);
-}
-
-// Check if a change needs design artifacts generated
-function needsDesign(change: Change): boolean {
-  return !!(change.artifacts.proposal && (!change.artifacts.design || !change.artifacts.tasks));
-}
 
 // Simple markdown renderer
 function renderMarkdown(content: string): string {
@@ -222,41 +219,12 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
     });
   };
 
-  // Open wizard specifically for design generation
-  const openWizardForDesign = (change: Change) => {
-    setSelectedChange(null);
-    setSelectedArtifact(null);
-    setWizardState({
-      isOpen: true,
-      mode: 'advance',
-      changeName: change.id,
-      action: 'design',
-      transcript: '',
-    });
-  };
-
-  // Get the appropriate next action for a change (considering artifact completeness)
+  // Get the appropriate next action for a change
   const getNextActionForChange = (change: Change): { label: string; action: ActionType } | null => {
     const stage = getStageForChange(change);
-    if (!stage) return null;
+    if (!stage?.nextAction) return null;
 
-    // For proposed changes, check if they need design first
-    if (change.workflowStatus === 'proposed') {
-      if (needsDesign(change)) {
-        return { label: 'Generate Design', action: 'design' };
-      }
-      if (hasAllArtifacts(change)) {
-        return { label: 'Advance to Applied', action: 'apply' };
-      }
-      return null; // No proposal yet, shouldn't happen in proposed state
-    }
-
-    // For other stages, use the default next action
-    if (stage.nextAction) {
-      return { label: stage.nextAction.label, action: stage.nextAction.command };
-    }
-
-    return null;
+    return { label: stage.nextAction.label, action: stage.nextAction.command };
   };
 
   const closeWizard = () => {
@@ -312,11 +280,6 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
 
     // Only allow forward movement by one stage
     if (targetIndex === currentIndex + 1) {
-      // Block dropping to Applied if design artifacts are missing
-      if (stageId === 'applied' && !hasAllArtifacts(draggedChange)) {
-        e.dataTransfer.dropEffect = 'none';
-        return;
-      }
       setDropTarget(stageId);
       e.dataTransfer.dropEffect = 'move';
     } else {
@@ -347,38 +310,6 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
 
     setDraggedChange(null);
     setDropTarget(null);
-  };
-
-  // Handle drop on archived column
-  const handleArchiveDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    if (!draggedChange) return;
-
-    // Only allow from 'applied' stage
-    if (draggedChange.workflowStatus === 'applied') {
-      setWizardState({
-        isOpen: true,
-        mode: 'advance',
-        changeName: draggedChange.id,
-        action: 'archive',
-        transcript: '',
-      });
-    }
-
-    setDraggedChange(null);
-    setDropTarget(null);
-  };
-
-  const handleArchiveDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    if (!draggedChange) return;
-
-    if (draggedChange.workflowStatus === 'applied') {
-      setDropTarget('archived');
-      e.dataTransfer.dropEffect = 'move';
-    } else {
-      e.dataTransfer.dropEffect = 'none';
-    }
   };
 
   const artifactLabels: Record<ArtifactType, string> = {
@@ -450,38 +381,20 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
 
   return (
     <div className={styles.container}>
-      {/* Start New Change button */}
-      <button className={styles.addButton} onClick={openWizardForNew}>
-        + Start New Change
-      </button>
+      {/* Controls header bar */}
+      <div className={styles.controlsBar}>
+        <button className={styles.addButton} onClick={openWizardForNew}>
+          + Start New Change
+        </button>
+        <a href="/ai-comm-patterns/docs/collaboration/openspec-archive" className={styles.archiveButton}>
+          Archived ({archivedCount})
+        </a>
+      </div>
 
       <div className={styles.board}>
         {WORKFLOW_STAGES.map(stage => (
           <StageColumn key={stage.id} stage={stage} />
         ))}
-
-        {/* Archived column - accepts drops from Applied */}
-        <div
-          className={`${styles.column} ${dropTarget === 'archived' ? styles.dropTarget : ''}`}
-          onDragOver={handleArchiveDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleArchiveDrop}
-        >
-          <div className={styles.columnHeader} style={{ borderTopColor: '#6B7280' }}>
-            <span className={styles.columnTitle}>Archived</span>
-            <span className={styles.columnCount} style={{ backgroundColor: '#6B7280' }}>
-              {archivedCount}
-            </span>
-          </div>
-          <div className={styles.columnContent}>
-            <div className={styles.archivedPlaceholder}>
-              <span className={styles.archivedCount}>{archivedCount} changes</span>
-              <a href="/ai-comm-patterns/docs/collaboration/openspec-archive" className={styles.archivedLink}>
-                View Archive →
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Change Detail Modal */}
@@ -544,15 +457,14 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
                 </a>
               )}
 
-              {/* Advance button - uses smart action detection */}
+              {/* Advance button */}
               {(() => {
                 const nextAction = getNextActionForChange(selectedChange);
                 if (!nextAction) return null;
 
-                const isDesignAction = nextAction.action === 'design';
                 return (
                   <button
-                    className={`${styles.advanceButton} ${isDesignAction ? styles.designButton : ''}`}
+                    className={styles.advanceButton}
                     onClick={() => openWizardForAdvance(selectedChange, nextAction.action)}
                   >
                     {nextAction.label}
@@ -571,9 +483,9 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
             <div className={styles.wizardHeader}>
               <span className={styles.wizardTitle}>
                 {wizardState.mode === 'new' ? 'Start New Change' :
-                  wizardState.action === 'design' ? 'Generate Design & Tasks' :
                   `Advance to ${
                     wizardState.action === 'propose' ? 'Proposed' :
+                    wizardState.action === 'design' ? 'Designed' :
                     wizardState.action === 'apply' ? 'Applied' :
                     'Archived'
                   }`
