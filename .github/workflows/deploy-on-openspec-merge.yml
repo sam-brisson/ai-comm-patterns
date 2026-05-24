@@ -6,6 +6,11 @@ on:
       - main
     paths:
       - 'openspec/changes/**'
+      - 'src/components/**'
+      - 'src/pages/**'
+      - 'src/css/**'
+      - 'docs/**'
+      - 'docusaurus.config.ts'
 
 jobs:
   deploy:
