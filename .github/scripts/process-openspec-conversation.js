@@ -357,9 +357,44 @@ function buildApplyPrompt() {
     throw new Error(`Design or tasks artifacts missing for change: ${explicitChangeName}`);
   }
 
-  return `You are implementing an OpenSpec change based on its design and task breakdown.
+  // Get relevant codebase context
+  const srcDir = path.join(process.cwd(), 'src');
+  let codebaseContext = '';
+
+  // List component directories
+  const componentsDir = path.join(srcDir, 'components');
+  if (fs.existsSync(componentsDir)) {
+    const components = fs.readdirSync(componentsDir);
+    codebaseContext += `\nExisting components: ${components.join(', ')}`;
+  }
+
+  // Include OpenSpecWorkflowBoard as reference since most changes relate to it
+  const boardIndexPath = path.join(componentsDir, 'OpenSpecWorkflowBoard', 'index.tsx');
+  const boardStylesPath = path.join(componentsDir, 'OpenSpecWorkflowBoard', 'styles.module.css');
+  let boardCode = '';
+  let boardStyles = '';
+  if (fs.existsSync(boardIndexPath)) {
+    boardCode = fs.readFileSync(boardIndexPath, 'utf-8');
+  }
+  if (fs.existsSync(boardStylesPath)) {
+    boardStyles = fs.readFileSync(boardStylesPath, 'utf-8');
+  }
+
+  return `You are implementing an OpenSpec change for a Docusaurus-based knowledge site.
 
 <change_name>${explicitChangeName}</change_name>
+
+<codebase_context>
+${codebaseContext}
+</codebase_context>
+
+<existing_workflow_board_component>
+${boardCode}
+</existing_workflow_board_component>
+
+<existing_workflow_board_styles>
+${boardStyles}
+</existing_workflow_board_styles>
 
 <proposal>
 ${proposalContent}
@@ -377,12 +412,13 @@ ${tasksContent}
 ${conversation || '(No additional context provided)'}
 </additional_context>
 
-Based on the design and tasks above, implement the change. You should:
+Based on the design and tasks above, implement the change by generating the actual code. You MUST:
 
-1. Follow the design document's architecture and decisions
-2. Complete the tasks outlined in tasks.md
-3. Write clean, well-documented code
-4. Follow existing patterns in the codebase
+1. Generate REAL implementation code, not just mark tasks as complete
+2. Follow the existing code patterns shown in the workflow board component above
+3. Create or modify files with complete, working code
+4. Use React with TypeScript for components
+5. Use CSS Modules for styling (*.module.css)
 
 Respond with a JSON object containing:
 {
@@ -390,25 +426,26 @@ Respond with a JSON object containing:
   "implementation": {
     "files": [
       {
-        "path": "relative/path/to/file.ext",
-        "action": "create" | "modify" | "delete",
-        "content": "Full file content for create, or null for delete",
-        "diff": "For modifications, describe what changed"
+        "path": "src/components/ComponentName/index.tsx",
+        "action": "create",
+        "content": "// Full TypeScript/React component code here..."
+      },
+      {
+        "path": "src/components/ComponentName/styles.module.css",
+        "action": "create",
+        "content": "/* Full CSS styles here... */"
       }
     ],
     "summary": "Brief summary of what was implemented",
-    "completedTasks": ["List of task descriptions that were completed"],
-    "remainingTasks": ["List of tasks that couldn't be completed, if any"],
-    "notes": "Any implementation notes or caveats"
+    "completedTasks": ["Task descriptions that were completed"],
+    "remainingTasks": ["Tasks that need manual work or follow-up"],
+    "notes": "Any implementation notes"
   },
-  "prDescription": "Markdown description for the pull request",
+  "prDescription": "Markdown PR description",
   "confidence": 0-100
 }
 
-Important:
-- Only include files that need to be created or modified
-- For this Docusaurus site, focus on the relevant components and pages
-- Mark tasks as completed in the tasks.md if you implement them`;
+CRITICAL: The "files" array must contain actual code implementations. Do NOT return an empty files array or skip implementation.`;
 }
 
 async function generateImplementation() {

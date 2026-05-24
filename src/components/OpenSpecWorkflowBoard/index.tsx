@@ -33,7 +33,7 @@ const WORKFLOW_STAGES = [
     label: 'Designed',
     color: '#8B5CF6',
     description: 'Design complete, ready to implement',
-    nextAction: { label: 'Advance to Applied', command: 'apply' as ActionType }
+    nextAction: { label: 'Apply Design', command: 'apply' as ActionType }
   },
   {
     id: 'applied',
