@@ -306,7 +306,7 @@ async function generateDesign() {
   const prompt = buildDesignPrompt();
 
   const response = await withRetry(() => anthropic.messages.create({
-    model: 'claude-sonnet-4-5-20250514',
+    model: 'claude-sonnet-4-6-20250514',
     max_tokens: 8192,
     messages: [{ role: 'user', content: prompt }]
   }));
@@ -425,7 +425,7 @@ async function generateImplementation() {
   const prompt = buildApplyPrompt();
 
   const response = await withRetry(() => anthropic.messages.create({
-    model: 'claude-sonnet-4-5-20250514',
+    model: 'claude-sonnet-4-6-20250514',
     max_tokens: 16384,
     messages: [{ role: 'user', content: prompt }]
   }));
@@ -445,7 +445,7 @@ async function analyzeConversation() {
   console.log('Step 1: Analyzing conversation...');
 
   const response = await withRetry(() => anthropic.messages.create({
-    model: 'claude-sonnet-4-5-20250514',
+    model: 'claude-sonnet-4-6-20250514',
     max_tokens: 4096,
     messages: [{ role: 'user', content: ANALYZE_PROMPT }]
   }));
@@ -467,7 +467,7 @@ async function generateProposal(analysis) {
   const prompt = buildProposePrompt(JSON.stringify(analysis, null, 2));
 
   const response = await withRetry(() => anthropic.messages.create({
-    model: 'claude-sonnet-4-5-20250514',
+    model: 'claude-sonnet-4-6-20250514',
     max_tokens: 8192,
     messages: [{ role: 'user', content: prompt }]
   }));
@@ -489,7 +489,7 @@ async function generateExploreUpdates() {
   const prompt = buildExplorePrompt();
 
   const response = await withRetry(() => anthropic.messages.create({
-    model: 'claude-sonnet-4-5-20250514',
+    model: 'claude-sonnet-4-6-20250514',
     max_tokens: 8192,
     messages: [{ role: 'user', content: prompt }]
   }));
