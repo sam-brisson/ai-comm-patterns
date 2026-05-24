@@ -19,6 +19,7 @@ const WORKFLOW_STAGES = [
     label: 'Exploring',
     color: '#6366F1',
     description: 'Investigating ideas and gathering context',
+    currentAction: { label: 'Re-explore', command: 'explore' as ActionType },
     nextAction: { label: 'Advance to Proposed', command: 'propose' as ActionType }
   },
   {
@@ -26,6 +27,7 @@ const WORKFLOW_STAGES = [
     label: 'Proposed',
     color: '#F59E0B',
     description: 'Proposal ready, needs design artifacts',
+    currentAction: { label: 'Refine Proposal', command: 'propose' as ActionType },
     nextAction: { label: 'Generate Design', command: 'design' as ActionType }
   },
   {
@@ -33,6 +35,7 @@ const WORKFLOW_STAGES = [
     label: 'Designed',
     color: '#8B5CF6',
     description: 'Design complete, ready to implement',
+    currentAction: { label: 'Refine Design', command: 'design' as ActionType },
     nextAction: { label: 'Apply Design', command: 'apply' as ActionType }
   },
   {
@@ -40,6 +43,7 @@ const WORKFLOW_STAGES = [
     label: 'Applied',
     color: '#10B981',
     description: 'Implementation complete, ready for review',
+    currentAction: { label: 'Re-apply', command: 'apply' as ActionType },
     nextAction: { label: 'Archive Change', command: 'archive' as ActionType }
   },
 ];
@@ -225,6 +229,14 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
     if (!stage?.nextAction) return null;
 
     return { label: stage.nextAction.label, action: stage.nextAction.command };
+  };
+
+  // Get the current action (for re-running with feedback)
+  const getCurrentActionForChange = (change: Change): { label: string; action: ActionType } | null => {
+    const stage = getStageForChange(change);
+    if (!stage?.currentAction) return null;
+
+    return { label: stage.currentAction.label, action: stage.currentAction.command };
   };
 
   const closeWizard = () => {
@@ -457,20 +469,37 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
                 </a>
               )}
 
-              {/* Advance button */}
-              {(() => {
-                const nextAction = getNextActionForChange(selectedChange);
-                if (!nextAction) return null;
+              <div className={styles.actionButtons}>
+                {/* Re-run current action with feedback */}
+                {(() => {
+                  const currentAction = getCurrentActionForChange(selectedChange);
+                  if (!currentAction) return null;
 
-                return (
-                  <button
-                    className={styles.advanceButton}
-                    onClick={() => openWizardForAdvance(selectedChange, nextAction.action)}
-                  >
-                    {nextAction.label}
-                  </button>
-                );
-              })()}
+                  return (
+                    <button
+                      className={styles.rerunButton}
+                      onClick={() => openWizardForAdvance(selectedChange, currentAction.action)}
+                    >
+                      {currentAction.label}
+                    </button>
+                  );
+                })()}
+
+                {/* Advance to next stage */}
+                {(() => {
+                  const nextAction = getNextActionForChange(selectedChange);
+                  if (!nextAction) return null;
+
+                  return (
+                    <button
+                      className={styles.advanceButton}
+                      onClick={() => openWizardForAdvance(selectedChange, nextAction.action)}
+                    >
+                      {nextAction.label}
+                    </button>
+                  );
+                })()}
+              </div>
             </div>
           </div>
         </div>

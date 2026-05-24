@@ -431,18 +431,38 @@
   font-size: 0.7rem;
 }
 
-/* Design button variant - orange/amber for "needs work" state */
-.designButton {
-  background: #d97706;
+/* Action buttons container */
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
 
-.designButton:hover {
-  background: #f59e0b;
-}
-
-.designButton::after {
-  content: '✎';
+/* Re-run button - for refining current stage with feedback */
+.rerunButton {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: #8b949e;
+  border: 1px solid #30363d;
+  border-radius: 6px;
   font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.rerunButton:hover {
+  background: #21262d;
+  color: #e6edf3;
+  border-color: #484f58;
+}
+
+.rerunButton::before {
+  content: '↻';
+  font-size: 0.9rem;
 }
 
 /* Drag styles */
