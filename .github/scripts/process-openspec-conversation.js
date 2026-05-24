@@ -306,7 +306,7 @@ async function generateDesign() {
   const prompt = buildDesignPrompt();
 
   const response = await withRetry(() => anthropic.messages.create({
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-sonnet-4-5-20250514',
     max_tokens: 8192,
     messages: [{ role: 'user', content: prompt }]
   }));
@@ -365,19 +365,7 @@ function buildApplyPrompt() {
   const componentsDir = path.join(srcDir, 'components');
   if (fs.existsSync(componentsDir)) {
     const components = fs.readdirSync(componentsDir);
-    codebaseContext += `\nExisting components: ${components.join(', ')}`;
-  }
-
-  // Include OpenSpecWorkflowBoard as reference since most changes relate to it
-  const boardIndexPath = path.join(componentsDir, 'OpenSpecWorkflowBoard', 'index.tsx');
-  const boardStylesPath = path.join(componentsDir, 'OpenSpecWorkflowBoard', 'styles.module.css');
-  let boardCode = '';
-  let boardStyles = '';
-  if (fs.existsSync(boardIndexPath)) {
-    boardCode = fs.readFileSync(boardIndexPath, 'utf-8');
-  }
-  if (fs.existsSync(boardStylesPath)) {
-    boardStyles = fs.readFileSync(boardStylesPath, 'utf-8');
+    codebaseContext += `Existing components: ${components.join(', ')}`;
   }
 
   return `You are implementing an OpenSpec change for a Docusaurus-based knowledge site.
@@ -386,15 +374,8 @@ function buildApplyPrompt() {
 
 <codebase_context>
 ${codebaseContext}
+Tech stack: React, TypeScript, Docusaurus, CSS Modules
 </codebase_context>
-
-<existing_workflow_board_component>
-${boardCode}
-</existing_workflow_board_component>
-
-<existing_workflow_board_styles>
-${boardStyles}
-</existing_workflow_board_styles>
 
 <proposal>
 ${proposalContent}
@@ -412,40 +393,30 @@ ${tasksContent}
 ${conversation || '(No additional context provided)'}
 </additional_context>
 
-Based on the design and tasks above, implement the change by generating the actual code. You MUST:
+Implement this change by generating code. Requirements:
+1. Generate working React/TypeScript code
+2. Use CSS Modules for styling (*.module.css)
+3. Keep file contents concise - avoid overly verbose comments
+4. Focus on the core functionality described in the design
 
-1. Generate REAL implementation code, not just mark tasks as complete
-2. Follow the existing code patterns shown in the workflow board component above
-3. Create or modify files with complete, working code
-4. Use React with TypeScript for components
-5. Use CSS Modules for styling (*.module.css)
-
-Respond with a JSON object containing:
+Respond with JSON:
 {
   "changeName": "${explicitChangeName}",
   "implementation": {
     "files": [
-      {
-        "path": "src/components/ComponentName/index.tsx",
-        "action": "create",
-        "content": "// Full TypeScript/React component code here..."
-      },
-      {
-        "path": "src/components/ComponentName/styles.module.css",
-        "action": "create",
-        "content": "/* Full CSS styles here... */"
-      }
+      {"path": "src/components/Name/index.tsx", "action": "create", "content": "code here"},
+      {"path": "src/components/Name/styles.module.css", "action": "create", "content": "css here"}
     ],
-    "summary": "Brief summary of what was implemented",
-    "completedTasks": ["Task descriptions that were completed"],
-    "remainingTasks": ["Tasks that need manual work or follow-up"],
-    "notes": "Any implementation notes"
+    "summary": "What was implemented",
+    "completedTasks": ["Task 1", "Task 2"],
+    "remainingTasks": [],
+    "notes": ""
   },
-  "prDescription": "Markdown PR description",
-  "confidence": 0-100
+  "prDescription": "PR description",
+  "confidence": 85
 }
 
-CRITICAL: The "files" array must contain actual code implementations. Do NOT return an empty files array or skip implementation.`;
+IMPORTANT: Keep code concise. The files array MUST contain actual implementations.`;
 }
 
 async function generateImplementation() {
@@ -454,7 +425,7 @@ async function generateImplementation() {
   const prompt = buildApplyPrompt();
 
   const response = await withRetry(() => anthropic.messages.create({
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-sonnet-4-5-20250514',
     max_tokens: 16384,
     messages: [{ role: 'user', content: prompt }]
   }));
@@ -474,7 +445,7 @@ async function analyzeConversation() {
   console.log('Step 1: Analyzing conversation...');
 
   const response = await withRetry(() => anthropic.messages.create({
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-sonnet-4-5-20250514',
     max_tokens: 4096,
     messages: [{ role: 'user', content: ANALYZE_PROMPT }]
   }));
@@ -496,7 +467,7 @@ async function generateProposal(analysis) {
   const prompt = buildProposePrompt(JSON.stringify(analysis, null, 2));
 
   const response = await withRetry(() => anthropic.messages.create({
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-sonnet-4-5-20250514',
     max_tokens: 8192,
     messages: [{ role: 'user', content: prompt }]
   }));
@@ -518,7 +489,7 @@ async function generateExploreUpdates() {
   const prompt = buildExplorePrompt();
 
   const response = await withRetry(() => anthropic.messages.create({
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-sonnet-4-5-20250514',
     max_tokens: 8192,
     messages: [{ role: 'user', content: prompt }]
   }));
