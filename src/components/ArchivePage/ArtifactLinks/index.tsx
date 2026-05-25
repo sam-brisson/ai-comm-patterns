@@ -2,32 +2,38 @@ import React from 'react';
 import styles from './styles.module.css';
 
 interface Props {
-  slug: string;
+  changeId: string;
   artifacts: {
-    proposal: boolean;
-    design: boolean;
-    tasks: boolean;
+    proposal?: string;
+    design?: string;
+    tasks?: string;
   };
 }
 
 const ARTIFACTS = [
-  { key: 'proposal', label: 'Proposal', path: 'proposal' },
-  { key: 'design', label: 'Design', path: 'design' },
-  { key: 'tasks', label: 'Tasks', path: 'tasks' },
+  { key: 'proposal', label: 'Proposal' },
+  { key: 'design', label: 'Design' },
+  { key: 'tasks', label: 'Tasks' },
 ] as const;
 
-export default function ArtifactLinks({ slug, artifacts }: Props) {
+export default function ArtifactLinks({ changeId, artifacts }: Props) {
+  const hasAny = ARTIFACTS.some(({ key }) => artifacts[key]);
+
+  if (!hasAny) {
+    return null;
+  }
+
   return (
     <div className={styles.container}>
       <span className={styles.label}>Artifacts:</span>
-      {ARTIFACTS.map(({ key, label, path }) => {
-        const exists = artifacts[key];
+      {ARTIFACTS.map(({ key, label }) => {
+        const exists = !!artifacts[key];
         return exists ? (
           <a
             key={key}
-            href={`/changes/${slug}/${path}`}
+            href={`/docs/collaboration/openspec-changes/${changeId}#${key}`}
             className={styles.link}
-            aria-label={`${label} for ${slug}`}
+            aria-label={`${label} for ${changeId}`}
           >
             {label}
           </a>
