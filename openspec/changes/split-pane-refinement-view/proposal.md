@@ -20,26 +20,13 @@ Each pane scrolls independently, allowing users to browse artifacts while keepin
 │  Change: example-change                                        [X] │
 ├────────────────────────────────────┬────────────────────────────────┤
 │  📄 Proposal                       │  Refinement                    │
-│  ─────────────────────────         │  ─────────────────────         │
-│  [artifact content...]             │  [textarea for feedback]       │
-│                                    │                                │
-│  📐 Design                         │                                │
-│  ─────────────────────────         │                                │
-│  [artifact content...]             │                                │
-│                                    │                                │
-│  ✅ Tasks                          │                                │
-│  ─────────────────────────         │                                │
-│  [artifact content...]             │                                │
-│                                    │                                │
-│  [scrollable]                      │  [sticky]                      │
-├────────────────────────────────────┴────────────────────────────────┤
-│                              [Cancel]  [Re-run with Feedback]       │
-└─────────────────────────────────────────────────────────────────────┘
+│  ...                               │  ...                           │
+└────────────────────────────────────┴────────────────────────────────┘
 ```
 
-## Success Criteria
+## Scrollbar Visibility
 
-- Users can scroll through artifacts without losing sight of the refinement input
-- Works well on typical screen sizes (1280px+ width)
-- Graceful fallback on smaller screens (stack vertically)
-- Maintains current modal functionality for non-refinement views
+The scrollbar in the left (artifacts) pane must be **persistently visible** — not only appearing on hover or active scroll. This ensures users are immediately aware that the pane contains scrollable content and do not miss artifacts below the fold.
+
+- Use CSS `overflow-y: scroll` (or equivalent) rather than `overflow-y: auto` on the scrollable pane so the scrollbar is always rendered.
+- This applies to any scrollable pane within the modal in refinement mode.
