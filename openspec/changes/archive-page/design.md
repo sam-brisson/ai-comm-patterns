@@ -2,124 +2,122 @@
 
 ## Overview
 
-This document describes the technical design for the `/archive` page, which surfaces all archived OpenSpec changes in a browsable, navigable UI. The design also anticipates a future change where the archive process becomes a foundational building block for the broader OpenSpec documentation site — so architectural decisions are made with that extensibility in mind.
+This document describes the technical design for the `/archive` page, a dedicated view within the OpenSpec application that surfaces all archived changes. The page must feel native to the OpenSpec UI and expose key metadata including title, archive timestamp, contributor GitHub IDs, and links to associated artifacts.
 
 ---
 
 ## Architecture Decisions
 
-### 1. Static Data Source (File-System Driven)
+### 1. New Route: `/archive`
+A dedicated top-level route is added to the application router. This keeps the concern isolated and makes the URL predictable and bookmarkable.
 
-OpenSpec changes live as directories in the repository (e.g. `changes/<change-name>/`). Archived changes are those that have reached the `archived` state, signaled by the presence of an `archived-at` field in a metadata file (e.g. `changes/<change-name>/meta.json` or the front-matter of `proposal.md`).
+**Rationale:** Archive browsing is a distinct mode of use from active change management. A top-level route signals this clearly and avoids polluting existing views.
 
-**Decision:** The archive page is powered by reading the file system at build time (static generation). This keeps the architecture simple, avoids the need for a database, and ensures the archive is always consistent with the repository state.
+### 2. Server-Side Data Fetching
+Archived change data is fetched server-side (e.g. via `getServerSideProps` or equivalent depending on the framework in use) rather than purely client-side.
 
-**Future-proofing:** When the archive becomes the foundation of a documentation site, this same file-system data model can be extended to generate full per-change documentation pages, changelogs, and navigation — without changing the underlying data contract.
+**Rationale:** Archive contents are relatively stable (items don't un-archive) and SEO/shareability of archive records is desirable. Server-side rendering also avoids a loading flash on initial visit.
 
-### 2. Metadata Contract
+### 3. Existing Data Layer
+The implementation reads from whatever data store already backs OpenSpec changes (filesystem, database, or API). No new storage mechanism is introduced — only a new query/filter for `status === 'archived'`.
 
-Each change directory must include a `meta.json` (or equivalent front-matter) file that provides the structured data the archive page needs. This formalizes a data contract that future documentation site work can build on.
+**Rationale:** Keeps the change small and avoids data model drift.
 
-Minimum required fields for the archive page:
-```json
-{
-  "name": "archive-page",
-  "title": "Archive Page",
-  "status": "archived",
-  "archivedAt": "2024-06-01"
-}
-```
-
-Artifact presence is inferred by checking for the existence of `proposal.md`, `design.md`, and `tasks.md` within the change directory.
-
-**Future-proofing:** Additional fields (e.g. `summary`, `tags`, `authors`, `relatedChanges`) can be added to `meta.json` incrementally without breaking the archive page.
-
-### 3. Route: `/archive`
-
-A dedicated top-level route. The page is statically generated at build time from the file-system data. No client-side data fetching is required for the initial list view.
-
-### 4. Per-Change Artifact Links
-
-Each archived change entry links to its artifacts. Initially these are rendered as direct links to the raw files or to a routed viewer page (e.g. `/archive/<change-name>/proposal`). The routing structure is designed to be extended in the future documentation site change.
-
-**Routing structure (current):**
-- `/archive` — list of all archived changes
-- `/archive/<change-name>` — detail/artifact index for a single archived change *(stub for now, extensible later)*
+### 4. Timestamp Precision
+Archive date is stored and displayed as a full ISO 8601 timestamp (e.g. `2024-11-03T14:22:00Z`), rendered in the user's local timezone via the browser. A human-readable relative label (e.g. "3 months ago") is shown alongside the full timestamp in a `<time>` element's `title` attribute for accessibility.
 
 ---
 
-## Component Breakdown
+## Component / Module Breakdown
 
-### `ArchivePage` (Route Component)
-- Fetches/receives the list of archived changes at build time
-- Renders the `ArchiveList` component
-- Handles empty state (no archived changes yet)
+```
+src/
+  pages/
+    archive/
+      index.tsx              # Route entry point — fetches data, renders ArchivePage
+  components/
+    archive/
+      ArchivePage.tsx        # Top-level layout component for the archive view
+      ArchiveList.tsx        # Renders the list of archived changes
+      ArchiveListItem.tsx    # Single archived change row/card
+      ContributorBadge.tsx   # Renders a GitHub ID as a linked badge/avatar chip
+  lib/
+    archive/
+      getArchivedChanges.ts  # Data access: queries and returns archived changes
+      types.ts               # ArchivedChange type definition
+```
 
-### `ArchiveList`
-- Receives an array of archived change entries
-- Renders a sorted list (most recently archived first)
-- Renders one `ArchiveEntry` per change
+---
 
-### `ArchiveEntry`
-- Props: `title`, `archivedAt`, `changeName`, `artifacts` (which artifact files are present)
-- Displays: change title, formatted archive date, artifact links
-- Links to `/archive/<change-name>` for the detail view (stub), or directly to artifact files
+## Data Model
 
-### `ArtifactLinks`
-- Sub-component of `ArchiveEntry`
-- Renders a set of pill/badge links for each available artifact (Proposal, Design, Tasks)
-- Only renders links for artifacts that actually exist
+### `ArchivedChange`
 
-### `ArchiveDetailPage` (Stub Route Component — `/archive/<change-name>`)
-- Minimal implementation now: displays the change title and lists artifacts with links
-- Designed to be expanded in the documentation site change into a full rendered artifact viewer
+```typescript
+export interface ArchivedChange {
+  /** Unique identifier / slug for the change */
+  id: string;
+
+  /** Human-readable title of the change */
+  title: string;
+
+  /** ISO 8601 timestamp of when the change was archived */
+  archivedAt: string;
+
+  /** GitHub usernames of contributors to the change */
+  contributors: string[];
+
+  /** Paths or URLs to available artifacts */
+  artifacts: {
+    proposal?: string;
+    design?: string;
+    tasks?: string;
+  };
+}
+```
 
 ---
 
 ## Data Flow
 
 ```
-Build Time:
-  File System
-    └── changes/<change-name>/meta.json   ──┐
-    └── changes/<change-name>/proposal.md ──┤
-    └── changes/<change-name>/design.md   ──┤──► getArchivedChanges() ──► ArchivePage props
-    └── changes/<change-name>/tasks.md    ──┘
-
-Render Time:
-  ArchivePage
-    └── ArchiveList
-          └── ArchiveEntry (× N)
-                └── ArtifactLinks
+User visits /archive
+       │
+       ▼
+archive/index.tsx (server-side)
+       │
+       ├─► getArchivedChanges()
+       │       │
+       │       └─► Reads change store, filters status === 'archived'
+       │           Returns ArchivedChange[]
+       │
+       └─► Props passed to ArchivePage
+               │
+               └─► ArchiveList (iterates items)
+                       │
+                       └─► ArchiveListItem (per change)
+                               ├─ Title
+                               ├─ archivedAt timestamp
+                               ├─ ContributorBadge[] (per GitHub ID)
+                               └─ Artifact links
 ```
-
-### `getArchivedChanges()` — Data Loading Function
-
-```typescript
-interface ArchivedChange {
-  name: string;          // directory/slug name
-  title: string;         // human-readable title
-  archivedAt: string;    // ISO date string
-  artifacts: {
-    proposal: boolean;
-    design: boolean;
-    tasks: boolean;
-  };
-}
-
-function getArchivedChanges(): ArchivedChange[]
-```
-
-- Reads all directories under `changes/`
-- Filters to those with `status: "archived"` in `meta.json`
-- For each, checks existence of `proposal.md`, `design.md`, `tasks.md`
-- Returns sorted array (descending by `archivedAt`)
 
 ---
 
 ## API Contracts
 
-No external API is required. All data is resolved at build time from the file system. The internal data contract is the `ArchivedChange` interface defined above.
+### `getArchivedChanges(): Promise<ArchivedChange[]>`
+
+- **Input:** None (reads from the configured data store)
+- **Output:** Array of `ArchivedChange`, sorted by `archivedAt` descending (most recently archived first)
+- **Errors:** Throws a typed `ArchiveFetchError` if the data store is unavailable; caller is responsible for catching and rendering an error state
+- **Notes:** If zero archived changes exist, returns an empty array (not an error)
+
+### Artifact Link Resolution
+Artifact links are resolved to paths within the OpenSpec repo/site (e.g. `/changes/{id}/proposal`, `/changes/{id}/design`, `/changes/{id}/tasks`). Only artifacts that exist are linked — missing artifacts are omitted from the UI.
+
+### Contributor GitHub ID Links
+Each GitHub ID links to `https://github.com/{githubId}` and opens in a new tab with `rel="noopener noreferrer"`.
 
 ---
 
@@ -127,15 +125,10 @@ No external API is required. All data is resolved at build time from the file sy
 
 | Dependency | Purpose |
 |---|---|
-| File system (`fs`, `path`) | Reading change directories and metadata |
-| Existing routing framework | Adding `/archive` and `/archive/[name]` routes |
-| Existing UI design system | Ensuring visual consistency with the rest of the app |
-| `meta.json` convention | New convention introduced for all changes |
-
-**Integration with future documentation site change:**
-- The `/archive/<change-name>` route stub and `ArchivedChange` data model are explicitly designed as extension points
-- `getArchivedChanges()` can be re-used or extended by the documentation site change
-- No breaking changes to the data model are expected when that change lands
+| Existing change data store | Source of archived changes and their metadata |
+| OpenSpec design system / component library | Ensures visual consistency per the proposal requirement |
+| Application router | Registration of the `/archive` route |
+| GitHub (external) | Contributor profile links (no API call required — links only) |
 
 ---
 
@@ -143,33 +136,30 @@ No external API is required. All data is resolved at build time from the file sy
 
 | Scenario | Handling |
 |---|---|
-| `changes/` directory is empty | Archive page renders empty state: "No archived changes yet." |
-| A change directory is missing `meta.json` | Skip that change with a build-time warning; do not fail the build |
-| `meta.json` is malformed | Skip with build-time warning; log the offending file path |
-| Artifact file is missing | `ArtifactLinks` simply omits the link for that artifact (no error) |
-| `/archive/<change-name>` visited for non-existent change | Render a 404 page using the app's standard not-found handling |
+| Data store unavailable | Display an inline error message on the page; log the error server-side |
+| Zero archived changes | Render a friendly empty state: "No archived changes yet." |
+| Contributor list is empty | Render nothing for contributors section (no broken UI) |
+| Artifact link target missing | Omit the link; do not render a broken anchor |
 
 ---
 
 ## Testing Approach
 
 ### Unit Tests
-- `getArchivedChanges()`: test with mock file system — correct filtering by status, correct artifact detection, correct sort order, graceful handling of missing/malformed `meta.json`
-- `ArchiveEntry`: renders title, date, and correct artifact links given various artifact combinations
-- `ArtifactLinks`: only renders links for present artifacts
+- `getArchivedChanges()` — mock the data store; assert correct filtering, sorting, and output shape
+- `ArchiveListItem` — snapshot + prop-driven rendering tests covering: full data, missing contributors, missing artifacts, empty artifact set
+- `ContributorBadge` — renders correct GitHub link and accessible label
 
-### Integration / Page Tests
-- `ArchivePage`: renders correctly with a list of mock archived changes
-- `ArchivePage`: renders empty state when no archived changes exist
-- `ArchiveDetailPage` stub: renders correctly for a known change name; returns 404 for unknown
+### Integration Tests
+- `/archive` route renders correctly with mocked data (happy path, empty state, error state)
+- Artifact links resolve to correct paths for changes that have all / some / no artifacts
 
-### Visual / Consistency Tests
-- Spot-check that the archive page uses the same layout, typography, and navigation as existing pages (can be a manual review step or a snapshot test)
+### Accessibility
+- `<time>` element used for archive timestamp with `dateTime` attribute set to ISO string
+- Contributor badges have descriptive `aria-label` (e.g. `"GitHub profile of octocat"`)
+- Page has a clear `<h1>` landmark
 
----
-
-## Future Considerations
-
-- **Documentation site change:** The `/archive/<change-name>` stub becomes a full rendered artifact viewer (markdown rendering, navigation between proposal/design/tasks, search)
-- **Metadata enrichment:** `meta.json` gains `summary`, `tags`, `authors` fields to power richer archive browsing and documentation site index pages
-- **RSS / changelog feed:** `getArchivedChanges()` output can trivially power a changelog or feed once the documentation site change lands
+### Manual / Visual QA
+- Verify the page looks native within the OpenSpec UI (typography, spacing, navigation integration)
+- Verify timestamps display in local timezone
+- Verify GitHub ID links open correctly
