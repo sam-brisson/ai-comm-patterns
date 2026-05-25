@@ -3,12 +3,44 @@ sidebar_position: 12
 title: OpenSpec Archive
 ---
 
+import { usePluginData } from '@docusaurus/useGlobalData';
+
+export const ArchivedChanges = () => {
+  const { changes } = usePluginData('openspec-artifacts-plugin');
+  const archived = changes.filter(c => c.workflowStatus === 'archived');
+
+  if (archived.length === 0) {
+    return <p style={{color: '#8b949e', fontStyle: 'italic'}}>No archived changes yet.</p>;
+  }
+
+  return (
+    <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+      {archived.map(change => (
+        <div key={change.id} style={{
+          backgroundColor: '#161b22',
+          border: '1px solid #30363d',
+          borderRadius: '8px',
+          padding: '1.25rem'
+        }}>
+          <h3 style={{margin: '0 0 0.5rem 0', fontSize: '1.1rem'}}>{change.title || change.id}</h3>
+          {change.description && (
+            <p style={{color: '#8b949e', margin: '0 0 0.75rem 0', fontSize: '0.9rem'}}>{change.description}</p>
+          )}
+          {change.archivedAt && (
+            <span style={{color: '#6e7681', fontSize: '0.8rem'}}>Archived {change.archivedAt}</span>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+
 # OpenSpec Archive
 
-*Coming Soon*
+Historical record of changes that have completed the OpenSpec workflow.
 
-This page will allow you to explore completed OpenSpec changes — the full history of what we've built, including the artifacts and learnings from each change.
+<ArchivedChanges />
 
-For now, archived changes can be found in the `openspec/changes/archive/` directory of the repository.
+---
 
 [← Back to Active Changes](/docs/collaboration/openspec-changes)
