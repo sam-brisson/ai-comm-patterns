@@ -85,14 +85,20 @@
   border: 1px solid #30363d;
   border-radius: 6px;
   padding: 0.75rem;
-  cursor: pointer;
-  transition: all 0.2s;
+  cursor: grab;
+  transition: all 0.15s ease;
 }
 
 .changeCard:hover {
   background-color: #2d333b;
   border-color: #10B981;
   box-shadow: 0 0 0 1px #10B981;
+}
+
+.changeCard:active {
+  cursor: grabbing;
+  transform: rotate(2deg) scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .changeTitle {
