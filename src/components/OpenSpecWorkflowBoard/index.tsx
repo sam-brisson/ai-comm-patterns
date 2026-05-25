@@ -55,6 +55,7 @@ interface WizardState {
   changeName: string;
   action: ActionType;
   transcript: string;
+  change?: Change; // Store change for advance mode to show artifacts
 }
 
 // Build GitHub issue URL with pre-filled content
@@ -220,6 +221,7 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
       changeName: change.id,
       action,
       transcript: '',
+      change, // Store change for split-pane artifact display
     });
   };
 
@@ -317,6 +319,7 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
         changeName: draggedChange.id,
         action: nextAction.action,
         transcript: '',
+        change: draggedChange, // Include change for split-pane artifact display
       });
     }
 
@@ -505,58 +508,147 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
         </div>
       )}
 
-      {/* Advance Wizard Modal */}
+      {/* Wizard Modal - Split pane for advance mode, single column for new */}
       {wizardState?.isOpen && (
         <div className={styles.modalOverlay} onClick={closeWizard}>
-          <div className={styles.wizardModal} onClick={(e) => e.stopPropagation()}>
-            <div className={styles.wizardHeader}>
-              <span className={styles.wizardTitle}>
-                {wizardState.mode === 'new' ? 'Start New Change' :
-                  `Advance to ${
-                    wizardState.action === 'propose' ? 'Proposed' :
-                    wizardState.action === 'design' ? 'Designed' :
-                    wizardState.action === 'apply' ? 'Applied' :
-                    'Archived'
-                  }`
-                }
-              </span>
-              <button className={styles.modalClose} onClick={closeWizard}>×</button>
-            </div>
-
-            <div className={styles.wizardContent}>
-              {/* Change name input (editable for new, read-only for advance) */}
-              <div className={styles.wizardField}>
-                <label className={styles.wizardLabel}>Change Name</label>
-                {wizardState.mode === 'new' ? (
-                  <>
-                    <input
-                      type="text"
-                      className={`${styles.wizardInput} ${
-                        wizardState.changeName && !isValidChangeName(wizardState.changeName)
-                          ? styles.wizardInputError
-                          : ''
-                      }`}
-                      value={wizardState.changeName}
-                      onChange={(e) => updateWizardField('changeName', e.target.value.toLowerCase().replace(/\s+/g, '-'))}
-                      placeholder="my-new-feature"
-                      autoFocus
-                    />
-                    <span className={styles.wizardHint}>
-                      kebab-case, will become folder name
-                    </span>
-                    {wizardState.changeName && !isValidChangeName(wizardState.changeName) && (
-                      <span className={styles.wizardError}>
-                        Must be kebab-case (e.g., my-feature-name)
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  <div className={styles.wizardReadOnly}>{wizardState.changeName}</div>
-                )}
+          {/* Split-pane layout for advance mode with artifacts */}
+          {wizardState.mode === 'advance' && wizardState.change ? (
+            <div className={styles.splitPaneModal} onClick={(e) => e.stopPropagation()}>
+              <div className={styles.wizardHeader}>
+                <span className={styles.wizardTitle}>
+                  {wizardState.action === 'propose' ? 'Refine Proposal' :
+                   wizardState.action === 'design' ? 'Generate Design' :
+                   wizardState.action === 'apply' ? 'Apply Design' :
+                   'Archive Change'}: {wizardState.change.title || wizardState.changeName}
+                </span>
+                <button className={styles.modalClose} onClick={closeWizard}>×</button>
               </div>
 
-              {/* Action selection (only for new mode) */}
-              {wizardState.mode === 'new' && (
+              <div className={styles.splitPaneContainer}>
+                {/* Left pane: Scrollable artifacts */}
+                <div className={styles.artifactPane} aria-label="Artifacts">
+                  {/* Proposal section */}
+                  <div className={styles.artifactSection}>
+                    <div className={styles.artifactSectionHeader}>
+                      📄 Proposal
+                    </div>
+                    {wizardState.change.artifacts.proposal ? (
+                      <div
+                        className={styles.artifactSectionContent}
+                        dangerouslySetInnerHTML={{
+                          __html: renderMarkdown(wizardState.change.artifacts.proposal)
+                        }}
+                      />
+                    ) : (
+                      <div className={styles.artifactEmpty}>No proposal yet</div>
+                    )}
+                  </div>
+
+                  {/* Design section */}
+                  <div className={styles.artifactSection}>
+                    <div className={styles.artifactSectionHeader}>
+                      📐 Design
+                    </div>
+                    {wizardState.change.artifacts.design ? (
+                      <div
+                        className={styles.artifactSectionContent}
+                        dangerouslySetInnerHTML={{
+                          __html: renderMarkdown(wizardState.change.artifacts.design)
+                        }}
+                      />
+                    ) : (
+                      <div className={styles.artifactEmpty}>No design yet</div>
+                    )}
+                  </div>
+
+                  {/* Tasks section */}
+                  <div className={styles.artifactSection}>
+                    <div className={styles.artifactSectionHeader}>
+                      ✅ Tasks
+                    </div>
+                    {wizardState.change.artifacts.tasks ? (
+                      <div
+                        className={styles.artifactSectionContent}
+                        dangerouslySetInnerHTML={{
+                          __html: renderMarkdown(wizardState.change.artifacts.tasks)
+                        }}
+                      />
+                    ) : (
+                      <div className={styles.artifactEmpty}>No tasks yet</div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Right pane: Refinement input */}
+                <div className={styles.refinementPane} aria-label="Refinement feedback">
+                  <div className={styles.refinementPaneTitle}>
+                    Refinement Feedback
+                  </div>
+                  <textarea
+                    className={`${styles.refinementTextarea} ${
+                      wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT ? styles.wizardInputError : ''
+                    }`}
+                    value={wizardState.transcript}
+                    onChange={(e) => updateWizardField('transcript', e.target.value)}
+                    placeholder="Add feedback or context for this step. What should the AI focus on? Any specific requirements?"
+                    autoFocus
+                  />
+                  <div className={styles.wizardCharCount}>
+                    <span className={
+                      wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT
+                        ? styles.wizardCharCountError
+                        : wizardState.transcript.length > TRANSCRIPT_WARNING_THRESHOLD
+                        ? styles.wizardCharCountWarning
+                        : ''
+                    }>
+                      {wizardState.transcript.length.toLocaleString()} / {TRANSCRIPT_CHAR_LIMIT.toLocaleString()}
+                    </span>
+                  </div>
+                  <button
+                    className={styles.refinementSubmitButton}
+                    onClick={handleWizardSubmit}
+                    disabled={!isWizardValid()}
+                  >
+                    Create GitHub Issue
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* Single-column layout for new change mode */
+            <div className={styles.wizardModal} onClick={(e) => e.stopPropagation()}>
+              <div className={styles.wizardHeader}>
+                <span className={styles.wizardTitle}>Start New Change</span>
+                <button className={styles.modalClose} onClick={closeWizard}>×</button>
+              </div>
+
+              <div className={styles.wizardContent}>
+                {/* Change name input */}
+                <div className={styles.wizardField}>
+                  <label className={styles.wizardLabel}>Change Name</label>
+                  <input
+                    type="text"
+                    className={`${styles.wizardInput} ${
+                      wizardState.changeName && !isValidChangeName(wizardState.changeName)
+                        ? styles.wizardInputError
+                        : ''
+                    }`}
+                    value={wizardState.changeName}
+                    onChange={(e) => updateWizardField('changeName', e.target.value.toLowerCase().replace(/\s+/g, '-'))}
+                    placeholder="my-new-feature"
+                    autoFocus
+                  />
+                  <span className={styles.wizardHint}>
+                    kebab-case, will become folder name
+                  </span>
+                  {wizardState.changeName && !isValidChangeName(wizardState.changeName) && (
+                    <span className={styles.wizardError}>
+                      Must be kebab-case (e.g., my-feature-name)
+                    </span>
+                  )}
+                </div>
+
+                {/* Action selection */}
                 <div className={styles.wizardField}>
                   <label className={styles.wizardLabel}>How do you want to start?</label>
                   <div className={styles.wizardRadioGroup}>
@@ -586,69 +678,52 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
                     </label>
                   </div>
                 </div>
-              )}
 
-              {/* Action display (for advance mode) */}
-              {wizardState.mode === 'advance' && (
+                {/* Transcript textarea */}
                 <div className={styles.wizardField}>
-                  <label className={styles.wizardLabel}>Action</label>
-                  <div className={styles.wizardReadOnly}>
-                    <code>/opsx:{wizardState.action}</code>
+                  <label className={styles.wizardLabel}>Transcript / Instructions</label>
+                  <textarea
+                    className={`${styles.wizardTextarea} ${
+                      wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT ? styles.wizardInputError : ''
+                    }`}
+                    value={wizardState.transcript}
+                    onChange={(e) => updateWizardField('transcript', e.target.value)}
+                    placeholder="Brief description to get started. You can add the full transcript in the GitHub issue before submitting..."
+                    rows={6}
+                  />
+                  <div className={styles.wizardCharCount}>
+                    <span className={
+                      wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT
+                        ? styles.wizardCharCountError
+                        : wizardState.transcript.length > TRANSCRIPT_WARNING_THRESHOLD
+                        ? styles.wizardCharCountWarning
+                        : ''
+                    }>
+                      {wizardState.transcript.length.toLocaleString()} / {TRANSCRIPT_CHAR_LIMIT.toLocaleString()}
+                    </span>
+                    <span className={styles.wizardCharCountHint}>
+                      {wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT
+                        ? 'Over limit - trim here, then paste full transcript in GitHub issue'
+                        : 'Larger transcripts can be added in the next step'}
+                    </span>
                   </div>
                 </div>
-              )}
+              </div>
 
-              {/* Transcript/instructions textarea */}
-              <div className={styles.wizardField}>
-                <label className={styles.wizardLabel}>
-                  {wizardState.mode === 'new' ? 'Transcript / Instructions' : 'Additional Context'}
-                  {wizardState.mode === 'advance' && <span className={styles.wizardOptional}>(optional)</span>}
-                </label>
-                <textarea
-                  className={`${styles.wizardTextarea} ${
-                    wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT ? styles.wizardInputError : ''
-                  }`}
-                  value={wizardState.transcript}
-                  onChange={(e) => updateWizardField('transcript', e.target.value)}
-                  placeholder={
-                    wizardState.mode === 'new'
-                      ? 'Brief description to get started. You can add the full transcript in the GitHub issue before submitting...'
-                      : 'Add context for this step. You can add more detail in the GitHub issue before submitting...'
-                  }
-                  rows={6}
-                />
-                <div className={styles.wizardCharCount}>
-                  <span className={
-                    wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT
-                      ? styles.wizardCharCountError
-                      : wizardState.transcript.length > TRANSCRIPT_WARNING_THRESHOLD
-                      ? styles.wizardCharCountWarning
-                      : ''
-                  }>
-                    {wizardState.transcript.length.toLocaleString()} / {TRANSCRIPT_CHAR_LIMIT.toLocaleString()}
-                  </span>
-                  <span className={styles.wizardCharCountHint}>
-                    {wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT
-                      ? 'Over limit - trim here, then paste full transcript in GitHub issue'
-                      : 'Larger transcripts can be added in the next step'}
-                  </span>
-                </div>
+              <div className={styles.wizardFooter}>
+                <button className={styles.wizardCancelButton} onClick={closeWizard}>
+                  Cancel
+                </button>
+                <button
+                  className={styles.wizardSubmitButton}
+                  onClick={handleWizardSubmit}
+                  disabled={!isWizardValid()}
+                >
+                  Create GitHub Issue
+                </button>
               </div>
             </div>
-
-            <div className={styles.wizardFooter}>
-              <button className={styles.wizardCancelButton} onClick={closeWizard}>
-                Cancel
-              </button>
-              <button
-                className={styles.wizardSubmitButton}
-                onClick={handleWizardSubmit}
-                disabled={!isWizardValid()}
-              >
-                Create GitHub Issue
-              </button>
-            </div>
-          </div>
+          )}
         </div>
       )}
     </div>
