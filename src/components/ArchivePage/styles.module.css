@@ -1,67 +1,86 @@
 .main {
+  padding: 2rem;
+  min-height: calc(100vh - 60px);
+  background-color: #0d1117;
+}
+
+.container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
 }
 
 .header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
-  flex-wrap: wrap;
+  border-bottom: 1px solid #30363d;
 }
 
-.headerContent {
-  flex: 1;
-}
-
-.title {
-  margin: 0 0 0.25rem;
+.heading {
   font-size: 2rem;
-  font-weight: 700;
-  color: var(--ifm-heading-color);
+  font-weight: 600;
+  color: #e6edf3;
+  margin: 0 0 0.5rem 0;
 }
 
 .description {
-  margin: 0;
-  color: var(--ifm-color-emphasis-700);
-  font-size: 0.95rem;
-}
-
-.meta {
-  display: flex;
-  align-items: center;
-  padding-top: 0.25rem;
+  color: #8b949e;
+  font-size: 1rem;
+  margin: 0 0 1rem 0;
 }
 
 .count {
-  font-size: 0.85rem;
-  color: var(--ifm-color-emphasis-600);
-  background: var(--ifm-color-emphasis-100);
+  display: inline-block;
+  background-color: #21262d;
+  color: #8b949e;
   padding: 0.25rem 0.75rem;
-  border-radius: 12px;
-  font-weight: 500;
-}
-
-.content {
-  min-height: 200px;
+  border-radius: 20px;
+  font-size: 0.85rem;
 }
 
 .empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-  border: 2px dashed var(--ifm-color-emphasis-200);
-  border-radius: 8px;
-  color: var(--ifm-color-emphasis-500);
-  font-size: 1rem;
+  text-align: center;
+  padding: 3rem;
+  color: #8b949e;
+  font-style: italic;
 }
 
-.empty p {
+.list {
+  list-style: none;
+  padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: #10B981;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #e6edf3;
+  margin: 0 0 0.5rem 0;
+}
+
+.cardDescription {
+  color: #8b949e;
+  font-size: 0.9rem;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.5;
+}
+
+.cardDate {
+  display: inline-block;
+  color: #6e7681;
+  font-size: 0.8rem;
 }
