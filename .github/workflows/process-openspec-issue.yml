@@ -143,6 +143,8 @@ jobs:
 
           git checkout -b $BRANCH_NAME
           git add openspec/
+          # Also add src/ for apply mode which generates implementation files
+          git add src/ 2>/dev/null || true
 
           # Check if there are changes to commit
           if git diff --staged --quiet; then
