@@ -2,9 +2,10 @@
   "id": "workflow-board-enhancement",
   "title": "Workflow Board Enhancement",
   "description": "Add interactive controls to the OpenSpec workflow board: Start New Change button, Advance button in modals, and drag-to-advance between columns.",
-  "workflowStatus": "applied",
+  "workflowStatus": "archived",
   "resultLink": "/ai-comm-patterns/docs/collaboration/openspec-changes",
   "resultLabel": "View Board",
   "createdAt": "2026-05-02",
-  "updatedAt": "2026-05-02"
+  "updatedAt": "2026-05-25",
+  "archivedAt": "2026-05-25"
 }
