@@ -2,9 +2,10 @@
   "id": "tdd-explorer-enhancement",
   "title": "TDD Knowledge Page with Example Mapping",
   "description": "Interactive documentation teaching TDD workflow using Example Mapping and Pytest, modeled on the OpenSpec demo pattern.",
-  "workflowStatus": "applied",
+  "workflowStatus": "archived",
   "resultLink": "/ai-comm-patterns/docs/experimentation/tdd-example-mapping",
   "resultLabel": "View Demo",
   "createdAt": "2026-03-15",
-  "updatedAt": "2026-04-10"
+  "updatedAt": "2026-05-25",
+  "archivedAt": "2026-05-25"
 }
