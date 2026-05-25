@@ -2,7 +2,7 @@
   "id": "split-pane-refinement-view",
   "title": "Split-Pane Refinement View",
   "description": "Add a split-pane layout to the change modal so users can view artifacts on the left while authoring refinements on the right.",
-  "workflowStatus": "proposed",
+  "workflowStatus": "designed",
   "resultLink": null,
   "resultLabel": null,
   "createdAt": "2026-05-25",
