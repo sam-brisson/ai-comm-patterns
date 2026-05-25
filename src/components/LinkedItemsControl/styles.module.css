@@ -1,0 +1,100 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.groupLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ifm-color-emphasis-600);
+  white-space: nowrap;
+}
+
+.badges {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  max-width: 200px;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.badge:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.badgePr {
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+[data-theme='dark'] .badgePr {
+  background: #1e3a5f;
+  color: #93c5fd;
+  border-color: #1d4ed8;
+}
+
+.badgeIssue {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+[data-theme='dark'] .badgeIssue {
+  background: #451a03;
+  color: #fcd34d;
+  border-color: #92400e;
+}
+
+.badgePrefix {
+  font-weight: 700;
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.badgeNumber {
+  font-weight: 700;
+}
+
+.badgeTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+  display: inline-block;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
