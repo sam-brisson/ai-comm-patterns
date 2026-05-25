@@ -2,7 +2,7 @@
   "id": "archive-page",
   "title": "Archive Page",
   "description": "As changes move through the OpenSpec workflow, some reach an archived state. Currently there is no dedicated place in the UI to view these archived changes — users have no way to browse historical wor...",
-  "workflowStatus": "proposed",
+  "workflowStatus": "designed",
   "resultLink": null,
   "resultLabel": null,
   "createdAt": "2026-05-25",
