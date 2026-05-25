@@ -11,6 +11,7 @@ on:
       - 'src/css/**'
       - 'docs/**'
       - 'docusaurus.config.ts'
+  workflow_dispatch:  # Allow manual/programmatic triggering
 
 jobs:
   deploy:

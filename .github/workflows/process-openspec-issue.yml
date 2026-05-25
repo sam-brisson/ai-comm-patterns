@@ -196,6 +196,15 @@ jobs:
               });
               console.log(`Auto-merged PR #${pr.data.number}`);
 
+              // Trigger deploy workflow (GITHUB_TOKEN merges don't trigger other workflows)
+              await github.rest.actions.createWorkflowDispatch({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'deploy-on-openspec-merge.yml',
+                ref: 'main'
+              });
+              console.log('Triggered deploy workflow');
+
               // Comment on original issue about auto-merge
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
