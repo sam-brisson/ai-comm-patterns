@@ -627,17 +627,11 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
                   }>
                     {wizardState.transcript.length.toLocaleString()} / {TRANSCRIPT_CHAR_LIMIT.toLocaleString()}
                   </span>
-                  {wizardState.transcript.length > TRANSCRIPT_WARNING_THRESHOLD &&
-                   wizardState.transcript.length <= TRANSCRIPT_CHAR_LIMIT && (
-                    <span className={styles.wizardCharCountHint}>
-                      Approaching limit - you can add more in the GitHub issue
-                    </span>
-                  )}
-                  {wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT && (
-                    <span className={styles.wizardCharCountHint}>
-                      Over limit - trim here, then paste full transcript in GitHub issue
-                    </span>
-                  )}
+                  <span className={styles.wizardCharCountHint}>
+                    {wizardState.transcript.length > TRANSCRIPT_CHAR_LIMIT
+                      ? 'Over limit - trim here, then paste full transcript in GitHub issue'
+                      : 'Larger transcripts can be added in the next step'}
+                  </span>
                 </div>
               </div>
             </div>
