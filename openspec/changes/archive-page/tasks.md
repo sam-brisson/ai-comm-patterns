@@ -1,79 +1,117 @@
 # Archive Page — Tasks
 
-## Phase 1: Data Foundation
+## Phase 1: Data Layer
 
-### Metadata Convention
+- [ ] **Define `ArchivedChange` TypeScript type**
+  - Fields: `id`, `title`, `archivedAt` (ISO 8601 string), `contributors` (string[]), `artifacts` ({ proposal?, design?, tasks? })
+  - Place in `src/lib/archive/types.ts`
+  - _Acceptance:_ Type is exported and importable; all fields documented with JSDoc
 
-- [ ] **Define `meta.json` schema** — document the required and optional fields (`name`, `title`, `status`, `archivedAt`) and add a schema file or README note to the `changes/` directory
-  - *Acceptance:* Schema is documented; required fields are clearly specified; future optional fields are noted as extension points
-  - *Complexity: Low*
+- [ ] **Implement `getArchivedChanges()` data accessor**
+  - Reads from the existing change data store
+  - Filters to changes with `status === 'archived'`
+  - Returns results sorted by `archivedAt` descending
+  - Throws a typed `ArchiveFetchError` on store failure
+  - _Acceptance:_ Returns correct shape; empty array when no archived changes exist; error thrown (not swallowed) on store failure
 
-- [ ] **Audit existing change directories** — review all existing change directories and ensure each has a valid `meta.json` (or equivalent) with at minimum `name`, `title`, and `status`; add `archivedAt` to any that are already in archived state
-  - *Acceptance:* Every change directory has a parseable `meta.json`; all archived changes have an `archivedAt` date
-  - *Complexity: Low*
-
-### Data Loading
-
-- [ ] **Implement `getArchivedChanges()` function** — reads all directories under `changes/`, filters by `status: "archived"`, checks artifact file existence, returns sorted `ArchivedChange[]` (descending by `archivedAt`); skips and warns on missing/malformed `meta.json`
-  - *Acceptance:* Function returns correct results against a set of mock change directories; handles missing/malformed metadata gracefully without throwing; sort order is correct
-  - *Complexity: Medium*
-
-- [ ] **Unit test `getArchivedChanges()`** — cover: happy path with multiple archived changes, filtering out non-archived changes, missing `meta.json`, malformed `meta.json`, missing artifact files, empty `changes/` directory
-  - *Acceptance:* All test cases pass; edge cases are covered
-  - *Complexity: Low*
-
----
-
-## Phase 2: Components
-
-- [ ] **Implement `ArtifactLinks` component** — renders pill/badge links for proposal, design, and tasks; only renders a link if the corresponding artifact is present; links point to `/archive/<change-name>/<artifact>`
-  - *Acceptance:* Renders correct links for all combinations of artifact presence; renders nothing for absent artifacts; links are accessible (proper anchor text)
-  - *Complexity: Low*
-
-- [ ] **Implement `ArchiveEntry` component** — displays change title, formatted archive date, and `ArtifactLinks`; accepts `ArchivedChange` props
-  - *Acceptance:* Renders all required fields; date is human-readable; integrates `ArtifactLinks`; matches app design system styling
-  - *Complexity: Low*
-
-- [ ] **Implement `ArchiveList` component** — accepts array of `ArchivedChange`, renders one `ArchiveEntry` per item
-  - *Acceptance:* Renders correct number of entries; passes correct props to each `ArchiveEntry`
-  - *Complexity: Low*
-
-- [ ] **Unit test components** — test `ArtifactLinks` (various artifact presence combinations), `ArchiveEntry` (renders all fields correctly), `ArchiveList` (renders correct count)
-  - *Acceptance:* All component unit tests pass
-  - *Complexity: Low*
+- [ ] **Write unit tests for `getArchivedChanges()`**
+  - Test: happy path with multiple archived changes (correct sort order)
+  - Test: filters out non-archived changes
+  - Test: returns empty array when no archived changes
+  - Test: throws `ArchiveFetchError` when store is unavailable
+  - _Acceptance:_ All tests pass; coverage includes all branches
 
 ---
 
-## Phase 3: Pages & Routing
+## Phase 2: Core Components
 
-- [ ] **Implement `/archive` route and `ArchivePage`** — statically generated page; calls `getArchivedChanges()` at build time; renders `ArchiveList`; handles empty state with a clear message
-  - *Acceptance:* Page renders all archived changes sorted by date descending; empty state message shown when no archived changes exist; page uses app-consistent layout and navigation
-  - *Complexity: Medium*
+- [ ] **Implement `ContributorBadge` component**
+  - Props: `githubId: string`
+  - Renders as a linked chip/badge pointing to `https://github.com/{githubId}`
+  - Opens in new tab with `rel="noopener noreferrer"`
+  - Includes `aria-label="GitHub profile of {githubId}"`
+  - Styled consistently with the OpenSpec design system
+  - _Acceptance:_ Renders correct link; accessible label present; visual review passes
 
-- [ ] **Implement `/archive/<change-name>` stub route and `ArchiveDetailPage`** — minimal implementation: displays change title and lists available artifacts with links; returns 404 for unknown change names; designed as an extension point for the future documentation site change
-  - *Acceptance:* Page renders for valid change names; 404 for invalid names; artifact links are present and correct; stub nature is noted in code comments for future extensibility
-  - *Complexity: Low*
+- [ ] **Implement `ArchiveListItem` component**
+  - Props: `change: ArchivedChange`
+  - Displays: title, archive timestamp (human-readable + ISO `<time>` element), contributors (via `ContributorBadge`), artifact links
+  - Artifact links only rendered when the artifact exists
+  - Gracefully handles empty `contributors` array (renders nothing for that section)
+  - _Acceptance:_ All required fields displayed; missing artifacts/contributors don't break rendering; snapshot test added
 
-- [ ] **Add archive link to app navigation** — add a link to `/archive` in the main navigation so it is discoverable from any page
-  - *Acceptance:* Navigation link is present and functional; visually consistent with other nav items
-  - *Complexity: Low*
+- [ ] **Implement `ArchiveList` component**
+  - Props: `changes: ArchivedChange[]`
+  - Renders a list of `ArchiveListItem` components
+  - Renders a friendly empty state when `changes` is empty: _"No archived changes yet."_
+  - _Acceptance:_ Renders correct number of items; empty state shown when array is empty
+
+- [ ] **Implement `ArchivePage` layout component**
+  - Contains a clear `<h1>` page heading (e.g. "Archive")
+  - Renders `ArchiveList` with provided data
+  - Renders an inline error message when an error prop is passed
+  - Styled to feel native within the OpenSpec application
+  - _Acceptance:_ Page has `<h1>` landmark; error state renders correctly; visual consistency review passes
 
 ---
 
-## Phase 4: Integration & Quality
+## Phase 3: Route & Page Integration
 
-- [ ] **Integration test: `/archive` page** — test with mock data: correct entries rendered, correct empty state, correct sort order
-  - *Acceptance:* Integration tests pass
-  - *Complexity: Low*
+- [ ] **Create `/archive` route and page entry point**
+  - Add `src/pages/archive/index.tsx` (or framework equivalent)
+  - Fetches data server-side using `getArchivedChanges()`
+  - Passes `ArchivedChange[]` (or error state) as props to `ArchivePage`
+  - _Acceptance:_ Navigating to `/archive` renders the page with real data; SSR confirmed (no client-side loading flash on first paint)
 
-- [ ] **Integration test: `/archive/<change-name>` stub** — test valid and invalid change name cases
-  - *Acceptance:* Integration tests pass; 404 case is covered
-  - *Complexity: Low*
+- [ ] **Register `/archive` in application navigation**
+  - Add an "Archive" link to the appropriate nav component (sidebar, header, etc.)
+  - Link is active/highlighted when on the `/archive` route
+  - _Acceptance:_ Link is visible and navigates correctly; active state applied
 
-- [ ] **Visual consistency review** — manually verify the archive page and entry detail stub use the same layout, typography, spacing, and navigation patterns as existing pages
-  - *Acceptance:* No visual inconsistencies identified; page feels native to the app
-  - *Complexity: Low*
+---
 
-- [ ] **Document the `meta.json` convention in the project README or CONTRIBUTING guide** — so future changes know to include a valid `meta.json`
-  - *Acceptance:* Documentation is clear, accurate, and references the schema; future contributors know what is required when archiving a change
-  - *Complexity: Low*
+## Phase 4: Timestamp Display
+
+- [ ] **Implement timestamp rendering in `ArchiveListItem`**
+  - Display a relative label (e.g. "3 months ago") as the visible text
+  - Wrap in a `<time dateTime="{ISO string}">` element
+  - Include the full formatted timestamp in the `title` attribute for tooltip/accessibility
+  - Render in the user's local timezone (client-side locale formatting)
+  - _Acceptance:_ `dateTime` attribute contains valid ISO 8601 string; relative label is human-readable; full timestamp visible on hover
+
+---
+
+## Phase 5: Testing & QA
+
+- [ ] **Write unit tests for `ArchiveListItem`**
+  - Test: renders all fields with full data
+  - Test: omits artifact links when artifacts are missing
+  - Test: renders no contributor section when `contributors` is empty
+  - Test: `<time>` element has correct `dateTime` attribute
+  - _Acceptance:_ All tests pass
+
+- [ ] **Write unit tests for `ArchiveList`**
+  - Test: renders correct number of `ArchiveListItem` components
+  - Test: renders empty state when array is empty
+  - _Acceptance:_ All tests pass
+
+- [ ] **Write integration tests for `/archive` route**
+  - Test: happy path — page renders list with mocked archived changes
+  - Test: empty state — page renders empty state message
+  - Test: error state — page renders error message when data fetch fails
+  - _Acceptance:_ All tests pass against the rendered route
+
+- [ ] **Accessibility review**
+  - Verify `<h1>` landmark present
+  - Verify all `<time>` elements have `dateTime` attributes
+  - Verify `ContributorBadge` `aria-label` values are descriptive
+  - Run automated a11y linter (e.g. axe) against the page
+  - _Acceptance:_ No critical or serious a11y violations
+
+- [ ] **Visual / manual QA**
+  - Verify page styling is consistent with the rest of OpenSpec
+  - Verify timestamps display in local timezone
+  - Verify GitHub contributor links open correctly in a new tab
+  - Verify artifact links navigate to correct destinations
+  - Verify navigation link highlights correctly when on `/archive`
+  - _Acceptance:_ All checks pass; sign-off from a second reviewer
