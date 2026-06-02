@@ -10,7 +10,7 @@ const DEFAULT_GITHUB_REPO = 'https://github.com/sam-brisson/ai-comm-patterns';
 const TRANSCRIPT_CHAR_LIMIT = 5000;
 const TRANSCRIPT_WARNING_THRESHOLD = 4000;
 
-type ActionType = 'explore' | 'propose' | 'design' | 'apply' | 'archive';
+type ActionType = 'explore' | 'propose' | 'design' | 'document' | 'archive';
 
 // Workflow stages in order
 const WORKFLOW_STAGES = [
@@ -34,16 +34,16 @@ const WORKFLOW_STAGES = [
     id: 'designed',
     label: 'Designed',
     color: '#8B5CF6',
-    description: 'Design complete, ready to implement',
+    description: 'Design complete, ready for documentation',
     currentAction: { label: 'Refine Design', command: 'design' as ActionType },
-    nextAction: { label: 'Apply Design', command: 'apply' as ActionType }
+    nextAction: { label: 'Create Documentation', command: 'document' as ActionType }
   },
   {
-    id: 'applied',
-    label: 'Applied',
+    id: 'documented',
+    label: 'Documentation',
     color: '#10B981',
-    description: 'Implementation complete, ready for review',
-    currentAction: { label: 'Re-apply', command: 'apply' as ActionType },
+    description: 'Converting artifacts to knowledge pages',
+    currentAction: { label: 'Refine Docs', command: 'document' as ActionType },
     nextAction: { label: 'Archive Change', command: 'archive' as ActionType }
   },
 ];
@@ -93,7 +93,7 @@ interface Change {
   id: string;
   title?: string;
   description?: string;
-  workflowStatus?: 'exploring' | 'proposed' | 'designed' | 'applied' | 'archived';
+  workflowStatus?: 'exploring' | 'proposed' | 'designed' | 'documented' | 'archived';
   resultLink?: string | null;
   resultLabel?: string | null;
   createdAt?: string;
@@ -518,7 +518,7 @@ export default function OpenSpecWorkflowBoard(): React.ReactElement {
                 <span className={styles.wizardTitle}>
                   {wizardState.action === 'propose' ? 'Refine Proposal' :
                    wizardState.action === 'design' ? 'Generate Design' :
-                   wizardState.action === 'apply' ? 'Apply Design' :
+                   wizardState.action === 'document' ? 'Create Documentation' :
                    'Archive Change'}: {wizardState.change.title || wizardState.changeName}
                 </span>
                 <button className={styles.modalClose} onClick={closeWizard}>×</button>
