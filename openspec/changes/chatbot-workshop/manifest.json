@@ -1,0 +1,10 @@
+{
+  "id": "chatbot-workshop",
+  "title": "Cross-Functional Chatbot Workshop",
+  "description": "A hands-on workshop format enabling Product, Engineering, and Design teams to collaboratively build chatbot prototypes using free LLM APIs, promptfoo for TDD-style testing, and rapid iteration.",
+  "workflowStatus": "documented",
+  "createdAt": "2026-08-08",
+  "updatedAt": "2026-08-09",
+  "resultLink": "/ai-comm-patterns/docs/experimentation/chatbot-workshop",
+  "resultLabel": "View Workshop"
+}

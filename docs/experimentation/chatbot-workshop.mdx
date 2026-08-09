@@ -1,0 +1,211 @@
+---
+title: "Chatbot Workshop: TDD for AI"
+description: "A hands-on workshop where cross-functional teams build tested chatbots using promptfoo and free LLM APIs"
+sidebar_label: Chatbot Workshop
+tags: [workshop, tdd, chatbot, promptfoo, ai]
+---
+
+import { TDDCycleViewer, WorkshopPhaseAccordion } from '@site/src/components/ChatbotWorkshop';
+
+# Chatbot Workshop: TDD for AI
+
+**The Specification IS the Test.**
+
+Build a working, tested chatbot in under 4 hours using Test-Driven Development principles. This workshop brings Product, Engineering, and Design together to collaboratively define, build, and refine AI-powered conversations.
+
+## The Core Discipline
+
+Traditional software testing verifies that code behaves correctly. AI testing verifies that **conversations** behave correctly.
+
+In this workshop, you'll learn the TDD cycle for AI development:
+
+1. **Specify (RED)** — Write test cases that define expected behavior. Run them. Watch them fail.
+2. **Implement (GREEN)** — Write the system prompt. Run tests. Iterate until they pass.
+3. **Refine (REFACTOR)** — Add edge cases from user testing. Confirm no regressions.
+
+The tool we use: **[promptfoo](https://www.promptfoo.dev/)** — a CLI that runs your tests and shows pass/fail results everyone can see.
+
+---
+
+## Interactive Demo: The TDD Cycle
+
+Click through the phases below to see the TDD cycle in action.
+
+<TDDCycleViewer />
+
+---
+
+## Workshop Phases
+
+This is a **half-day workshop (3-4 hours)**. Expand each phase to see activities, artifacts, and role-specific guidance.
+
+<WorkshopPhaseAccordion />
+
+---
+
+## What You'll Build
+
+By the end of this workshop, your team will have:
+
+- **A tested chatbot** — System prompt with 5+ passing test cases
+- **Interactive UI** — Gradio interface for live conversations
+- **Test coverage** — Happy paths, guardrails, and tone assertions
+- **Shared understanding** — All roles can read and contribute to tests
+
+### Success Criteria
+
+| Role | Can demonstrate... |
+|------|---------------------|
+| **All** | Explain the TDD cycle: Specify → Implement → Refine |
+| **All** | Read and understand promptfoo YAML test cases |
+| **All** | Interpret eval output (red/green pass/fail) |
+| **Product** | Translate requirements into testable assertions |
+| **Design** | Specify tone and personality as `llm-rubric` criteria |
+| **Engineering** | Configure providers, run evals, debug failures |
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.8+
+- A free [Groq API key](https://console.groq.com) (no credit card required)
+- 5 minutes for setup
+
+### Quick Setup
+
+```bash
+# Clone the starter repo
+git clone https://github.com/your-org/chatbot-workshop-starter
+cd chatbot-workshop-starter
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Configure API key
+cp .env.example .env
+# Edit .env and add your GROQ_API_KEY
+
+# Run your first test (should fail!)
+promptfoo eval
+```
+
+### Repository Structure
+
+```
+chatbot-workshop-starter/
+├── promptfooconfig.yaml    # Your test suite
+├── system-prompt.txt       # Your chatbot's brain (starts empty!)
+├── app.py                  # Gradio chat interface
+├── requirements.txt        # Python dependencies
+├── .env.example            # API key template
+└── examples/               # Worked examples to reference
+    ├── customer-support/
+    ├── onboarding-buddy/
+    └── product-recommender/
+```
+
+---
+
+## Writing Test Cases
+
+All assertions use `llm-rubric` — describe expected behavior in plain English.
+
+### Anatomy of a Test
+
+```yaml
+tests:
+  - description: "Human-readable test name"
+    vars:
+      query: "What the user says"
+    assert:
+      - type: llm-rubric
+        value: "What good behavior looks like"
+```
+
+### Test Categories
+
+| Category | Purpose | Example |
+|----------|---------|---------|
+| **Happy Path** | Core functionality | "Offers to help with the return process" |
+| **Guardrails** | What NOT to do | "Does not discuss competitor products" |
+| **Tone** | Personality/voice | "Acknowledges frustration with empathy" |
+| **Edge Cases** | Unusual inputs | "Handles gibberish input gracefully" |
+
+### Common Assertion Types
+
+```yaml
+# Behavioral expectation (recommended default)
+- type: llm-rubric
+  value: "Response is helpful and on-topic"
+
+# Must contain specific text
+- type: contains
+  value: "return policy"
+
+# Must NOT contain text
+- type: not-contains
+  value: "Amazon"
+
+# Combine multiple assertions
+assert:
+  - type: llm-rubric
+    value: "Response is empathetic"
+  - type: not-contains
+    value: "I don't know"
+```
+
+---
+
+## Common Commands
+
+```bash
+# Run all tests
+promptfoo eval
+
+# Open web UI for detailed results
+promptfoo eval --view
+
+# Run without cache (force re-evaluation)
+promptfoo eval --no-cache
+
+# Filter tests by description
+promptfoo eval --filter-pattern "empathy"
+```
+
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| `GROQ_API_KEY not set` | Copy `.env.example` to `.env` and add your key |
+| Tests always pass | Make your `llm-rubric` more specific |
+| Tests always fail | Check `system-prompt.txt` isn't empty or all comments |
+| Rate limit errors | Wait 1 minute, or switch to OpenRouter backup |
+| YAML parse error | Check indentation (2 spaces, no tabs) |
+
+---
+
+## Resources
+
+- [Starter Repository](https://github.com/your-org/chatbot-workshop-starter) — Clone and start building
+- [Facilitator Guide](/docs/experimentation/chatbot-workshop-facilitator) — Run this workshop for your team
+- [promptfoo Documentation](https://www.promptfoo.dev/docs/) — Deep dive on testing
+- [Groq API](https://console.groq.com) — Get your free API key
+
+---
+
+## Next Steps
+
+After the workshop:
+
+1. **Expand your test suite** — Add more edge cases as you discover them
+2. **Deploy your chatbot** — Gradio makes it easy to share via Hugging Face Spaces
+3. **Integrate with CI** — promptfoo returns exit codes for automation
+4. **Share your learnings** — What patterns worked? What surprised you?

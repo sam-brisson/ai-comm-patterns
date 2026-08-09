@@ -1,0 +1,512 @@
+/* ===================
+   TDD Cycle Viewer
+   =================== */
+
+.tddViewer {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  background: var(--ifm-background-surface-color);
+}
+
+.tddHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #111827;
+  border-bottom: 1px solid #374151;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.tddHeaderText {
+  color: #fff;
+}
+
+/* Phase Navigation */
+.phaseNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--ifm-color-emphasis-50);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.phaseButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.phaseButton:hover {
+  border-color: var(--ifm-color-primary);
+  background: var(--ifm-color-primary-lightest);
+}
+
+.phaseActive {
+  border-color: var(--ifm-color-primary);
+  background: var(--ifm-color-primary-lightest);
+  box-shadow: 0 0 0 3px var(--ifm-color-primary-light);
+}
+
+.phaseLabel {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.phaseBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+.badgeRED {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.badgeGREEN {
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.badgeREFACTOR {
+  background: #DBEAFE;
+  color: #2563EB;
+}
+
+.phaseArrow {
+  color: var(--ifm-color-emphasis-400);
+  font-size: 1.25rem;
+}
+
+.phaseDescription {
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+  background: var(--ifm-color-emphasis-100);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* Split Panel */
+.splitPanel {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  min-height: 400px;
+}
+
+.leftPanel,
+.rightPanel {
+  flex: 1;
+  min-width: 0;
+}
+
+/* TDD Navigation */
+.tddNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  background: var(--ifm-color-emphasis-100);
+}
+
+.tddNavButton {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  background: var(--ifm-background-color);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.tddNavButton:hover:not(:disabled) {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.tddNavButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tddProgress {
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-600);
+  font-weight: 500;
+}
+
+/* ===================
+   Terminal Output
+   =================== */
+
+.terminal {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1a1a2e;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: #16213e;
+  border-bottom: 1px solid #0f3460;
+}
+
+.terminalDots {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.dotRed,
+.dotYellow,
+.dotGreen {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dotRed {
+  background: #ff5f56;
+}
+
+.dotYellow {
+  background: #ffbd2e;
+}
+
+.dotGreen {
+  background: #27ca40;
+}
+
+.terminalTitle {
+  font-size: 0.75rem;
+  color: #8892b0;
+  font-weight: 500;
+}
+
+.terminalBody {
+  flex: 1;
+  padding: 1rem;
+  overflow: auto;
+}
+
+.terminalCommand {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85rem;
+  color: #64ffda;
+  margin-bottom: 0.75rem;
+}
+
+.terminalCommand::before {
+  content: '$ ';
+  color: #8892b0;
+}
+
+.terminalOutput {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.terminalLine {
+  color: #ccd6f6;
+  white-space: pre;
+}
+
+.linePass {
+  color: #4ade80;
+}
+
+.lineFail {
+  color: #f87171;
+}
+
+.statusIcon {
+  margin-right: 0.5rem;
+}
+
+/* ===================
+   Code Block
+   =================== */
+
+.codeBlock {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.codeFilename {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--ifm-color-emphasis-100);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.fileIcon {
+  font-size: 1rem;
+}
+
+.codeContent {
+  flex: 1;
+  margin: 0;
+  padding: 1rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  overflow: auto;
+}
+
+.codeContent code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* ===================
+   Workshop Phase Accordion
+   =================== */
+
+.accordion {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+.accordionItem {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.accordionItem:last-child {
+  border-bottom: none;
+}
+
+.accordionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: none;
+  background: var(--ifm-background-color);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.accordionHeader:hover {
+  background: var(--ifm-color-emphasis-50);
+}
+
+.expanded .accordionHeader {
+  background: var(--ifm-color-emphasis-100);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.accordionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.phaseNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.phaseName {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.tddBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.tddRED {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.tddGREEN {
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.tddREFACTOR {
+  background: #DBEAFE;
+  color: #2563EB;
+}
+
+.accordionMeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.phaseDuration {
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-600);
+  font-weight: 500;
+}
+
+.accordionChevron {
+  font-size: 0.75rem;
+  color: var(--ifm-color-emphasis-500);
+}
+
+.accordionContent {
+  padding: 1.25rem;
+  background: var(--ifm-color-emphasis-50);
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.activitiesSection,
+.artifactSection,
+.rolesSection {
+  margin-bottom: 1.25rem;
+}
+
+.activitiesSection:last-child,
+.artifactSection:last-child,
+.rolesSection:last-child {
+  margin-bottom: 0;
+}
+
+.accordionContent h4 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0 0 0.75rem 0;
+}
+
+.activitiesSection ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.activitiesSection li {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.artifactText {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  background: var(--ifm-color-primary-lightest);
+  border-left: 3px solid var(--ifm-color-primary);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.roleCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.roleCard {
+  padding: 0.75rem;
+  background: var(--ifm-background-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 6px;
+}
+
+.roleLabel {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ifm-color-primary);
+  margin-bottom: 0.35rem;
+}
+
+.roleCard p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+  line-height: 1.4;
+}
+
+/* ===================
+   Responsive
+   =================== */
+
+@media (max-width: 768px) {
+  .splitPanel {
+    flex-direction: column;
+  }
+
+  .roleCards {
+    grid-template-columns: 1fr;
+  }
+
+  .phaseNav {
+    flex-wrap: wrap;
+  }
+
+  .phaseButton {
+    padding: 0.5rem 1rem;
+  }
+}
